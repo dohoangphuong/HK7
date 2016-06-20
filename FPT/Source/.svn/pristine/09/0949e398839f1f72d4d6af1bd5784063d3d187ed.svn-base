@@ -1,0 +1,977 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using CSS.Models;
+using CSS.ViewModels;
+using System.Net.Mail;
+using System.Net;
+
+namespace CSS.Controllers
+{
+    public class AgreementController : Controller
+    {
+        private CSSEntities1 db = new CSSEntities1();
+
+        /// <summary>
+        /// Agreement static for Homepage
+        /// </summary>
+        /// <returns></returns>
+        [ChildActionOnly]
+        public ActionResult ParticialStatics()
+        {
+            if (Request.IsAuthenticated)
+            {
+                return View(db.AgreementStatus.ToList());
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+        
+        //
+        /// <summary>
+        /// UC16: Show agreement static page
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Statics()
+        {
+            if (Request.IsAuthenticated)
+            {
+                List<Agreement> recentAgreement = db.Agreements.Where(x => (x.CreatedBy == @User.Identity.Name || x.LastUpdatedBy == @User.Identity.Name)).OrderByDescending(x=>x.LastUpdatedDate).Take(3).ToList() ;
+                ViewBag.recentAgreement = recentAgreement;
+                return View(db.AgreementStatus.ToList());
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        /// <summary>
+        /// Direct after user choose view agreement
+        /// </summary>
+        /// <param name="Select">format: AgreementNumber/VariantNumber</param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult Statics(string Select)
+        {
+            if (Request.IsAuthenticated)
+            {
+                if (Select != null)
+                {
+                    //"Select" = AgreementNumber/VariantNumber
+                    string[] part = Select.Split('/');
+                    return RedirectToAction("ViewAgreement", new { agreementNumber = part[0], variantNumber = part[1] });
+                }
+                else
+                {
+                    return RedirectToAction("Statics");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+
+        /// <summary>
+        /// Copy an agreement
+        /// </summary>
+        /// <param name="agreementNumber">AgreementNumber of selected agreement</param>
+        /// <param name="variant">VariantNumber of selected agreement</param>
+        /// <returns></returns>
+        public ActionResult Copy(int agreementNumber = 0, int variant = 0)
+        {
+            if (Request.IsAuthenticated)
+            {
+                Agreement agreement = db.Agreements.Find(agreementNumber, variant);
+                if (agreement == null)
+                {
+                    return HttpNotFound();
+                }
+                //new Variant = highest variant +1
+                ViewBag.NewVariant = db.Agreements.Where(x => x.AgreementNumber == agreement.AgreementNumber).OrderByDescending(x => x.VariantNumber).First().VariantNumber + 1;
+                return View(agreement);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        /// <summary>
+        /// Handle user choice
+        /// </summary>
+        /// <param name="agreement">Agreement model</param>
+        /// <param name="choice">value of submit button to know which button user clicked</param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult Copy(Agreement agreement, int choice)
+        {
+            if (Request.IsAuthenticated)
+            {
+                //Copy agreement infomation from database
+                Agreement NewAgreement = db.Agreements.AsNoTracking().Single(x => x.AgreementNumber == agreement.AgreementNumber && 
+                    x.VariantNumber == agreement.VariantNumber);
+                //Update some new value
+                NewAgreement.CreatedBy = User.Identity.Name;
+                NewAgreement.CreatedDate = DateTime.Now;
+                NewAgreement.LastUpdatedBy = User.Identity.Name;
+                NewAgreement.LastUpdatedDate = DateTime.Now;
+                NewAgreement.LastStatusUpdatedDate = DateTime.Now;
+                NewAgreement.RFOUsers = db.Agreements.Find(agreement.AgreementNumber, agreement.VariantNumber).RFOUsers;
+                //New agreement status will be draft
+                NewAgreement.StatusId = 1;
+                //Get all comment from selected agreement
+                List<Comment> comments = db.Comments.AsNoTracking().Where(x => x.AgreementNumber == agreement.AgreementNumber && 
+                    x.VariantNumber == agreement.VariantNumber).ToList();
+                //Get Volume of agreement
+                Volume volume = db.Volumes.AsNoTracking().Single(x => x.VolumeId == agreement.VolumeId);
+
+                switch (choice)
+                {
+                    //Duplicate this agreement with a new variant
+                    case 1:
+                        NewAgreement.VariantNumber = db.Agreements.Where(x => x.AgreementNumber == NewAgreement.AgreementNumber).
+                            OrderByDescending(x => x.VariantNumber).First().VariantNumber + 1; 
+                        NewAgreement.RFONumbers = db.Agreements.Find(agreement.AgreementNumber, agreement.VariantNumber).RFONumbers;
+                        //Add volume indo db and update volumeID for new agreement
+                        db.Volumes.Add(volume);
+                        NewAgreement.VolumeId = volume.VolumeId;
+                        //Update comment reference
+                        foreach (Comment comment in comments)
+                        {
+                            comment.VariantNumber = NewAgreement.VariantNumber;
+                            db.Comments.Add(comment);
+                        }
+                        db.Agreements.Add(NewAgreement);
+                        db.SaveChanges();
+                        return RedirectToAction("Edit", new { NewAgreement = agreement.AgreementNumber, variant = NewAgreement.VariantNumber });
+                    //Duplicate this agreement agreement for a new agreement with...
+                    case 2:
+                        NewAgreement.AgreementNumber = db.Agreements.OrderByDescending(x => x.AgreementNumber).First().AgreementNumber + 1;
+                        NewAgreement.VariantNumber = 1;
+                        NewAgreement.RFONumbers = db.Agreements.Find(agreement.AgreementNumber, agreement.VariantNumber).RFONumbers;
+                        //Add volume indo db and update volumeID for new agreement
+                        db.Volumes.Add(volume);
+                        NewAgreement.VolumeId = volume.VolumeId;
+                        //Update comment reference
+                        foreach (Comment comment in comments)
+                        {
+                            comment.AgreementNumber = NewAgreement.AgreementNumber;
+                            comment.VariantNumber = NewAgreement.VariantNumber;
+                            db.Comments.Add(comment);
+                        }
+                        db.Agreements.Add(NewAgreement);
+                        db.SaveChanges();
+                        return RedirectToAction("Edit", new { agreementNumber = NewAgreement.AgreementNumber, 
+                            variant = NewAgreement.VariantNumber });
+                    //Duplicate this agreement for a new customer
+                    case 3:
+                        NewAgreement.RFONumbers.Clear();
+                        NewAgreement.Volume = volume;
+                        NewAgreement.Comments = comments;
+                        TempData["newAgreement"] = NewAgreement;
+                        return RedirectToAction("Add");
+                    //Something went wrong
+                    default:
+                        return View("Error");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        public ActionResult SearchAgreement(int? statusId)
+        { 
+            if (Request.IsAuthenticated)
+                {
+                    
+                    SearchAgreementModel searchmodel = new SearchAgreementModel();
+                   if(statusId !=null) searchmodel.AgreementStatus.StatusId = statusId.Value;
+
+                   ViewBag.ListCustomerType = db.CustomerTypes.ToArray<CustomerType>();
+                   ViewBag.ListStatus = db.AgreementStatus.ToArray<AgreementStatu>();
+
+                    ViewBag.ListCSM = (from usertype in db.UserTypes
+                                       from username in db.RFOUsers
+                                       where usertype.UserType1 == "CSM" && usertype.UserTypeId == username.UserTypeId
+                                       select username).ToList().Select(c => new SelectListItem { Value = c.UserId.ToString(), Text = c.FirstName + " " + c.LastName });
+
+                    
+                    return View("SearchAgreement", searchmodel);
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+            
+        }
+
+        [HttpPost]
+        public ActionResult SearchAgreementResults(SearchAgreementModel model)
+        {
+            if (model != null)
+            {
+                SearchAgreementModel[] searchResults = null;
+
+                var results = (from agreement in db.Agreements
+                               from rfouser in db.RFOUsers
+                               from rfonumber1 in db.RFONumbers
+                               where (agreement.AgreementNumber == model.AgreementNumber || model.AgreementNumber == null) &&
+                                     (agreement.Name.Trim().ToLower() == model.Name.Trim().ToLower() || model.Name == null) &&
+                                     (agreement.RFONumbers.FirstOrDefault().RFONumber1==rfonumber1.RFONumber1 && rfonumber1.PostCode.Trim().ToLower() == model.PostCode.Trim().ToLower() || model.PostCode == null) &&
+                                     (agreement.RFOUsers.FirstOrDefault().UserId == rfouser.UserId && rfouser.UserId.ToString() == model.CSM || model.CSM == null|| model.CSM=="All") &&
+                                     (agreement.RFONumbers.FirstOrDefault().RFONumber1 == rfonumber1.RFONumber1 && rfonumber1.CustomerTypeId == model.CustomerType.CustomerTypeId || model.CustomerType.CustomerTypeId == null) &&
+                                     (agreement.RFONumbers.FirstOrDefault().RFONumber1 == rfonumber1.RFONumber1 && rfonumber1.RFONumber1 == model.RFONumber || model.RFONumber == null) &&
+                                     (agreement.AgreementStatu.StatusId == model.AgreementStatus.StatusId || model.AgreementStatus.StatusId == null) &&
+                                     (agreement.StartDate == model.StartDate || model.StartDate == null) &&
+                                     (agreement.EndDate == model.EndDate || model.EndDate == null)
+                               select new SearchAgreementModel
+                               {
+                                   RFONumber = rfonumber1.RFONumber1,
+                                   CustomerType = rfonumber1.CustomerType,
+                                   Name = agreement.Name,
+                                   PostCode = rfonumber1.PostCode,
+                                   CSM = rfouser.FirstName + " " + rfouser.LastName,
+                                   AgreementStatus = agreement.AgreementStatu,
+                                   StartDate = agreement.StartDate,
+                                   EndDate = agreement.EndDate,
+                                   AgreementNumber = agreement.AgreementNumber,
+                                   VariantNumber = agreement.VariantNumber
+                               }).Distinct();
+
+                if (results != null) searchResults = results.ToArray<SearchAgreementModel>();
+
+                if (searchResults.Count()> 0)
+                {
+                    searchResults[0].IsSelected = true;
+                    return PartialView("SearchAgreementResults", searchResults);
+                }
+                else
+                {
+                    ViewBag.errorMessage = "Not Found!";
+                    return PartialView("SearchAgreementResults", new SearchAgreementModel[0]);
+                }
+                
+            }
+            else
+                return PartialView("SearchAgreementResults", new SearchAgreementModel[0]);
+        }
+
+      
+        public ActionResult ViewAgreement(int? agreementNumber, int? variantNumber)
+        {
+            if (Request.IsAuthenticated)
+            {
+                if (agreementNumber == null || variantNumber == null)
+                {
+                    return HttpNotFound();
+                }
+                else
+                {
+                    Agreement agreement = db.Agreements.Find(agreementNumber, variantNumber);
+                    ViewBag.status = agreement.StatusId;
+
+                    if (agreement.AgreementStatu.StatusId != 0)
+                    {
+                        //return RedirectToAction("EditAgreement", "Home",agreement);
+                        return View(agreement);
+                    }
+                    else
+                    {
+                        return View(agreement);
+                    }
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult SearchAgreement(string select, int choice)
+        {
+            if (Request.IsAuthenticated)
+            {
+                if (select != null)
+                {
+                    string[] part = select.Split('/');
+
+                    switch (choice)
+                    {
+                        case 1:
+                            //Audit
+                            break;
+                        case 2:
+                            //Copy
+                            return RedirectToAction("Copy", new { agreementNumber = part[0], variant = part[1] });
+
+                        case 3:
+                            //View
+                            return RedirectToAction("ViewAgreement", new { agreementNumber = part[0], variantNumber = part[1] });
+
+                    }
+                    return View();
+                }
+                else
+                {
+                    return RedirectToAction("SearchAgreement");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        //return view Add Agreement
+        public ActionResult AddAgreement()
+        {
+            if (Request.IsAuthenticated)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        //return View Select Customer
+        [ChildActionOnly]
+        public ActionResult SelectCustomer()
+        {
+            if (Request.IsAuthenticated)
+            {
+                SearchCustomerModel searchModel = new SearchCustomerModel();
+                ViewBag.CustomerTypes = db.CustomerTypes.ToArray<CustomerType>();
+                ViewBag.BusinessArea = (from syscvt in db.SYSCVTs
+                                        join syscft in db.SYSCFTs.Where(s => s.XSYSCONFIGNAME == "BUSINESS AREA")
+                                        on syscvt.NSYSTEMCONFGID equals syscft.NSYSTEMCONFGID
+                                        select syscvt)
+                               .ToArray<SYSCVT>();
+                return PartialView("SelectCustomer", searchModel);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        //function Search Customer
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public ActionResult SearchCustomer()
+        {
+            SearchCustomerModel searchModel = new SearchCustomerModel();
+            if (TryUpdateModel(searchModel))
+            {
+                SearchCustomerModel[] searchResult = null;
+                //if user inputs rfo number, results will only search with rfo number
+                if (searchModel.RFONumber != null)
+                {
+                    var results = from rfo in db.RFONumbers.Where(r => (r.RFONumber1 == searchModel.RFONumber))
+                                  join com in db.Companies
+                                  on rfo.CompanyId equals com.CompanyId
+                                  join csm in db.CustomerTypes
+                                  on rfo.CustomerTypeId equals csm.CustomerTypeId
+                                  select new SearchCustomerModel
+                                  {
+                                      RFONumber = rfo.RFONumber1,
+                                      SelectedCustomerType = rfo.CustomerType,
+                                      Name = com.Name,
+                                      PostCode = rfo.PostCode,
+                                      BusinessArea = com.BusinessArea
+                                  };
+                    if (results != null)
+                        searchResult = results.ToArray<SearchCustomerModel>();
+                }
+                //if user doesn't input rfo number, results won't search with rfo number
+                else
+                {
+                    var results = from rfo in db.RFONumbers.Where(r => ((searchModel.SelectedCustomerType.CustomerTypeId == null
+                                            || r.CustomerTypeId == searchModel.SelectedCustomerType.CustomerTypeId)
+                                        && (string.IsNullOrEmpty(searchModel.PostCode) || r.PostCode.Contains(searchModel.PostCode))))
+
+                                  join com in db.Companies.Where(co => ((string.IsNullOrEmpty(searchModel.Name) || co.Name.Contains(searchModel.Name))
+                                        && (string.IsNullOrEmpty(searchModel.BusinessArea) || co.BusinessArea.Contains(searchModel.BusinessArea))))
+                                    on rfo.CompanyId equals com.CompanyId
+
+                                  join csm in db.CustomerTypes
+                                    on rfo.CustomerTypeId equals csm.CustomerTypeId
+                                  select new SearchCustomerModel
+                                  {
+                                      RFONumber = rfo.RFONumber1,
+                                      SelectedCustomerType = rfo.CustomerType,
+                                      Name = com.Name,
+                                      PostCode = rfo.PostCode,
+                                      BusinessArea = com.BusinessArea
+                                  };
+                    if (results != null)
+                        searchResult = results.ToArray<SearchCustomerModel>();
+                }
+                if (searchResult == null)
+                {
+                    ViewBag.errorMessage = "Can not get customer data.";
+                    return PartialView("Warning");
+                }
+                else
+                {
+                    if (searchResult.Length > 0)
+                    {
+                        return PartialView("SearchCustomerResults", searchResult);
+                    }
+                    else
+                    {
+                        ViewBag.errorMessage = "Customer not found.";
+                        return PartialView("Warning");
+                    }
+                }
+            }
+            else
+            {
+                ViewBag.errorMessage = "Can not receive search input.";
+                return PartialView("Warning");
+            }
+        }
+
+        //funcion Create Agreement
+        [HttpPost]
+        public ActionResult CreateAgreement(int rfoNumber)
+        {
+            Agreement agrmt = new Agreement();
+
+            var listAgrmt = db.Agreements.ToList();
+            if (listAgrmt != null && listAgrmt.Count > 0)
+            {
+                var lastAgrmtNumber = listAgrmt.Last();
+                if (lastAgrmtNumber == null)
+                {
+                    ViewBag.errorMessage = "Can not find the last Agreement.";
+                    return PartialView("Warning");
+                }
+                agrmt.AgreementNumber = lastAgrmtNumber.AgreementNumber + 1;
+            }
+            else
+                agrmt.AgreementNumber = 1;
+
+            var agrmtStatus = db.AgreementStatus.Single(s => string.Compare(s.AgreementStatus, "draft", true) == 0);
+            if (agrmtStatus == null)
+            {
+                ViewBag.errorMessage = "Can not find Status 'Draft'";
+                return PartialView("Warning");
+            }
+            agrmt.StatusId = 1;
+
+            var rfoObject = db.RFONumbers.Find(rfoNumber);
+            if (rfoObject == null)
+            {
+                ViewBag.errorMessage = "Can not find Customer.";
+                return PartialView("Warning");
+            }
+            agrmt.RFONumbers.Add(rfoObject);
+
+            agrmt.VariantNumber = 1;
+            agrmt.SignReceived = true;
+            agrmt.SignReceived = false;
+            agrmt.LastStatusUpdatedDate = DateTime.Now;
+            agrmt.AuthorisedBy = User.Identity.Name;
+            agrmt.AuthorisedDate = DateTime.Now;
+            agrmt.CreatedBy = User.Identity.Name;
+            agrmt.CreatedDate = DateTime.Now;
+            agrmt.LastStatusUpdatedDate = DateTime.Now;
+            agrmt.LastUpdatedDate = DateTime.Now;
+            agrmt.LastUpdatedBy = User.Identity.Name;
+
+            db.Agreements.Add(agrmt);
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                ViewBag.errorMessage = "Can not create agreement.\n" + ex.Message;
+                return PartialView("Warning");
+            }
+
+            //get system config parameter
+            var fundingMethods = db.FundingMethods.ToArray();
+            foreach (var fmethod in fundingMethods)
+            {
+                fmethod.SignedContractDefault = fmethod.FundingMethodId + "/" + fmethod.SignedContractDefault;
+            }
+            ViewBag.FundingMethod = fundingMethods;
+
+            ViewBag.PaymentTo = (from syscvt in db.SYSCVTs
+                                 join syscft in db.SYSCFTs.Where(s => s.XSYSCONFIGNAME == "PAYMENT TO")
+                                 on syscvt.NSYSTEMCONFGID equals syscft.NSYSTEMCONFGID
+                                 select syscvt)
+                                .ToArray<SYSCVT>();
+            ViewBag.DealerVisibility = (from syscvt in db.SYSCVTs
+                                        join syscft in db.SYSCFTs.Where(s => s.XSYSCONFIGNAME == "DEALER VISIBILITY")
+                                        on syscvt.NSYSTEMCONFGID equals syscft.NSYSTEMCONFGID
+                                        select syscvt)
+                                .ToArray<SYSCVT>();
+            ViewBag.VolumeDiscountType = (from syscvt in db.SYSCVTs
+                                          join syscft in db.SYSCFTs.Where(s => s.XSYSCONFIGNAME == "VOLUME DISCOUNT TYPE")
+                                          on syscvt.NSYSTEMCONFGID equals syscft.NSYSTEMCONFGID
+                                          select syscvt)
+                                .ToArray<SYSCVT>();
+            ViewBag.DiscountUnit = (from syscvt in db.SYSCVTs
+                                    join syscft in db.SYSCFTs.Where(s => s.XSYSCONFIGNAME == "DISCOUNT UNIT")
+                                    on syscvt.NSYSTEMCONFGID equals syscft.NSYSTEMCONFGID
+                                    select syscvt)
+                                .ToArray<SYSCVT>();
+            ViewBag.Combinability = (from syscvt in db.SYSCVTs
+                                     join syscft in db.SYSCFTs.Where(s => s.XSYSCONFIGNAME == "COMBINABILITY")
+                                     on syscvt.NSYSTEMCONFGID equals syscft.NSYSTEMCONFGID
+                                     select syscvt)
+                                .ToArray<SYSCVT>();
+
+            //set datamodel to BasicDetails View
+            BasicDetailModel basicDetails = new BasicDetailModel();
+            basicDetails.RFONumber = rfoObject.RFONumber1;
+            basicDetails.CustomerName = rfoObject.Company.Name;
+            basicDetails.AgreementNumber = agrmt.AgreementNumber;
+            basicDetails.VarriantNumber = agrmt.VariantNumber;
+            basicDetails.CurrentDate = DateTime.Now;
+            basicDetails.StartDate = basicDetails.CurrentDate;
+            basicDetails.EndDate = basicDetails.CurrentDate.AddDays(90);
+            return PartialView("BasicDetails", basicDetails);
+        }
+
+        //function Save Agreement Basic Details
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public ActionResult BasicDetails()
+        {
+            BasicDetailModel detail = new BasicDetailModel();
+            if (TryUpdateModel(detail))
+            {
+                var agrmnt = db.Agreements.Find(detail.AgreementNumber, detail.VarriantNumber);
+                if (agrmnt == null)
+                {
+                    ViewBag.errorMessage = "Agreement not found.";
+                    return PartialView("Warning");
+                }
+                agrmnt.Name = detail.AgreementName;
+                agrmnt.Description = detail.AgeementDescription;
+                agrmnt.StartDate = detail.StartDate;
+                agrmnt.EndDate = detail.EndDate;
+
+                //split string to get id value
+                string[] signedContract = detail.FundingMethodId.Split('/');
+                int fundingMethodId;
+                int.TryParse(signedContract[0], out fundingMethodId);
+                agrmnt.FundingMethodId = fundingMethodId;
+                agrmnt.PaymentTo = detail.PaymentTo;
+                agrmnt.HandlingCharge = detail.HandingCharge;
+                agrmnt.DealerVisibility = detail.DealerVisibility;
+                agrmnt.DiscountUnit = detail.DiscountUnit;
+                agrmnt.Combinability = detail.Combinability;
+                agrmnt.VolumeDiscountType = detail.VolumeDiscountType;
+                agrmnt.SignRequired = detail.SignRequired;
+
+                try
+                {
+                    db.Entry(agrmnt).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.errorMessage = "Can not save agreement.\n" + ex.Message;
+                    return PartialView("Warning");
+                }
+
+                SearchDealerModel searchModel = new SearchDealerModel();
+                searchModel.AgreementNumber = agrmnt.AgreementNumber;
+                searchModel.VarriantNumber = agrmnt.VariantNumber;
+                return PartialView("DealerSelection", searchModel);
+            }
+            else
+            {
+                ViewBag.errorMessage = "Can not receive input.";
+                return PartialView("Warning");
+            }
+        }
+
+        //get all dealer
+        [HttpPost]
+        public ActionResult GetAllDealer()
+        {
+            var dealers = from rfo in db.RFOUsers
+                          from addr in db.ContactAddresses
+                              .Where(ad => ad.UserId == rfo.UserId).Take(1)
+                          select (new DealerSelectionModel()
+                          {
+                              Code = rfo.UserId,
+                              DealerName = rfo.FirstName + " " + rfo.LastName,
+                              Town = addr.Town,
+                              County = addr.County
+                          });
+
+            if (dealers == null)
+            {
+                ViewBag.errorMessage = "Can not get dealer data";
+                return PartialView("Warning");
+            }
+            else
+            {
+                var searchResults = dealers.ToArray<DealerSelectionModel>();
+                if (searchResults.Length > 0)
+                    return PartialView("SearchDealerResults", searchResults);
+                else
+                {
+                    ViewBag.errorMessage = "Dealer Not Found";
+                    return PartialView("Warning");
+                }
+            }
+        }
+
+        //function Search Dealer
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public ActionResult SearchDealer()
+        {
+            SearchDealerModel searchModel = new SearchDealerModel();
+            if (TryUpdateModel(searchModel))
+            {
+                var dealers = from rfo in db.RFOUsers.Where(r =>
+                        (
+                            (searchModel.Code == null || r.UserId == searchModel.Code)
+                            && (string.IsNullOrEmpty(searchModel.DealerName)
+                                || (r.FirstName + r.LastName).Contains(searchModel.DealerName))
+                        ))
+                              from addr in db.ContactAddresses.Where(ad => ad.UserId == rfo.UserId).Take(1)
+                              select new DealerSelectionModel()
+                              {
+                                  Code = rfo.UserId,
+                                  DealerName = rfo.FirstName + " " + rfo.LastName,
+                                  Town = addr.Town,
+                                  County = addr.County
+                              };
+                if (dealers == null)
+                {
+                    ViewBag.errorMessage = "Can not get dealer data";
+                    return PartialView("Warning");
+                }
+                else
+                {
+                    var searchResults = dealers.ToArray<DealerSelectionModel>();
+                    if (searchResults.Length > 0)
+                        return PartialView("SearchDealerResults", searchResults);
+                    else
+                    {
+                        ViewBag.errorMessage = "Dealer Not Found";
+                        return PartialView("Warning");
+                    }
+                }
+            }
+            else
+            {
+                ViewBag.errorMessage = "Can not receive search input.";
+                return PartialView("Warning");
+            }
+        }
+
+        //save dealers to agreement
+        [HttpPost]
+        public ActionResult SaveDealers(int[] selectedDealers,
+            int agreementNumber = 0, int varriantNumber = 0)
+        {
+            if (selectedDealers == null)
+            {
+                ViewBag.errorMessage = "Can not receive input.";
+                return PartialView("Warning");
+            }
+            else
+            {
+                var agrmt = db.Agreements.Find(agreementNumber, varriantNumber);
+                if (agrmt == null)
+                {
+                    ViewBag.errorMessage = "Agreement not found.";
+                    return PartialView("Warning");
+                }
+                else
+                {
+                    try
+                    {
+                        foreach (var dealerId in selectedDealers)
+                            agrmt.RFOUsers.Add(db.RFOUsers.Find(dealerId));
+                        db.Entry(agrmt).State = System.Data.Entity.EntityState.Modified;
+                        db.SaveChanges();
+                    }
+                    catch (Exception ex)
+                    {
+                        ViewBag.errorMessage = "Assign dealers to agreement failed. " + ex.Message;
+                        return PartialView("Warning");
+                    }
+                    return PartialView("RetroBanding");
+                }
+            }
+        }
+
+        public ActionResult RejectAgreement(SearchAgreementModel model)
+        {
+            if (Request.IsAuthenticated)
+            {
+                //Agreement agreementReject = db.Agreements.Find(model.AgreementNumber, model.VariantNumber);
+
+                //if (model.Reason != null)
+                //{
+                //    agreementReject.StatusId = 5;
+                   
+                    
+                //}
+                
+                return View(model);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        //UC 2.7 Confirmation
+        public ActionResult Confirmation(Agreement agreement)
+        {
+            if (Request.IsAuthenticated)
+            {
+                if (agreement == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(agreement);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        //Sumbit after confirmation
+        public ActionResult SubmitAgreement(Agreement agreement)
+        {
+            if (Request.IsAuthenticated)
+            {
+                if (agreement == null)
+                {
+                    return HttpNotFound();
+                }
+                else
+                {
+                    //Check if data already save or not
+                    bool isExist = false;
+                    if (db.Agreements.Find(agreement.AgreementNumber, agreement.VariantNumber) != null)
+                    {
+                        agreement = db.Agreements.Find(agreement.AgreementNumber, agreement.VariantNumber);
+                        isExist = true;
+                    }
+
+                    //Status is "Draft"
+                    if (agreement.StatusId == 1)
+                    {
+                        //Find status "Awaiting approval"
+                        agreement.AgreementStatu = db.AgreementStatus.Find(2);
+                        agreement.LastStatusUpdatedDate = DateTime.Now;
+                        agreement.LastUpdatedBy = User.Identity.Name;
+                        agreement.LastUpdatedDate = DateTime.Now;
+                        if (!isExist)
+                        {
+                            db.Agreements.Add(agreement);
+                        }
+                        db.SaveChanges();
+                    }
+                    return RedirectToAction("View", new { agreementNumber = agreement.AgreementNumber, variant = agreement.VariantNumber });
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        //Approve a awaiting agreement
+        public ActionResult Approve(int agreementNumber, int variant)
+        {
+            if (Request.IsAuthenticated)
+            {
+                Agreement agreement = db.Agreements.Find(agreementNumber, variant);
+                if (agreement == null)
+                {
+                    return HttpNotFound();
+                }
+
+                //Status is "Awaiting approval"
+                if (agreement.StatusId == 2)
+                {
+                    //Find status "Approved"
+                    agreement.AgreementStatu = db.AgreementStatus.Find(4);
+                    agreement.LastStatusUpdatedDate = DateTime.Now;
+                    agreement.LastUpdatedBy = User.Identity.Name;
+                    agreement.LastUpdatedDate = DateTime.Now;
+                    db.SaveChanges();
+                }
+                return RedirectToAction("View", new { agreementNumber = agreement.AgreementNumber, variant = agreement.VariantNumber });
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        #region Do Hoang Phuong
+        public ActionResult ExtendAgreement(int id, int ivar)
+        {
+            ExtendAgreement extendModel = new ExtendAgreement();
+            Agreement iAgr = db.Agreements.Single(x => x.AgreementNumber == id && x.VariantNumber == ivar);
+
+            if (iAgr.RFONumbers.Count > 0)
+                extendModel.RFONumber = iAgr.RFONumbers.First().RFONumber1;
+            extendModel.Name = iAgr.Name;
+            extendModel.AgreementNumber = iAgr.AgreementNumber;
+            extendModel.VariantNumber = iAgr.VariantNumber;
+            extendModel.StartDate = (DateTime)iAgr.StartDate;
+            extendModel.EndDate = (DateTime)iAgr.EndDate;
+            extendModel.StatusId = (int)iAgr.StatusId;
+
+            return View(extendModel);
+        }
+
+        //------------send email------------
+        private void SendEmail(string iEmailTo, string iSubject, string iBody)
+        {
+            if (iEmailTo != null)
+            {
+                string smtpAddress = "smtp.mail.yahoo.com";
+                int portNumber = 587;
+                bool enableSSL = true;
+
+                string emailFrom = "phuong_css@yahoo.com.vn";
+                string password = "taikhoancss";
+                string emailTo = iEmailTo;
+
+                string subject = iSubject;
+                string body = iBody;
+
+                using (MailMessage mail = new MailMessage())
+                {
+                    mail.From = new MailAddress(emailFrom);
+                    mail.To.Add(emailTo);
+                    mail.Subject = subject;
+                    mail.Body = body;
+                    mail.IsBodyHtml = true;
+
+                    using (SmtpClient smtp = new SmtpClient(smtpAddress, portNumber))
+                    {
+                        smtp.Credentials = new NetworkCredential(emailFrom, password);
+                        smtp.EnableSsl = enableSSL;
+                        smtp.Send(mail);
+                    }
+                }
+            }
+        }
+
+        //UC 05
+        public ActionResult DisposeExtendAgreement()
+        {
+            ExtendAgreement extendModel = new ExtendAgreement();
+            Agreement NewAgreement = new Agreement();
+            if (TryUpdateModel(extendModel))
+            {
+                NewAgreement = db.Agreements.AsNoTracking().Single(x => x.AgreementNumber == extendModel.AgreementNumber && x.VariantNumber == extendModel.VariantNumber);
+                if (NewAgreement.StatusId == 4)//approved
+                {
+                    //------------Add new agreement------------
+                    NewAgreement.VariantNumber = db.Agreements.Where(x => x.AgreementNumber == extendModel.AgreementNumber).OrderByDescending(x => x.VariantNumber).First().VariantNumber + 1;
+                    NewAgreement.StatusId = 1;
+                    NewAgreement.StartDate = extendModel.StartDate;
+                    NewAgreement.EndDate = extendModel.EndDate;
+                    //add agreementRFO
+                    NewAgreement.RFONumbers = db.Agreements.Find(extendModel.AgreementNumber, extendModel.VariantNumber).RFONumbers;
+
+
+                    //------------send email------------
+                    Company CompanySendEmail = db.Companies.Find(db.Agreements.Find(extendModel.AgreementNumber, extendModel.VariantNumber).RFONumbers.First().CompanyId);
+
+                    string subject = "Hello, " + CompanySendEmail.Name + ".";
+                    string body = "We have a message from the system to inform you: This system has been changed the Agreement status into 'Draft'(Base on Elements of the Agreement have AgreementNumber = "
+                    + extendModel.AgreementNumber + " and VariantNumber = " + extendModel.VariantNumber + "). The system has been created a new variant based on the previous Agreement! (New Elements of Agreement are: AgreementNumber = "
+                    + NewAgreement.AgreementNumber + " and VariantNumber = " + NewAgreement.VariantNumber + ")";
+
+                    SendEmail(CompanySendEmail.Emailaddress, subject, body);
+
+                    //------------discounts: Replace UC11------------
+                    if (extendModel.EndDate < DateTime.Now)
+                    {
+                        int afterCharge = (int)NewAgreement.HandlingCharge - int.Parse(NewAgreement.DiscountUnit);
+                        if (afterCharge < 0)
+                            afterCharge = 0;
+                        NewAgreement.HandlingCharge = afterCharge;
+                    }
+
+                    //------------save------------
+                    db.Agreements.Add(NewAgreement);
+                    db.SaveChanges();
+                }
+            }
+            //RedirectToAction: trả về hàm index-> để show ra trang chính
+            return RedirectToAction("ViewAgreement", "Agreement", NewAgreement);
+        }
+
+        // UC 06
+        public ActionResult TerminateAgreement(int id, int ivar)
+        {
+            Agreement iAgr = db.Agreements.Single(x => x.AgreementNumber == id && x.VariantNumber == ivar);
+
+            if (iAgr.StatusId == 4)
+            {
+                iAgr.StatusId = 6;//"Discontinued"
+                db.SaveChanges();
+
+                //------------send email------------
+                Company CompanySendEmail = db.Companies.Find(db.Agreements.Find(id, ivar).RFONumbers.First().CompanyId);
+
+                string subject = "Hello, " + CompanySendEmail.Name + ".";
+                string body = "We have a message from the system to inform you: This system has been changed! \n" + "The system has changed the Agreement status into 'Discontinued'.\n " +
+                        "(Elements of Agreement are: AgreementNumber = " + id + " and VariantNumber = " + ivar + ")";
+
+                SendEmail(CompanySendEmail.Emailaddress, subject, body);
+            }
+
+            return View(iAgr);
+        }
+
+        //UC 07
+        public ActionResult CompleteAgreement(int iAgreementNumber, int iVariantNumber)
+        {
+            Agreement iAgr = db.Agreements.Single(x => x.AgreementNumber == iAgreementNumber && x.VariantNumber == iVariantNumber);
+            Company CompanySendEmail = db.Companies.Find(db.Agreements.Find(iAgreementNumber, iVariantNumber).RFONumbers.First().CompanyId);
+
+            if (iAgr.StatusId == 1)//"Draft"
+            {
+                iAgr.StatusId = 2;//"Awaiting"
+                db.SaveChanges();
+            }
+
+            //------------send email------------
+            string subject = "Hello, " + CompanySendEmail.Name + ".";
+            string body = "We have a message from the system to inform you: This system has been changed! \n" + "The system has changed the Agreement status into 'Awaiting'.\n " +
+                        "(Elements of Agreement are: AgreementNumber = " + iAgreementNumber + " and VariantNumber = " + iVariantNumber + ")";
+
+
+            SendEmail(CompanySendEmail.Emailaddress, subject, body);
+
+            return View(CompanySendEmail);
+        }
+        #endregion
+    }
+}

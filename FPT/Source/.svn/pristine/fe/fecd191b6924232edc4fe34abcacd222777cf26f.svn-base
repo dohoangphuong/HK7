@@ -1,0 +1,43 @@
+﻿@model CSS.Models.Company
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>CompleteAgreements</title>
+    <link href="~/Content/StyleUC_5_6_7.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <div class="body">
+        <div class="title">
+            <b>CORPORATE SALES SOLUTION</b>
+        </div>
+        <br />
+        <div class="center">
+            <b>Agreement Complete</b>
+        </div>
+        <br />
+        <div class="left">
+            <div>Thank you for creating the agreement.</div>
+            @if(Model.Name !=null)
+            { 
+                <div>The agreement has been add to a be authorised by <b>@Html.DisplayFor(model=>model.Name)</b></div>
+            }
+            else
+            {
+                <div>The agreement has been add to a be authorised by <b>you</b></div>
+            }
+        </div>
+    </div>
+    <div class="right">
+        <a class=" btn btn-default" href="#" target="_blank">View Agreement</a>
+        <a class=" btn btn-default" href="#" target="_blank">Print</a>
+        <a class=" btn btn-default" href="#" target="_blank">Email</a>
+        <a class=" btn btn-default" href="#" target="_blank">Fax</a>
+    </div>
+</body>
+</html>

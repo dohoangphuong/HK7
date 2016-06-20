@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="ISO-8859-1">
+<title>Universal Council</title>
+<link type="text/css" rel="stylesheet" href="Format.css" />
+</head>
+
+<body>
+	<div class=container>
+		<!--Container-->		
+
+		<div id=topheader>
+			<!--div topheader-->
+			<span style="position: relative; top: 5; left: 10;">BOOK
+				MAINTEANCE</span>
+
+		</div>
+
+		<div id="main">
+			<!--div main-->
+			<form action=# method=post>
+				<table border=0 STYLE="MARGIN: 0 AUTO;" cellpadding="5">
+					<!--table container-->
+
+					<tr>
+						<!--bookId-->
+						<td ALIGN=RIGHT>BookID :</td>
+
+						<td><input type=text name=bookId /></td>
+					</tr>
+
+					<tr>
+						<!--bookTitle-->
+						<td ALIGN=RIGHT>Book Title:</td>
+						<td><input type=text name=bookTitle /></td>
+					</tr>
+
+					<tr>
+						<!--Author-->
+						<td ALIGN=RIGHT>Author:</td>
+
+						<td><input type=text name=author /></td>
+					</tr>
+
+					<tr>
+						<!--category-->
+						<td VALIGN=TOP ALIGN=RIGHT>Category:</td>
+						<td>
+							<table cellpadding="5"
+								style="border: solid 1px #000; padding: 5; box-shadow: 0 0 1px #bbb;">
+								<tr>
+									<td><input type=checkbox checked name=category id="ck1">
+										<label for="ck1"></label> Horror</td>
+
+									<td><input type=checkbox name=category id="ck2"> <label
+										for="ck2"></label> Romance</td>
+								</tr>
+
+								<tr>
+									<td><input type=checkbox name=category id="ck3"> <label
+										for="ck3"></label> Thriler</td>
+
+									<td><input type=checkbox name=category id="ck4"> <label
+										for="ck4"></label> Scri-fi</td>
+
+								</tr>
+							</table>
+						</td>
+					</tr>
+
+					<tr>
+						<!--publisher-->
+						<td ALIGN=RIGHT>Publisher:</td>
+
+						<td><select name=publisher>
+								<option></option>
+						</select></td>
+					</tr>
+
+					<tr>
+						<!--button-->
+						<td></td>
+						<td style="text-align: center"><input type=submit value="OK" />
+							<input type=reset value="CANCEL" /></td>
+					</tr>
+
+				</table>
+			</form>
+		</div>
+	</div>
+
+</body>
+</html>

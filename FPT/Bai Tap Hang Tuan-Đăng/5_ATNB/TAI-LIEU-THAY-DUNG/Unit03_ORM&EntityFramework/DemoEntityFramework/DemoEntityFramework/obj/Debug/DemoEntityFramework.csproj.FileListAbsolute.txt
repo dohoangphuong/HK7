@@ -1,0 +1,12 @@
+D:\_UIT\Fresher_FPT\ATNB\Student\Slides\Unit03_ORM&EntityFramework\DemoEntityFramework\DemoEntityFramework\bin\Debug\DemoEntityFramework.exe.config
+D:\_UIT\Fresher_FPT\ATNB\Student\Slides\Unit03_ORM&EntityFramework\DemoEntityFramework\DemoEntityFramework\bin\Debug\DemoEntityFramework.exe
+D:\_UIT\Fresher_FPT\ATNB\Student\Slides\Unit03_ORM&EntityFramework\DemoEntityFramework\DemoEntityFramework\bin\Debug\DemoEntityFramework.pdb
+D:\_UIT\Fresher_FPT\ATNB\Student\Slides\Unit03_ORM&EntityFramework\DemoEntityFramework\DemoEntityFramework\bin\Debug\EntityFramework.dll
+D:\_UIT\Fresher_FPT\ATNB\Student\Slides\Unit03_ORM&EntityFramework\DemoEntityFramework\DemoEntityFramework\bin\Debug\EntityFramework.xml
+D:\_UIT\Fresher_FPT\ATNB\Student\Slides\Unit03_ORM&EntityFramework\DemoEntityFramework\DemoEntityFramework\obj\Debug\DemoEntityFramework.csprojResolveAssemblyReference.cache
+D:\_UIT\Fresher_FPT\ATNB\Student\Slides\Unit03_ORM&EntityFramework\DemoEntityFramework\DemoEntityFramework\obj\Debug\DemoEntityFramework.frmMain.resources
+D:\_UIT\Fresher_FPT\ATNB\Student\Slides\Unit03_ORM&EntityFramework\DemoEntityFramework\DemoEntityFramework\obj\Debug\DemoEntityFramework.frmTaiKhoan.resources
+D:\_UIT\Fresher_FPT\ATNB\Student\Slides\Unit03_ORM&EntityFramework\DemoEntityFramework\DemoEntityFramework\obj\Debug\DemoEntityFramework.Properties.Resources.resources
+D:\_UIT\Fresher_FPT\ATNB\Student\Slides\Unit03_ORM&EntityFramework\DemoEntityFramework\DemoEntityFramework\obj\Debug\DemoEntityFramework.csproj.GenerateResource.Cache
+D:\_UIT\Fresher_FPT\ATNB\Student\Slides\Unit03_ORM&EntityFramework\DemoEntityFramework\DemoEntityFramework\obj\Debug\DemoEntityFramework.exe
+D:\_UIT\Fresher_FPT\ATNB\Student\Slides\Unit03_ORM&EntityFramework\DemoEntityFramework\DemoEntityFramework\obj\Debug\DemoEntityFramework.pdb

@@ -1,0 +1,20 @@
+<style>
+#sampleTable {
+	border-collapse: collapse;
+}
+
+#sampleTable td {
+	border: 1px solid black;
+	width: 100px;
+}
+</style>
+<table id="sampleTable">
+	<tr>
+		<td>Name</td>
+		<td>Year</td>
+	</tr>
+	<tr>
+		<td>Van A</td>
+		<td>1982</td>
+	</tr>
+</table>

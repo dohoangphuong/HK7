@@ -1,0 +1,166 @@
+﻿@model CSS_G06.Models.CustomerResult
+@using CSS_G06.Models
+
+@{
+    ViewBag.Title = "SelectCustomer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style type="text/css">
+        table.gridtable {
+        font-family: verdana,arial,sans-serif;
+        font-size: 11px;
+        color: #333333;
+        border-width: 1px;
+        border-color: #666666;
+        border-collapse: collapse;
+        width:100%;
+        }
+
+        table.gridtable th {
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #666666;
+            background-color: #dedede;
+        }
+
+        table.gridtable td {
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #666666;
+            background-color: #ffffff;
+            padding:5px;
+        }
+        #SearchArea{
+            width:100%;
+            height:250px;
+            border:solid 1px blue;
+            padding:1px;
+        }
+        #ResultArea{
+            width:100%;
+            height:250px;
+            border:solid 1px blue;
+            padding:1px;
+        }
+        .labelArea{
+            width:100px;
+            height:auto;
+            font-size:12px;
+            font-weight:bold;
+        }
+        .inputAreaShort{
+            width:150px;
+            height:auto;
+            font-size:12px;
+            font-weight:bold;
+        }
+        .inputAreaLong{
+            width:250px;
+            height:auto;
+            font-size:12px;
+            font-weight:bold;
+        }
+        td{
+            padding:5px;
+        }
+        #SelectCustomerArea{
+            width:800px;
+            height:auto;
+        }
+</style>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#submitButton").click(function(){
+            var selected = $("#ResultArea input[type='radio']:checked");
+            $.ajax({
+                type: "POST",
+                url: "/AddAnAgreement/BasicAgreementDetails",
+                data: { RFONumber: selected.val() },
+                success: function (data) {
+                    window.location.href = "/AddAnAgreement/BasicAgreementDetails";
+                }
+            });
+            });
+    });
+</script>
+
+<div id="SelectCustomerArea">
+
+    <div id="SearchArea">
+        @using (Ajax.BeginForm("SelectCustomer", "AddAnAgreement", new AjaxOptions
+        {
+        InsertionMode = InsertionMode.Replace, //target element(#patientList) will be replaced
+        UpdateTargetId = "ResultArea",
+        //LoadingElementId = "loader" // div with .gif loader - that is shown when data are loading
+        }))
+        {
+             <table>
+                <tr>
+                    <td class="labelArea">RFO Number</td>
+                    <td class="inputAreaShort">@Html.TextBoxFor(model => model.RFONumer, new { maxlength = 10 })</td>
+                </tr>
+                <tr>
+                    <td class="labelArea">Customer Type</td>
+                    <td class="inputAreaLong">
+                        @Html.DropDownListFor(model => model.CustomerType, new SelectList(ViewBag.CustomerType, "CustomerTypeId", "CustomerType1"))
+                    </td>
+                </tr>
+                <tr>
+                    <td class="labelArea">Name</td>
+                    <td class="inputAreaLong">@Html.TextBoxFor(model => model.Name, new { maxlength = 50, style = "width: 200px;" })</td>
+                </tr>
+                <tr>
+                    <td class="labelArea">Post Code</td>
+                    <td class="inputAreaShort">@Html.TextBoxFor(model => model.PostCode, new { maxlength = 10 })</td>
+                </tr>
+                <tr>
+                    <td class="labelArea">Business Area</td>
+                    <td class="inputAreaShort">
+                        @Html.DropDownListFor(model => model.BusinessArea, new SelectList(ViewBag.BusinessArea,"Value","Text"), new { style = "width: 150px;" })
+                    </td>
+                </tr>
+                <tr>
+                    <td class="labelArea">Region</td>
+                    <td class="inputAreaShort">
+                        @Html.DropDownListFor(model => model.Region, new SelectList(ViewBag.Region, "RegionId", "RegionName"), new { style = "width: 150px;" })
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class="inputAreaShort" align="left">
+                        <input type="submit" name="btnSubmit" value="Search"/>
+                    </td>
+                </tr>
+               
+            </table>
+    }
+    </div><!-- End #SearchArea -->
+
+    <div id="ResultArea">
+        <label>Search result: </label>
+        <label style="font-style:italic">@ViewBag.SumResult results</label>
+       @{
+           WebGrid grid = new WebGrid(source: ViewBag.Result, canSort: false);
+        }
+        @grid.GetHtml(
+            tableStyle: "gridtable",
+            columns: grid.Columns(
+                grid.Column("RFONumer", "RFO Numer"),
+                grid.Column("Name", "RFO Name"),
+                grid.Column("CustomerType", "Customer Type"),
+                grid.Column("PostCode", "Post Code"),
+                grid.Column("BusinessArea", "Business Area"),
+                grid.Column("Region", "Region"),
+                grid.Column((format: @<text> <input type="radio" name="select" checked="checked" value="@item.RFONumer"/> </text>), header: "Select")
+                             )
+                )
+    </div><!-- End #ResultArea -->
+
+    <div id="SubmitArea" align="right">
+        &raquo;<input id="submitButton" type="button" value="create agreement" style="border:none;background-color:none" />
+    </div><!-- End #SubmitArea -->
+</div><!-- End #SelectCustomerArea -->

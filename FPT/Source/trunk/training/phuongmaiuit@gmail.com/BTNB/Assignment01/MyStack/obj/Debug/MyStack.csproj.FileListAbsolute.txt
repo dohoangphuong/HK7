@@ -1,0 +1,6 @@
+D:\TÀI LIỆU HỌC TẬP\LÝ THUYẾT\.NET 2.0\code\MyStack\MyStack\bin\Debug\MyStack.exe.config
+D:\TÀI LIỆU HỌC TẬP\LÝ THUYẾT\.NET 2.0\code\MyStack\MyStack\bin\Debug\MyStack.exe
+D:\TÀI LIỆU HỌC TẬP\LÝ THUYẾT\.NET 2.0\code\MyStack\MyStack\bin\Debug\MyStack.pdb
+D:\TÀI LIỆU HỌC TẬP\LÝ THUYẾT\.NET 2.0\code\MyStack\MyStack\obj\Debug\MyStack.csprojResolveAssemblyReference.cache
+D:\TÀI LIỆU HỌC TẬP\LÝ THUYẾT\.NET 2.0\code\MyStack\MyStack\obj\Debug\MyStack.exe
+D:\TÀI LIỆU HỌC TẬP\LÝ THUYẾT\.NET 2.0\code\MyStack\MyStack\obj\Debug\MyStack.pdb

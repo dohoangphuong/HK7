@@ -1,0 +1,62 @@
+﻿@model CSS.ViewModels.VolumeBandingModel
+
+@{
+    Layout = null;
+}
+
+<script>
+    function ShowPopup() {
+        $('#divPopup').modal('show');
+    }
+    function closeModel() {
+        $('#divPopup').modal('hide');
+    }
+</script>
+
+@using (Ajax.BeginForm("SaveVolumeBanding", "Volume", null
+    , new AjaxOptions()
+    {
+        HttpMethod = "POST",
+        UpdateTargetId = "divMessage",
+        OnSuccess = "updateStatusAsChange()"
+    }, new { @style = "height:100%" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal" style="height: 25%">
+        @Html.HiddenFor(model => model.RFONumber)
+        @Html.HiddenFor(model => model.CustomerName)
+        @Html.HiddenFor(model => model.VolumeId)
+
+        <div class="form-group" style="margin:5px">
+            @Html.LabelFor(model => model.RFONumber, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.DisplayFor(model => model.RFONumber, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+        <div class="form-group" style="margin:5px">
+            @Html.LabelFor(model => model.CustomerName, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.DisplayFor(model => model.CustomerName, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+        <div class="form-group" style="margin:5px">
+            @Html.LabelFor(model => model.TriggerCredit, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.DropDownListFor(model => model.TriggerCredit, new SelectList(ViewBag.TriggerCredits, "XCONFIGVALUE", "XCONFIGVALUE"), new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+        <div class="form-group" style="margin:5px">
+            @Html.LabelFor(model => model.PayableTo, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.DropDownListFor(model => model.PayableTo, new SelectList(ViewBag.PayableToes, "XCONFIGVALUE", "XCONFIGVALUE"), new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+    @Ajax.ActionLink("Add new", "CreateBanding", "Volume", new { volumeId = @Model.VolumeId },
+        new AjaxOptions
+        {
+            UpdateTargetId = "divPopup",
+            InsertionMode = InsertionMode.Replace,
+            OnComplete = "ShowPopup()"
+        })
+    <div id="listBanding" style="height: 65%">
+        @{ Html.RenderAction("GetListBanding", "Volume", new { volumeId = @Model.VolumeId }); }
+    </div>
+    <div class="actionBar" style="height: 10%">
+        <input class="buttonNext" type="button" value="next" onclick="forward()" />
+        <input class="buttonPrevious" type="button" value="back" onclick="backward()" />
+        <input class="buttonFinish" type="submit" value="save as draft" />
+    </div>
+}

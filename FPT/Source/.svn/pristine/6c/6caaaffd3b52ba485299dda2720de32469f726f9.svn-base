@@ -1,0 +1,61 @@
+namespace CSS_G06.Models
+{
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
+
+    [Table("ContactAddress")]
+    public partial class ContactAddress
+    {
+        public int ContactAddressId { get; set; }
+
+        public int UserId { get; set; }
+
+        [StringLength(50)]
+        public string Town { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        public string County { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        public string City { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        public string Country { get; set; }
+
+        [Required]
+        [StringLength(10)]
+        public string Postcode { get; set; }
+
+        [StringLength(20)]
+        public string MobileNo { get; set; }
+
+        [StringLength(20)]
+        public string OfficeNo { get; set; }
+
+        [StringLength(20)]
+        public string FaxNo { get; set; }
+
+        [StringLength(50)]
+        public string Address1 { get; set; }
+
+        [StringLength(50)]
+        public string Address2 { get; set; }
+
+        [StringLength(50)]
+        public string Address3 { get; set; }
+
+        [StringLength(50)]
+        public string Address4 { get; set; }
+
+        [StringLength(50)]
+        public string Address5 { get; set; }
+
+        public virtual RFOUser RFOUser { get; set; }
+    }
+}

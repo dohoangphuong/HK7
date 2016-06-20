@@ -1,0 +1,99 @@
+﻿@model PagedList.IPagedList<WebsiteQuanLyBanHang.Models.SalesOrder>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id='myModal' class='modal fade in'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id='myModalContent'></div>
+        </div>
+    </div>
+</div>
+
+
+<div class="panel panel-primary">
+    <div class="panel-heading">Salers Order</div>
+
+    <div class="panel-body ">
+        @using (Html.BeginForm("Index", "SalesOrders", FormMethod.Get))
+        {
+            <p class="form-group">
+                Invoice Type: @Html.DropDownList("InvoiceType", "All")
+                <button type="submit" class="btn btn-xs btn-primary">Filters</button>
+            </p>
+        }
+        @Html.ActionLink("Add", "Create", "SalesOrders", null, new {data_modal = "", id = "btnCreate", @class = "btn btn-small btn-primary pull-right"})
+    </div>
+    <table class="table table-bordered table-hover table-striped">
+        <tr>
+            <th>
+                @*@Html.DisplayNameFor(model => model.OrderNo)*@
+                Order No
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.OrderDate)*@
+                Order Date
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.UserID)*@
+                User ID
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.CustID)*@
+                Custom ID
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.Customer.CustName)*@
+                Custom Name
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.TotalAmt)*@
+                Total Amount
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Customer.CustName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalAmt)
+                </td>
+                <td>
+                    <span class='glyphicon glyphicon-plus'></span>
+                    @Html.ActionLink("Add Details", "AddDetails", new {id = item.OrderNo}, new {data_modal = ""}) |
+                    <span class='glyphicon glyphicon-search'></span>
+                    @Html.ActionLink("Details", "Details", new {id = item.OrderNo}, new {data_modal = ""})
+                </td>
+            </tr>
+        }
+
+    </table>
+    <br/>
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page}))
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/modalform")
+}

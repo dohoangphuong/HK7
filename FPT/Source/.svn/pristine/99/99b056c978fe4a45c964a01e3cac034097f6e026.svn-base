@@ -1,0 +1,55 @@
+﻿.body {
+    border: 1px solid grey;
+    width: 1100px;
+    height: 400px;
+}
+
+.center {
+    text-align: center;
+    font-size: 20px;
+}
+
+.left, .th, .td {
+    text-align: left;
+    margin-left: 20px;
+}
+
+.title {
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    color: blue;
+    font-size: 30px;
+}
+
+.link {
+    color: green;
+    background-color: transparent;
+    text-decoration: none;
+    margin-right: 20px;
+}
+
+table, th, td {
+    border-collapse: collapse;
+    width: 500px;
+}
+
+th, td {
+    padding: 5px;
+    text-align: left;
+}
+
+.right {
+    text-align: right;
+    margin-right: 30px;
+}
+
+.button {
+    width: 80px;
+    height: 30px;
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    color: green;
+    font-size: 15px;
+}

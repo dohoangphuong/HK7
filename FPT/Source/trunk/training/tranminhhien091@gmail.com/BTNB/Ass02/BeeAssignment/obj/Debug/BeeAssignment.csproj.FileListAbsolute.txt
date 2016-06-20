@@ -1,0 +1,5 @@
+C:\Users\Administrator\Downloads\BeeAssignment_neunhu.yeu2009%40gmail.com (1)\BeeAssignment\BeeAssignment\bin\Debug\BeeAssignment.exe
+C:\Users\Administrator\Downloads\BeeAssignment_neunhu.yeu2009%40gmail.com (1)\BeeAssignment\BeeAssignment\bin\Debug\BeeAssignment.pdb
+C:\Users\Administrator\Downloads\BeeAssignment_neunhu.yeu2009%40gmail.com (1)\BeeAssignment\BeeAssignment\obj\Debug\BeeAssignment.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Downloads\BeeAssignment_neunhu.yeu2009%40gmail.com (1)\BeeAssignment\BeeAssignment\obj\Debug\BeeAssignment.exe
+C:\Users\Administrator\Downloads\BeeAssignment_neunhu.yeu2009%40gmail.com (1)\BeeAssignment\BeeAssignment\obj\Debug\BeeAssignment.pdb

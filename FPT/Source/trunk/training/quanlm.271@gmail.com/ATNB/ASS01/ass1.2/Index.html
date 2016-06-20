@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="screen"
+     href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css">
+	<link rel="stylesheet" href="css/style.css"></link>
+	<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap-datetimepicker.min.js"></script>
+	<script>
+	$(document).ready(function () {
+	  //called when key is pressed in textbox
+	  $("#borrowId").keypress(function (e) {
+		 //if the letter is not digit then display error and don't type anything
+		 if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+			//display error message
+			$("#errmsg").html("Digits Only").show().fadeOut("slow");
+				   return false;
+				   }
+	   });
+	});
+	</script>	
+</head>
+<body>
+	<table class="table">
+		<tr>
+		<th>REGISTER</th>
+		<tr>
+		<td>
+			<form action="" method="get">
+			
+				<label class="field">Borrow ID:</label><input type="text" name="borrowId" id="borrowId"></input><span id="errmsg"></span>
+				<br>
+				<label class="field">Tilte:</label>
+				<select name="title">
+					<option value="mr">Mr</option>
+					<option value="mrs">Mrs</option>
+					<option value="mrs">Miss</option>
+					<option value="mrs">Dr</option>
+				</select>
+				<br>
+				<label class="field">First name:</label><input class="input-text" type="text" name="fist_name"></input>
+				<br>
+				<label class="field">Last name:</label><input class="input-text" type="text" name="last_name"></input>
+				<br>
+				<label class="field">Date of birth:</label>
+				<div id="datetimepicker" class="input-append date">
+				  <input type="text" name="date_of_birth"></input>
+				  <span class="add-on">
+					<i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+				  </span>
+				</div>	
+				<label class="field">Proberty name / Number:</label><input class="input-text" type="text" name="probety_name"></input>
+				</p>
+				<label class="field">Street:</label><input class="input-text" type="text" name="street"></input>
+				<br>
+				<label class="field">Town:</label>
+				<select name="town">
+					<option value="mr">Town1</option>
+					<option value="mrs">Town2</option>
+					<option value="mrs">Town3</option>
+					<option value="mrs">Town4</option>
+				</select>
+				<br>
+				<label class="field">City:</label>
+				<select name="city">
+					<option value="mr">City1</option>
+					<option value="mrs">City2</option>
+					<option value="mrs">City3</option>
+					<option value="mrs">City4</option>
+				</select>
+				<br>
+				<label class="field">Post Code:</label><input class="input-text" type="text" name="post_code"></input>
+				<br>
+				<label class="field">Register Date:</label>
+				<div id="datetimepicker2" class="input-append date">
+				  <input type="text" name="register_date"></input>
+				  <span class="add-on">
+					<i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+				  </span>
+				</div>
+				<label class="field">Outstanding Fines:</label>
+				<input type="checkbox" name="out_fines"></input>
+				</p>
+				<label class="field">Total Fines Due:</label>
+				<input class="input-text" type="text"  name="total_fines"></input>
+				<br>
+				<label class="field">Last Lend Date:</label>
+				<div id="datetimepicker3" class="input-append date">
+				  <input type="text" name="last_len_date"></input>
+				  <span class="add-on">
+					<i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+				  </span>
+				</div>
+				<br>
+				<div class="input-button">
+				<a href="Display.html">View Detail</a>
+					<input type="button" name="b1" value="OK" onclick=""></input>
+					<input type="button" name="b2" value="CANCEL"></input>
+				</div>				
+			<form>
+		</td>		
+
+	</table>
+	
+	<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script> 
+	<script type="text/javascript" src="js/bootstrap/bootstrap.js"></script>
+	<script type="text/javascript" src="js/bootstrap/bootstrap-datetimepicker.js"></script>
+	<script type="text/javascript">
+	  $('#datetimepicker').datetimepicker({
+		format: 'dd/MM/yyyy',
+		language: 'pt-EN'
+	  });
+	</script>
+	<script type="text/javascript">
+	  $('#datetimepicker2').datetimepicker({
+		format: 'dd/MM/yyyy',
+		language: 'pt-EN'
+	  });
+	</script>
+		<script type="text/javascript">
+	  $('#datetimepicker3').datetimepicker({
+		format: 'dd/MM/yyyy',
+		language: 'pt-EN'
+	  });
+	</script>
+</body>
+
+</html>

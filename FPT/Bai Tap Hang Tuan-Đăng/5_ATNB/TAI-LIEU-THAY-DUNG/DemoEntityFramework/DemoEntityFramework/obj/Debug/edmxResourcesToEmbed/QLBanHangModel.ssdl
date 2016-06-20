@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLBanHangModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="QLBanHangModelStoreContainer">
+    <EntitySet Name="ChiTietHoaDon" EntityType="QLBanHangModel.Store.ChiTietHoaDon" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HoaDon" EntityType="QLBanHangModel.Store.HoaDon" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LoaiSanPham" EntityType="QLBanHangModel.Store.LoaiSanPham" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SanPham" EntityType="QLBanHangModel.Store.SanPham" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TaiKhoan" EntityType="QLBanHangModel.Store.TaiKhoan" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_ChiTietHoaDon_HoaDon" Association="QLBanHangModel.Store.FK_ChiTietHoaDon_HoaDon">
+      <End Role="HoaDon" EntitySet="HoaDon" />
+      <End Role="ChiTietHoaDon" EntitySet="ChiTietHoaDon" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChiTietHoaDon_SanPham" Association="QLBanHangModel.Store.FK_ChiTietHoaDon_SanPham">
+      <End Role="SanPham" EntitySet="SanPham" />
+      <End Role="ChiTietHoaDon" EntitySet="ChiTietHoaDon" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HoaDon_TaiKhoan" Association="QLBanHangModel.Store.FK_HoaDon_TaiKhoan">
+      <End Role="TaiKhoan" EntitySet="TaiKhoan" />
+      <End Role="HoaDon" EntitySet="HoaDon" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SanPham_LoaiSanPham" Association="QLBanHangModel.Store.FK_SanPham_LoaiSanPham">
+      <End Role="LoaiSanPham" EntitySet="LoaiSanPham" />
+      <End Role="SanPham" EntitySet="SanPham" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="ChiTietHoaDon">
+    <Key>
+      <PropertyRef Name="SoHD" />
+      <PropertyRef Name="MaSP" />
+    </Key>
+    <Property Name="SoHD" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="MaSP" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="GiaBan" Type="numeric" />
+    <Property Name="SoLuong" Type="int" />
+  </EntityType>
+  <EntityType Name="HoaDon">
+    <Key>
+      <PropertyRef Name="SoHD" />
+    </Key>
+    <Property Name="SoHD" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="NgayLapHD" Type="datetime" />
+    <Property Name="NguoiLapHD" Type="nvarchar" MaxLength="50" />
+    <Property Name="HinhThucThanhToan" Type="nvarchar" MaxLength="50" />
+    <Property Name="TinhTrang" Type="bit" />
+    <Property Name="UserName" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="LoaiSanPham">
+    <Key>
+      <PropertyRef Name="MaLoaiSP" />
+    </Key>
+    <Property Name="MaLoaiSP" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="TenLoaiSP" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="SanPham">
+    <Key>
+      <PropertyRef Name="MaSP" />
+    </Key>
+    <Property Name="MaSP" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="TenSP" Type="nvarchar" MaxLength="50" />
+    <Property Name="NgaySX" Type="datetime" />
+    <Property Name="DonGia" Type="numeric" />
+    <Property Name="MaLoaiSP" Type="varchar" MaxLength="10" />
+    <Property Name="HinhAnh" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="TaiKhoan">
+    <Key>
+      <PropertyRef Name="UserName" />
+    </Key>
+    <Property Name="UserName" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="Password" Type="varchar" MaxLength="20" />
+    <Property Name="HoTen" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="DienThoai" Type="varchar" MaxLength="15" />
+    <Property Name="DiaChi" Type="nvarchar" MaxLength="150" />
+    <Property Name="CongTy" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <Association Name="FK_ChiTietHoaDon_HoaDon">
+    <End Role="HoaDon" Type="QLBanHangModel.Store.HoaDon" Multiplicity="1" />
+    <End Role="ChiTietHoaDon" Type="QLBanHangModel.Store.ChiTietHoaDon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HoaDon">
+        <PropertyRef Name="SoHD" />
+      </Principal>
+      <Dependent Role="ChiTietHoaDon">
+        <PropertyRef Name="SoHD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChiTietHoaDon_SanPham">
+    <End Role="SanPham" Type="QLBanHangModel.Store.SanPham" Multiplicity="1" />
+    <End Role="ChiTietHoaDon" Type="QLBanHangModel.Store.ChiTietHoaDon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SanPham">
+        <PropertyRef Name="MaSP" />
+      </Principal>
+      <Dependent Role="ChiTietHoaDon">
+        <PropertyRef Name="MaSP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HoaDon_TaiKhoan">
+    <End Role="TaiKhoan" Type="QLBanHangModel.Store.TaiKhoan" Multiplicity="0..1" />
+    <End Role="HoaDon" Type="QLBanHangModel.Store.HoaDon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TaiKhoan">
+        <PropertyRef Name="UserName" />
+      </Principal>
+      <Dependent Role="HoaDon">
+        <PropertyRef Name="UserName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SanPham_LoaiSanPham">
+    <End Role="LoaiSanPham" Type="QLBanHangModel.Store.LoaiSanPham" Multiplicity="0..1" />
+    <End Role="SanPham" Type="QLBanHangModel.Store.SanPham" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoaiSanPham">
+        <PropertyRef Name="MaLoaiSP" />
+      </Principal>
+      <Dependent Role="SanPham">
+        <PropertyRef Name="MaLoaiSP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

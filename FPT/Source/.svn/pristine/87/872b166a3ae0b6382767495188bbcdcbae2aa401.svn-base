@@ -1,0 +1,241 @@
+﻿@model CSS.Models.Agreement
+
+@{
+    ViewBag.Title = "ViewAgreement";
+
+    int? RFONumber = null;
+    string CustomerName = null;
+    string BusinessArea = null;
+    if (Model.RFONumbers.Count > 0)
+    {
+        RFONumber = Model.RFONumbers.First().RFONumber1;
+        CustomerName = Model.RFONumbers.First().Company.Name;
+        BusinessArea = Model.RFONumbers.First().Company.BusinessArea;
+    }
+}
+<link href="~/Content/themes/base/smart_wizard.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="~/Scripts/jquery.smartWizard.js"></script>
+<link href="~/Content/StyleUC_5_6_7.css" rel="stylesheet" type="text/css">
+
+<script>
+    $(document).ready(function () {
+        $(".nav-tabs li.disabled a").click(function () {
+            return false;
+        });
+    });
+    function checkDateTerminate(iEndDate, iStatusId) {
+        var StatusId = document.getElementById(iStatusId).value;
+        var current = new Date();
+        var end = new Date(document.getElementById(iEndDate).value);
+
+        //Status = “approved”;
+        if (StatusId != 4) {
+            alert("Status of an agreement doesn't 'approved'");
+            return false;
+        }
+            
+        //current day + 30-> if(end -curren > 30)
+        current.setDate(current.getDate() + 30);
+
+        if (Date.parse(end) > Date.parse(current)) {
+            alert("End Date larger current Date 30 days. Can not be perform");
+            return false;
+        }
+            
+        if (confirm("There are less than 30 days left on this agreement, are you sure you would like to terminate") == false)
+            return false;
+
+        return true;
+    }
+
+    //screen SubmitAgreement
+    function checkDateSubmit(iStatusId) {
+        var StatusId = document.getElementById(iStatusId).value;
+
+        //Status = “approved”;
+        if (StatusId != 1) {
+            alert("Status of an agreement doesn't 'Draft'");
+            return false;
+        }
+
+        return true;
+    }
+</script>
+
+<div class="titleRejectAgreement">
+    <h1 style="color:blue">Corporate Sales Solution</h1>
+    <h2 style="color:gray">View Agreements</h2>
+</div>
+
+<ul style="list-style-type:none">
+    <li>
+        <label class="width20">RFO Number</label>
+        <label class="width20 blue-text">@RFONumber</label>
+    </li>
+    <li>
+        <label class="width20">Customer Name</label>
+        <label class="width20 blue-text">@CustomerName</label>
+    </li>
+    <li>
+        <label class="width20">Start - End</label>
+        <label class="width20 blue-text">
+            @(Model.StartDate != null ? Model.StartDate.Value.ToShortDateString() : null) -
+            @(Model.EndDate != null ? Model.EndDate.Value.ToShortDateString() : null)
+        </label>
+    </li>
+    <li>
+        <label class="width20">Status</label>
+        <label class="width20 blue-text btn-like">@Model.AgreementStatu.AgreementStatus</label>
+    </li>
+</ul>
+
+<ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#overview" aria-controls="overview" role="tab" data-toggle="tab">Overview</a></li>
+    <li role="presentation"><a href="#dealer" aria-controls="dealer" role="tab" data-toggle="tab">Dealer</a></li>
+    <li role="presentation" class="disabled"><a href="#modelSupport" aria-controls="modelSupport" role="tab" data-toggle="tab">Model support</a></li>
+    <li role="presentation"><a href="#miscText" aria-controls="miscText" role="tab" data-toggle="tab">Misc text</a></li>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+    <div role="tabpanel" class="tab-pane fade in active tab-conent" id="overview">
+        <ul style="list-style-type:none">
+            <li>
+                <label class="width20">Busines Area</label>
+                <label class="width75 blue-text">@BusinessArea</label>
+            </li>
+            <li>
+                <label class="width20">Busines Area Code</label>
+                <label class="width75 blue-text">???</label>
+            </li>
+            <li>
+                <label class="width20">Agreement Details</label>
+                <label class="width75 blue-text">@Model.Description</label>
+            </li>
+            <li>
+                <label class="width20">Created By</label>
+                <label class="width75 blue-text">@Model.CreatedBy</label>
+            </li>
+            <li>
+                <label class="width20">Created Date</label>
+                <label class="width75 blue-text">@(Model.CreatedDate != null ? Model.CreatedDate.Value.ToShortDateString() : null)</label>
+            </li>
+            <li>
+                <label class="width20">Authorised By</label>
+                <label class="width75 blue-text">@Model.AuthorisedBy</label>
+            </li>
+            <li>
+                <label class="width20">Authorised Date</label>
+                <label class="width75 blue-text">@(Model.AuthorisedDate != null ? Model.AuthorisedDate.Value.ToShortDateString() : "")</label>
+            </li>
+            <li>
+                <label class="width20">Signed agreement required?</label>
+                <label class="width75 blue-text">@(Model.SignRequired == null ? null : (Model.SignRequired == true ? "YES" : "NO"))</label>
+            </li>
+            <li>
+                <label class="width20">Charge code</label>
+                <label class="width75 blue-text">???</label>
+            </li>
+            <li>
+                <label class="width20">Payment To</label>
+                <label class="width75 blue-text">@(Model.Volume != null ? Model.Volume.PaymentTo : null)</label>
+            </li>
+            <li>
+                <label class="width20">Handing Charge</label>
+                <label class="width75 blue-text">@Model.HandlingCharge</label>
+            </li>
+            <li>
+                <label class="width20">Agenda Payment</label>
+                <label class="width75 blue-text">???</label>
+            </li>
+        </ul>
+    </div>
+    <div role="tabpanel" class="tab-pane fade" id="dealer">
+        @if (Model.RFOUsers.Count > 0)
+        {
+            <table class="table table-striped">
+                <thead>
+                    <tr class="info">
+                        <th>Dealer Code</th>
+                        <th>Dealer Name</th>
+                        <th>Town</th>
+                        <th>County</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (CSS.Models.RFOUser item in Model.RFOUsers)
+                    {
+                        <tr>
+                            <td>@item.UserId</td>
+                            <td>@item.FirstName @item.LastName</td>
+                            <td>@(item.ContactAddresses != null ? item.ContactAddresses.First().Town : null)</td>
+                            <td>@(item.ContactAddresses != null ? item.ContactAddresses.First().County : null)</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p>No dealer selected</p>
+        }
+    </div>
+    <div role="tabpanel" class="tab-pane fade" id="modelSupport">
+        <p>OUT OF SCOPE</p>
+    </div>
+    <div role="tabpanel" class="tab-pane fade" id="miscText">
+        <ul style="list-style-type:none">
+            <li>
+                <label class="width20">Credit Note Comments</label>
+                <label class="width75 blue-text">@(Model.CreditNoteTexts.Count > 0 ? Model.CreditNoteTexts.First().CreditNoteText1 : null)</label>
+            </li>
+            <li>
+                <label class="width20">Support Justification</label>
+                <label class="width75 blue-text">@(Model.Comments.Count > 0 ? Model.Comments.First().Comment1 : null)</label>
+            </li>
+        </ul>
+    </div>
+</div>
+
+@if (@Model.AgreementStatu.StatusId == 1)
+{
+    <div class="right" style="height: 10%">
+        @Html.ActionLink("Save as draft", "AaveDraftAgreement", new { @class = " btn btn-default", @id = Model.AgreementNumber, @ivar = Model.VariantNumber }, new { @class = " btn btn-default" })
+        @Html.ActionLink("Copy agreement", "Copy", new {agreementNumber = Model.AgreementNumber, variantNumber = Model.VariantNumber}, new { @class = " btn btn-default" })
+        @Html.ActionLink("back", "backAgreement", new {@id = Model.AgreementNumber, @ivar = Model.VariantNumber }, new { @class = " btn btn-default" })
+        @Html.ActionLink("Submit", "CompleteAgreement", new { @iAgreementNumber = Model.AgreementNumber, @iVariantNumber = Model.VariantNumber }, new { @class = " btn btn-default", onclick = "return checkDateSubmit('StatusId')" })
+        @Html.ActionLink("Print", "PrintAgreement", new { @id = Model.AgreementNumber, @ivar = Model.VariantNumber }, new { @class = " btn btn-default" })
+    </div>
+}
+else if (@Model.AgreementStatu.StatusId == 2)
+{
+    <div class="actionBar" style="height: 10%">
+        <input class=" btn btn-default" type="button" value="mark agreement as received" />
+        @Html.ActionLink("Copy agreement", "Copy", new {agreementNumber = Model.AgreementNumber, variantNumber = Model.VariantNumber}, new { @class = " btn btn-default" })
+        <input class=" btn btn-default" type="button" value="view audit history" />
+        @Ajax.ActionLink("Approve", "Approve", new { agreementNumber = Model.AgreementNumber, variantNumber = Model.VariantNumber }, new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "content"}, new { @class = " btn btn-default" })
+        @Html.ActionLink("Reject", "RejectAgreement", new { agreementNumber = Model.AgreementNumber, variantNumber = Model.VariantNumber }, new { @class = " btn btn-default" })
+        <input class=" btn btn-default" type="button" value="print" />
+    </div>
+}
+else if (@Model.AgreementStatu.StatusId == 4)
+{
+    <div class="right" style="height: 10%">
+        @Html.ActionLink("Copy Agreement", "CopyAgreement", new { @id = Model.AgreementNumber, @ivar = Model.VariantNumber }, new { @class = " btn btn-default" })
+        @Html.ActionLink("View audit history", "ViewHistoryAgreement", new { @id = Model.AgreementNumber, @ivar = Model.VariantNumber }, new { @class = " btn btn-default" })
+        @Html.ActionLink("Extend", "ExtendAgreement", new { @iAgreementNumber = Model.AgreementNumber, @iVariantNumber = Model.VariantNumber }, new { @class = " btn btn-default" })
+        @Html.ActionLink("Terminate", "TerminateAgreement", new { @iAgreementNumber = Model.AgreementNumber, @iVariantNumber = Model.VariantNumber }, new { @class = " btn btn-default", onclick = "return checkDateTerminate('EndDate','StatusId')" })
+        @Html.ActionLink("Print", "PrintAgreement", new { @id = Model.AgreementNumber, @ivar = Model.VariantNumber }, new { @class = " btn btn-default" })
+    </div>
+}
+else
+{
+    <div class="actionBar" style="height: 10%">
+        @Html.ActionLink("Copy agreement", "Copy", new {agreementNumber = Model.AgreementNumber, variantNumber = Model.VariantNumber}, new { @class = " btn btn-default" })
+        <input class=" btn btn-default" type="button" value="view audit history" />
+        <input class=" btn btn-default" type="button" value="print" />
+    </div>
+}
+
+
+

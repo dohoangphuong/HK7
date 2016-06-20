@@ -1,0 +1,7 @@
+﻿<script src="~/Scripts/jquery.jqGrid.min.js"></script>
+<script src="~/Scripts/i18n/grid.locale-en.js"></script>
+
+<script src="~/Scripts/object/OrganisationList.js"></script>
+
+<table id="gridOrganisation" ></table>
+<div id="pager"></div>

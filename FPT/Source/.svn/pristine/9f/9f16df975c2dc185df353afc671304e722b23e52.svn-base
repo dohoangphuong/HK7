@@ -1,0 +1,140 @@
+﻿using System.Data.Entity;
+using System.Linq;
+using System.Net;
+using System.Web.Mvc;
+using WebsiteQuanLyBanHang.Models;
+
+namespace WebsiteQuanLyBanHang.Controllers
+{
+    public class SalesOrdersController : Controller
+    {
+        private CSMSEntities db = new CSMSEntities();
+
+        // GET: SalesOrders
+        public ActionResult Index()
+        {
+            var salesOrders = db.SalesOrders.Include(s => s.Customer).Include(s => s.SalesMan).Include(s => s.User).Include(s => s.InvoiceType1);
+            return View(salesOrders.ToList());
+        }
+
+        // GET: SalesOrders/Details/5
+        public ActionResult Details(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            SalesOrder salesOrder = db.SalesOrders.Find(id);
+            if (salesOrder == null)
+            {
+                return HttpNotFound();
+            }
+            return View(salesOrder);
+        }
+
+        // GET: SalesOrders/Create
+        public ActionResult Create()
+        {
+            ViewBag.CustID = new SelectList(db.Customers, "CustID", "CustName");
+            ViewBag.UserIDRec = new SelectList(db.SalesMen, "SalesManID", "SalesManName");
+            ViewBag.UserID = new SelectList(db.Users, "UserName", "Password");
+            ViewBag.InvoiceType = new SelectList(db.InvoiceTypes, "InvoiceType1", "TypeName");
+            return View();
+        }
+
+        // POST: SalesOrders/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "OrderNo,OrderDate,InvoiceType,UserID,UserIDRec,CustID,OverdueDate,OrderDisc,TaxAmt,TotalAmt,Payment,Debt,Description")] SalesOrder salesOrder)
+        {
+            if (ModelState.IsValid)
+            {
+                db.SalesOrders.Add(salesOrder);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.CustID = new SelectList(db.Customers, "CustID", "CustName", salesOrder.CustID);
+            ViewBag.UserIDRec = new SelectList(db.SalesMen, "SalesManID", "SalesManName", salesOrder.UserIDRec);
+            ViewBag.UserID = new SelectList(db.Users, "UserName", "Password", salesOrder.UserID);
+            ViewBag.InvoiceType = new SelectList(db.InvoiceTypes, "InvoiceType1", "TypeName", salesOrder.InvoiceType);
+            return View(salesOrder);
+        }
+
+        // GET: SalesOrders/Edit/5
+        public ActionResult Edit(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            SalesOrder salesOrder = db.SalesOrders.Find(id);
+            if (salesOrder == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.CustID = new SelectList(db.Customers, "CustID", "CustName", salesOrder.CustID);
+            ViewBag.UserIDRec = new SelectList(db.SalesMen, "SalesManID", "SalesManName", salesOrder.UserIDRec);
+            ViewBag.UserID = new SelectList(db.Users, "UserName", "Password", salesOrder.UserID);
+            ViewBag.InvoiceType = new SelectList(db.InvoiceTypes, "InvoiceType1", "TypeName", salesOrder.InvoiceType);
+            return View(salesOrder);
+        }
+
+        // POST: SalesOrders/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "OrderNo,OrderDate,InvoiceType,UserID,UserIDRec,CustID,OverdueDate,OrderDisc,TaxAmt,TotalAmt,Payment,Debt,Description")] SalesOrder salesOrder)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(salesOrder).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.CustID = new SelectList(db.Customers, "CustID", "CustName", salesOrder.CustID);
+            ViewBag.UserIDRec = new SelectList(db.SalesMen, "SalesManID", "SalesManName", salesOrder.UserIDRec);
+            ViewBag.UserID = new SelectList(db.Users, "UserName", "Password", salesOrder.UserID);
+            ViewBag.InvoiceType = new SelectList(db.InvoiceTypes, "InvoiceType1", "TypeName", salesOrder.InvoiceType);
+            return View(salesOrder);
+        }
+
+        // GET: SalesOrders/Delete/5
+        public ActionResult Delete(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            SalesOrder salesOrder = db.SalesOrders.Find(id);
+            if (salesOrder == null)
+            {
+                return HttpNotFound();
+            }
+            return View(salesOrder);
+        }
+
+        // POST: SalesOrders/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(string id)
+        {
+            SalesOrder salesOrder = db.SalesOrders.Find(id);
+            db.SalesOrders.Remove(salesOrder);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+    }
+}

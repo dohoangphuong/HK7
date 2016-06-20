@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7820a7e85d434d4bac74d8079a458c4b" Name="Diagram1">
+        <EntityTypeShape EntityType="CSSModel.Account" Width="1.5" PointX="7.5" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSSModel.AgendaPayment" Width="1.5" PointX="0.75" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSSModel.Agreement" Width="1.5" PointX="3" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSSModel.AgreementStatu" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSSModel.Banding" Width="1.5" PointX="3" PointY="21.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSSModel.BudgetCode" Width="1.5" PointX="1.5" PointY="25.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSSModel.Comment" Width="1.5" PointX="5.25" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSSModel.CommentType" Width="1.5" PointX="3" PointY="31.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSSModel.Company" Width="1.5" PointX="6" PointY="20.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSSModel.CompanyAddress" Width="1.5" PointX="8.25" PointY="20.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSSModel.ContactAddress" Width="1.5" PointX="7.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSSModel.CostCentre" Width="1.5" PointX="1.5" PointY="28.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSSModel.CreditNoteText" Width="1.5" PointX="5.25" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSSModel.CustomerType" Width="1.5" PointX="6" PointY="25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSSModel.FundingMethod" Width="1.5" PointX="0.75" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSSModel.PostCode" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSSModel.Region" Width="1.5" PointX="6" PointY="27.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSSModel.RFONumber" Width="1.5" PointX="8.25" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSSModel.RFOUser" Width="1.5" PointX="5.25" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSSModel.SystemConfig" Width="1.5" PointX="7.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSSModel.SystemConfigValue" Width="1.5" PointX="10" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSSModel.UserType" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSSModel.Volume" Width="1.5" PointX="0.75" PointY="13.5" IsExpanded="true" />
+        <AssociationConnector Association="CSSModel.FK_Account_User" ManuallyRouted="false" />
+        <AssociationConnector Association="CSSModel.FK_Agreement_AgendaPayment" ManuallyRouted="false" />
+        <AssociationConnector Association="CSSModel.FK_Agreement_AgreementStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="CSSModel.FK_Agreement_FundingMethod" ManuallyRouted="false" />
+        <AssociationConnector Association="CSSModel.FK_Agreement_Volume" ManuallyRouted="false" />
+        <AssociationConnector Association="CSSModel.FK_Comment_Agreement" ManuallyRouted="false" />
+        <AssociationConnector Association="CSSModel.FK_CreditNoteText_Agreement" ManuallyRouted="false" />
+        <AssociationConnector Association="CSSModel.FK_Banding_Volume" ManuallyRouted="false" />
+        <AssociationConnector Association="CSSModel.FK_FundingMethod_BudgetCode" ManuallyRouted="false" />
+        <AssociationConnector Association="CSSModel.FK_Comment_CommentType" ManuallyRouted="false" />
+        <AssociationConnector Association="CSSModel.FK_Comment_User" ManuallyRouted="false" />
+        <AssociationConnector Association="CSSModel.FK_CompanyAddress_Company" ManuallyRouted="false" />
+        <AssociationConnector Association="CSSModel.FK_RFONumber_Company" ManuallyRouted="false" />
+        <AssociationConnector Association="CSSModel.FK_CompanyAddress_Region" ManuallyRouted="false" />
+        <AssociationConnector Association="CSSModel.FK_ContactAddress_User" ManuallyRouted="false" />
+        <AssociationConnector Association="CSSModel.FK_FundingMethod_CostCentre" ManuallyRouted="false" />
+        <AssociationConnector Association="CSSModel.FK_RFONumber_CustomerTypeId" ManuallyRouted="false" />
+        <AssociationConnector Association="CSSModel.FK_RFOUser_Manager" ManuallyRouted="false" />
+        <AssociationConnector Association="CSSModel.FK_RFOUser_UserType" ManuallyRouted="false" />
+        <AssociationConnector Association="CSSModel.FK_SystemConfigValue_SystemConfig" ManuallyRouted="false" />
+        <AssociationConnector Association="CSSModel.AgreementDealer" ManuallyRouted="false" />
+        <AssociationConnector Association="CSSModel.AgreementRFO" ManuallyRouted="false" />
+        <AssociationConnector Association="CSSModel.PostCodeCovered" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

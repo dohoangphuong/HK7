@@ -1,0 +1,14 @@
+﻿@model IEnumerable<ServiceDirectory.Models.tblSupportingMaterial>
+
+<div class="row">
+    <fieldset>
+        <legend></legend>
+        <div class="row"><strong>Current List of Supporting Materials</strong></div>
+        <div class="row">
+            <div class="col-md-1 col-md-offset-9">
+                <button type="button">Create</button>
+            </div>
+        </div>
+
+    </fieldset>
+</div>

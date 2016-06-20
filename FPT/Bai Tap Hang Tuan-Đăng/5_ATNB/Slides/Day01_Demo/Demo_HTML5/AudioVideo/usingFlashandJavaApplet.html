@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      video {
+        width: 400px;
+        height: 224px;
+        border: 1px solid black;
+      }
+      .video-container {
+        display: inline-block;
+        text-align: center;
+      }
+      p {
+        font: 14px Arial;
+      }
+    </style>
+  </head>
+  <body>
+	<video src="resource/Chrome_ImF.ogv" controls>
+		<object data="flvplayer.swf" type="application/x-shockwave-flash">
+		  <param value="flvplayer.swf" name="movie"/>
+		</object>
+	</video>
+	
+	<video src="resource/Chrome_ImF.ogv" controls width="320" height="240">
+	  <object type="application/x-java-applet" width="320" height="240">
+		 <param name="archive" value="cortado.jar">
+		 <param name="code" value="com.fluendo.player.Cortado.class">
+		 <param name="url" value="resource/Chrome_ImF.ogv">
+		 <p>You need to install Java to play this file.</p>
+	  </object>
+	</video>
+  </body>
+</html>​

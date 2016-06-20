@@ -1,0 +1,15 @@
+c:\users\khoa\documents\visual studio 2013\Projects\Bank\Bank\bin\Debug\Bank.dll
+c:\users\khoa\documents\visual studio 2013\Projects\Bank\Bank\bin\Debug\Bank.pdb
+c:\users\khoa\documents\visual studio 2013\Projects\Bank\Bank\obj\Debug\Bank.csprojResolveAssemblyReference.cache
+c:\users\khoa\documents\visual studio 2013\Projects\Bank\Bank\obj\Debug\Bank.dll
+c:\users\khoa\documents\visual studio 2013\Projects\Bank\Bank\obj\Debug\Bank.pdb
+C:\Users\khoadlb\Downloads\Bank\Bank\bin\Debug\Bank.dll
+C:\Users\khoadlb\Downloads\Bank\Bank\bin\Debug\Bank.pdb
+C:\Users\khoadlb\Downloads\Bank\Bank\obj\Debug\Bank.csprojResolveAssemblyReference.cache
+C:\Users\khoadlb\Downloads\Bank\Bank\obj\Debug\Bank.dll
+C:\Users\khoadlb\Downloads\Bank\Bank\obj\Debug\Bank.pdb
+E:\GST\5_ATNB\Slides\Day05_Demo\Day05_Bank_Demo\Bank\bin\Debug\Bank.dll
+E:\GST\5_ATNB\Slides\Day05_Demo\Day05_Bank_Demo\Bank\bin\Debug\Bank.pdb
+E:\GST\5_ATNB\Slides\Day05_Demo\Day05_Bank_Demo\Bank\obj\Debug\Bank.csprojResolveAssemblyReference.cache
+E:\GST\5_ATNB\Slides\Day05_Demo\Day05_Bank_Demo\Bank\obj\Debug\Bank.dll
+E:\GST\5_ATNB\Slides\Day05_Demo\Day05_Bank_Demo\Bank\obj\Debug\Bank.pdb

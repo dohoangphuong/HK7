@@ -1,0 +1,144 @@
+﻿@model CSS_G06.Models.CustomerResult
+
+<style type="text/css">
+        table.gridtable {
+        font-family: verdana,arial,sans-serif;
+        font-size: 11px;
+        color: #333333;
+        border-width: 1px;
+        border-color: #666666;
+        border-collapse: collapse;
+        width:100%;
+        }
+
+        table.gridtable th {
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #666666;
+            background-color: #dedede;
+        }
+
+        table.gridtable td {
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #666666;
+            background-color: #ffffff;
+            padding:5px;
+        }
+        #SearchArea{
+            width:100%;
+            height:250px;
+            border:solid 1px blue;
+            padding:1px;
+        }
+        #ResultArea{
+            width:100%;
+            height:auto;
+            border:solid 1px blue;
+            padding:1px;
+        }
+        .labelArea{
+            width:100px;
+            height:auto;
+            font-size:12px;
+            font-weight:bold;
+        }
+        .inputAreaShort{
+            width:150px;
+            height:auto;
+            font-size:12px;
+            font-weight:bold;
+        }
+        .inputAreaLong{
+            width:250px;
+            height:auto;
+            font-size:12px;
+            font-weight:bold;
+        }
+        td{
+            padding:5px;
+        }
+        #SelectCustomerArea{
+            width:800px;
+            height:auto;
+        }
+</style>
+
+@{
+    ViewBag.Title = "SelectCustomer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="SelectCustomerArea">
+
+    <div id="SearchArea">
+        @using (Html.BeginForm("SelectCustomer", "AddAnAgreement", FormMethod.Post))
+    {
+            <table>
+                <tr>
+                    <td class="labelArea">RFO Number</td>
+                    <td class="inputAreaShort">@Html.TextBoxFor(model => model.RFONumer, new { maxlength = 10 })</td>
+                </tr>
+                <tr>
+                    <td class="labelArea">Customer Type</td>
+                    <td class="inputAreaLong">
+                        @Html.DropDownListFor(model => model.CustomerType, new SelectList(ViewBag.CustomerType, "Value", "Text", 1), new { style = "width: 200px;" })
+                    </td>
+                </tr>
+                <tr>
+                    <td class="labelArea">Name</td>
+                    <td class="inputAreaLong">@Html.TextBoxFor(model => model.Name, new { maxlength = 50, style = "width: 200px;" })</td>
+                </tr>
+                <tr>
+                    <td class="labelArea">Post Code</td>
+                    <td class="inputAreaShort">@Html.TextBoxFor(model => model.PostCode, new { maxlength = 10 })</td>
+                </tr>
+                <tr>
+                    <td class="labelArea">Business Area</td>
+                    <td class="inputAreaShort">
+                        @Html.DropDownListFor(n => n.BusinessArea, new SelectList(new[] { "0-100", "100-200", "200+" }), new { style = "width: 150px;" })
+                    </td>
+                </tr>
+                <tr>
+                    <td class="labelArea">Region</td>
+                    <td class="inputAreaShort">
+                        @Html.DropDownListFor(n => n.BusinessArea, new SelectList(new[] { "Northern", "Southern", "Eastern", "Western" }), new { style = "width: 150px;" })
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class="inputAreaShort" align="left">
+                        <input type="submit" name="btnSubmit" value="Search"/>
+                    </td>
+                </tr>
+               
+            </table>
+    }
+    </div><!-- End #SearchArea -->
+
+    <div id="ResultArea">
+        @{
+        WebGrid grid = new WebGrid(source: ViewBag.Result, canSort: false);
+        }
+        @grid.GetHtml(
+        tableStyle: "gridtable",
+        columns: grid.Columns(
+            grid.Column("RFONumer", "RFO Numer"),
+            grid.Column("Name", "RFO Name"),
+            grid.Column("CustomerType", "Customer Type"),
+            grid.Column("PostCode", "Post Code"),
+            grid.Column("BusinessArea", "Business Area"),
+            grid.Column("Region", "Region"),
+            grid.Column(
+                (format: @<text> <input type="radio" value="aa" name="ids" id="ckbCustomer" /> </text>), header: "Select")
+        )
+        )
+    </div><!-- End #ResultArea -->
+
+    <div id="SubmitArea" align="right">
+        &raquo;@Html.ActionLink("create agreement", "BasicAgreementDetails", "AddAnAgreement")
+    </div><!-- End #SubmitArea -->
+
+</div><!-- End #SelectCustomerArea -->

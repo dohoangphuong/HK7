@@ -1,0 +1,312 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CSSModelStoreContainer" CdmEntityContainer="CSSEntities">
+    <EntitySetMapping Name="Accounts">
+      <EntityTypeMapping TypeName="CSSModel.Account">
+        <MappingFragment StoreEntitySet="Account">
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AgendaPayments">
+      <EntityTypeMapping TypeName="CSSModel.AgendaPayment">
+        <MappingFragment StoreEntitySet="AgendaPayment">
+          <ScalarProperty Name="AgendaPaymentId" ColumnName="AgendaPaymentId" />
+          <ScalarProperty Name="AgendaPayment1" ColumnName="AgendaPayment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Agreements">
+      <EntityTypeMapping TypeName="CSSModel.Agreement">
+        <MappingFragment StoreEntitySet="Agreement">
+          <ScalarProperty Name="AgreementNumber" ColumnName="AgreementNumber" />
+          <ScalarProperty Name="VariantNumber" ColumnName="VariantNumber" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+          <ScalarProperty Name="LastStatusUpdatedDate" ColumnName="LastStatusUpdatedDate" />
+          <ScalarProperty Name="AuthorisedBy" ColumnName="AuthorisedBy" />
+          <ScalarProperty Name="AuthorisedDate" ColumnName="AuthorisedDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
+          <ScalarProperty Name="PaymentTo" ColumnName="PaymentTo" />
+          <ScalarProperty Name="AMISAccountCode" ColumnName="AMISAccountCode" />
+          <ScalarProperty Name="HandlingCharge" ColumnName="HandlingCharge" />
+          <ScalarProperty Name="FundingMethodId" ColumnName="FundingMethodId" />
+          <ScalarProperty Name="SignRequired" ColumnName="SignRequired" />
+          <ScalarProperty Name="SignReceived" ColumnName="SignReceived" />
+          <ScalarProperty Name="SignReceivedDate" ColumnName="SignReceivedDate" />
+          <ScalarProperty Name="DealerVisibility" ColumnName="DealerVisibility" />
+          <ScalarProperty Name="Combinability" ColumnName="Combinability" />
+          <ScalarProperty Name="NumberOfRegistrations" ColumnName="NumberOfRegistrations" />
+          <ScalarProperty Name="VolumeId" ColumnName="VolumeId" />
+          <ScalarProperty Name="DiscountUnit" ColumnName="DiscountUnit" />
+          <ScalarProperty Name="AgendaPaymentId" ColumnName="AgendaPaymentId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AgreementStatus">
+      <EntityTypeMapping TypeName="CSSModel.AgreementStatu">
+        <MappingFragment StoreEntitySet="AgreementStatus">
+          <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+          <ScalarProperty Name="AgreementStatus" ColumnName="AgreementStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Bandings">
+      <EntityTypeMapping TypeName="CSSModel.Banding">
+        <MappingFragment StoreEntitySet="Banding">
+          <ScalarProperty Name="BandingId" ColumnName="BandingId" />
+          <ScalarProperty Name="VolumeId" ColumnName="VolumeId" />
+          <ScalarProperty Name="Min" ColumnName="Min" />
+          <ScalarProperty Name="Max" ColumnName="Max" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BudgetCodes">
+      <EntityTypeMapping TypeName="CSSModel.BudgetCode">
+        <MappingFragment StoreEntitySet="BudgetCode">
+          <ScalarProperty Name="BudgetCode1" ColumnName="BudgetCode" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Verified" ColumnName="Verified" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Comments">
+      <EntityTypeMapping TypeName="CSSModel.Comment">
+        <MappingFragment StoreEntitySet="Comment">
+          <ScalarProperty Name="CommentId" ColumnName="CommentId" />
+          <ScalarProperty Name="AgreementNumber" ColumnName="AgreementNumber" />
+          <ScalarProperty Name="VariantNumber" ColumnName="VariantNumber" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+          <ScalarProperty Name="Comment1" ColumnName="Comment" />
+          <ScalarProperty Name="CommentTypeId" ColumnName="CommentTypeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CommentTypes">
+      <EntityTypeMapping TypeName="CSSModel.CommentType">
+        <MappingFragment StoreEntitySet="CommentType">
+          <ScalarProperty Name="CommentTypeId" ColumnName="CommentTypeId" />
+          <ScalarProperty Name="CommentType1" ColumnName="CommentType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Companies">
+      <EntityTypeMapping TypeName="CSSModel.Company">
+        <MappingFragment StoreEntitySet="Company">
+          <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Sector" ColumnName="Sector" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="FaxNumber" ColumnName="FaxNumber" />
+          <ScalarProperty Name="Emailaddress" ColumnName="Emailaddress" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="AMISCode" ColumnName="AMISCode" />
+          <ScalarProperty Name="BusinessArea" ColumnName="BusinessArea" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CompanyAddresses">
+      <EntityTypeMapping TypeName="CSSModel.CompanyAddress">
+        <MappingFragment StoreEntitySet="CompanyAddress">
+          <ScalarProperty Name="Address1" ColumnName="Address1" />
+          <ScalarProperty Name="Address2" ColumnName="Address2" />
+          <ScalarProperty Name="Address3" ColumnName="Address3" />
+          <ScalarProperty Name="Address4" ColumnName="Address4" />
+          <ScalarProperty Name="Address5" ColumnName="Address5" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="RegionId" ColumnName="RegionId" />
+          <ScalarProperty Name="Postcode" ColumnName="Postcode" />
+          <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ContactAddresses">
+      <EntityTypeMapping TypeName="CSSModel.ContactAddress">
+        <MappingFragment StoreEntitySet="ContactAddress">
+          <ScalarProperty Name="ContactAddressId" ColumnName="ContactAddressId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Town" ColumnName="Town" />
+          <ScalarProperty Name="County" ColumnName="County" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="Postcode" ColumnName="Postcode" />
+          <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+          <ScalarProperty Name="OfficeNo" ColumnName="OfficeNo" />
+          <ScalarProperty Name="FaxNo" ColumnName="FaxNo" />
+          <ScalarProperty Name="Address1" ColumnName="Address1" />
+          <ScalarProperty Name="Address2" ColumnName="Address2" />
+          <ScalarProperty Name="Address3" ColumnName="Address3" />
+          <ScalarProperty Name="Address4" ColumnName="Address4" />
+          <ScalarProperty Name="Address5" ColumnName="Address5" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CostCentres">
+      <EntityTypeMapping TypeName="CSSModel.CostCentre">
+        <MappingFragment StoreEntitySet="CostCentre">
+          <ScalarProperty Name="CostCentre1" ColumnName="CostCentre" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Verified" ColumnName="Verified" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CreditNoteTexts">
+      <EntityTypeMapping TypeName="CSSModel.CreditNoteText">
+        <MappingFragment StoreEntitySet="CreditNoteText">
+          <ScalarProperty Name="CreditNoteTextId" ColumnName="CreditNoteTextId" />
+          <ScalarProperty Name="AgreementNumber" ColumnName="AgreementNumber" />
+          <ScalarProperty Name="VariantNumber" ColumnName="VariantNumber" />
+          <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+          <ScalarProperty Name="CreditNoteText1" ColumnName="CreditNoteText" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CustomerTypes">
+      <EntityTypeMapping TypeName="CSSModel.CustomerType">
+        <MappingFragment StoreEntitySet="CustomerType">
+          <ScalarProperty Name="CustomerTypeId" ColumnName="CustomerTypeId" />
+          <ScalarProperty Name="CustomerType1" ColumnName="CustomerType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FundingMethods">
+      <EntityTypeMapping TypeName="CSSModel.FundingMethod">
+        <MappingFragment StoreEntitySet="FundingMethod">
+          <ScalarProperty Name="FundingMethodId" ColumnName="FundingMethodId" />
+          <ScalarProperty Name="FundingMethodName" ColumnName="FundingMethodName" />
+          <ScalarProperty Name="FundingType" ColumnName="FundingType" />
+          <ScalarProperty Name="BudgetCode" ColumnName="BudgetCode" />
+          <ScalarProperty Name="CostCentre" ColumnName="CostCentre" />
+          <ScalarProperty Name="ContractTemplateLocation" ColumnName="ContractTemplateLocation" />
+          <ScalarProperty Name="SignedContractDefault" ColumnName="SignedContractDefault" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="AMISDeptCode" ColumnName="AMISDeptCode" />
+          <ScalarProperty Name="AMISReasonCode" ColumnName="AMISReasonCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PostCodes">
+      <EntityTypeMapping TypeName="CSSModel.PostCode">
+        <MappingFragment StoreEntitySet="PostCode">
+          <ScalarProperty Name="PostCodeId" ColumnName="PostCodeId" />
+          <ScalarProperty Name="PostCode1" ColumnName="PostCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Regions">
+      <EntityTypeMapping TypeName="CSSModel.Region">
+        <MappingFragment StoreEntitySet="Region">
+          <ScalarProperty Name="RegionId" ColumnName="RegionId" />
+          <ScalarProperty Name="RegionName" ColumnName="RegionName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RFONumbers">
+      <EntityTypeMapping TypeName="CSSModel.RFONumber">
+        <MappingFragment StoreEntitySet="RFONumber">
+          <ScalarProperty Name="RFONumber1" ColumnName="RFONumber" />
+          <ScalarProperty Name="RFOName" ColumnName="RFOName" />
+          <ScalarProperty Name="CustomerTypeId" ColumnName="CustomerTypeId" />
+          <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="PostCode" ColumnName="PostCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RFOUsers">
+      <EntityTypeMapping TypeName="CSSModel.RFOUser">
+        <MappingFragment StoreEntitySet="RFOUser">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="ExtranetUser" ColumnName="ExtranetUser" />
+          <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+          <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="TargetNumberOfRegistrations" ColumnName="TargetNumberOfRegistrations" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SystemConfigs">
+      <EntityTypeMapping TypeName="CSSModel.SystemConfig">
+        <MappingFragment StoreEntitySet="SystemConfig">
+          <ScalarProperty Name="SystemConfigId" ColumnName="SystemConfigId" />
+          <ScalarProperty Name="ConfigName" ColumnName="ConfigName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SystemConfigValues">
+      <EntityTypeMapping TypeName="CSSModel.SystemConfigValue">
+        <MappingFragment StoreEntitySet="SystemConfigValue">
+          <ScalarProperty Name="SystemConfigValueId" ColumnName="SystemConfigValueId" />
+          <ScalarProperty Name="SystemConfigId" ColumnName="SystemConfigId" />
+          <ScalarProperty Name="ConfigValue" ColumnName="ConfigValue" />
+          <ScalarProperty Name="Order" ColumnName="Order" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserTypes">
+      <EntityTypeMapping TypeName="CSSModel.UserType">
+        <MappingFragment StoreEntitySet="UserType">
+          <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
+          <ScalarProperty Name="UserType1" ColumnName="UserType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Volumes">
+      <EntityTypeMapping TypeName="CSSModel.Volume">
+        <MappingFragment StoreEntitySet="Volume">
+          <ScalarProperty Name="VolumeId" ColumnName="VolumeId" />
+          <ScalarProperty Name="TriggerCredit" ColumnName="TriggerCredit" />
+          <ScalarProperty Name="PaymentTo" ColumnName="PaymentTo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="AgreementDealer" TypeName="CSSModel.AgreementDealer" StoreEntitySet="AgreementDealer">
+      <EndProperty Name="Agreement">
+        <ScalarProperty Name="AgreementNumber" ColumnName="AgreementNumber" />
+        <ScalarProperty Name="VariantNumber" ColumnName="VariantNumber" />
+      </EndProperty>
+      <EndProperty Name="RFOUser">
+        <ScalarProperty Name="UserId" ColumnName="DealerCode" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="AgreementRFO" TypeName="CSSModel.AgreementRFO" StoreEntitySet="AgreementRFO">
+      <EndProperty Name="Agreement">
+        <ScalarProperty Name="AgreementNumber" ColumnName="AgreementNumber" />
+        <ScalarProperty Name="VariantNumber" ColumnName="VariantNumber" />
+      </EndProperty>
+      <EndProperty Name="RFONumber">
+        <ScalarProperty Name="RFONumber1" ColumnName="RFONumber" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="PostCodeCovered" TypeName="CSSModel.PostCodeCovered" StoreEntitySet="PostCodeCovered">
+      <EndProperty Name="PostCode">
+        <ScalarProperty Name="PostCodeId" ColumnName="PostCodeId" />
+      </EndProperty>
+      <EndProperty Name="RFOUser">
+        <ScalarProperty Name="UserId" ColumnName="UserId" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

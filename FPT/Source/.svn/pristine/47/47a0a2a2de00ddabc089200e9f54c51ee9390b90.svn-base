@@ -1,0 +1,118 @@
+﻿@model CSS_G06.Models.AddAnAgreementModel
+
+@{
+    ViewBag.Title = "Add An New Agreement";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/smart_wizard.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-2.0.0.min.js"></script>
+<script src="~/Scripts/jquery.smartWizard.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#wizard').smartWizard({
+            enableAllSteps: false
+        });
+    });
+    function goBackward() {
+        $('#wizard').smartWizard('goBackward');
+    };
+    function goFoward() {
+        $('#wizard').smartWizard('goForward');
+    };
+</script>
+
+<div style="vertical-align:top;">
+    <table align="center" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td>
+                <!-- Smart Wizard -->
+                <div id="wizard" class="swMain"style="margin-top:0px;padding:0px;">
+                    <!-- Start Menu -->
+                    <ul>
+                        <li>
+                            <a href="#uc2_1">
+                                <label class="stepNumber">1</label>
+                                <span class="stepDesc">
+                                    Select Customer
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#uc2_2">
+                                <label class="stepNumber">2</label>
+                                <span class="stepDesc">
+                                    Basic Agreement Details
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#uc2_3">
+                                <label class="stepNumber">3</label>
+                                <span class="stepDesc">
+                                    Select Applicable Dealer
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#uc2_4">
+                                <label class="stepNumber">4</label>
+                                <span class="stepDesc">
+                                    Volume Banding
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#uc2_5">
+                                <label class="stepNumber">5</label>
+                                <span class="stepDesc">
+                                    Model Support
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#uc2_6">
+                                <label class="stepNumber">6</label>
+                                <span class="stepDesc">
+                                    Misc Text
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#uc2_7">
+                                <label class="stepNumber">7</label>
+                                <span class="stepDesc">
+                                    Confirmation
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                     <!-- End Menu -->
+
+                    <div id="uc2_1" >
+                        <div>
+                            @{Html.RenderAction("Selectcustomer", "AddAnAgreement" );}
+                        </div>
+                        
+                    </div><!-- End #uc2_1 -->
+                    <div id="uc2_2">
+                    </div><!-- End #uC2_2-->
+                    <div id="uc2_3">
+                    </div><!-- End #uC2_3 -->
+                    <div id="uc2_4">
+                    </div><!-- End #uc2_4-->
+                    <div id="uc2_5">
+                    </div><!-- End #uc2_5 -->
+                    <div id="uc2_6">
+                    </div><!-- End #uc2_6 -->
+                    <div id="uc2_7">
+                    </div><!-- End #uc2_7 -->
+                </div>
+                <!-- End SmartWizard Content -->
+
+            </td>
+        </tr>
+    </table>
+</div>
+
+

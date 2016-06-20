@@ -1,0 +1,5 @@
+D:\HocTap\Ky3_2015\GST UIT 2015\Svn_Project\052_HCM_UIT_04_NET\training\belshazzar684@gmail.com\BTNB\Ass01\ClassSimulation\ClassSimulation\bin\Debug\ClassSimulation.exe.config
+D:\HocTap\Ky3_2015\GST UIT 2015\Svn_Project\052_HCM_UIT_04_NET\training\belshazzar684@gmail.com\BTNB\Ass01\ClassSimulation\ClassSimulation\bin\Debug\ClassSimulation.exe
+D:\HocTap\Ky3_2015\GST UIT 2015\Svn_Project\052_HCM_UIT_04_NET\training\belshazzar684@gmail.com\BTNB\Ass01\ClassSimulation\ClassSimulation\bin\Debug\ClassSimulation.pdb
+D:\HocTap\Ky3_2015\GST UIT 2015\Svn_Project\052_HCM_UIT_04_NET\training\belshazzar684@gmail.com\BTNB\Ass01\ClassSimulation\ClassSimulation\obj\Debug\ClassSimulation.exe
+D:\HocTap\Ky3_2015\GST UIT 2015\Svn_Project\052_HCM_UIT_04_NET\training\belshazzar684@gmail.com\BTNB\Ass01\ClassSimulation\ClassSimulation\obj\Debug\ClassSimulation.pdb

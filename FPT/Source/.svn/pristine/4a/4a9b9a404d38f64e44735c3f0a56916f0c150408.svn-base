@@ -1,0 +1,139 @@
+﻿@model PagedList.IPagedList<WebsiteQuanLyBanHang.Models.Customer>
+@using PagedList.Mvc;
+@using PagedList;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- modal placeholder-->
+<div id='myModal' class='modal fade in'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id='myModalContent'></div>
+        </div>
+    </div>
+</div>
+
+
+@using (Html.BeginForm("Index", "Customer", FormMethod.Get))
+{
+
+    <p>
+        @Html.Label("Tên:", new { htmlAttributes = new { @class = "control - label col - md - 2" } })
+        @Html.Editor("searchName", "", new { htmlAttributes = new { @class = "form-control" } })
+
+        @Html.Label("Trạng thái:", new { htmlAttributes = new { @class = "control - label col - md - 2" } })
+        @Html.Editor("searchStatus", "", new { htmlAttributes = new { @class = "form-control" } })
+        <input type="submit" value="Search" class="btn btn-default" />
+
+
+    </p>
+}
+
+<div class="panel panel-primary">
+    <div class="panel-heading">Khách hàng</div>
+    <div class="panel-body ">
+        @Html.ActionLink("Thêm", "Create", "Customers", null, new { data_modal = "", id = "btnCreate", @class = "btn btn-small btn-primary pull-right" })
+    </div>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayName("Tên")
+            </th>
+            <th>
+                @Html.DisplayName("Địa chỉ")
+            </th>
+            <th>
+                @Html.DisplayName("Điện thoại")
+            </th>
+            <th>
+                @Html.DisplayName("Fax")
+            </th>
+            <th>
+                @Html.DisplayName("Email")
+            </th>
+            <th>
+                @Html.DisplayName("Người bán")
+            </th>
+            <th>
+                @Html.DisplayName("Quá hạn")
+            </th>
+            <th>
+                @Html.DisplayName("Nợ")
+            </th>
+            <th>
+                @Html.DisplayName("Nợ quá hạn")
+            </th>
+            <th>
+                @Html.DisplayName("Nợ đến hạn")
+            </th>
+            <th>
+                @Html.DisplayName("Trạng thái")
+            </th>
+            <th>
+                @Html.DisplayName("Chi tiết")
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fax)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Overdue)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OverdueAmt)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DueAmt)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SalesMan.SalesManName)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.CustID }, new { data_modal = "" })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.CustID }, new { data_modal = "" })
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/modalform")
+}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset=utf-8 />
+<title>Basic Drag and Drop</title>
+<style>
+#drop {
+  min-height: 100px;
+  width: 600px;
+  border: 3px dashed #ccc;
+  margin: 10px;
+  padding: 10px;
+}
+p {
+  margin: 3px 0;
+}
+/* for safari*/
+[draggable=true] {
+  -khtml-user-drag: element;
+}
+</style>
+</head>
+<body>
+  <img src="logo.png" alt="Remy Sharp" />
+  <img src="img2.png" alt="Bruce Lawson" />
+  <img src="img3.png" alt="Rich Clark" />
+  <div id="drop"></div>
+  <script>
+	var drop = document.querySelector('#drop');
+	// Tells the browser that we *can* drop on this target
+	drop.addEventListener("dragover", cancel, false);
+	drop.addEventListener("dragenter", cancel, false);
+	drop.addEventListener("drop", function(event){
+		// stops the browser from redirecting off to the text.
+		if (event.preventDefault) {
+			event.preventDefault(); 
+		}
+		//this.innerHTML += '<p>' + event.dataTransfer.getData('Text') + '</p>';
+		this.innerHTML += "<img src='"+event.dataTransfer.getData('Text')+"' />";
+		return false;
+	}, false);
+	
+	function cancel(event) {
+	  if (event.preventDefault) {
+		event.preventDefault();
+	  }
+	  return false;
+	}
+  </script>
+</body>
+</html>

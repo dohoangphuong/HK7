@@ -1,0 +1,1404 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ABSDDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Address">
+    <Key>
+      <PropertyRef Name="AddressId" />
+    </Key>
+    <Property Name="AddressId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Address1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Postcode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Town" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="County" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BestContactMethod">
+    <Key>
+      <PropertyRef Name="BestContactMethodId" />
+    </Key>
+    <Property Name="BestContactMethodId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BestContactMethodName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Contacts" Relationship="Self.fk_Contact_BestContactMethod" FromRole="BestContactMethod" ToRole="Contact" />
+  </EntityType>
+  <EntityType Name="Contact">
+    <Key>
+      <PropertyRef Name="ContactId" />
+    </Key>
+    <Property Name="ContactId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="KnownAs" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="OfficePhone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="MobilePhone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="STHomePhone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="EmailAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ManagerContactId" Type="Int32" />
+    <Property Name="ContactTypeId" Type="Int32" Nullable="false" />
+    <Property Name="BestContactMethodId" Type="Int32" />
+    <Property Name="JobRole" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="WorkBase" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="JobTitle" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="BestContactMethod" Relationship="Self.fk_Contact_BestContactMethod" FromRole="Contact" ToRole="BestContactMethod" />
+    <NavigationProperty Name="Contact1" Relationship="Self.fk_Contact_Contact" FromRole="Contact" ToRole="Contact1" />
+    <NavigationProperty Name="Contact2" Relationship="Self.fk_Contact_Contact" FromRole="Contact1" ToRole="Contact" />
+    <NavigationProperty Name="ContactType" Relationship="Self.fk_Contact_ContactType" FromRole="Contact" ToRole="ContactType" />
+    <NavigationProperty Name="Departments" Relationship="Self.fk_Department_Contact" FromRole="Contact" ToRole="Department" />
+    <NavigationProperty Name="Directorates" Relationship="Self.fk_Directorate_Contact" FromRole="Contact" ToRole="Directorate" />
+    <NavigationProperty Name="Organizations" Relationship="Self.fk_Organization_Contact" FromRole="Contact" ToRole="Organization" />
+    <NavigationProperty Name="Programmes" Relationship="Self.fk_Programme_Contact" FromRole="Contact" ToRole="Programme" />
+    <NavigationProperty Name="Services" Relationship="Self.fk_Service_Contact" FromRole="Contact" ToRole="Service" />
+    <NavigationProperty Name="ServiceFundings" Relationship="Self.fk_ServiceFunding_Contact" FromRole="Contact" ToRole="ServiceFunding" />
+    <NavigationProperty Name="Teams" Relationship="Self.fk_Team_Contact" FromRole="Contact" ToRole="Team" />
+  </EntityType>
+  <EntityType Name="ContactType">
+    <Key>
+      <PropertyRef Name="ContactTypeId" />
+    </Key>
+    <Property Name="ContactTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ContactTypeName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Contacts" Relationship="Self.fk_Contact_ContactType" FromRole="ContactType" ToRole="Contact" />
+  </EntityType>
+  <EntityType Name="ContractParticipationType">
+    <Key>
+      <PropertyRef Name="ContractParticipationTypeId" />
+    </Key>
+    <Property Name="ContractParticipationTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ContractParticipationTypeName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Services" Relationship="Self.fk_Service_ContractParticipationType" FromRole="ContractParticipationType" ToRole="Service" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="CountryId" />
+    </Key>
+    <Property Name="CountryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CountryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Departments" Relationship="Self.fk_Department_Country" FromRole="Country" ToRole="Department" />
+    <NavigationProperty Name="Directorates" Relationship="Self.fk_Directorate_Country" FromRole="Country" ToRole="Directorate" />
+    <NavigationProperty Name="Organizations" Relationship="Self.fk_Organization_Country" FromRole="Country" ToRole="Organization" />
+    <NavigationProperty Name="Premises" Relationship="Self.fk_Premise_Country" FromRole="Country" ToRole="Premise" />
+    <NavigationProperty Name="Teams" Relationship="Self.fk_Team_Country" FromRole="Country" ToRole="Team" />
+    <NavigationProperty Name="TrustRegions" Relationship="Self.fk_TrustRegion_Country" FromRole="Country" ToRole="TrustRegion" />
+  </EntityType>
+  <EntityType Name="County">
+    <Key>
+      <PropertyRef Name="CountyId" />
+    </Key>
+    <Property Name="CountyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CountyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Departments" Relationship="Self.fk_Department_County" FromRole="County" ToRole="Department" />
+    <NavigationProperty Name="Directorates" Relationship="Self.fk_Directorate_County" FromRole="County" ToRole="Directorate" />
+    <NavigationProperty Name="GovOfficeRegion_County" Relationship="Self.fk_GovOfficeRegion_County_County" FromRole="County" ToRole="GovOfficeRegion_County" />
+    <NavigationProperty Name="Organizations" Relationship="Self.fk_Organization_County" FromRole="County" ToRole="Organization" />
+    <NavigationProperty Name="Premises" Relationship="Self.fk_Premise_County" FromRole="County" ToRole="Premise" />
+    <NavigationProperty Name="Teams" Relationship="Self.fk_Team_County" FromRole="County" ToRole="Team" />
+  </EntityType>
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="DepartmentId" />
+    </Key>
+    <Property Name="DepartmentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DepartmentShortDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LeadContactId" Type="Int32" />
+    <Property Name="AddressLine1" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="AddressLine2" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="AddressLine3" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Postcode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="TownVillagecity" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="CountyId" Type="Int32" />
+    <Property Name="CountryId" Type="Int32" />
+    <Property Name="TypeOfBusiness" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="SICCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="DepartmentFullDescription" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Fax" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="WebAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="DirectorateId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Contact" Relationship="Self.fk_Department_Contact" FromRole="Department" ToRole="Contact" />
+    <NavigationProperty Name="Country" Relationship="Self.fk_Department_Country" FromRole="Department" ToRole="Country" />
+    <NavigationProperty Name="County" Relationship="Self.fk_Department_County" FromRole="Department" ToRole="County" />
+    <NavigationProperty Name="Directorate" Relationship="Self.fk_Department_Directorate" FromRole="Department" ToRole="Directorate" />
+  </EntityType>
+  <EntityType Name="Directorate">
+    <Key>
+      <PropertyRef Name="DirectorateId" />
+    </Key>
+    <Property Name="DirectorateId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DirectorateName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DirectorateShortDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="LeadContactId" Type="Int32" />
+    <Property Name="AddressLine1" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AddressLine2" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="AddressLine3" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Postcode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TownVillageCity" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="CountyId" Type="Int32" />
+    <Property Name="CountryId" Type="Int32" />
+    <Property Name="TypeOfBusiness" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SICCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DirectorateFullDescription" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Fax" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="WebAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CharityNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CompanyNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="OrganizationId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Contact" Relationship="Self.fk_Directorate_Contact" FromRole="Directorate" ToRole="Contact" />
+    <NavigationProperty Name="Country" Relationship="Self.fk_Directorate_Country" FromRole="Directorate" ToRole="Country" />
+    <NavigationProperty Name="County" Relationship="Self.fk_Directorate_County" FromRole="Directorate" ToRole="County" />
+    <NavigationProperty Name="Departments" Relationship="Self.fk_Department_Directorate" FromRole="Directorate" ToRole="Department" />
+    <NavigationProperty Name="Organization" Relationship="Self.fk_Directorate_Organization" FromRole="Directorate" ToRole="Organization" />
+  </EntityType>
+  <EntityType Name="FundingSource">
+    <Key>
+      <PropertyRef Name="FundingSourceId" />
+    </Key>
+    <Property Name="FundingSourceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FundingSourceName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="ServiceFundings" Relationship="Self.fk_ServiceFunding_FundingSource" FromRole="FundingSource" ToRole="ServiceFunding" />
+  </EntityType>
+  <EntityType Name="GovOfficeRegion">
+    <Key>
+      <PropertyRef Name="GovOfficeRegionId" />
+    </Key>
+    <Property Name="GovOfficeRegionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GovOfficeRegionName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="GovOfficeRegion_County" Relationship="Self.fk_GovOfficeRegion_County_GovOfficeRegion" FromRole="GovOfficeRegion" ToRole="GovOfficeRegion_County" />
+  </EntityType>
+  <EntityType Name="GovOfficeRegion_County">
+    <Key>
+      <PropertyRef Name="GovOfficeRegion_CountyId" />
+    </Key>
+    <Property Name="GovOfficeRegion_CountyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GovOfficeRegionId" Type="Int32" Nullable="false" />
+    <Property Name="CountyId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="County" Relationship="Self.fk_GovOfficeRegion_County_County" FromRole="GovOfficeRegion_County" ToRole="County" />
+    <NavigationProperty Name="GovOfficeRegion" Relationship="Self.fk_GovOfficeRegion_County_GovOfficeRegion" FromRole="GovOfficeRegion_County" ToRole="GovOfficeRegion" />
+  </EntityType>
+  <EntityType Name="LocationStatu">
+    <Key>
+      <PropertyRef Name="LocationStatusId" />
+    </Key>
+    <Property Name="LocationStatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LocationStatusName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Premises" Relationship="Self.fk_Premise_LocationStatus" FromRole="LocationStatus" ToRole="Premise" />
+  </EntityType>
+  <EntityType Name="LocationType">
+    <Key>
+      <PropertyRef Name="LocationTypeId" />
+    </Key>
+    <Property Name="LocationTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LocationTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Premise_LocationType" Relationship="Self.fk_Premise_LocationType_LocationType" FromRole="LocationType" ToRole="Premise_LocationType" />
+  </EntityType>
+  <EntityType Name="Organization">
+    <Key>
+      <PropertyRef Name="OrganizationId" />
+    </Key>
+    <Property Name="OrganizationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrganizationName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="OrganizationShortDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LeadContactId" Type="Int32" Nullable="false" />
+    <Property Name="AddressLine1" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AddressLine2" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="AddressLine3" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Postcode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CityTown" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CountyId" Type="Int32" />
+    <Property Name="CountryId" Type="Int32" />
+    <Property Name="IsPreferredOrganization" Type="Boolean" />
+    <Property Name="IsExpressionOfInterest" Type="Boolean" />
+    <Property Name="TypeOfBusiness" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SICCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="OrganizationFullDescription" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Fax" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="WebAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CharityNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CompanyNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Contact" Relationship="Self.fk_Organization_Contact" FromRole="Organization" ToRole="Contact" />
+    <NavigationProperty Name="Country" Relationship="Self.fk_Organization_Country" FromRole="Organization" ToRole="Country" />
+    <NavigationProperty Name="County" Relationship="Self.fk_Organization_County" FromRole="Organization" ToRole="County" />
+    <NavigationProperty Name="Directorates" Relationship="Self.fk_Directorate_Organization" FromRole="Organization" ToRole="Directorate" />
+    <NavigationProperty Name="Organization_Programme" Relationship="Self.fk_Organization_Programme_Organization" FromRole="Organization" ToRole="Organization_Programme" />
+    <NavigationProperty Name="Organization_RefDataDetail" Relationship="Self.fk_Organization_RefDataDetail_Organization" FromRole="Organization" ToRole="Organization_RefDataDetail" />
+    <NavigationProperty Name="Premises" Relationship="Self.fk_Premise_Organization" FromRole="Organization" ToRole="Premise" />
+    <NavigationProperty Name="Service_Organization_OrganizationRoleType" Relationship="Self.fk_Service_Organization_OrganizationRoleType_Organization" FromRole="Organization" ToRole="Service_Organization_OrganizationRoleType" />
+    <NavigationProperty Name="SupportingMaterials" Relationship="Self.fk_SupportingMaterial_Organization" FromRole="Organization" ToRole="SupportingMaterial" />
+  </EntityType>
+  <EntityType Name="Organization_Programme">
+    <Key>
+      <PropertyRef Name="Organization_ProgrammeId" />
+    </Key>
+    <Property Name="Organization_ProgrammeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrganizationId" Type="Int32" Nullable="false" />
+    <Property Name="ProgrammeId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Organization" Relationship="Self.fk_Organization_Programme_Organization" FromRole="Organization_Programme" ToRole="Organization" />
+    <NavigationProperty Name="Programme" Relationship="Self.fk_Organization_Programme_Programme" FromRole="Organization_Programme" ToRole="Programme" />
+  </EntityType>
+  <EntityType Name="Organization_RefDataDetail">
+    <Key>
+      <PropertyRef Name="Organization_RefDataDetailId" />
+    </Key>
+    <Property Name="Organization_RefDataDetailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrganizationId" Type="Int32" Nullable="false" />
+    <Property Name="RefDataDetailId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Organization" Relationship="Self.fk_Organization_RefDataDetail_Organization" FromRole="Organization_RefDataDetail" ToRole="Organization" />
+    <NavigationProperty Name="RefDataDetail" Relationship="Self.fk_Organization_RefDataDetail_RefDataDetail" FromRole="Organization_RefDataDetail" ToRole="RefDataDetail" />
+  </EntityType>
+  <EntityType Name="OrganizationRoleType">
+    <Key>
+      <PropertyRef Name="OrganizationRoleTypeId" />
+    </Key>
+    <Property Name="OrganizationRoleTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrganizationRoleTypeName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Service_Organization_OrganizationRoleType" Relationship="Self.fk_Service_Organization_OrganizationRoleType_OrganizationRoleType" FromRole="OrganizationRoleType" ToRole="Service_Organization_OrganizationRoleType" />
+  </EntityType>
+  <EntityType Name="Premise">
+    <Key>
+      <PropertyRef Name="PremiseId" />
+    </Key>
+    <Property Name="PremiseId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LocationName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="KnownAs" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="LocationOrganizationId" Type="Int32" />
+    <Property Name="LocationStatusId" Type="Int32" Nullable="false" />
+    <Property Name="LocationStatusDate" Type="DateTime" Precision="0" />
+    <Property Name="AddressLine1" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="AddressLine2" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="AddressLine3" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Postcode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CityTown" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="CountyId" Type="Int32" />
+    <Property Name="CountryId" Type="Int32" />
+    <Property Name="IsPrimaryLocation" Type="Boolean" />
+    <Property Name="IsLocationManaged" Type="Boolean" />
+    <Property Name="HasSTNetworkConnectivity" Type="Boolean" />
+    <Property Name="LocationDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="GeneralFaxNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="MinicommNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="IsNewShop" Type="Boolean" />
+    <Property Name="ShopFlagDate" Type="DateTime" Precision="0" />
+    <Property Name="IsSpecialistShop" Type="Boolean" />
+    <NavigationProperty Name="Country" Relationship="Self.fk_Premise_Country" FromRole="Premise" ToRole="Country" />
+    <NavigationProperty Name="County" Relationship="Self.fk_Premise_County" FromRole="Premise" ToRole="County" />
+    <NavigationProperty Name="LocationStatu" Relationship="Self.fk_Premise_LocationStatus" FromRole="Premise" ToRole="LocationStatus" />
+    <NavigationProperty Name="Organization" Relationship="Self.fk_Premise_Organization" FromRole="Premise" ToRole="Organization" />
+    <NavigationProperty Name="Premise_LocationType" Relationship="Self.fk_Premise_LocationType_Premise" FromRole="Premise" ToRole="Premise_LocationType" />
+    <NavigationProperty Name="Service_Premise" Relationship="Self.fk_Service_Premise_PRemise" FromRole="Premise" ToRole="Service_Premise" />
+  </EntityType>
+  <EntityType Name="Premise_LocationType">
+    <Key>
+      <PropertyRef Name="Premise_LocationTypeId" />
+    </Key>
+    <Property Name="Premise_LocationTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PremiseId" Type="Int32" Nullable="false" />
+    <Property Name="LocationTypeId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="LocationType" Relationship="Self.fk_Premise_LocationType_LocationType" FromRole="Premise_LocationType" ToRole="LocationType" />
+    <NavigationProperty Name="Premise" Relationship="Self.fk_Premise_LocationType_Premise" FromRole="Premise_LocationType" ToRole="Premise" />
+  </EntityType>
+  <EntityType Name="Programme">
+    <Key>
+      <PropertyRef Name="ProgrammeId" />
+    </Key>
+    <Property Name="ProgrammeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProgrammeName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProgrammeDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="ContactId" Type="Int32" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Contact" Relationship="Self.fk_Programme_Contact" FromRole="Programme" ToRole="Contact" />
+    <NavigationProperty Name="Organization_Programme" Relationship="Self.fk_Organization_Programme_Programme" FromRole="Programme" ToRole="Organization_Programme" />
+    <NavigationProperty Name="Services" Relationship="Self.fk_Service_Programme" FromRole="Programme" ToRole="Service" />
+  </EntityType>
+  <EntityType Name="RefData">
+    <Key>
+      <PropertyRef Name="RefDataId" />
+    </Key>
+    <Property Name="RefDataId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RefDataName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RefDataValue" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="RefDataDetails" Relationship="Self.fk_RefDataDetail_RefData" FromRole="RefData" ToRole="RefDataDetail" />
+  </EntityType>
+  <EntityType Name="RefDataDetail">
+    <Key>
+      <PropertyRef Name="RefDataDetailId" />
+    </Key>
+    <Property Name="RefDataDetailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RefDataDetailValue" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RefDataId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Organization_RefDataDetail" Relationship="Self.fk_Organization_RefDataDetail_RefDataDetail" FromRole="RefDataDetail" ToRole="Organization_RefDataDetail" />
+    <NavigationProperty Name="RefData" Relationship="Self.fk_RefDataDetail_RefData" FromRole="RefDataDetail" ToRole="RefData" />
+    <NavigationProperty Name="Service_RefDataDetail" Relationship="Self.fk_Service_RefDataDetail_RefDataDetail" FromRole="RefDataDetail" ToRole="Service_RefDataDetail" />
+  </EntityType>
+  <EntityType Name="ReferralMethod">
+    <Key>
+      <PropertyRef Name="ReferralMethodId" />
+    </Key>
+    <Property Name="ReferralMethodId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ReferralMethodName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Services" Relationship="Self.fk_Service_ReferralMethod" FromRole="ReferralMethod" ToRole="Service" />
+  </EntityType>
+  <EntityType Name="Service">
+    <Key>
+      <PropertyRef Name="ServiceId" />
+    </Key>
+    <Property Name="ServiceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ServiceName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ServiceShortDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ServiceSubTypeId" Type="Int32" Nullable="false" />
+    <Property Name="LeadContactId" Type="Int32" Nullable="false" />
+    <Property Name="ClientDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="ServiceAttendance" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ServiceStartExpected" Type="DateTime" Precision="3" />
+    <Property Name="ServiceStartDate" Type="DateTime" Precision="3" />
+    <Property Name="ServiceEndDate" Type="DateTime" Precision="3" />
+    <Property Name="ServiceExtendable" Type="Boolean" />
+    <Property Name="ServiceExtendableMonth" Type="Int32" />
+    <Property Name="ServiceExtendableYear" Type="Int32" />
+    <Property Name="ServiceFullDescription" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="DepartmentCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ServiceTypeId" Type="Int32" Nullable="false" />
+    <Property Name="ServiceDescriptionDelivery" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="ServiceContractCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ServiceContractValue" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IsContractStagedPayment" Type="Boolean" />
+    <Property Name="ReferralMethodId" Type="Int32" />
+    <Property Name="IsTimeLimited" Type="Boolean" />
+    <Property Name="LimitedYears" Type="Int32" />
+    <Property Name="LimitedMonths" Type="Int32" />
+    <Property Name="ProgrammeId" Type="Int32" />
+    <Property Name="ContractParticipationTypeId" Type="Int32" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Contact" Relationship="Self.fk_Service_Contact" FromRole="Service" ToRole="Contact" />
+    <NavigationProperty Name="ContractParticipationType" Relationship="Self.fk_Service_ContractParticipationType" FromRole="Service" ToRole="ContractParticipationType" />
+    <NavigationProperty Name="Programme" Relationship="Self.fk_Service_Programme" FromRole="Service" ToRole="Programme" />
+    <NavigationProperty Name="ReferralMethod" Relationship="Self.fk_Service_ReferralMethod" FromRole="Service" ToRole="ReferralMethod" />
+    <NavigationProperty Name="Service_Organization_OrganizationRoleType" Relationship="Self.fk_Service_Organization_OrganizationRoleType_Service" FromRole="Service" ToRole="Service_Organization_OrganizationRoleType" />
+    <NavigationProperty Name="Service_Premise" Relationship="Self.fk_Service_Premise_Service" FromRole="Service" ToRole="Service_Premise" />
+    <NavigationProperty Name="Service_RefDataDetail" Relationship="Self.fk_Service_RefDataDetail_Service" FromRole="Service" ToRole="Service_RefDataDetail" />
+    <NavigationProperty Name="ServiceSubType" Relationship="Self.fk_Service_ServiceSubType" FromRole="Service" ToRole="ServiceSubType" />
+    <NavigationProperty Name="ServiceType" Relationship="Self.fk_Service_ServiceType" FromRole="Service" ToRole="ServiceType" />
+    <NavigationProperty Name="ServiceFundings" Relationship="Self.fk_ServiceFunding_Service" FromRole="Service" ToRole="ServiceFunding" />
+  </EntityType>
+  <EntityType Name="Service_Organization_OrganizationRoleType">
+    <Key>
+      <PropertyRef Name="Service_Organization_OrganizationRoleTypeId" />
+    </Key>
+    <Property Name="Service_Organization_OrganizationRoleTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ServiceId" Type="Int32" Nullable="false" />
+    <Property Name="OrganizationId" Type="Int32" Nullable="false" />
+    <Property Name="OrganizationRoleTypeId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Organization" Relationship="Self.fk_Service_Organization_OrganizationRoleType_Organization" FromRole="Service_Organization_OrganizationRoleType" ToRole="Organization" />
+    <NavigationProperty Name="OrganizationRoleType" Relationship="Self.fk_Service_Organization_OrganizationRoleType_OrganizationRoleType" FromRole="Service_Organization_OrganizationRoleType" ToRole="OrganizationRoleType" />
+    <NavigationProperty Name="Service" Relationship="Self.fk_Service_Organization_OrganizationRoleType_Service" FromRole="Service_Organization_OrganizationRoleType" ToRole="Service" />
+  </EntityType>
+  <EntityType Name="Service_Premise">
+    <Key>
+      <PropertyRef Name="Service_PremiseId" />
+    </Key>
+    <Property Name="Service_PremiseId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ServiceId" Type="Int32" Nullable="false" />
+    <Property Name="PremiseId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Premise" Relationship="Self.fk_Service_Premise_PRemise" FromRole="Service_Premise" ToRole="Premise" />
+    <NavigationProperty Name="Service" Relationship="Self.fk_Service_Premise_Service" FromRole="Service_Premise" ToRole="Service" />
+  </EntityType>
+  <EntityType Name="Service_RefDataDetail">
+    <Key>
+      <PropertyRef Name="Service_RefDataDetailId" />
+    </Key>
+    <Property Name="Service_RefDataDetailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ServiceId" Type="Int32" Nullable="false" />
+    <Property Name="RefDataDetailId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="RefDataDetail" Relationship="Self.fk_Service_RefDataDetail_RefDataDetail" FromRole="Service_RefDataDetail" ToRole="RefDataDetail" />
+    <NavigationProperty Name="Service" Relationship="Self.fk_Service_RefDataDetail_Service" FromRole="Service_RefDataDetail" ToRole="Service" />
+  </EntityType>
+  <EntityType Name="ServiceFunding">
+    <Key>
+      <PropertyRef Name="ServiceFundingId" />
+    </Key>
+    <Property Name="ServiceFundingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FundingSourceId" Type="Int32" />
+    <Property Name="FundingContactId" Type="Int32" Nullable="false" />
+    <Property Name="FundingAmount" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="FundingStart" Type="DateTime" Precision="0" />
+    <Property Name="FundingEnd" Type="DateTime" Precision="0" />
+    <Property Name="FundingNeeds" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="IsFundingContinuationNeeded" Type="Boolean" />
+    <Property Name="FundingContinuationAmount" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="FundingContinuationDetail" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="FundraisingForText" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="FundraisingWhy" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="FundraisingNeeds" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="FundraisingRequiredBy" Type="DateTime" Precision="0" />
+    <Property Name="IsFundRaisingComplete" Type="Boolean" />
+    <Property Name="FundraisingCompletedDate" Type="DateTime" Precision="0" />
+    <Property Name="FundraisingDonorAnynymous" Type="Boolean" />
+    <Property Name="FundraisingDonorAmount" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="FundDonationDate" Type="DateTime" Precision="0" />
+    <Property Name="IsFundraisingDonationIncremental" Type="Boolean" />
+    <Property Name="ServiceId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Contact" Relationship="Self.fk_ServiceFunding_Contact" FromRole="ServiceFunding" ToRole="Contact" />
+    <NavigationProperty Name="FundingSource" Relationship="Self.fk_ServiceFunding_FundingSource" FromRole="ServiceFunding" ToRole="FundingSource" />
+    <NavigationProperty Name="Service" Relationship="Self.fk_ServiceFunding_Service" FromRole="ServiceFunding" ToRole="Service" />
+  </EntityType>
+  <EntityType Name="ServiceSubType">
+    <Key>
+      <PropertyRef Name="ServiceSubTypeId" />
+    </Key>
+    <Property Name="ServiceSubTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ServiceSubTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Services" Relationship="Self.fk_Service_ServiceSubType" FromRole="ServiceSubType" ToRole="Service" />
+  </EntityType>
+  <EntityType Name="ServiceType">
+    <Key>
+      <PropertyRef Name="ServiceTypeId" />
+    </Key>
+    <Property Name="ServiceTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ServiceTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Services" Relationship="Self.fk_Service_ServiceType" FromRole="ServiceType" ToRole="Service" />
+  </EntityType>
+  <EntityType Name="SupportingMaterial">
+    <Key>
+      <PropertyRef Name="SupportingMaterialId" />
+    </Key>
+    <Property Name="SupportingMaterialId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Url" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="SupportingMaterialTypeId" Type="Int32" Nullable="false" />
+    <Property Name="UserAddedId" Type="Int32" Nullable="false" />
+    <Property Name="DateAdded" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="OrganizationId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Organization" Relationship="Self.fk_SupportingMaterial_Organization" FromRole="SupportingMaterial" ToRole="Organization" />
+    <NavigationProperty Name="SupportingMaterialType" Relationship="Self.fk_SupportingMaterial_SupportingMaterialType" FromRole="SupportingMaterial" ToRole="SupportingMaterialType" />
+  </EntityType>
+  <EntityType Name="SupportingMaterialType">
+    <Key>
+      <PropertyRef Name="SupportingMaterialTypeId" />
+    </Key>
+    <Property Name="SupportingMaterialTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SupportingMaterialTypeName" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="SupportingMaterials" Relationship="Self.fk_SupportingMaterial_SupportingMaterialType" FromRole="SupportingMaterialType" ToRole="SupportingMaterial" />
+  </EntityType>
+  <EntityType Name="Team">
+    <Key>
+      <PropertyRef Name="TeamId" />
+    </Key>
+    <Property Name="TeamId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TeamName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TeamShortDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="LeadContactId" Type="Int32" />
+    <Property Name="AddressLine1" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="AddressLine2" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="AddressLine3" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Postcode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="TownVillageCity" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="CountyId" Type="Int32" />
+    <Property Name="CountryId" Type="Int32" />
+    <Property Name="TypeOfBusiness" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="SICCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="TeamFullDescription" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Fax" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="WebAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="DepartmentId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Contact" Relationship="Self.fk_Team_Contact" FromRole="Team" ToRole="Contact" />
+    <NavigationProperty Name="Country" Relationship="Self.fk_Team_Country" FromRole="Team" ToRole="Country" />
+    <NavigationProperty Name="County" Relationship="Self.fk_Team_County" FromRole="Team" ToRole="County" />
+  </EntityType>
+  <EntityType Name="TrustDistrict">
+    <Key>
+      <PropertyRef Name="TrustDistrictId" />
+    </Key>
+    <Property Name="TrustDistrictId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TrustDistrictName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="TrustRegionId" Type="Int32" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="TrustRegion" Relationship="Self.fk_TrustDistrict_TrustRegion" FromRole="TrustDistrict" ToRole="TrustRegion" />
+  </EntityType>
+  <EntityType Name="TrustRegion">
+    <Key>
+      <PropertyRef Name="TrustRegionId" />
+    </Key>
+    <Property Name="TrustRegionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CountryId" Type="Int32" Nullable="false" />
+    <Property Name="TrustRegionName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Country" Relationship="Self.fk_TrustRegion_Country" FromRole="TrustRegion" ToRole="Country" />
+    <NavigationProperty Name="TrustDistricts" Relationship="Self.fk_TrustDistrict_TrustRegion" FromRole="TrustRegion" ToRole="TrustDistrict" />
+  </EntityType>
+  <EntityType Name="TypeOfBusiness">
+    <Key>
+      <PropertyRef Name="TypeOfBusinessId" />
+    </Key>
+    <Property Name="TypeOfBusinessId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BusinessName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SICCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <Association Name="fk_Contact_BestContactMethod">
+    <End Role="BestContactMethod" Type="Self.BestContactMethod" Multiplicity="0..1" />
+    <End Role="Contact" Type="Self.Contact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BestContactMethod">
+        <PropertyRef Name="BestContactMethodId" />
+      </Principal>
+      <Dependent Role="Contact">
+        <PropertyRef Name="BestContactMethodId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Contact_Contact">
+    <End Role="Contact" Type="Self.Contact" Multiplicity="0..1" />
+    <End Role="Contact1" Type="Self.Contact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contact">
+        <PropertyRef Name="ContactId" />
+      </Principal>
+      <Dependent Role="Contact1">
+        <PropertyRef Name="ManagerContactId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Contact_ContactType">
+    <End Role="ContactType" Type="Self.ContactType" Multiplicity="1" />
+    <End Role="Contact" Type="Self.Contact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ContactType">
+        <PropertyRef Name="ContactTypeId" />
+      </Principal>
+      <Dependent Role="Contact">
+        <PropertyRef Name="ContactTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Department_Contact">
+    <End Role="Contact" Type="Self.Contact" Multiplicity="0..1" />
+    <End Role="Department" Type="Self.Department" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contact">
+        <PropertyRef Name="ContactId" />
+      </Principal>
+      <Dependent Role="Department">
+        <PropertyRef Name="LeadContactId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Directorate_Contact">
+    <End Role="Contact" Type="Self.Contact" Multiplicity="0..1" />
+    <End Role="Directorate" Type="Self.Directorate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contact">
+        <PropertyRef Name="ContactId" />
+      </Principal>
+      <Dependent Role="Directorate">
+        <PropertyRef Name="LeadContactId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Organization_Contact">
+    <End Role="Contact" Type="Self.Contact" Multiplicity="1" />
+    <End Role="Organization" Type="Self.Organization" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contact">
+        <PropertyRef Name="ContactId" />
+      </Principal>
+      <Dependent Role="Organization">
+        <PropertyRef Name="LeadContactId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Programme_Contact">
+    <End Role="Contact" Type="Self.Contact" Multiplicity="0..1" />
+    <End Role="Programme" Type="Self.Programme" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contact">
+        <PropertyRef Name="ContactId" />
+      </Principal>
+      <Dependent Role="Programme">
+        <PropertyRef Name="ContactId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Service_Contact">
+    <End Role="Contact" Type="Self.Contact" Multiplicity="1" />
+    <End Role="Service" Type="Self.Service" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contact">
+        <PropertyRef Name="ContactId" />
+      </Principal>
+      <Dependent Role="Service">
+        <PropertyRef Name="LeadContactId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_ServiceFunding_Contact">
+    <End Role="Contact" Type="Self.Contact" Multiplicity="1" />
+    <End Role="ServiceFunding" Type="Self.ServiceFunding" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contact">
+        <PropertyRef Name="ContactId" />
+      </Principal>
+      <Dependent Role="ServiceFunding">
+        <PropertyRef Name="FundingContactId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Team_Contact">
+    <End Role="Contact" Type="Self.Contact" Multiplicity="0..1" />
+    <End Role="Team" Type="Self.Team" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contact">
+        <PropertyRef Name="ContactId" />
+      </Principal>
+      <Dependent Role="Team">
+        <PropertyRef Name="LeadContactId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Service_ContractParticipationType">
+    <End Role="ContractParticipationType" Type="Self.ContractParticipationType" Multiplicity="0..1" />
+    <End Role="Service" Type="Self.Service" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ContractParticipationType">
+        <PropertyRef Name="ContractParticipationTypeId" />
+      </Principal>
+      <Dependent Role="Service">
+        <PropertyRef Name="ContractParticipationTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Department_Country">
+    <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
+    <End Role="Department" Type="Self.Department" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="CountryId" />
+      </Principal>
+      <Dependent Role="Department">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Directorate_Country">
+    <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
+    <End Role="Directorate" Type="Self.Directorate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="CountryId" />
+      </Principal>
+      <Dependent Role="Directorate">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Organization_Country">
+    <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
+    <End Role="Organization" Type="Self.Organization" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="CountryId" />
+      </Principal>
+      <Dependent Role="Organization">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Premise_Country">
+    <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
+    <End Role="Premise" Type="Self.Premise" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="CountryId" />
+      </Principal>
+      <Dependent Role="Premise">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Team_Country">
+    <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
+    <End Role="Team" Type="Self.Team" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="CountryId" />
+      </Principal>
+      <Dependent Role="Team">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_TrustRegion_Country">
+    <End Role="Country" Type="Self.Country" Multiplicity="1" />
+    <End Role="TrustRegion" Type="Self.TrustRegion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="CountryId" />
+      </Principal>
+      <Dependent Role="TrustRegion">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Department_County">
+    <End Role="County" Type="Self.County" Multiplicity="0..1" />
+    <End Role="Department" Type="Self.Department" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="County">
+        <PropertyRef Name="CountyId" />
+      </Principal>
+      <Dependent Role="Department">
+        <PropertyRef Name="CountyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Directorate_County">
+    <End Role="County" Type="Self.County" Multiplicity="0..1" />
+    <End Role="Directorate" Type="Self.Directorate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="County">
+        <PropertyRef Name="CountyId" />
+      </Principal>
+      <Dependent Role="Directorate">
+        <PropertyRef Name="CountyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_GovOfficeRegion_County_County">
+    <End Role="County" Type="Self.County" Multiplicity="1" />
+    <End Role="GovOfficeRegion_County" Type="Self.GovOfficeRegion_County" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="County">
+        <PropertyRef Name="CountyId" />
+      </Principal>
+      <Dependent Role="GovOfficeRegion_County">
+        <PropertyRef Name="CountyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Organization_County">
+    <End Role="County" Type="Self.County" Multiplicity="0..1" />
+    <End Role="Organization" Type="Self.Organization" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="County">
+        <PropertyRef Name="CountyId" />
+      </Principal>
+      <Dependent Role="Organization">
+        <PropertyRef Name="CountyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Premise_County">
+    <End Role="County" Type="Self.County" Multiplicity="0..1" />
+    <End Role="Premise" Type="Self.Premise" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="County">
+        <PropertyRef Name="CountyId" />
+      </Principal>
+      <Dependent Role="Premise">
+        <PropertyRef Name="CountyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Team_County">
+    <End Role="County" Type="Self.County" Multiplicity="0..1" />
+    <End Role="Team" Type="Self.Team" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="County">
+        <PropertyRef Name="CountyId" />
+      </Principal>
+      <Dependent Role="Team">
+        <PropertyRef Name="CountyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Department_Directorate">
+    <End Role="Directorate" Type="Self.Directorate" Multiplicity="1" />
+    <End Role="Department" Type="Self.Department" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Directorate">
+        <PropertyRef Name="DirectorateId" />
+      </Principal>
+      <Dependent Role="Department">
+        <PropertyRef Name="DirectorateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Directorate_Organization">
+    <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+    <End Role="Directorate" Type="Self.Directorate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Organization">
+        <PropertyRef Name="OrganizationId" />
+      </Principal>
+      <Dependent Role="Directorate">
+        <PropertyRef Name="OrganizationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_ServiceFunding_FundingSource">
+    <End Role="FundingSource" Type="Self.FundingSource" Multiplicity="0..1" />
+    <End Role="ServiceFunding" Type="Self.ServiceFunding" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FundingSource">
+        <PropertyRef Name="FundingSourceId" />
+      </Principal>
+      <Dependent Role="ServiceFunding">
+        <PropertyRef Name="FundingSourceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_GovOfficeRegion_County_GovOfficeRegion">
+    <End Role="GovOfficeRegion" Type="Self.GovOfficeRegion" Multiplicity="1" />
+    <End Role="GovOfficeRegion_County" Type="Self.GovOfficeRegion_County" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GovOfficeRegion">
+        <PropertyRef Name="GovOfficeRegionId" />
+      </Principal>
+      <Dependent Role="GovOfficeRegion_County">
+        <PropertyRef Name="GovOfficeRegionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Premise_LocationStatus">
+    <End Role="LocationStatus" Type="Self.LocationStatu" Multiplicity="1" />
+    <End Role="Premise" Type="Self.Premise" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LocationStatus">
+        <PropertyRef Name="LocationStatusId" />
+      </Principal>
+      <Dependent Role="Premise">
+        <PropertyRef Name="LocationStatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Premise_LocationType_LocationType">
+    <End Role="LocationType" Type="Self.LocationType" Multiplicity="1" />
+    <End Role="Premise_LocationType" Type="Self.Premise_LocationType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LocationType">
+        <PropertyRef Name="LocationTypeId" />
+      </Principal>
+      <Dependent Role="Premise_LocationType">
+        <PropertyRef Name="LocationTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Organization_Programme_Organization">
+    <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+    <End Role="Organization_Programme" Type="Self.Organization_Programme" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Organization">
+        <PropertyRef Name="OrganizationId" />
+      </Principal>
+      <Dependent Role="Organization_Programme">
+        <PropertyRef Name="OrganizationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Organization_RefDataDetail_Organization">
+    <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+    <End Role="Organization_RefDataDetail" Type="Self.Organization_RefDataDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Organization">
+        <PropertyRef Name="OrganizationId" />
+      </Principal>
+      <Dependent Role="Organization_RefDataDetail">
+        <PropertyRef Name="OrganizationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Premise_Organization">
+    <End Role="Organization" Type="Self.Organization" Multiplicity="0..1" />
+    <End Role="Premise" Type="Self.Premise" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Organization">
+        <PropertyRef Name="OrganizationId" />
+      </Principal>
+      <Dependent Role="Premise">
+        <PropertyRef Name="LocationOrganizationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Service_Organization_OrganizationRoleType_Organization">
+    <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+    <End Role="Service_Organization_OrganizationRoleType" Type="Self.Service_Organization_OrganizationRoleType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Organization">
+        <PropertyRef Name="OrganizationId" />
+      </Principal>
+      <Dependent Role="Service_Organization_OrganizationRoleType">
+        <PropertyRef Name="OrganizationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_SupportingMaterial_Organization">
+    <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+    <End Role="SupportingMaterial" Type="Self.SupportingMaterial" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Organization">
+        <PropertyRef Name="OrganizationId" />
+      </Principal>
+      <Dependent Role="SupportingMaterial">
+        <PropertyRef Name="OrganizationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Organization_Programme_Programme">
+    <End Role="Programme" Type="Self.Programme" Multiplicity="1" />
+    <End Role="Organization_Programme" Type="Self.Organization_Programme" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Programme">
+        <PropertyRef Name="ProgrammeId" />
+      </Principal>
+      <Dependent Role="Organization_Programme">
+        <PropertyRef Name="ProgrammeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Organization_RefDataDetail_RefDataDetail">
+    <End Role="RefDataDetail" Type="Self.RefDataDetail" Multiplicity="1" />
+    <End Role="Organization_RefDataDetail" Type="Self.Organization_RefDataDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RefDataDetail">
+        <PropertyRef Name="RefDataDetailId" />
+      </Principal>
+      <Dependent Role="Organization_RefDataDetail">
+        <PropertyRef Name="RefDataDetailId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Service_Organization_OrganizationRoleType_OrganizationRoleType">
+    <End Role="OrganizationRoleType" Type="Self.OrganizationRoleType" Multiplicity="1" />
+    <End Role="Service_Organization_OrganizationRoleType" Type="Self.Service_Organization_OrganizationRoleType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrganizationRoleType">
+        <PropertyRef Name="OrganizationRoleTypeId" />
+      </Principal>
+      <Dependent Role="Service_Organization_OrganizationRoleType">
+        <PropertyRef Name="OrganizationRoleTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Premise_LocationType_Premise">
+    <End Role="Premise" Type="Self.Premise" Multiplicity="1" />
+    <End Role="Premise_LocationType" Type="Self.Premise_LocationType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Premise">
+        <PropertyRef Name="PremiseId" />
+      </Principal>
+      <Dependent Role="Premise_LocationType">
+        <PropertyRef Name="PremiseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Service_Premise_PRemise">
+    <End Role="Premise" Type="Self.Premise" Multiplicity="1" />
+    <End Role="Service_Premise" Type="Self.Service_Premise" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Premise">
+        <PropertyRef Name="PremiseId" />
+      </Principal>
+      <Dependent Role="Service_Premise">
+        <PropertyRef Name="PremiseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Service_Programme">
+    <End Role="Programme" Type="Self.Programme" Multiplicity="0..1" />
+    <End Role="Service" Type="Self.Service" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Programme">
+        <PropertyRef Name="ProgrammeId" />
+      </Principal>
+      <Dependent Role="Service">
+        <PropertyRef Name="ProgrammeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_RefDataDetail_RefData">
+    <End Role="RefData" Type="Self.RefData" Multiplicity="1" />
+    <End Role="RefDataDetail" Type="Self.RefDataDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RefData">
+        <PropertyRef Name="RefDataId" />
+      </Principal>
+      <Dependent Role="RefDataDetail">
+        <PropertyRef Name="RefDataId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Service_RefDataDetail_RefDataDetail">
+    <End Role="RefDataDetail" Type="Self.RefDataDetail" Multiplicity="1" />
+    <End Role="Service_RefDataDetail" Type="Self.Service_RefDataDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RefDataDetail">
+        <PropertyRef Name="RefDataDetailId" />
+      </Principal>
+      <Dependent Role="Service_RefDataDetail">
+        <PropertyRef Name="RefDataDetailId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Service_ReferralMethod">
+    <End Role="ReferralMethod" Type="Self.ReferralMethod" Multiplicity="0..1" />
+    <End Role="Service" Type="Self.Service" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ReferralMethod">
+        <PropertyRef Name="ReferralMethodId" />
+      </Principal>
+      <Dependent Role="Service">
+        <PropertyRef Name="ReferralMethodId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Service_Organization_OrganizationRoleType_Service">
+    <End Role="Service" Type="Self.Service" Multiplicity="1" />
+    <End Role="Service_Organization_OrganizationRoleType" Type="Self.Service_Organization_OrganizationRoleType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Service">
+        <PropertyRef Name="ServiceId" />
+      </Principal>
+      <Dependent Role="Service_Organization_OrganizationRoleType">
+        <PropertyRef Name="ServiceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Service_Premise_Service">
+    <End Role="Service" Type="Self.Service" Multiplicity="1" />
+    <End Role="Service_Premise" Type="Self.Service_Premise" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Service">
+        <PropertyRef Name="ServiceId" />
+      </Principal>
+      <Dependent Role="Service_Premise">
+        <PropertyRef Name="ServiceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Service_RefDataDetail_Service">
+    <End Role="Service" Type="Self.Service" Multiplicity="1" />
+    <End Role="Service_RefDataDetail" Type="Self.Service_RefDataDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Service">
+        <PropertyRef Name="ServiceId" />
+      </Principal>
+      <Dependent Role="Service_RefDataDetail">
+        <PropertyRef Name="ServiceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Service_ServiceSubType">
+    <End Role="ServiceSubType" Type="Self.ServiceSubType" Multiplicity="1" />
+    <End Role="Service" Type="Self.Service" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ServiceSubType">
+        <PropertyRef Name="ServiceSubTypeId" />
+      </Principal>
+      <Dependent Role="Service">
+        <PropertyRef Name="ServiceSubTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Service_ServiceType">
+    <End Role="ServiceType" Type="Self.ServiceType" Multiplicity="1" />
+    <End Role="Service" Type="Self.Service" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ServiceType">
+        <PropertyRef Name="ServiceTypeId" />
+      </Principal>
+      <Dependent Role="Service">
+        <PropertyRef Name="ServiceTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_ServiceFunding_Service">
+    <End Role="Service" Type="Self.Service" Multiplicity="1" />
+    <End Role="ServiceFunding" Type="Self.ServiceFunding" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Service">
+        <PropertyRef Name="ServiceId" />
+      </Principal>
+      <Dependent Role="ServiceFunding">
+        <PropertyRef Name="ServiceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_SupportingMaterial_SupportingMaterialType">
+    <End Role="SupportingMaterialType" Type="Self.SupportingMaterialType" Multiplicity="1" />
+    <End Role="SupportingMaterial" Type="Self.SupportingMaterial" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SupportingMaterialType">
+        <PropertyRef Name="SupportingMaterialTypeId" />
+      </Principal>
+      <Dependent Role="SupportingMaterial">
+        <PropertyRef Name="SupportingMaterialTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_TrustDistrict_TrustRegion">
+    <End Role="TrustRegion" Type="Self.TrustRegion" Multiplicity="1" />
+    <End Role="TrustDistrict" Type="Self.TrustDistrict" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TrustRegion">
+        <PropertyRef Name="TrustRegionId" />
+      </Principal>
+      <Dependent Role="TrustDistrict">
+        <PropertyRef Name="TrustRegionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ABSDDatabaseEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Addresses" EntityType="Self.Address" />
+    <EntitySet Name="BestContactMethods" EntityType="Self.BestContactMethod" />
+    <EntitySet Name="Contacts" EntityType="Self.Contact" />
+    <EntitySet Name="ContactTypes" EntityType="Self.ContactType" />
+    <EntitySet Name="ContractParticipationTypes" EntityType="Self.ContractParticipationType" />
+    <EntitySet Name="Countries" EntityType="Self.Country" />
+    <EntitySet Name="Counties" EntityType="Self.County" />
+    <EntitySet Name="Departments" EntityType="Self.Department" />
+    <EntitySet Name="Directorates" EntityType="Self.Directorate" />
+    <EntitySet Name="FundingSources" EntityType="Self.FundingSource" />
+    <EntitySet Name="GovOfficeRegions" EntityType="Self.GovOfficeRegion" />
+    <EntitySet Name="GovOfficeRegion_County" EntityType="Self.GovOfficeRegion_County" />
+    <EntitySet Name="LocationStatus" EntityType="Self.LocationStatu" />
+    <EntitySet Name="LocationTypes" EntityType="Self.LocationType" />
+    <EntitySet Name="Organizations" EntityType="Self.Organization" />
+    <EntitySet Name="Organization_Programme" EntityType="Self.Organization_Programme" />
+    <EntitySet Name="Organization_RefDataDetail" EntityType="Self.Organization_RefDataDetail" />
+    <EntitySet Name="OrganizationRoleTypes" EntityType="Self.OrganizationRoleType" />
+    <EntitySet Name="Premises" EntityType="Self.Premise" />
+    <EntitySet Name="Premise_LocationType" EntityType="Self.Premise_LocationType" />
+    <EntitySet Name="Programmes" EntityType="Self.Programme" />
+    <EntitySet Name="RefDatas" EntityType="Self.RefData" />
+    <EntitySet Name="RefDataDetails" EntityType="Self.RefDataDetail" />
+    <EntitySet Name="ReferralMethods" EntityType="Self.ReferralMethod" />
+    <EntitySet Name="Services" EntityType="Self.Service" />
+    <EntitySet Name="Service_Organization_OrganizationRoleType" EntityType="Self.Service_Organization_OrganizationRoleType" />
+    <EntitySet Name="Service_Premise" EntityType="Self.Service_Premise" />
+    <EntitySet Name="Service_RefDataDetail" EntityType="Self.Service_RefDataDetail" />
+    <EntitySet Name="ServiceFundings" EntityType="Self.ServiceFunding" />
+    <EntitySet Name="ServiceSubTypes" EntityType="Self.ServiceSubType" />
+    <EntitySet Name="ServiceTypes" EntityType="Self.ServiceType" />
+    <EntitySet Name="SupportingMaterials" EntityType="Self.SupportingMaterial" />
+    <EntitySet Name="SupportingMaterialTypes" EntityType="Self.SupportingMaterialType" />
+    <EntitySet Name="Teams" EntityType="Self.Team" />
+    <EntitySet Name="TrustDistricts" EntityType="Self.TrustDistrict" />
+    <EntitySet Name="TrustRegions" EntityType="Self.TrustRegion" />
+    <EntitySet Name="TypeOfBusinesses" EntityType="Self.TypeOfBusiness" />
+    <AssociationSet Name="fk_Contact_BestContactMethod" Association="Self.fk_Contact_BestContactMethod">
+      <End Role="BestContactMethod" EntitySet="BestContactMethods" />
+      <End Role="Contact" EntitySet="Contacts" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Contact_Contact" Association="Self.fk_Contact_Contact">
+      <End Role="Contact" EntitySet="Contacts" />
+      <End Role="Contact1" EntitySet="Contacts" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Contact_ContactType" Association="Self.fk_Contact_ContactType">
+      <End Role="ContactType" EntitySet="ContactTypes" />
+      <End Role="Contact" EntitySet="Contacts" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Department_Contact" Association="Self.fk_Department_Contact">
+      <End Role="Contact" EntitySet="Contacts" />
+      <End Role="Department" EntitySet="Departments" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Directorate_Contact" Association="Self.fk_Directorate_Contact">
+      <End Role="Contact" EntitySet="Contacts" />
+      <End Role="Directorate" EntitySet="Directorates" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Organization_Contact" Association="Self.fk_Organization_Contact">
+      <End Role="Contact" EntitySet="Contacts" />
+      <End Role="Organization" EntitySet="Organizations" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Programme_Contact" Association="Self.fk_Programme_Contact">
+      <End Role="Contact" EntitySet="Contacts" />
+      <End Role="Programme" EntitySet="Programmes" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Service_Contact" Association="Self.fk_Service_Contact">
+      <End Role="Contact" EntitySet="Contacts" />
+      <End Role="Service" EntitySet="Services" />
+    </AssociationSet>
+    <AssociationSet Name="fk_ServiceFunding_Contact" Association="Self.fk_ServiceFunding_Contact">
+      <End Role="Contact" EntitySet="Contacts" />
+      <End Role="ServiceFunding" EntitySet="ServiceFundings" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Team_Contact" Association="Self.fk_Team_Contact">
+      <End Role="Contact" EntitySet="Contacts" />
+      <End Role="Team" EntitySet="Teams" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Service_ContractParticipationType" Association="Self.fk_Service_ContractParticipationType">
+      <End Role="ContractParticipationType" EntitySet="ContractParticipationTypes" />
+      <End Role="Service" EntitySet="Services" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Department_Country" Association="Self.fk_Department_Country">
+      <End Role="Country" EntitySet="Countries" />
+      <End Role="Department" EntitySet="Departments" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Directorate_Country" Association="Self.fk_Directorate_Country">
+      <End Role="Country" EntitySet="Countries" />
+      <End Role="Directorate" EntitySet="Directorates" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Organization_Country" Association="Self.fk_Organization_Country">
+      <End Role="Country" EntitySet="Countries" />
+      <End Role="Organization" EntitySet="Organizations" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Premise_Country" Association="Self.fk_Premise_Country">
+      <End Role="Country" EntitySet="Countries" />
+      <End Role="Premise" EntitySet="Premises" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Team_Country" Association="Self.fk_Team_Country">
+      <End Role="Country" EntitySet="Countries" />
+      <End Role="Team" EntitySet="Teams" />
+    </AssociationSet>
+    <AssociationSet Name="fk_TrustRegion_Country" Association="Self.fk_TrustRegion_Country">
+      <End Role="Country" EntitySet="Countries" />
+      <End Role="TrustRegion" EntitySet="TrustRegions" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Department_County" Association="Self.fk_Department_County">
+      <End Role="County" EntitySet="Counties" />
+      <End Role="Department" EntitySet="Departments" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Directorate_County" Association="Self.fk_Directorate_County">
+      <End Role="County" EntitySet="Counties" />
+      <End Role="Directorate" EntitySet="Directorates" />
+    </AssociationSet>
+    <AssociationSet Name="fk_GovOfficeRegion_County_County" Association="Self.fk_GovOfficeRegion_County_County">
+      <End Role="County" EntitySet="Counties" />
+      <End Role="GovOfficeRegion_County" EntitySet="GovOfficeRegion_County" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Organization_County" Association="Self.fk_Organization_County">
+      <End Role="County" EntitySet="Counties" />
+      <End Role="Organization" EntitySet="Organizations" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Premise_County" Association="Self.fk_Premise_County">
+      <End Role="County" EntitySet="Counties" />
+      <End Role="Premise" EntitySet="Premises" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Team_County" Association="Self.fk_Team_County">
+      <End Role="County" EntitySet="Counties" />
+      <End Role="Team" EntitySet="Teams" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Department_Directorate" Association="Self.fk_Department_Directorate">
+      <End Role="Directorate" EntitySet="Directorates" />
+      <End Role="Department" EntitySet="Departments" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Directorate_Organization" Association="Self.fk_Directorate_Organization">
+      <End Role="Organization" EntitySet="Organizations" />
+      <End Role="Directorate" EntitySet="Directorates" />
+    </AssociationSet>
+    <AssociationSet Name="fk_ServiceFunding_FundingSource" Association="Self.fk_ServiceFunding_FundingSource">
+      <End Role="FundingSource" EntitySet="FundingSources" />
+      <End Role="ServiceFunding" EntitySet="ServiceFundings" />
+    </AssociationSet>
+    <AssociationSet Name="fk_GovOfficeRegion_County_GovOfficeRegion" Association="Self.fk_GovOfficeRegion_County_GovOfficeRegion">
+      <End Role="GovOfficeRegion" EntitySet="GovOfficeRegions" />
+      <End Role="GovOfficeRegion_County" EntitySet="GovOfficeRegion_County" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Premise_LocationStatus" Association="Self.fk_Premise_LocationStatus">
+      <End Role="LocationStatus" EntitySet="LocationStatus" />
+      <End Role="Premise" EntitySet="Premises" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Premise_LocationType_LocationType" Association="Self.fk_Premise_LocationType_LocationType">
+      <End Role="LocationType" EntitySet="LocationTypes" />
+      <End Role="Premise_LocationType" EntitySet="Premise_LocationType" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Organization_Programme_Organization" Association="Self.fk_Organization_Programme_Organization">
+      <End Role="Organization" EntitySet="Organizations" />
+      <End Role="Organization_Programme" EntitySet="Organization_Programme" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Organization_RefDataDetail_Organization" Association="Self.fk_Organization_RefDataDetail_Organization">
+      <End Role="Organization" EntitySet="Organizations" />
+      <End Role="Organization_RefDataDetail" EntitySet="Organization_RefDataDetail" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Premise_Organization" Association="Self.fk_Premise_Organization">
+      <End Role="Organization" EntitySet="Organizations" />
+      <End Role="Premise" EntitySet="Premises" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Service_Organization_OrganizationRoleType_Organization" Association="Self.fk_Service_Organization_OrganizationRoleType_Organization">
+      <End Role="Organization" EntitySet="Organizations" />
+      <End Role="Service_Organization_OrganizationRoleType" EntitySet="Service_Organization_OrganizationRoleType" />
+    </AssociationSet>
+    <AssociationSet Name="fk_SupportingMaterial_Organization" Association="Self.fk_SupportingMaterial_Organization">
+      <End Role="Organization" EntitySet="Organizations" />
+      <End Role="SupportingMaterial" EntitySet="SupportingMaterials" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Organization_Programme_Programme" Association="Self.fk_Organization_Programme_Programme">
+      <End Role="Programme" EntitySet="Programmes" />
+      <End Role="Organization_Programme" EntitySet="Organization_Programme" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Organization_RefDataDetail_RefDataDetail" Association="Self.fk_Organization_RefDataDetail_RefDataDetail">
+      <End Role="RefDataDetail" EntitySet="RefDataDetails" />
+      <End Role="Organization_RefDataDetail" EntitySet="Organization_RefDataDetail" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Service_Organization_OrganizationRoleType_OrganizationRoleType" Association="Self.fk_Service_Organization_OrganizationRoleType_OrganizationRoleType">
+      <End Role="OrganizationRoleType" EntitySet="OrganizationRoleTypes" />
+      <End Role="Service_Organization_OrganizationRoleType" EntitySet="Service_Organization_OrganizationRoleType" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Premise_LocationType_Premise" Association="Self.fk_Premise_LocationType_Premise">
+      <End Role="Premise" EntitySet="Premises" />
+      <End Role="Premise_LocationType" EntitySet="Premise_LocationType" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Service_Premise_PRemise" Association="Self.fk_Service_Premise_PRemise">
+      <End Role="Premise" EntitySet="Premises" />
+      <End Role="Service_Premise" EntitySet="Service_Premise" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Service_Programme" Association="Self.fk_Service_Programme">
+      <End Role="Programme" EntitySet="Programmes" />
+      <End Role="Service" EntitySet="Services" />
+    </AssociationSet>
+    <AssociationSet Name="fk_RefDataDetail_RefData" Association="Self.fk_RefDataDetail_RefData">
+      <End Role="RefData" EntitySet="RefDatas" />
+      <End Role="RefDataDetail" EntitySet="RefDataDetails" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Service_RefDataDetail_RefDataDetail" Association="Self.fk_Service_RefDataDetail_RefDataDetail">
+      <End Role="RefDataDetail" EntitySet="RefDataDetails" />
+      <End Role="Service_RefDataDetail" EntitySet="Service_RefDataDetail" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Service_ReferralMethod" Association="Self.fk_Service_ReferralMethod">
+      <End Role="ReferralMethod" EntitySet="ReferralMethods" />
+      <End Role="Service" EntitySet="Services" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Service_Organization_OrganizationRoleType_Service" Association="Self.fk_Service_Organization_OrganizationRoleType_Service">
+      <End Role="Service" EntitySet="Services" />
+      <End Role="Service_Organization_OrganizationRoleType" EntitySet="Service_Organization_OrganizationRoleType" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Service_Premise_Service" Association="Self.fk_Service_Premise_Service">
+      <End Role="Service" EntitySet="Services" />
+      <End Role="Service_Premise" EntitySet="Service_Premise" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Service_RefDataDetail_Service" Association="Self.fk_Service_RefDataDetail_Service">
+      <End Role="Service" EntitySet="Services" />
+      <End Role="Service_RefDataDetail" EntitySet="Service_RefDataDetail" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Service_ServiceSubType" Association="Self.fk_Service_ServiceSubType">
+      <End Role="ServiceSubType" EntitySet="ServiceSubTypes" />
+      <End Role="Service" EntitySet="Services" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Service_ServiceType" Association="Self.fk_Service_ServiceType">
+      <End Role="ServiceType" EntitySet="ServiceTypes" />
+      <End Role="Service" EntitySet="Services" />
+    </AssociationSet>
+    <AssociationSet Name="fk_ServiceFunding_Service" Association="Self.fk_ServiceFunding_Service">
+      <End Role="Service" EntitySet="Services" />
+      <End Role="ServiceFunding" EntitySet="ServiceFundings" />
+    </AssociationSet>
+    <AssociationSet Name="fk_SupportingMaterial_SupportingMaterialType" Association="Self.fk_SupportingMaterial_SupportingMaterialType">
+      <End Role="SupportingMaterialType" EntitySet="SupportingMaterialTypes" />
+      <End Role="SupportingMaterial" EntitySet="SupportingMaterials" />
+    </AssociationSet>
+    <AssociationSet Name="fk_TrustDistrict_TrustRegion" Association="Self.fk_TrustDistrict_TrustRegion">
+      <End Role="TrustRegion" EntitySet="TrustRegions" />
+      <End Role="TrustDistrict" EntitySet="TrustDistricts" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,146 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using CSS_G06.Models;
+
+namespace CSS_G06.Controllers
+{
+    public class AddAnAgreementController : Controller
+    {
+        [HttpGet]
+        public ActionResult SelectCustomer(int agreementNumber)
+        {
+            ViewBag.AgreementNumber = agreementNumber;
+           
+            using (var model = new CSSDatabaseModel())
+            {
+                var allBusinessArea = model.SystemConfigValues.Where(sys => (sys.SystemConfigId == 12)).ToList();
+                SystemConfigValue newValue = new SystemConfigValue();
+                newValue.ConfigValue = "All";
+                newValue.Order = 0;
+                allBusinessArea.Insert(0, newValue);
+                ViewBag.BusinessArea = allBusinessArea;
+
+                var allCustomerType = model.CustomerTypes.ToList();
+                ViewBag.CustomerType = allCustomerType;
+
+                var allRegion = model.Regions.ToList();
+                ViewBag.Region = allRegion;
+
+                ViewBag.SumResult = 0;
+            }
+            CustomerResult resultModel = new CustomerResult();
+            return View(resultModel);
+        }
+
+        [HttpPost]
+        public ActionResult SelectCustomer(CustomerResult resultModel)
+        {
+            if (ModelState.IsValid)
+            {
+                int buisinessArea = resultModel.BusinessArea;
+                int customerTypeId = -1;
+                int.TryParse(resultModel.CustomerType, out customerTypeId);
+                int regionId = -1;
+                int.TryParse(resultModel.Region, out regionId);
+                var model = new CSSDatabaseModel();
+                List<CustomerResult> allResult = (from rfo in model.RFONumbers
+                                                  join company in model.Companies on rfo.CompanyId equals company.CompanyId
+                                                  join address in model.CompanyAddresses on rfo.CompanyId equals address.CompanyId
+                                                  join customerType in model.CustomerTypes on rfo.CustomerTypeId equals customerType.CustomerTypeId
+                                                  join region in model.Regions on address.RegionId equals region.RegionId
+                                                  where (rfo.RFONumber1 == resultModel.RFONumer || resultModel.RFONumer < 1)
+                                                        && (rfo.RFOName.Contains(resultModel.Name) || resultModel.Name == null)
+                                                        && (rfo.CustomerTypeId == customerTypeId || customerTypeId < 1)
+                                                        && (rfo.PostCode == resultModel.PostCode || resultModel.PostCode == null)
+                                                        && ((company.BusinessArea > 0 && company.BusinessArea < 100 && buisinessArea == 1)
+                                                            || (company.BusinessArea >= 100 && buisinessArea == 2) 
+                                                            || (buisinessArea < 1))
+                                                        && (address.RegionId == regionId || regionId < 1)
+                                                  select new CustomerResult()
+                                                  {
+                                                      RFONumer = rfo.RFONumber1,
+                                                      Name = rfo.RFOName,
+                                                      CustomerType = customerType.CustomerType1,
+                                                      PostCode = rfo.PostCode,
+                                                      BusinessArea = company.BusinessArea,
+                                                      Region = region.RegionName
+                                                  }).ToList();
+                ViewBag.SumResult = allResult.Count;
+                return PartialView("SearchCustomerResult", allResult);
+            }
+            return null;
+        }
+
+        [HttpGet]
+        public ActionResult BasicAgreementDetails(int agreementNumber, int RFONumber)
+        {
+            ViewBag.AgreementNumber = agreementNumber;
+            ViewBag.RFONumber = RFONumber;
+            using (var model = new CSSDatabaseModel())
+            {
+                var fundingMethod = model.FundingMethods.ToList();
+                ViewBag.FundingMethod = fundingMethod;
+
+                var paymentTo = model.SystemConfigValues.Where(sys => (sys.SystemConfigId == 1)).ToList();
+                ViewBag.PaymentTo = paymentTo;
+
+                var agendaPayment = model.AgendaPayments.ToList();
+                ViewBag.AgendaPayment = agendaPayment;
+
+                var dealerVisibility = model.SystemConfigValues.Where(sys => (sys.SystemConfigId == 2)).ToList();
+                ViewBag.DealerVisibility = dealerVisibility;
+
+                var volumeDiscountType = model.SystemConfigValues.Where(sys => (sys.SystemConfigId == 11)).ToList();
+                ViewBag.VolumeDiscountType = volumeDiscountType;
+
+                var discountUnit = model.SystemConfigValues.Where(sys => (sys.SystemConfigId == 3)).ToList();
+                ViewBag.DiscountUnit = discountUnit;
+
+                var combinability = model.SystemConfigValues.Where(sys => (sys.SystemConfigId == 4)).ToList();
+                ViewBag.Combinability = combinability;
+
+            }
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult BasicAgreementDetails(Agreement agreement)
+        {
+            string msg = "";
+            bool success = false;
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    using (var model = new CSSDatabaseModel())
+                    {
+                        model.Agreements.Add(agreement);
+                        model.SaveChanges();
+                        msg = "Completed! Saved to database that agreement: " + agreement.AgreementNumber;
+                        success = true;
+                        
+                    }
+                }
+                catch
+                {
+                    msg = "Có lỗi xảy ra trong quá trình lưu dữ liệu xuống cơ sở dữ liệu. Vui lòng kiểm tra lại các kết nối.";
+                    success = false;
+                }
+                finally 
+                {
+                    ViewBag.Message = msg;
+                    ViewBag.Success = success;
+                }
+                return PartialView("SaveAgreementResult", agreement);
+            }
+
+
+
+            return null;
+        }
+    }
+}

@@ -1,0 +1,241 @@
+﻿@model ServiceDirectory.Models.tblOrganisation
+@*<style>
+    .table th, .table td{
+        border-top: none !important;
+        padding: 5px;
+    }
+</style>*@
+
+<div class="row">
+    <fieldset>
+        <table class="table">
+            <tr>
+                <td style="width:20%">
+                   Organisation Name
+                </td>
+                <td style="width:30%">
+                    @Html.TextBoxFor(model => model.OrgName, new { @class="btn-block"})
+                    <input type="hidden" name="OrgID" value="@Model.OrgID" />
+                </td>
+                <td style="width:20%">
+                    Preferred Organisation
+                </td>
+                <td style="width:30%">
+                    <input type="checkbox" name="Preferred" checked="@Model.Preferred"/>
+                </td>
+            </tr>
+
+            <tr>
+                <td rowspan="2">
+                    Organisation Short Description
+                </td>
+                <td rowspan="2">
+                    @Html.TextAreaFor(model => model.ShortDescription, new { @class = "btn-block" })
+                </td>
+                <td>
+                    Expression of Interest
+                </td>
+                <td>
+                    <input type="checkbox" name="Expression_of_Interest" onclick="openDetails(this)" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Type Of Business
+                </td>
+                <td>
+                    @if(Model.BusinessID != null)
+                    {
+                        <input type="text" readonly="readonly" disabled="disabled" value="@Model.tblBusinessType.BusinessName"/>
+                    }
+                    else
+                    {
+                        <input type="text" readonly="readonly" disabled="disabled"/>   
+                    }
+                    <a href="#">  Lookup</a>
+                    <input type="hidden" name="BusinessID" value="@Model.BusinessID"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Lead Contact
+                </td>
+                <td>
+                    @if(Model.ContactID != null)
+                    {
+                        <input type="text" readonly="readonly" disabled="disabled" id="ContactName" value="@Model.tblContact.FirstName @Model.tblContact.Surname"/>
+                    }
+                    else
+                    {
+                        <input type="text" readonly="readonly" disabled="disabled" id="ContactName" />
+                    }
+                    
+                    <!-- Tai 3/9 3h44 -->
+                    @Ajax.ActionLink("lookup", "Index", "MaintainContact", new {area=""}, new AjaxOptions { UpdateTargetId = "lookup", HttpMethod = "POST", InsertionMode = InsertionMode.Replace, OnComplete = "set_attr_link_popup('lead_contact_lookup', 'lookup', '')" }, new { @id = "lead_contact_lookup" })
+                    <!--End-->
+                    <input type="hidden" name="ContactID" id="ContactID" value="@Model.ContactID" />
+                </td>
+                <td>
+                    SIC Code
+                </td>
+                <td>
+                    @if(Model.BusinessID != null)
+                    {
+                        <input type="text" readonly="readonly" name="siccode" disabled="disabled" value="@Model.tblBusinessType.SICCode" />
+                    }
+                    else
+                    {
+                        <input type="text" readonly="readonly" name="siccode" disabled="disabled" />
+                    }
+                    
+                    <a href="#">  Lookup</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Address Line 1 <font color="red">*</font>
+                </td>
+                <td>
+                    @Html.TextBoxFor(model => model.AddressLine1, new { @class = "btn-block" })
+                </td>
+                <td rowspan="2">
+                    Organisation Full Description
+                </td>
+                <td rowspan="2">
+                    @Html.TextAreaFor(model => model.FullDescription, new {@class = "btn-block"})
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Address Line 2
+                </td>
+                <td>
+                    @Html.TextBoxFor(model => model.AddressLine2, new { @class = "btn-block" })
+                </td>
+            </tr>
+
+            <tr>
+                <td>Address Line 3</td>
+                <td>
+                    @Html.TextBoxFor(model => model.AddressLine3, new { @class = "btn-block" })
+                </td>
+                <td>Phone Number <font color="red">*</font></td>
+                <td>
+                    @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "btn-block" })
+                </td>
+            </tr>
+
+            <tr>
+                <td>Postcode <font color="red">*</font></td>
+                <td>
+                    @if(Model.AddressID != null)
+                    {
+                        <input type="text" readonly="readonly" disabled="disabled" value="@Model.tblAddress.PostCode"/>
+                    }
+                    else
+                    {
+                        <input type="text" readonly="readonly" disabled="disabled" />
+                    }
+                    
+                    <a href="#">  Lookup</a>
+                    <input type="hidden" name="AddressID" value="@Model.AddressID"/>
+                </td>
+                <td>Fax </td>
+                <td>
+                    @Html.TextBoxFor(model => model.Fax, new { @class = "btn-block" })
+                </td>
+            </tr>
+
+            <tr>
+                <td>City/Town</td>
+                <td>
+                    @if(Model.AddressID != null)
+                    {
+                        <input type="text" readonly="readonly" class="btn-block" value="@Model.tblAddress.tblTown.TownName"/>
+                    }
+                    else
+                    {
+                        <input type="text" readonly="readonly" class="btn-block"/>
+                    }
+                    
+                </td>
+                <td>Email </td>
+                <td>
+                    @Html.TextBoxFor(model => model.Email, new { @class = "btn-block" })
+                </td>
+            </tr>
+
+            <tr>
+                <td>County</td>
+                <td>
+                    @if(Model.AddressID != null)
+                    {
+                        <input type="text" readonly="readonly" class="btn-block" value="@Model.tblAddress.tblTown.tblCounty.CountyName"/>
+                    }
+                    else
+                    {
+                        <input type="text" readonly="readonly" class="btn-block"/>
+                    }
+                    
+                </td>
+                <td>Web Address </td>
+                <td>
+                    @Html.TextBoxFor(model => model.WebAddress, new { @class = "btn-block" })
+                </td>
+            </tr>
+
+            <tr>
+                <td>Nation/Country</td>
+                <td>
+                    @if(Model.AddressID != null)
+                    {
+                        <input type="text" readonly="readonly" class="btn-block" value="@Model.tblAddress.tblTown.tblCounty.tblCountry.CountryName"/>
+                    }
+                    else
+                    {
+                        <input type="text" readonly="readonly" class="btn-block"/>
+                    }
+
+                    
+                </td>
+                <td>Charity Number</td>
+                <td>@Html.TextBoxFor(model => model.CharityNumber, new { @class = "btn-block"})</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>Company Number</td>
+                <td>
+                    @Html.TextBoxFor(model => model.CompanyNumber, new { @class="btn-block"})
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+</div>
+       
+
+<script>
+
+    function openDetails(checkbox)
+    {
+        if (checkbox.checked) {
+            $('#org_id_details_three').show();
+        }
+        else {
+            $('#org_id_details_three').hide();
+        }
+    }
+</script>
+
+<script>
+
+    // define maintain_contact_select() for organisation lookup
+    function maintain_contact_select()
+    {
+        var selected = $("input[name='contact']:checked").val(); // get id of selected
+        var name = $("#" + selected).val(); // get name of id
+
+        $('#ContactID').val(selected);
+        $('#ContactName').val(name);
+    }
+</script>

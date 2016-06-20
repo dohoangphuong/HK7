@@ -1,0 +1,28 @@
+namespace CSS_G06.Models
+{
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
+
+    [Table("SystemConfig")]
+    public partial class SystemConfig
+    {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public SystemConfig()
+        {
+            SystemConfigValues = new HashSet<SystemConfigValue>();
+        }
+
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int SystemConfigId { get; set; }
+
+        [Required]
+        [StringLength(100)]
+        public string ConfigName { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SystemConfigValue> SystemConfigValues { get; set; }
+    }
+}

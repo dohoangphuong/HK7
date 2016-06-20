@@ -1,0 +1,54 @@
+﻿@model ServiceDirectory.Models.tblSupportingMaterial
+
+@using (Ajax.BeginForm("InsertUpdate_SupportMaterial", "MaintainSupportingMaterial",
+    new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "id_supporting_message", InsertionMode = InsertionMode.Replace }))
+{ 
+    <div class="modal-dialog modal-lg" style="width:950px;">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <div>
+                    <font color="blue">Organisation</font> >
+                </div>
+                <h4 class="modal-title"><font color="blue">Supporting Materials Details</font></h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="nav">
+                    <ul class="nav nav-tabs col-sm-1">
+                        <li class="active"><a href="#support_material_details_one" data-toggle="tab">Details</a></li>
+                    </ul>
+
+                    <div class="col-sm-1 col-sm-offset-9">
+                        <input type="submit" value="Save" class="btn btn-default" />
+                    </div>
+                    <div class="col-sm-1">
+                        @Ajax.ActionLink("Back", "GetListSupportingMaterials", "MaintainSupportingMaterial", new { page = -1 }, new AjaxOptions { UpdateTargetId = "supporting_material_table", InsertionMode = InsertionMode.Replace, HttpMethod = "POST", OnComplete = "close_popup_maintain_supportingmaterial()" }, new { @class = "btn btn-default", @id = "maintain_supportingmaterial_add_back" })
+                    </div>
+                </div>
+
+                <div class="tab-content table-bordered">
+                    <div class="tab-pane active" id="support_material_details_one">
+                        @Html.Action("Details", "MaintainSupportingMaterial", new { SupportID = @ViewBag.SupportID })
+                    </div>
+                </div>
+                <div id="id_supporting_message">
+                    <!-- Message after call action here -->
+                </div>
+                <div>
+                    @Html.ValidationMessageFor(model => model.URL)
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<script>
+    $(document).ready(function () {
+        $('#maintain_supportingmaterial_add_back').attr('data-dismiss', 'modal');
+    })
+
+    function close_popup_maintain_supportingmaterial() {
+        $('#organisation_popup').modal('show');
+    }
+</script>

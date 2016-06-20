@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Home Page</title>
+<style type="text/css">
+fieldset {
+	border-color: #15191d;
+}
+</style>
+
+</head>
+<body>
+
+	<div class="container"
+		style="position: absolute; 
+		 border-style: solid; border-width: 2px;">
+		 <div class="top" style="position: relative; background-color: blue;
+		 height: 30px">
+		 BOOK MAINTENANCE
+		 </div>	
+	
+	<div class="box" style="position: relative;">
+
+		<table>
+			<tr>
+				<td align="right">Book ID:</td>
+				<td align="left"><input type="text" name="bookid" /></td>
+			</tr>
+
+			<tr>
+				<td align="right">Book Title:</td>
+				<td align="left"><input type="text" name="booktitle" /></td>
+			</tr>
+
+			<tr>
+				<td align="right">Author:</td>
+				<td align="left"><input type="text" name="author" /></td>
+			</tr>
+
+			<tr>
+				<td align="right">Category:</td>
+				<td align="left">
+					<fieldset>
+						<form name="myForm1">
+							<input type="checkbox" name="box_1">Horror <input
+								type="checkbox" name="box_2">Romance <br> <input
+								type="checkbox" name="box_3">Thriller <input
+								type="checkbox" name="box_4">Sci-fi
+						</form>
+					</fieldset>
+				</td>
+			</tr>
+
+			<tr>
+				<td align="right">Publisher:</td>
+				<td align="left"><select style="width: 220px"></select></td>
+			</tr>
+		</table>
+		<!-- Button -->
+		<button type="button" onclick="alert('OK')"
+			style="margin-left: 100px; top: 70px">OK</button>
+		<button type="button" onclick="alert('CANCEL')"
+			style="left: 10px; top: 20px">CANCEL</button>
+	</div>
+</div>
+
+
+</body>
+</html>

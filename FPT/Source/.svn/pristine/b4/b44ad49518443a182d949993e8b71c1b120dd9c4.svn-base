@@ -1,0 +1,221 @@
+﻿@model ServiceDirectory.Models.tblDirectorate
+
+<style>
+    .table th, .table td {
+        border-top: none !important;
+        padding: 5px;
+    }
+</style>
+
+<table class="table">
+    <tr>
+        <td width="20%;">
+            <label class="btn-block"> BU/Directorate Name</label>
+            <input type="hidden" name="DirectorateID" value="@Model.DirectorateID" />
+        </td>
+        <td width="30%;">
+            @Html.TextBoxFor(model => model.DirectorateName, new { @class = "btn-block" })
+        </td>
+        <td width="20%;">
+            <strong>Type of Business</strong>
+        </td>
+        <td width="30%;">
+            @if (Model.tblBusinessType == null)
+            {
+                <input type="text" id="directorate_business_type" disabled="disabled" value="" />
+            }
+            else
+            {
+                <input type="text" id="directorate_business_type" disabled="disabled" value="@Model.tblBusinessType.BusinessName" />
+            }
+            <a href="#">  Lookup</a>
+            <input type="hidden" name="BusinessID" value="@Model.BusinessID" />
+        </td>
+    </tr>
+
+    <tr>
+        <td rowspan="2">
+            <strong>BU/Directorate Short Description</strong>
+        </td>
+        <td rowspan="2">
+            @Html.TextAreaFor(model => model.ShortDescription, new { @class = "btn-block" })
+        </td>
+        <td>
+            <strong>SIC Code</strong>
+        </td>
+        <td>
+            @if (Model.tblBusinessType == null)
+            {
+                <input type="text" readonly="readonly" name="siccode" disabled="disabled" value="" />
+            }
+            else
+            {
+                <input type="text" readonly="readonly" name="siccode" disabled="disabled" value="@Model.tblBusinessType.SICCode" />
+            }
+
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>
+            <strong>Lead Contact</strong>
+        </td>
+        <td>
+            @if (Model.tblContact == null)
+            {
+                <input type="text" readonly="readonly" disabled="disabled" value="" />
+            }
+            else
+            {
+                <input type="text" readonly="readonly" disabled="disabled" value="@Model.tblContact.FirstName @Model.tblContact.Surname" />
+            }
+
+            <a href="#">  Lookup</a>
+            <input type="hidden" name="ContactID" value="@Model.ContactID" />
+        </td>
+        <td rowspan="2">
+            <strong>BU/Directorate Full Description</strong>
+        </td>
+        <td rowspan="2">
+            @Html.TextAreaFor(model => model.FullDescription, new { @class = "btn-block" })
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <strong>Copy Address from</strong>
+        </td>
+        <td>
+            <input type="radio" name="copy_address" id="directorate_organisation" /> Orgnisation
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <strong>Address Line 1</strong>
+        </td>
+        <td>
+            @Html.TextBoxFor(model => model.AddressLine1, new { @class = "btn-block" })
+        </td>
+        <td>
+            <strong>Phone Number</strong>
+        </td>
+        <td>
+            @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "btn-block" })
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <strong>Address Line 2</strong>
+        </td>
+        <td>
+            @Html.TextBoxFor(model => model.AddressLine2, new { @class = "btn-block" })
+        </td>
+        <td>
+            <strong>Fax</strong>
+        </td>
+        <td>
+            @Html.TextBoxFor(model => model.Fax, new { @class = "btn-block" })
+        </td>
+    </tr>
+
+    <tr>
+        <td><strong>Address Line 3</strong></td>
+        <td>
+            @Html.TextBoxFor(model => model.AddressLine3, new { @class = "btn-block" })
+        </td>
+        <td><strong>Email</strong></td>
+        <td>
+            @Html.TextBoxFor(model => model.Email, new { @class = "btn-block" })
+        </td>
+    </tr>
+
+    <tr>
+        <td><strong>Postcode</strong></td>
+        <td>
+            @if (Model.AddressID == null)
+            {
+                <input type="text" readonly="readonly" disabled="disabled" value="" />
+            }
+            else
+            {
+                <input type="text" readonly="readonly" disabled="disabled" value="@Model.tblAddress.PostCode" />
+            }
+
+            <a href="#">  Lookup</a>
+            <input type="hidden" name="AddressID" value="@Model.AddressID" />
+        </td>
+        <td><strong>Web Address</strong></td>
+        <td>
+            @Html.TextBoxFor(model => model.WebAddress, new { @class = "btn-block" })
+        </td>
+    </tr>
+
+    <tr>
+        <td><strong>City/Town</strong></td>
+        <td>
+            @if (Model.tblAddress == null)
+            {
+                <input type="text" readonly="readonly" class="btn-block" value="" />
+            }
+            else
+            {
+                <input type="text" readonly="readonly" class="btn-block" value="@Model.tblAddress.tblTown.TownName" />
+            }
+        </td>
+        <td><strong>Charity Number</strong></td>
+        <td>
+            @Html.TextBoxFor(model => model.CharityNumber, new { @class = "btn-block" })
+        </td>
+    </tr>
+
+    <tr>
+        <td><strong>County</strong></td>
+        <td>
+            @if (Model.tblAddress == null)
+            {
+                <input type="text" readonly="readonly" class="btn-block" value="" />
+            }
+            else
+            {
+                <input type="text" readonly="readonly" class="btn-block" value="@Model.tblAddress.tblTown.tblCounty.CountyName" />
+            }
+        </td>
+        <td><strong>Company Number</strong></td>
+        <td>
+            @Html.TextBoxFor(model => model.CompanyNumber, new { @class = "btn-block" })
+        </td>
+    </tr>
+
+    <tr>
+        <td><strong>Nation/Country</strong></td>
+        <td>
+            @if (Model.tblAddress == null)
+            {
+                <input type="text" readonly="readonly" class="btn-block" value="" />
+            }
+            else
+            {
+                <input type="text" readonly="readonly" class="btn-block" value="@Model.tblAddress.tblTown.tblCounty.tblCountry.CountryName" />
+            }
+        </td>
+        
+    </tr>
+</table>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("input[name=copy_address]:radio").change(function () {
+
+            // get id of tag
+            var id = $(this).attr('id');
+            if (id == 'directorate_organisation') {
+                $('#AddressLine1').val('@ViewBag.OrgAddressLine1');
+                $('#AddressLine2').val('@ViewBag.OrgAddressLine2');
+                $('#AddressLine3').val('@ViewBag.OrgAddressLine3');
+            }
+        })
+    })
+
+</script>

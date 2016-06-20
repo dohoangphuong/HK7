@@ -1,0 +1,48 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using CSS.Models;
+
+namespace CSS.Controllers
+{
+    public class AgreementController : Controller
+    {
+        private CSSEntities1 db = new CSSEntities1();
+        //
+        // GET: /Agreement/
+
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        public ActionResult ParticialStatics()
+        {
+            if (Request.IsAuthenticated)
+            {
+                return View(db.AgreementStatus.ToList());
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        public ActionResult Statics()
+        {
+            if (Request.IsAuthenticated)
+            {
+                List<Agreement> recentAgreement = db.Agreements.Where(x => (x.CreatedBy == @User.Identity.Name)).OrderBy(x=>x.LastUpdatedDate).Take(3).ToList() ;
+                ViewBag.recentAgreement = recentAgreement;
+                return View(db.AgreementStatus.ToList());
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+    }
+}

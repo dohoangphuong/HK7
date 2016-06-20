@@ -1,0 +1,146 @@
+﻿@model CSS.ViewModels.AgreementModel
+
+<head>
+    <title>Edit agreement</title>
+    <link href="~/Content/themes/base/smart_wizard.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="~/Scripts/jquery.smartWizard.js"></script>
+
+    <script type="text/javascript">
+        parent.status = 0;
+        function forward() {
+            //call function goForward of smartWizard
+            $("#wizard").smartWizard("goForward");
+        }
+        function backward() {
+            //call function goBackward of smartWizard
+            $("#wizard").smartWizard("goBackward");
+        }
+        $(document).ready(function () {
+            $('#wizard').smartWizard({
+                selected: 1
+            });
+            $("#aConfirm").click(function () {
+                if (parent.status.length != 0 && parent.status != 0) {
+                    var agrmtNumber = $("#globalAgreementNumber").val();
+                    var varNumber = $("#globalVarriantNumber").val();
+                    $.ajax({
+                        type: "POST",
+                        url: "/Agreement/UpdateConfirm",
+                        data: { agreementNumber: agrmtNumber, variantNumber: varNumber },
+                        success: function (result) {
+                            $("#step-7").html(result);
+                            parent.status = 0;
+                        },
+                        error: function () {
+                            alert("Call ajax failed.");
+                        }
+                    });
+                }
+            });
+        });
+        function saveSuccess() {
+            alert("Save success");
+        }
+        function saveFailed() {
+            alert("Save failed");
+        }
+        function updateStatusAsChange() {
+            parent.status = 1;
+        }
+    </script>
+
+</head>
+<body>
+    @Html.HiddenFor(model => model.ModelBasicDetail.AgreementNumber, new { @id = "globalAgreementNumber" })
+    @Html.HiddenFor(model => model.ModelBasicDetail.VarriantNumber, new { @id = "globalVarriantNumber" })
+    <div id="divMessage"></div>
+    <h4>Edit agreement</h4>
+    <div id="wizard" class="swMain">
+        <ul>
+            <li>
+                <a href="#step-1">
+                    <label class="stepNumber">1</label>
+                    <span class="stepDesc">
+                        Customer<br />
+                        <small>Select customer</small>
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="#step-2">
+                    <label class="stepNumber">2</label>
+                    <span class="stepDesc">
+                        Basic<br />
+                        <small>Basic details</small>
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="#step-3">
+                    <label class="stepNumber">3</label>
+                    <span class="stepDesc">
+                        Dealers<br />
+                        <small>Select dealers</small>
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="#step-4">
+                    <label class="stepNumber">4</label>
+                    <span class="stepDesc">
+                        Volume<br />
+                        <small>Volume banding</small>
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="#step-5">
+                    <label class="stepNumber">5</label>
+                    <span class="stepDesc">
+                        Model Support<br />
+                        <small>Model Support</small>
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="#step-6">
+                    <label class="stepNumber">6</label>
+                    <span class="stepDesc">
+                        Misc Text<br />
+                        <small>Misc Text</small>
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a id="aConfirm" href="#step-7">
+                    <label class="stepNumber">7</label>
+                    <span class="stepDesc">
+                        Confirmation<br />
+                        <small>Confirmation</small>
+                    </span>
+                </a>
+            </li>
+        </ul>
+        <div id="step-1">
+        </div>
+        <div id="step-2">
+            @{ Html.RenderPartial("~/Views/Agreement/BasicDetails.cshtml", Model.ModelBasicDetail); }
+        </div>
+        <div id="step-3">
+            @{ Html.RenderPartial("~/Views/Dealer/DealerSelection.cshtml", Model.ModelSearchDealer); }
+        </div>
+        <div id="step-4">
+            @{ Html.RenderPartial("~/Views/Volume/VolumeBanding.cshtml", Model.ModelVolumeBanding); }
+        </div>
+        <div id="step-5">
+            @{ Html.RenderPartial("~/Views/Agreement/ModelSupport.cshtml"); }
+        </div>
+        <div id="step-6">
+            @{ Html.RenderPartial("~/Views/Agreement/MiscText.cshtml", Model.ModelMiscText); }
+        </div>
+        <div id="step-7">
+            @{ Html.RenderAction("RenderConfirmation", "Agreement", new { @Model.ModelBasicDetail.AgreementNumber, @Model.ModelBasicDetail.VarriantNumber });}
+        </div>
+    </div>
+</body>
+<div id="divPopup" class="modal fade" role="dialog"></div>

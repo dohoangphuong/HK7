@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>ASSIGNMENT02</title>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="StyleAss02.css">
+    <script type="text/javascript" src="JavaScriptAss02.js"></script>
+
+</head>
+<body>
+    <div class="body_View">
+        <div class="titleHead">
+            <b>THE REGISTERED BORROWERS</b>
+        </div>
+        <table id="table1">
+            <tr>
+                <td class="lable">Borrower ID:</td>
+                <td><input id="ID" class="text_150" type="text"></td>
+            </tr>
+            <tr>
+                <td class="lable">Title:</td>
+                <td><select id="Title" class="text_150">
+                        <option>Mr</option>
+                        <option>Mrs</option>
+                        <option>Miss</option>
+                        <option>Dr</option>
+
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="lable">First Name:</td>
+                <td><input id="First" class="text_300" type="text"></td>
+            </tr>
+            <tr>
+                <td class="lable">Last Name:</td>
+                <td><input id="Last" class="text_300" type="text"></td>
+            </tr>
+            <tr>
+                <td class="lable">Date of Birth:</td>
+                <td><input id="Birth" class="lable" name="datebirth" type="date"></td>
+
+            </tr>
+            <tr>
+                <td class="lable">Address:</td>
+                <td><input id="Address" class="text_300" type="text"></td>
+            </tr>
+            <tr>
+                <td class="lable">Registration Date:</td>
+                <td><input id="Registration"class="lable" name="dateres" type="date"></td>
+            </tr>
+            <tr>
+                <td class="lable">Outstanding fines:</td>
+                <td>
+                    <!--cùng tên mới chọn 1 trong 2 được-->
+                    <input id="Fines1" name="fines" type="radio" value="true" checked />True
+                    <input id="Fines2" name="fines" type="radio" value="False" />False
+                </td>
+            </tr>
+            <tr>
+                <td class="lable">Total Fines Due::</td>
+                <td><input id="Totalfines" class="text_300" type="text"></td>
+            </tr>
+            <tr>
+                <td class="lable">Last Lend Date:</td>
+                <td><input id="Lastlend" class="lable" name="dateres" type="date"></td>
+            </tr>
+            <tr class="button">
+                <td colspan=2>  <!--Chọn tạo 2 button trong 1 ô do có 2 ô từ đầu. nếu là bảng mới thì k cần làm colspan=2-->
+                    <button id="Ok" class="button" onclick="myFunctionCheck('ID', 'Title', 'First', 'Last', 'Birth',
+                            'Address', 'Registration', 'Fines1', 'Fines2', 'Totalfines', 'Lastlend')"><b>OK</b></button>
+                    <button id="cancle" class="button"><b>CANCLE</b></button>
+                </td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+
+    <!--Show info-->
+    <p id="show"></p>
+
+</body>
+</html>

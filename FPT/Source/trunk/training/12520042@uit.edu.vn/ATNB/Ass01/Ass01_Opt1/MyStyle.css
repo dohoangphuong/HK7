@@ -1,0 +1,59 @@
+﻿.left-top {
+    vertical-align: top;
+
+}
+
+.tight-top {
+    vertical-align: top;
+    text-align: right;
+}
+
+.Center {
+    vertical-align: central;
+    text-align: center
+}
+
+table {
+    border-style: solid;
+    border-width: 2px;
+    color: black;
+    width: 500px;
+}
+
+h2 {
+    height: 80px;
+    color: white;
+    margin: 10px;
+}
+
+td.my-style {
+    background: blue;
+}
+
+.input {
+    width: 300px;
+}
+
+#TxtBookId {
+    width: 150px;
+}
+
+.label {
+    text-align: right;
+    
+}
+
+.group-check-box {
+    height: 80px;
+}
+
+.group-container-check-box {
+    width: 200px;
+}
+
+.my-button {
+    width: 80px;
+    background: white;
+    font-size: medium;
+    color: black;
+}

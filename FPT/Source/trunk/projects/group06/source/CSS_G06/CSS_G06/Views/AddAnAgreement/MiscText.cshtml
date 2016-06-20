@@ -1,0 +1,125 @@
+﻿@model CSS_G06.Models.InputMiscText
+
+<script type="text/javascript">
+    var savedMiscText = false;
+    function saveMiscText() {
+        var agreementNumber1 = '@Model.AgreementNumber';
+        var variantNumber1 = '@Model.VariantNumber';
+        var comment1 = document.getElementById("txtAgreementComment").value;
+        var credit1 = document.getElementById("txtAgreementCredit").value;
+        if (credit1.length < 1) {
+            document.getElementById("labelSaveMiscTextCredit").innerText = "Credit note can not empty";
+            return;
+        }
+        document.getElementById("labelSaveMiscTextCredit").innerText = "";
+        $.ajax({
+            url: '@Url.Action("SaveMiscText", "AddAnAgreement")',
+            type: "GET",
+            dataType: "json",
+            data: { comment: comment1, credit: credit1, agreementNumber: agreementNumber1, variantNumber: variantNumber1 },
+            success: function (data) {
+                savedMiscText = true;
+                document.getElementById("labelSaveMiscTextResult").innerText = data;
+            },
+            error: function (data) {
+                document.getElementById("labelSaveMiscTextResult").innerText = data;
+            }
+        });
+    }
+
+    function goFowardMiscText() {
+        if (savedMiscText == true) {
+            goFoward();
+            var agreementNumber1 = '@Model.AgreementNumber';
+            var variantNumber1 = '@Model.VariantNumber';
+            $.ajax({
+                url: '@Url.Action("Confirmation", "AddAnAgreement")',
+                type: "GET",
+                dataType: "text",
+                data: { agreementNumber: agreementNumber1, variantNumber: variantNumber1 },
+                success: function (data) {
+                    $('#uc2_7').html(data);
+                },
+                error: function (data) {
+                    alert("Failed to load 'Confirmation'!");
+                }
+            });
+        } else {
+            alert("You must be saved credit note text for agreement before got to next step");
+        }
+
+    }
+</script>
+
+<style type="text/css">
+    #MiscText{
+        width:800px;
+        height:450px;
+        padding:5px;
+    }
+    #MiscTextContent{
+        width:100%;
+        height:395px;
+        padding:5px;
+        vertical-align:top;
+    }
+    #MiscTextSubmit{
+        width:100%;
+        height:25px;
+        padding:5px;
+    }
+    #MiscTextSaveResult{
+        width:100%;
+        height:30px;
+        padding:5px;
+    }
+    .tdLeft{
+        width:150px;
+        padding:5px;
+        font-size:12px;
+        font-weight:bold;
+    }
+    .tdRight{
+        width:650px;
+        padding:5px;
+        font-size:12px;
+    }
+</style>
+
+<div id="MiscText">
+    <div id="MiscTextContent">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            @Html.HiddenFor(model => model.AgreementNumber)
+            @Html.HiddenFor(model => model.VariantNumber)
+            <table>
+                <tr>
+                    <td class="tdLeft">Credit Note Comments</td>
+                    <td tdright>
+                        @Html.TextAreaFor(model => model.Comment, new { id = "txtAgreementComment", style = "width: 650px; height: 125px; border: 1px solid #889EC7; border-radius: 2px; color: black;font-size:12px;resize: none;", maxlength = 1000 })
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tdLeft">Support Justification (Internal User Only)</td>
+                    <td tdright>
+                        @Html.TextAreaFor(model => model.CreditNote, new { id = "txtAgreementCredit", style = "width: 650px; height: 230px; border: 1px solid #889EC7; border-radius: 2px; color: black;font-size:12px;resize: none;" })
+                        <label id="labelSaveMiscTextCredit" style="color:red;font-style:italic;font-size:12px;"></label>
+                    </td>
+                </tr>
+            </table>
+        }
+    </div>
+    <div id="MiscTextSubmit" align="right">
+        &raquo;<input type="button" value="save as draft" style="border:none;background:none;padding-right:10px;padding-left:0px;padding-right:10px;" onclick="saveMiscText()" />
+        &raquo;<input type="button" value="back" style="border:none;background:none;padding-right:10px;padding-left:0px;padding-right:10px;" id="backBtn" onclick="goBackward()" />
+        &raquo;<input type="button" value="next" style="border:none;background:none;padding-right:10px;padding-left:0px;padding-right:10px;" id="nextBtn" onclick="goFowardMiscText()" />
+    </div>
+    <div id="MiscTextSaveResult">
+        <label id="labelSaveMiscTextResult" style="color:red;font-style:italic;font-size:12px;"></label>
+    </div>
+    
+</div>
+
+

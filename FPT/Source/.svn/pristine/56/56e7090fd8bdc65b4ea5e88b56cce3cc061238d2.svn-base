@@ -1,0 +1,121 @@
+﻿@model Service_Directory.Models.Organisation
+<link href="~/Content/Stylesheets/form-input.css" rel="stylesheet" />
+
+@using (Html.BeginForm("AmendOrganisation", "Organisation", FormMethod.Post, new { @name = "" }))
+{
+    <div style="height:5%;">
+        @Html.ActionLink("Back", "Index", "Organisation", new { @class = "Buton" })
+        <input type="submit" name="btnSubmit" value="Save" style="float:right; width:85px; height:25px; margin-right: 30px;" />
+        <input type="submit" name="btnSubmit" value="In-active"
+               style="float:right; width:85px; height:25px; margin-right: 30px;"/>
+    </div>
+
+    <fieldset>
+        <div class="container">
+            <div class="left-container">
+                <div class="formRowContainer" style="display:none">
+                    <div class="labelContainer">Organisation ID <label style="color:red;">*</label></div>
+                    <div class="valueContainer">@Html.TextBoxFor(d => d.OrgID)</div>
+                </div>
+                <div class="formRowContainer">
+                    <div class="labelContainer">Organisation Name <label style="color:red;">*</label></div>
+                    <div class="valueContainer">@Html.TextBoxFor(d => d.OrgName)</div>
+                </div>
+                <div class="formRowContainer">
+                    <div class="labelContainer">Organisation Short Description <label style="color:red;">*</label></div>
+                    <div class="valueContainer">@Html.TextAreaFor(d => d.OrganisationShortDescription, new { @class = "textarea" })</div>
+                </div>
+                <div class="formRowContainer">
+                    <div class="labelContainer">Lead Contact</div>
+                    <div class="valueContainer">
+                        @Html.TextBox("leadContact", null, new { @disabled = "true" })
+                        @Html.ActionLink("Lookup", null, null, new { @class = "link" })
+                    </div>
+                </div>
+                <div class="formRowContainer">
+                    <div class="labelContainer">Copy Address from</div>
+                    <div class="valueContainer">
+                        @Html.RadioButton("addressfrom", 1, new { @class = "radio" })Organisation
+                        @Html.RadioButton("addressfrom", 0, new { @class = "radio" })Parent
+                    </div>
+                </div>
+                <div class="formRowContainer">
+                    <div class="labelContainer">Address Line 1</div>
+                    <div class="valueContainer">@Html.TextBoxFor(d => d.OrganisationAddressLine1)</div>
+                </div>
+                <div class="formRowContainer">
+                    <div class="labelContainer">Address Line 2</div>
+                    <div class="valueContainer">@Html.TextBoxFor(d => d.OrganisationAddressLine2)</div>
+                </div>
+                <div class="formRowContainer">
+                    <div class="labelContainer">Address Line 3</div>
+                    <div class="valueContainer">@Html.TextBoxFor(d => d.OrganisationAddressLine3)</div>
+                </div>
+                <div class="formRowContainer">
+                    <div class="labelContainer">Postcode</div>
+                    <div class="valueContainer">
+                        @Html.TextBoxFor(d => d.OrganisationPostode)
+                        @Html.ActionLink("Lookup", "", "", new { @class = "link" })
+                    </div>
+                </div>
+                <div class="formRowContainer">
+                    <div class="labelContainer">TownCity</div>
+                    <div class="valueContainer">@Html.TextBoxFor(d => d.OrganisationCityTown)</div>
+                </div>
+                <div class="formRowContainer">
+                    <div class="labelContainer">County</div>
+                    <div class="valueContainer">@Html.TextBoxFor(d => d.OrganisationCounty)</div>
+                </div>
+
+
+                <div class="formRowContainer">
+                    <div class="labelContainer">Nation/Country</div>
+                    <div class="valueContainer">@Html.DropDownList("NationCountry", null, "Select Nation/Country", new { @id = "dropdownList" })</div>
+                </div>
+            </div>
+
+            <div class="right-container">
+                <div class="formRowContainer">
+                    <div class="labelContainer">Type of Business a</div>
+                    <div class="valueContainer">
+                        @Html.TextBox("typeBusiness", null, new { @disabled = "true" })
+                        @Html.ActionLink("Lookup", null, null, new { @class = "link" })
+                    </div>
+                </div>
+                <div class="formRowContainer">
+                    <div class="labelContainer">SIC Code</div>
+                    <div class="valueContainer">@Html.TextBox("SICCode", null, new { @disabled = "true" })</div>
+                </div>
+                <div class="formRowContainer">
+                    <div class="labelContainer">Organisation Full Description</div>
+                    <div class="valueContainer">@Html.TextAreaFor(d => d.OrganisationFullDescription, new { @class = "textarea" })</div>
+                </div>
+@*                <div class="formRowContainer">
+                    <div class="labelContainer">Phone Number</div>
+                    <div class="valueContainer">@Html.TextBoxFor(d => d.OrganisationPhoneNumber)</div>
+                </div>*@
+                <div class="formRowContainer">
+                    <div class="labelContainer">Fax</div>
+                    <div class="valueContainer">@Html.TextBoxFor(d => d.OrganisationFax)</div>
+                </div>
+                <div class="formRowContainer">
+                    <div class="labelContainer">Email</div>
+                    <div class="valueContainer">@Html.TextBoxFor(d => d.OrganisationEmail)</div>
+                </div>
+                <div class="formRowContainer">
+                    <div class="labelContainer">Web Address</div>
+                    <div class="valueContainer">@Html.TextBoxFor(d => d.OrganisationWebAddress)</div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+}
+
+@*<script>
+    function MarkActiveConfirm() {
+        if (confirm("This Organization is already in use, do you want to make this in-active?"))
+            return true;
+        else
+            return false;
+    }
+</script>*@

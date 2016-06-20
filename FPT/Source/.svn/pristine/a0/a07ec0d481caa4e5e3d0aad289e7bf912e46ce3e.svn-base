@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+   <style type="text/css">
+	#Select1 {
+            width: 288px;
+        }
+</style>
+</head>
+<body>
+
+    <table class="auto-style1">
+        <tr>
+            <td class="auto-style2" colspan="4">BOOK MAINTENANCE</td>
+        </tr>
+        <tr>
+            <td class="auto-style3">BookID</td>
+            <td class="auto-style4" colspan="2">
+                <input id="Text1" type="text" /></td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td class="auto-style3">Book Title</td>
+            <td class="auto-style4" colspan="2">
+                <input id="Text2" type="text" /></td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td class="auto-style3">Author</td>
+            <td class="auto-style4" colspan="2">
+                <input id="Text3" type="text" /></td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td class="auto-style3">Category</td>
+            <td class="auto-style4" colspan="2">
+            <fieldset id="fieldSet">
+                <table id="table2">
+                    <tr>
+                        <td class="auto-style5"><input id="Checkbox2" type="checkbox" checked /> Horno</td> 
+                        <td class="auto-style6"><input id="Checkbox1" type="checkbox" checked/> Romance</td>
+                    </tr>
+                    <tr>
+                        <td class="auto-style7"><input id="Checkbox3" type="checkbox" checked/> Thriller</td>
+                        <td class="auto-style8"><input id="Checkbox4" type="checkbox" checked />Sci-fi</td>
+                    </tr>
+                    
+                 </table>
+              </fieldset>
+             <td>
+                 &nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        
+      
+
+             
+        <tr>
+            <td class="auto-style3">Publisher</td>
+            <td class="auto-style4" colspan="2">
+                <select id="Select1" name="D1">
+                    <option></option>
+                </select><td>
+                 &nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        
+      
+       
+             
+        <tr>
+            <td class="auto-style3">&nbsp;</td>
+            <td class="auto-style9">
+                <input id="Submit1" type="submit" value="OK" /><td class="auto-style4">
+                <input id="Submit2" type="submit" value="Cancel" /><td>
+                 &nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        
+      
+       
+             
+    </table>
+
+</body>
+</html>

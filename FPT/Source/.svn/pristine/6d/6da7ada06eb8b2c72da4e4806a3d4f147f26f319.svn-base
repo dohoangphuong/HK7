@@ -1,0 +1,91 @@
+﻿container{
+    width:100%;
+}
+
+.left-container{
+    width:50%; 
+    float:left;
+}
+
+.right-container{
+    float:left;
+    width:50%;
+}
+
+.formRowContainer
+{
+  width: 100%;
+  padding-top: 10px;
+}
+
+.labelContainer
+{
+    padding-top: 2px;
+    float: left;
+    width:30%;
+}
+
+.valueContainer
+{
+    /*float: left;*/
+}
+
+.buttonContainer
+{
+   padding-top: 5px;
+   padding-left :155px;
+}
+.clearStyle
+{
+    clear: both;
+}
+
+.textarea {
+    resize: none;
+}
+
+.link{
+    text-decoration: none;
+    color:#0094ff !important;
+}
+
+.link:hover{
+    text-decoration: underline;
+}
+
+input{
+    width: 200px;
+}
+
+textarea{
+    width: 200px;
+}
+
+.radio {
+    width:20px;
+}
+
+a.Buton
+{
+    outline: 0; 
+    margin: 0 4px 0 0;
+    height: 2em;
+    width: 85px;
+    height: 19px;
+    text-decoration: none !important; 
+    cursor: pointer; 
+    position: relative;
+    text-align: center;
+    display: inline-block;
+    background-color: #ebebeb;
+    float:right;
+    margin-right: 30px;
+    border:1px solid ;
+    padding-top: 4px;
+    font-size: 1.1em;
+}
+
+#dropdownList {
+    width: 200px;
+    height: 20px;
+}

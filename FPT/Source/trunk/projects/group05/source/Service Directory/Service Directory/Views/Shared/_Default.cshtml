@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Home</title>
+    <link href="~/Content/Stylesheets/menu.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="menu4">
+        <a href="@Url.Action("Index", "Organisation")"><span>Organisation</span></a>
+        <a href="@Url.Action("Index", "Directorates")"><span>Directorate</span></a>
+        <a href="@Url.Action("Index", "Department")"><span>Department</span></a>
+        <a href="@Url.Action("Index", "SupportingMaterials")"><span>Supporting Materials</span></a>
+    </div>
+    <div class="menu4sub"> </div>
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>

@@ -1,0 +1,76 @@
+﻿@model ServiceDirectory.Models.tblOrganisation
+
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+<div class="container">
+    <div class="modal-dialog modal-lg" style="width:950px;">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"><font color="blue">Organisation Details</font></h4>
+            </div>
+
+            @using (Ajax.BeginForm("InsertUpdate_Organisation", "MaintainOrganisation", new AjaxOptions
+        {
+            UpdateTargetId = "id_organisation_message",
+            HttpMethod = "POST",
+            InsertionMode = InsertionMode.Replace
+        }))
+            {
+                <div class="modal-body">
+                    <div class="nav">
+                        <ul class="nav nav-tabs col-sm-4">
+                            <li class="active"><a href="#details_one" data-toggle="tab">Details 1</a></li>
+                            <li><a href="#details_two" data-toggle="tab">Details 2</a></li>
+                            <li id="org_id_details_three" style="display:none"><a href="#details_three" data-toggle="tab">Details 3</a></li>
+                        </ul>
+
+                        <div class="col-sm-1 col-sm-offset-6">
+                            <input type="submit" value="Save" class="btn btn-default" />
+                        </div>
+                        <div class="col-sm-1">
+                            @Ajax.ActionLink("Back", "GetListOrganisations", "MaintainOrganisation", new { page = -1 }, new AjaxOptions { UpdateTargetId = "organisation_table", InsertionMode = InsertionMode.Replace, HttpMethod = "POST" }, new { @class = "btn btn-default", @id = "maintain_organisation_add_back" })
+                        </div>
+                    </div>
+
+                    <div class="tab-content table-bordered">
+                        <div class="tab-pane active" id="details_one">
+                            @Html.Action("Details_One", "MaintainOrganisation")
+                        </div>
+
+                        <div class="tab-pane" id="details_two">
+                            @Html.Action("Details_two", "MaintainOrganisation")
+                        </div>
+
+                        <div class="tab-pane" id="details_three">
+                            @Html.Action("Details_three", "MaintainOrganisation")
+                        </div>
+                    </div>
+
+                    <div id="id_organisation_message">
+                        
+                    </div>
+                    <div>
+                        <div>@Html.ValidationMessageFor(model => model.AddressLine1)</div>
+                        <div>@Html.ValidationMessageFor(model => model.AddressLine2)</div>
+                        <div>@Html.ValidationMessageFor(model => model.AddressLine3)</div>
+                        <div>@Html.ValidationMessageFor(model => model.ShortDescription)</div>
+                        <div>@Html.ValidationMessageFor(model => model.WebAddress)</div>
+                        <div>@Html.ValidationMessageFor(model => model.OrgName)</div>
+                        <div>@Html.ValidationMessageFor(model => model.PhoneNumber)</div>
+                        <div>@Html.ValidationMessageFor(model => model.FullDescription)</div>
+                        <div>@Html.ValidationMessageFor(model => model.Fax)</div>
+                        <div>@Html.ValidationMessageFor(model => model.Email)</div>
+                    </div>
+                </div>
+
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#maintain_organisation_add_back').attr('data-dismiss', 'modal');
+    })
+</script>

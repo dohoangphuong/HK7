@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      video {
+        width: 200px;
+        height: 112px;
+        border: 1px solid black;
+      }
+      
+      .video-container {
+        display: inline-block;
+        text-align: center;
+      }
+      
+      p {
+        font: 14px Arial;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="video-container">
+      <p>.mp4</p>
+      <video poster="resource/star.png" controls>
+        <source src="resource/Chrome_ImF.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
+      </video>
+    </div>
+    <div class="video-container">
+      <p>.webm</p>
+      <video poster="resource/star.png" controls>
+        <source src="resource/Chrome_ImF.webm" type='video/webm; codecs="vp8, vorbis"' />
+      </video>
+    </div>
+    <div class="video-container">
+      <p>.ogv</p>
+      <video poster="resource/star.png" controls>
+        <source src="resource/Chrome_ImF.ogv" type='video/ogg; codecs="theora, vorbis"' />
+      </video>
+    </div>
+  </body>
+</html>​

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      video {
+        width: 400px;
+        height: 224px;
+        border: 1px solid black;
+      }
+      .video-container {
+        display: inline-block;
+        text-align: center;
+      }
+      p {
+        font: 14px Arial;
+      }
+    </style>
+  </head>
+  <body>
+	<div class="video-container">
+      <p>Controlling Media Playback with JS</p>
+		<video poster="resource/star.png" id="myVideo">
+			<source src="resource/Chrome_ImF.ogv" type='video/ogg; codecs="theora, vorbis"' />
+			<source src="resource/Chrome_ImF.webm" type='video/webm; codecs="vp8, vorbis"' />
+			<source src="resource/Chrome_ImF.ogv" type='video/ogg; codecs="theora, vorbis"' />
+			Your browser does not support the video tag.
+		</video>
+		<div>
+		  <button onclick="document.getElementById('myVideo').play()">Play the Audio</button>
+		  <button onclick="document.getElementsByTagName('video')[0].pause()">Pause the Audio</button>
+		  <button onclick="document.getElementsByTagName('video')[0].volume+=0.1">Increase Volume</button>
+		  <button onclick="document.getElementsByTagName('video')[0].volume-=0.1">Decrease Volume</button>
+		  <button onclick="runAt20s()">Run at 20s</button>
+		</div>
+    </div>
+	<script>
+		runAt20s = function(){
+			var mediaElement = document.getElementById('myVideo');
+			mediaElement.removeAttribute("poster");
+			mediaElement.currentTime = 20;
+			mediaElement.play();
+		}
+	</script>
+  </body>
+</html>​

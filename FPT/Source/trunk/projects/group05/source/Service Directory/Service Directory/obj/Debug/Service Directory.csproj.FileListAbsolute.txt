@@ -1,0 +1,96 @@
+E:\Service Directory\Service Directory\bin\Service Directory.dll.config
+E:\Service Directory\Service Directory\bin\Service Directory.dll
+E:\Service Directory\Service Directory\bin\Service Directory.pdb
+E:\Service Directory\Service Directory\bin\EntityFramework.dll
+E:\Service Directory\Service Directory\bin\EntityFramework.SqlServer.dll
+E:\Service Directory\Service Directory\bin\Microsoft.Web.Infrastructure.dll
+E:\Service Directory\Service Directory\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+E:\Service Directory\Service Directory\bin\Newtonsoft.Json.dll
+E:\Service Directory\Service Directory\bin\System.Net.Http.Formatting.dll
+E:\Service Directory\Service Directory\bin\System.Web.Helpers.dll
+E:\Service Directory\Service Directory\bin\System.Web.Http.dll
+E:\Service Directory\Service Directory\bin\System.Web.Http.WebHost.dll
+E:\Service Directory\Service Directory\bin\System.Web.Mvc.dll
+E:\Service Directory\Service Directory\bin\System.Web.Razor.dll
+E:\Service Directory\Service Directory\bin\System.Web.WebPages.Deployment.dll
+E:\Service Directory\Service Directory\bin\System.Web.WebPages.dll
+E:\Service Directory\Service Directory\bin\System.Web.WebPages.Razor.dll
+E:\Service Directory\Service Directory\bin\EntityFramework.xml
+E:\Service Directory\Service Directory\bin\EntityFramework.SqlServer.xml
+E:\Service Directory\Service Directory\bin\Newtonsoft.Json.xml
+E:\Service Directory\Service Directory\bin\System.Net.Http.Formatting.xml
+E:\Service Directory\Service Directory\bin\System.Web.Helpers.xml
+E:\Service Directory\Service Directory\bin\System.Web.Http.xml
+E:\Service Directory\Service Directory\bin\System.Web.Http.WebHost.xml
+E:\Service Directory\Service Directory\bin\System.Web.Mvc.xml
+E:\Service Directory\Service Directory\bin\System.Web.Razor.xml
+E:\Service Directory\Service Directory\bin\System.Web.WebPages.xml
+E:\Service Directory\Service Directory\bin\System.Web.WebPages.Deployment.xml
+E:\Service Directory\Service Directory\bin\System.Web.WebPages.Razor.xml
+E:\Service Directory\Service Directory\obj\Debug\Service Directory.csprojResolveAssemblyReference.cache
+E:\Service Directory\Service Directory\obj\Debug\Service Directory.dll
+E:\Service Directory\Service Directory\obj\Debug\Service Directory.pdb
+E:\source\Service Directory\Service Directory\bin\Service Directory.dll.config
+E:\source\Service Directory\Service Directory\bin\Service Directory.dll
+E:\source\Service Directory\Service Directory\bin\Service Directory.pdb
+E:\source\Service Directory\Service Directory\bin\EntityFramework.dll
+E:\source\Service Directory\Service Directory\bin\EntityFramework.SqlServer.dll
+E:\source\Service Directory\Service Directory\bin\Microsoft.Web.Infrastructure.dll
+E:\source\Service Directory\Service Directory\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+E:\source\Service Directory\Service Directory\bin\Newtonsoft.Json.dll
+E:\source\Service Directory\Service Directory\bin\System.Net.Http.Formatting.dll
+E:\source\Service Directory\Service Directory\bin\System.Web.Helpers.dll
+E:\source\Service Directory\Service Directory\bin\System.Web.Http.dll
+E:\source\Service Directory\Service Directory\bin\System.Web.Http.WebHost.dll
+E:\source\Service Directory\Service Directory\bin\System.Web.Mvc.dll
+E:\source\Service Directory\Service Directory\bin\System.Web.Razor.dll
+E:\source\Service Directory\Service Directory\bin\System.Web.WebPages.Deployment.dll
+E:\source\Service Directory\Service Directory\bin\System.Web.WebPages.dll
+E:\source\Service Directory\Service Directory\bin\System.Web.WebPages.Razor.dll
+E:\source\Service Directory\Service Directory\bin\EntityFramework.xml
+E:\source\Service Directory\Service Directory\bin\EntityFramework.SqlServer.xml
+E:\source\Service Directory\Service Directory\bin\Newtonsoft.Json.xml
+E:\source\Service Directory\Service Directory\bin\System.Net.Http.Formatting.xml
+E:\source\Service Directory\Service Directory\bin\System.Web.Helpers.xml
+E:\source\Service Directory\Service Directory\bin\System.Web.Http.xml
+E:\source\Service Directory\Service Directory\bin\System.Web.Http.WebHost.xml
+E:\source\Service Directory\Service Directory\bin\System.Web.Mvc.xml
+E:\source\Service Directory\Service Directory\bin\System.Web.Razor.xml
+E:\source\Service Directory\Service Directory\bin\System.Web.WebPages.xml
+E:\source\Service Directory\Service Directory\bin\System.Web.WebPages.Deployment.xml
+E:\source\Service Directory\Service Directory\bin\System.Web.WebPages.Razor.xml
+E:\source\Service Directory\Service Directory\obj\Debug\Service Directory.csprojResolveAssemblyReference.cache
+E:\source\Service Directory\Service Directory\obj\Debug\Service Directory.dll
+E:\source\Service Directory\Service Directory\obj\Debug\Service Directory.pdb
+D:\HocTap\Ky3_2015\GST UIT 2015\Svn_Project\052_HCM_UIT_04_NET\projects\group05\source\Service Directory\Service Directory\bin\Service Directory.dll.config
+D:\HocTap\Ky3_2015\GST UIT 2015\Svn_Project\052_HCM_UIT_04_NET\projects\group05\source\Service Directory\Service Directory\bin\Service Directory.dll
+D:\HocTap\Ky3_2015\GST UIT 2015\Svn_Project\052_HCM_UIT_04_NET\projects\group05\source\Service Directory\Service Directory\bin\Service Directory.pdb
+D:\HocTap\Ky3_2015\GST UIT 2015\Svn_Project\052_HCM_UIT_04_NET\projects\group05\source\Service Directory\Service Directory\bin\EntityFramework.dll
+D:\HocTap\Ky3_2015\GST UIT 2015\Svn_Project\052_HCM_UIT_04_NET\projects\group05\source\Service Directory\Service Directory\bin\EntityFramework.SqlServer.dll
+D:\HocTap\Ky3_2015\GST UIT 2015\Svn_Project\052_HCM_UIT_04_NET\projects\group05\source\Service Directory\Service Directory\bin\Microsoft.Web.Infrastructure.dll
+D:\HocTap\Ky3_2015\GST UIT 2015\Svn_Project\052_HCM_UIT_04_NET\projects\group05\source\Service Directory\Service Directory\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+D:\HocTap\Ky3_2015\GST UIT 2015\Svn_Project\052_HCM_UIT_04_NET\projects\group05\source\Service Directory\Service Directory\bin\Newtonsoft.Json.dll
+D:\HocTap\Ky3_2015\GST UIT 2015\Svn_Project\052_HCM_UIT_04_NET\projects\group05\source\Service Directory\Service Directory\bin\System.Net.Http.Formatting.dll
+D:\HocTap\Ky3_2015\GST UIT 2015\Svn_Project\052_HCM_UIT_04_NET\projects\group05\source\Service Directory\Service Directory\bin\System.Web.Helpers.dll
+D:\HocTap\Ky3_2015\GST UIT 2015\Svn_Project\052_HCM_UIT_04_NET\projects\group05\source\Service Directory\Service Directory\bin\System.Web.Http.dll
+D:\HocTap\Ky3_2015\GST UIT 2015\Svn_Project\052_HCM_UIT_04_NET\projects\group05\source\Service Directory\Service Directory\bin\System.Web.Http.WebHost.dll
+D:\HocTap\Ky3_2015\GST UIT 2015\Svn_Project\052_HCM_UIT_04_NET\projects\group05\source\Service Directory\Service Directory\bin\System.Web.Mvc.dll
+D:\HocTap\Ky3_2015\GST UIT 2015\Svn_Project\052_HCM_UIT_04_NET\projects\group05\source\Service Directory\Service Directory\bin\System.Web.Razor.dll
+D:\HocTap\Ky3_2015\GST UIT 2015\Svn_Project\052_HCM_UIT_04_NET\projects\group05\source\Service Directory\Service Directory\bin\System.Web.WebPages.Deployment.dll
+D:\HocTap\Ky3_2015\GST UIT 2015\Svn_Project\052_HCM_UIT_04_NET\projects\group05\source\Service Directory\Service Directory\bin\System.Web.WebPages.dll
+D:\HocTap\Ky3_2015\GST UIT 2015\Svn_Project\052_HCM_UIT_04_NET\projects\group05\source\Service Directory\Service Directory\bin\System.Web.WebPages.Razor.dll
+D:\HocTap\Ky3_2015\GST UIT 2015\Svn_Project\052_HCM_UIT_04_NET\projects\group05\source\Service Directory\Service Directory\bin\EntityFramework.xml
+D:\HocTap\Ky3_2015\GST UIT 2015\Svn_Project\052_HCM_UIT_04_NET\projects\group05\source\Service Directory\Service Directory\bin\EntityFramework.SqlServer.xml
+D:\HocTap\Ky3_2015\GST UIT 2015\Svn_Project\052_HCM_UIT_04_NET\projects\group05\source\Service Directory\Service Directory\bin\Newtonsoft.Json.xml
+D:\HocTap\Ky3_2015\GST UIT 2015\Svn_Project\052_HCM_UIT_04_NET\projects\group05\source\Service Directory\Service Directory\bin\System.Net.Http.Formatting.xml
+D:\HocTap\Ky3_2015\GST UIT 2015\Svn_Project\052_HCM_UIT_04_NET\projects\group05\source\Service Directory\Service Directory\bin\System.Web.Helpers.xml
+D:\HocTap\Ky3_2015\GST UIT 2015\Svn_Project\052_HCM_UIT_04_NET\projects\group05\source\Service Directory\Service Directory\bin\System.Web.Http.xml
+D:\HocTap\Ky3_2015\GST UIT 2015\Svn_Project\052_HCM_UIT_04_NET\projects\group05\source\Service Directory\Service Directory\bin\System.Web.Http.WebHost.xml
+D:\HocTap\Ky3_2015\GST UIT 2015\Svn_Project\052_HCM_UIT_04_NET\projects\group05\source\Service Directory\Service Directory\bin\System.Web.Mvc.xml
+D:\HocTap\Ky3_2015\GST UIT 2015\Svn_Project\052_HCM_UIT_04_NET\projects\group05\source\Service Directory\Service Directory\bin\System.Web.Razor.xml
+D:\HocTap\Ky3_2015\GST UIT 2015\Svn_Project\052_HCM_UIT_04_NET\projects\group05\source\Service Directory\Service Directory\bin\System.Web.WebPages.xml
+D:\HocTap\Ky3_2015\GST UIT 2015\Svn_Project\052_HCM_UIT_04_NET\projects\group05\source\Service Directory\Service Directory\bin\System.Web.WebPages.Deployment.xml
+D:\HocTap\Ky3_2015\GST UIT 2015\Svn_Project\052_HCM_UIT_04_NET\projects\group05\source\Service Directory\Service Directory\bin\System.Web.WebPages.Razor.xml
+D:\HocTap\Ky3_2015\GST UIT 2015\Svn_Project\052_HCM_UIT_04_NET\projects\group05\source\Service Directory\Service Directory\obj\Debug\Service Directory.csprojResolveAssemblyReference.cache
+D:\HocTap\Ky3_2015\GST UIT 2015\Svn_Project\052_HCM_UIT_04_NET\projects\group05\source\Service Directory\Service Directory\obj\Debug\Service Directory.dll
+D:\HocTap\Ky3_2015\GST UIT 2015\Svn_Project\052_HCM_UIT_04_NET\projects\group05\source\Service Directory\Service Directory\obj\Debug\Service Directory.pdb

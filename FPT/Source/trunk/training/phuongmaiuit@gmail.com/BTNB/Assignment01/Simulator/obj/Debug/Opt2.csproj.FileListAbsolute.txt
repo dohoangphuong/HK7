@@ -1,0 +1,6 @@
+D:\TÀI LIỆU HỌC TẬP\LÝ THUYẾT\.NET 2.0\code\MyStack\Opt2\bin\Debug\Opt2.exe.config
+D:\TÀI LIỆU HỌC TẬP\LÝ THUYẾT\.NET 2.0\code\MyStack\Opt2\bin\Debug\Opt2.exe
+D:\TÀI LIỆU HỌC TẬP\LÝ THUYẾT\.NET 2.0\code\MyStack\Opt2\bin\Debug\Opt2.pdb
+D:\TÀI LIỆU HỌC TẬP\LÝ THUYẾT\.NET 2.0\code\MyStack\Opt2\obj\Debug\Opt2.csprojResolveAssemblyReference.cache
+D:\TÀI LIỆU HỌC TẬP\LÝ THUYẾT\.NET 2.0\code\MyStack\Opt2\obj\Debug\Opt2.exe
+D:\TÀI LIỆU HỌC TẬP\LÝ THUYẾT\.NET 2.0\code\MyStack\Opt2\obj\Debug\Opt2.pdb

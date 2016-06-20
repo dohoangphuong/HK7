@@ -1,0 +1,7 @@
+﻿@{
+    ViewBag.Title = "Home";
+}
+
+<div>
+    @Html.Action("List", "MaintainOrganisation", new { area = "NormalUser" })
+</div>

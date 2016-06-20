@@ -1,0 +1,2 @@
+Approach of presentation:
+Please open the samples (ex “Student\Refs\YourBank_CRM_SRS_v1.0.1.docx”) to describe the concepts in the slide.

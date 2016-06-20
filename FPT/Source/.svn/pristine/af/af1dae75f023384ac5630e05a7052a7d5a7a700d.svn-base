@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8320e1a0401945b894cdb015a987903c" Name="Diagram1">
+        <EntityTypeShape EntityType="ABSDDatabaseModel.Address" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ABSDDatabaseModel.BestContactMethod" Width="1.5" PointX="0.75" PointY="26" IsExpanded="true" />
+        <EntityTypeShape EntityType="ABSDDatabaseModel.Contact" Width="1.5" PointX="3" PointY="23.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ABSDDatabaseModel.ContactType" Width="1.5" PointX="0.75" PointY="23" IsExpanded="true" />
+        <EntityTypeShape EntityType="ABSDDatabaseModel.ContractParticipationType" Width="1.5" PointX="5.25" PointY="32.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ABSDDatabaseModel.Country" Width="1.5" PointX="3" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ABSDDatabaseModel.County" Width="1.5" PointX="3" PointY="20.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ABSDDatabaseModel.Department" Width="1.5" PointX="5.25" PointY="24.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ABSDDatabaseModel.Directorate" Width="1.5" PointX="8.25" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ABSDDatabaseModel.FundingSource" Width="1.5" PointX="13.5" PointY="38.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ABSDDatabaseModel.GovOfficeRegion" Width="1.5" PointX="6" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ABSDDatabaseModel.GovOfficeRegion_County" Width="1.5" PointX="8.25" PointY="20.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ABSDDatabaseModel.LocationStatu" Width="1.5" PointX="14.25" PointY="18" IsExpanded="true" />
+        <EntityTypeShape EntityType="ABSDDatabaseModel.LocationType" Width="1.5" PointX="16.5" PointY="21" IsExpanded="true" />
+        <EntityTypeShape EntityType="ABSDDatabaseModel.Organization" Width="1.5" PointX="11.25" PointY="23.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ABSDDatabaseModel.Organization_Programme" Width="1.5" PointX="13.5" PointY="35.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ABSDDatabaseModel.Organization_RefDataDetail" Width="1.5" PointX="13.5" PointY="25.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ABSDDatabaseModel.OrganizationRoleType" Width="1.5" PointX="11.25" PointY="32.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ABSDDatabaseModel.Premise" Width="1.5" PointX="16.5" PointY="23.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ABSDDatabaseModel.Premise_LocationType" Width="1.5" PointX="18.75" PointY="25.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ABSDDatabaseModel.Programme" Width="1.5" PointX="5.25" PointY="46.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ABSDDatabaseModel.RefData" Width="1.5" PointX="9" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="ABSDDatabaseModel.RefDataDetail" Width="1.5" PointX="11.25" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ABSDDatabaseModel.ReferralMethod" Width="1.5" PointX="5.25" PointY="34.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ABSDDatabaseModel.Service" Width="1.5" PointX="7.5" PointY="32.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ABSDDatabaseModel.Service_Organization_OrganizationRoleType" Width="1.5" PointX="13.5" PointY="30.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ABSDDatabaseModel.Service_Premise" Width="1.5" PointX="18.75" PointY="31.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ABSDDatabaseModel.Service_RefDataDetail" Width="1.5" PointX="9.75" PointY="35.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ABSDDatabaseModel.ServiceFunding" Width="1.5" PointX="15.75" PointY="31.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ABSDDatabaseModel.ServiceSubType" Width="1.5" PointX="5.25" PointY="36.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ABSDDatabaseModel.ServiceType" Width="1.5" PointX="5.25" PointY="39.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ABSDDatabaseModel.SupportingMaterial" Width="1.5" PointX="13.5" PointY="21.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ABSDDatabaseModel.SupportingMaterialType" Width="1.5" PointX="11.25" PointY="20" IsExpanded="true" />
+        <EntityTypeShape EntityType="ABSDDatabaseModel.Team" Width="1.5" PointX="5.25" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ABSDDatabaseModel.TrustDistrict" Width="1.5" PointX="7.5" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ABSDDatabaseModel.TrustRegion" Width="1.5" PointX="5.25" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="ABSDDatabaseModel.TypeOfBusiness" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="ABSDDatabaseModel.fk_Contact_BestContactMethod" ManuallyRouted="false" />
+        <AssociationConnector Association="ABSDDatabaseModel.fk_Contact_Contact" ManuallyRouted="false" />
+        <AssociationConnector Association="ABSDDatabaseModel.fk_Contact_ContactType" ManuallyRouted="false" />
+        <AssociationConnector Association="ABSDDatabaseModel.fk_Department_Contact" ManuallyRouted="false" />
+        <AssociationConnector Association="ABSDDatabaseModel.fk_Directorate_Contact" ManuallyRouted="false" />
+        <AssociationConnector Association="ABSDDatabaseModel.fk_Organization_Contact" ManuallyRouted="false" />
+        <AssociationConnector Association="ABSDDatabaseModel.fk_Programme_Contact" ManuallyRouted="false" />
+        <AssociationConnector Association="ABSDDatabaseModel.fk_Service_Contact" ManuallyRouted="false" />
+        <AssociationConnector Association="ABSDDatabaseModel.fk_ServiceFunding_Contact" ManuallyRouted="false" />
+        <AssociationConnector Association="ABSDDatabaseModel.fk_Team_Contact" ManuallyRouted="false" />
+        <AssociationConnector Association="ABSDDatabaseModel.fk_Service_ContractParticipationType" ManuallyRouted="false" />
+        <AssociationConnector Association="ABSDDatabaseModel.fk_Department_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="ABSDDatabaseModel.fk_Directorate_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="ABSDDatabaseModel.fk_Organization_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="ABSDDatabaseModel.fk_Premise_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="ABSDDatabaseModel.fk_Team_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="ABSDDatabaseModel.fk_TrustRegion_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="ABSDDatabaseModel.fk_Department_County" ManuallyRouted="false" />
+        <AssociationConnector Association="ABSDDatabaseModel.fk_Directorate_County" ManuallyRouted="false" />
+        <AssociationConnector Association="ABSDDatabaseModel.fk_GovOfficeRegion_County_County" ManuallyRouted="false" />
+        <AssociationConnector Association="ABSDDatabaseModel.fk_Organization_County" ManuallyRouted="false" />
+        <AssociationConnector Association="ABSDDatabaseModel.fk_Premise_County" ManuallyRouted="false" />
+        <AssociationConnector Association="ABSDDatabaseModel.fk_Team_County" ManuallyRouted="false" />
+        <AssociationConnector Association="ABSDDatabaseModel.fk_Department_Directorate" ManuallyRouted="false" />
+        <AssociationConnector Association="ABSDDatabaseModel.fk_Directorate_Organization" ManuallyRouted="false" />
+        <AssociationConnector Association="ABSDDatabaseModel.fk_ServiceFunding_FundingSource" ManuallyRouted="false" />
+        <AssociationConnector Association="ABSDDatabaseModel.fk_GovOfficeRegion_County_GovOfficeRegion" ManuallyRouted="false" />
+        <AssociationConnector Association="ABSDDatabaseModel.fk_Premise_LocationStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="ABSDDatabaseModel.fk_Premise_LocationType_LocationType" ManuallyRouted="false" />
+        <AssociationConnector Association="ABSDDatabaseModel.fk_Organization_Programme_Organization" ManuallyRouted="false" />
+        <AssociationConnector Association="ABSDDatabaseModel.fk_Organization_RefDataDetail_Organization" ManuallyRouted="false" />
+        <AssociationConnector Association="ABSDDatabaseModel.fk_Premise_Organization" ManuallyRouted="false" />
+        <AssociationConnector Association="ABSDDatabaseModel.fk_Service_Organization_OrganizationRoleType_Organization" ManuallyRouted="false" />
+        <AssociationConnector Association="ABSDDatabaseModel.fk_SupportingMaterial_Organization" ManuallyRouted="false" />
+        <AssociationConnector Association="ABSDDatabaseModel.fk_Organization_Programme_Programme" ManuallyRouted="false" />
+        <AssociationConnector Association="ABSDDatabaseModel.fk_Organization_RefDataDetail_RefDataDetail" ManuallyRouted="false" />
+        <AssociationConnector Association="ABSDDatabaseModel.fk_Service_Organization_OrganizationRoleType_OrganizationRoleType" ManuallyRouted="false" />
+        <AssociationConnector Association="ABSDDatabaseModel.fk_Premise_LocationType_Premise" ManuallyRouted="false" />
+        <AssociationConnector Association="ABSDDatabaseModel.fk_Service_Premise_PRemise" ManuallyRouted="false" />
+        <AssociationConnector Association="ABSDDatabaseModel.fk_Service_Programme" ManuallyRouted="false" />
+        <AssociationConnector Association="ABSDDatabaseModel.fk_RefDataDetail_RefData" ManuallyRouted="false" />
+        <AssociationConnector Association="ABSDDatabaseModel.fk_Service_RefDataDetail_RefDataDetail" ManuallyRouted="false" />
+        <AssociationConnector Association="ABSDDatabaseModel.fk_Service_ReferralMethod" ManuallyRouted="false" />
+        <AssociationConnector Association="ABSDDatabaseModel.fk_Service_Organization_OrganizationRoleType_Service" ManuallyRouted="false" />
+        <AssociationConnector Association="ABSDDatabaseModel.fk_Service_Premise_Service" ManuallyRouted="false" />
+        <AssociationConnector Association="ABSDDatabaseModel.fk_Service_RefDataDetail_Service" ManuallyRouted="false" />
+        <AssociationConnector Association="ABSDDatabaseModel.fk_Service_ServiceSubType" ManuallyRouted="false" />
+        <AssociationConnector Association="ABSDDatabaseModel.fk_Service_ServiceType" ManuallyRouted="false" />
+        <AssociationConnector Association="ABSDDatabaseModel.fk_ServiceFunding_Service" ManuallyRouted="false" />
+        <AssociationConnector Association="ABSDDatabaseModel.fk_SupportingMaterial_SupportingMaterialType" ManuallyRouted="false" />
+        <AssociationConnector Association="ABSDDatabaseModel.fk_TrustDistrict_TrustRegion" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

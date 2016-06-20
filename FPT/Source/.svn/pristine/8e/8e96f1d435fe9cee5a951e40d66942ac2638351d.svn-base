@@ -1,0 +1,263 @@
+﻿@model CSS_G06.Models.ConfirmationModel
+
+<script>
+    $(function () {
+        $("#tabReview").tabs();
+    });
+    function submitUpdateStatus() {
+        var agreementNumber1 = '@Model.AgreementNumber';
+        var variantNumber1 = '@Model.VariantNumber';
+        $.ajax({
+            url: '@Url.Action("SubmitSaveAgreement", "ViewAgreement")',
+            type: "GET",
+            dataType: "json",
+            data: { agreementNumber: agreementNumber1, variantNumber: variantNumber1 },
+            success: function (data) {
+                isSelected = true;
+                document.getElementById("LabelSaveResultConfirmation").innerText = data;
+                window.location.href = '@Url.Action("Index", "Home")';
+            },
+            error: function (data) {
+                document.getElementById("LabelSaveResultConfirmation").innerText = data;
+            }
+        });
+    };
+    function saveAsDraftConfirmation() {
+        var agreementNumber1 = '@Model.AgreementNumber';
+        var variantNumber1 = '@Model.VariantNumber';
+        $.ajax({
+            url: '@Url.Action("SubmitSaveAsDraftAgreement", "ViewAgreement")',
+            type: "GET",
+            dataType: "json",
+            data: { agreementNumber: agreementNumber1, variantNumber: variantNumber1 },
+            success: function (data) {
+                isSelected = true;
+                document.getElementById("LabelSaveResultConfirmation").innerText = data;
+
+            },
+            error: function (data) {
+                document.getElementById("LabelSaveResultConfirmation").innerText = data;
+            }
+        });
+    };
+
+    function printPage() {
+        var header = "<table> <tr> <td>RFO Number</td> <td>@ViewBag.RFONumber</td></tr> " +
+            "<tr><td >Customer Name</td><td>@ViewBag.CustomerName</td> </tr> <tr>" +
+            "<td> Start - End </td><td>@ViewBag.StartEnd</td></tr><tr>" +
+            "<td>Status</td><td>@ViewBag.Status</td></tr></table>";
+
+        var data = $("#step-1").html() + $("#step-2").html() + $("#step-4").html();
+        var title = "Agreement " + '@Model.AgreementNumber' + " / " + '@Model.VariantNumber';
+        var mywindow = window.open('', 'Agreement print ' + title, 'height=600,width=800');
+
+        mywindow.document.write('<html><head><title>' + title + '</title>');
+        mywindow.document.write('</head><body >');
+        mywindow.document.write(header + data);
+        mywindow.document.write('</body></html>');
+
+        mywindow.document.close();
+        mywindow.focus();
+
+        mywindow.print();
+        mywindow.close();
+        return true;
+    };
+
+</script>
+
+<style type="text/css">
+    #ConfirmationArea {
+        width: 800px;
+        height: 450px;
+        padding: 5px;
+    }
+
+    #NormalDetailConfirmation {
+        width: 100%;
+        height: 130px;
+        padding: 5px;
+    }
+
+    #TabContentConfrimation {
+        width: 100%;
+        height: 260px;
+        padding: 0px;
+        font-size: 12px;
+        color: #889EC7;
+        overflow-y: auto;
+        border: 1px solid #889EC7;
+        border-radius: 2px;
+    }
+
+    #SubmitArea {
+        width: 100%;
+        height: 30px;
+        padding: 2px;
+    }
+
+    #SaveResultConfirmation {
+        width: 100%;
+        height: 30px;
+        padding: 5px;
+    }
+
+    .labelAreaEditConfirmation {
+        width: 200px;
+        padding: 5px;
+        font-size: 12px;
+        font-weight: bold;
+    }
+
+    .itemShowConfirmation {
+        padding: 5px;
+        font-size: 12px;
+        color: #889EC7;
+    }
+</style>
+
+<div id="ConfirmationArea">
+    <div id="NormalDetailConfirmation">
+        <table>
+            <tr>
+                <td class="labelAreaEditConfirmation">RFO Number</td>
+                <td class="itemShowConfirmation">@ViewBag.RFONumber</td>
+            </tr>
+            <tr>
+                <td class="labelAreaEditConfirmation">Customer Name</td>
+                <td class="itemShowConfirmation">@ViewBag.CustomerName</td>
+            </tr>
+            <tr>
+                <td class="labelAreaEditConfirmation"> Start - End </td>
+                <td class="itemShowConfirmation">@ViewBag.StartEnd</td>
+            </tr>
+            <tr>
+                <td class="labelAreaEditConfirmation">Status</td>
+                <td class="itemShowConfirmation">@ViewBag.Status</td>
+            </tr>
+            <tr>
+        </table>
+    </div>
+    <div id="TabContentConfrimation">
+        <div id="BasicInformation">
+            <div id="tabReview">
+                <ul>
+                    <li>
+                        <a href="#step-1">
+                            Overview
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#step-2">
+                            Dealers
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#step-3">
+                            Model Support
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#step-4">
+                            Misc Text
+                        </a>
+                    </li>
+                </ul><!-- End Menu -->
+                <div id="step-1">
+                    <table>
+                        <tr>
+                            <td class="labelAreaEditConfirmation">Business area</td>
+                            <td class="itemShowConfirmation">@ViewBag.BusinessArea</td>
+                        </tr>
+                        <tr>
+                            <td class="labelAreaEditConfirmation">Agreement Name</td>
+                            <td class="itemShowConfirmation">@ViewBag.Name</td>
+                        </tr>
+                        <tr>
+                            <td class="labelAreaEditConfirmation">Agreement details</td>
+                            <td class="itemShowConfirmation">@ViewBag.Description</td>
+                        </tr>
+                        <tr>
+                            <td class="labelAreaEditConfirmation">Created by</td>
+                            <td class="itemShowConfirmation">@ViewBag.CreateBy</td>
+                        </tr>
+                        <tr>
+                            <td class="labelAreaEditConfirmation">Created date</td>
+                            <td class="itemShowConfirmation">@ViewBag.CreateDate</td>
+                        </tr>
+                        <tr>
+                            <td class="labelAreaEditConfirmation">Authorised by</td>
+                            <td class="itemShowConfirmation">@ViewBag.AuthorisedBy</td>
+                        </tr>
+                        <tr>
+                            <td class="labelAreaEditConfirmation">Authorised date</td>
+                            <td class="itemShowConfirmation">@ViewBag.AuthorisedDate</td>
+                        </tr>
+                        <tr>
+                            <td class="labelAreaEditConfirmation">Signed agreement required</td>
+                            <td class="itemShowConfirmation">@ViewBag.SignedAgreementRequired</td>
+                        </tr>
+                        <tr>
+                            <td class="labelAreaEditConfirmation">Combinability</td>
+                            <td class="itemShowConfirmation">@ViewBag.Combinability</td>
+                        </tr>
+                        <tr>
+                            <td class="labelAreaEditConfirmation">Payment to</td>
+                            <td class="itemShowConfirmation">@ViewBag.PaymentTo</td>
+                        </tr>
+                        <tr>
+                            <td class="labelAreaEditConfirmation">Handing charge</td>
+                            <td class="itemShowConfirmation">@ViewBag.HandingCharge</td>
+                        </tr>
+                        <tr>
+                            <td class="labelAreaEditConfirmation">Agenda payment</td>
+                            <td class="itemShowConfirmation">@ViewBag.AgendaPayment</td>
+                        </tr>
+                    </table>
+                </div><!-- End Basic details -->
+                <div id="step-2">
+                    <table style="border: solid 1px #889EC7;padding:0px;">
+                        <tr>
+                            <td style="border: solid 1px #889EC7; width:20%; color:black;font-weight:bold;background-color:#889EC7; align-content:center;padding:5px;border-left: 1px solid black;">Dealer Code</td>
+                            <td style="border: solid 1px #889EC7; width:80%; color:black;font-weight:bold;background-color:#889EC7;align-content:center;padding:10px;border-right: 1px solid black;">Dealer Name</td>
+                        </tr>
+                        @{
+                            foreach (var dealer in ViewBag.DealerCodeList)
+                            {
+                                <tr>
+                                    <td style="border: solid 1px #889EC7; width:20%; color:#889EC7">@dealer.UserId</td>
+                                    <td style="border: solid 1px #889EC7; width:60%; color:#889EC7">@dealer.Title</td>
+                                </tr>
+                            }
+                        }
+                    </table>
+                </div><!-- End Dealer code-->
+                <div id="step-3">
+                    <p style="font-size:14px;color:#889EC7"> Current not Available</p>
+                </div><!-- End Model support-->
+                <div id="step-4">
+                    <table>
+                        <tr>
+                            <td class="labelAreaEditConfirmation">The agreement's credit note</td>
+                            <td class="itemShowConfirmation">
+                                <textarea style="overflow:visible;width:450px;height:180px;font-size:12px; color:#889EC7;">@ViewBag.CreditNote</textarea>
+                            </td>
+                        </tr>
+
+                    </table>
+                </div><!-- End Misc text -->
+            </div>
+        </div><!-- End #BasicInformation -->
+    </div>
+    <div id="SubmitConfirmation" align="right">
+        &raquo;<input type="button" value="save as draft" style="border:none;background:none;padding-right:10px;padding-left:0px;" onclick="saveAsDraftConfirmation()" />
+        &raquo;<input type="button" value="back" style="border:none;background:none;padding-right:10px;padding-left:0px;" id="backBtn" onclick="goBackward()" />
+        &raquo;<input type="button" value="submit" style="border:none;background:none;padding-right:10px;padding-left:0px;" id="submitBtn" onclick="submitUpdateStatus()" />
+        &raquo;<input type="button" value="print" style="border:none;background:none;padding-right:10px;padding-left:0px;" id="printBtn" onclick="printPage()" />
+    </div>
+
+    <div id="SaveResultConfirmation">
+        <label id="LabelSaveResultConfirmation" style="font-size:12px;color:red;font-style:italic"></label>
+    </div>
+</div>
+

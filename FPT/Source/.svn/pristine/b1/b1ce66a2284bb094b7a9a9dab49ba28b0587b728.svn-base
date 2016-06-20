@@ -1,0 +1,176 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - CSS</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    @*<script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")"></script>*@
+
+    <style type="text/css">
+        /* Vertical */
+        #verticalMenu {
+          background: #a7bc7a;
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          width: 90%;
+        }
+        #verticalMenu li {
+          font: 14px "Lucida Sans Unicode", "Bitstream Vera Sans", "Trebuchet Unicode MS", "Lucida Grande", Verdana, Helvetica, sans-serif;
+          margin: 0;
+          padding: 0;
+          list-style: none;
+        }
+        #verticalMenu a {
+          background: #a7bc7a;
+          border-bottom: 1px solid #b2c58b;
+          color: whitesmoke;
+          display: block;
+          margin: 0;
+          padding: 8px 12px;
+          text-decoration: none;
+          font-weight: normal;
+        }
+        #verticalMenu a:hover {
+          background: #9cb369 url(/Content/Image/pattern.png) top left repeat;
+          color: white;
+          padding-bottom: 8px;
+          font-size:15px;
+          font-weight:bold;
+          border-radius:5px;
+        }
+
+        /*Horizontal*/
+        #horizontalMenu,
+        #horizontalMenu ul,
+        #horizontalMenu li #horizontalMenu a {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          border: 0;
+          font-size: 14px;
+          font-family: Helvetica;
+          line-height: 1;
+        }
+        #horizontalMenu {
+          width: auto;
+          height:100%;
+        }
+        #horizontalMenu ul {
+          zoom: 1;
+          background: #a7bc7a url(images/pattern.png) top left repeat;
+        }
+        #horizontalMenu ul:before {
+          content: '';
+          display: block;
+        }
+        #horizontalMenu ul:after {
+          content: '';
+          display: table;
+          clear: both;
+        }
+        #horizontalMenu a,
+        #horizontalMenu a:link,
+        #horizontalMenu a:visited {
+          padding: 15px 20px;
+          display: block;
+          text-decoration: none;
+          color: #ffffff;
+          text-shadow: 0 -1px 1px #586835;
+          font-size:14px;
+        }
+        #horizontalMenu a:hover {
+          color: white;
+          text-shadow: 0 1px 1px #bdcd9c;
+        }
+        #horizontalMenu li {
+          float: left;
+          border-right: 1px solid #b2c58b;
+        }
+        #horizontalMenu li:hover {
+          background: #9cb369 url(/Content/Image/pattern.png) top left repeat;
+          font-weight:bold;
+          font-size:15px;
+        }
+        #horizontalMenu li:first-child {
+          border-left: none;
+          -webkit-border-radius: 4px 0 0 4px;
+          -moz-border-radius: 4px 0 0 4px;
+          border-radius: 4px 0 0 4px;
+        }
+
+        #logoImage:hover{
+            cursor:pointer;
+        }
+    </style>
+
+    <script type="text/javascript">
+        function LogoClick() {
+            window.location.href = '@Url.Action("Index","Home")';
+        }
+    </script>
+</head>
+<body style="background-color:#D2D2D2;overflow:auto;">
+    <div id="panelHeader" style="width:100%;height:60px; background-color:#a7bc7a;padding-left:10px;padding-right:10px" class="navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                    <span> <img id="logoImage" onclick="LogoClick()" src="~/Content/Image/logo.png" width="60" height="60" style=" padding:5px; margin-left:50px;" /></span>           
+            </div> 
+            <div id="horizontalMenu">
+                <ul>
+                    <li class="active"><a href="~/Home/Index"><span>Home</span></a></li>
+                    <li><a href="#"><span>About</span></a></li>
+                    <li><a href="#"><span>Help</span></a></li>
+                    <li class="last"><a href="#"><span>Contact</span></a></li>
+                </ul>
+            </div>
+        </div>
+        
+        
+    </div>
+    <div id="panleBody" style="width:100%;margin-top:20px;">
+        <table style="width:100%;">
+            <tr>
+                <td style="width:20%;;vertical-align:top;padding-left:10px;padding-right:10px;">
+                    <div id='verticalMenu'>
+                        <ul>
+                            <li class='active'><a href='~/Home/Index'><span>Home</span></a></li>
+                            <li><a href='~/AddAnAgreement/AddAnAgreement'><span>Add New Agreement</span></a></li>
+                            <li><a href='#'><span>Search Agreement</span></a></li>
+                            <li class='last'><a href='~/Home/AgreementByStatus?statusId=-1'><span>Recently Added</span></a></li>
+                            <li class='last'><a href='~/Home/AgreementByStatus?statusId=1'><span>Draft</span></a></li>
+                            <li class='last'><a href='~/Home/AgreementByStatus?statusId=2'><span>Awaiting Approval</span></a></li>
+                            <li class='last'><a href='~/Home/AgreementByStatus?statusId=3'><span>Signature Required</span></a></li>
+                            <li class='last'><a href='~/Home/AgreementByStatus?statusId=4'><span>Approved</span></a></li>
+                        </ul>
+                    </div>
+                </td>
+                <td style="width:70%; vertical-align:top;">
+                    <div style="width:100%; ">
+                        @RenderBody()
+                    </div>
+                    
+                </td>
+                <td style="width:10%; vertical-align:top;">
+                    <div style="width:100%;">
+                       
+                    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="panelFooter" style="width:100%;height:50px;align-items:center;" align="center">
+        <hr size="1">
+        <p>&copy;@DateTime.Now.Year - 12520250@gm.uit.edu.vn</p>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,11 @@
+D:\Template\SDApplication\SD.Entities\bin\Debug\SD.Entities.dll
+D:\Template\SDApplication\SD.Entities\bin\Debug\SD.Entities.pdb
+D:\Template\SDApplication\SD.Entities\obj\Debug\ResolveAssemblyReference.cache
+D:\Template\SDApplication\SD.Entities\obj\Debug\SD.Entities.dll
+D:\Template\SDApplication\SD.Entities\obj\Debug\SD.Entities.pdb
+D:\NtierCodeSkeleton\SDApplication\SD.Entities\bin\Debug\SD.Entities.dll
+D:\NtierCodeSkeleton\SDApplication\SD.Entities\bin\Debug\SD.Entities.pdb
+D:\NtierCodeSkeleton\SDApplication\SD.Entities\obj\Debug\ResolveAssemblyReference.cache
+D:\NtierCodeSkeleton\SDApplication\SD.Entities\obj\Debug\SD.Entities.dll
+D:\NtierCodeSkeleton\SDApplication\SD.Entities\obj\Debug\SD.Entities.pdb
+D:\NtierCodeSkeleton\SDApplication\SD.Entities\bin\Debug\SD.Entities.dll.config

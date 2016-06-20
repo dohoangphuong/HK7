@@ -1,0 +1,302 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ServiceDirectoryDBModelStoreContainer" CdmEntityContainer="ServiceDirectoryDBEntities">
+    <EntitySetMapping Name="Addresses">
+      <EntityTypeMapping TypeName="ServiceDirectoryDBModel.Address">
+        <MappingFragment StoreEntitySet="Address">
+          <ScalarProperty Name="AddressID" ColumnName="AddressID" />
+          <ScalarProperty Name="TownID" ColumnName="TownID" />
+          <ScalarProperty Name="AddressPostcode" ColumnName="AddressPostcode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Contacts">
+      <EntityTypeMapping TypeName="ServiceDirectoryDBModel.Contact">
+        <MappingFragment StoreEntitySet="Contact">
+          <ScalarProperty Name="ContactID" ColumnName="ContactID" />
+          <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="SurnName" ColumnName="SurnName" />
+          <ScalarProperty Name="KnowAs" ColumnName="KnowAs" />
+          <ScalarProperty Name="ContactType" ColumnName="ContactType" />
+          <ScalarProperty Name="BestContactMethod" ColumnName="BestContactMethod" />
+          <ScalarProperty Name="MobilePhone" ColumnName="MobilePhone" />
+          <ScalarProperty Name="OfficePhone" ColumnName="OfficePhone" />
+          <ScalarProperty Name="STHomePhone" ColumnName="STHomePhone" />
+          <ScalarProperty Name="ContactEmail" ColumnName="ContactEmail" />
+          <ScalarProperty Name="ContactIsActive" ColumnName="ContactIsActive" />
+          <ScalarProperty Name="Workbase" ColumnName="Workbase" />
+          <ScalarProperty Name="JobRole" ColumnName="JobRole" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Countries">
+      <EntityTypeMapping TypeName="ServiceDirectoryDBModel.Country">
+        <MappingFragment StoreEntitySet="Country">
+          <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+          <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Counties">
+      <EntityTypeMapping TypeName="ServiceDirectoryDBModel.County">
+        <MappingFragment StoreEntitySet="County">
+          <ScalarProperty Name="CountyID" ColumnName="CountyID" />
+          <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+          <ScalarProperty Name="CountyName" ColumnName="CountyName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Departments">
+      <EntityTypeMapping TypeName="ServiceDirectoryDBModel.Department">
+        <MappingFragment StoreEntitySet="Department">
+          <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+          <ScalarProperty Name="DirectorateID" ColumnName="DirectorateID" />
+          <ScalarProperty Name="ContactID" ColumnName="ContactID" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+          <ScalarProperty Name="DepartmentShortDescription" ColumnName="DepartmentShortDescription" />
+          <ScalarProperty Name="DepartmentAddressLine1" ColumnName="DepartmentAddressLine1" />
+          <ScalarProperty Name="DepartmentAddressLine2" ColumnName="DepartmentAddressLine2" />
+          <ScalarProperty Name="DepartmentAddressLine3" ColumnName="DepartmentAddressLine3" />
+          <ScalarProperty Name="DepartmentWebAddress" ColumnName="DepartmentWebAddress" />
+          <ScalarProperty Name="DepartmentPostcode" ColumnName="DepartmentPostcode" />
+          <ScalarProperty Name="DepartmentTownVillageCity" ColumnName="DepartmentTownVillageCity" />
+          <ScalarProperty Name="DepartmentCounty" ColumnName="DepartmentCounty" />
+          <ScalarProperty Name="DepartmentNationCountry" ColumnName="DepartmentNationCountry" />
+          <ScalarProperty Name="DepartmentFullDescription" ColumnName="DepartmentFullDescription" />
+          <ScalarProperty Name="DepartmentPhoneNumber" ColumnName="DepartmentPhoneNumber" />
+          <ScalarProperty Name="DepartmentFax" ColumnName="DepartmentFax" />
+          <ScalarProperty Name="DepartmentEmail" ColumnName="DepartmentEmail" />
+          <ScalarProperty Name="DepartmentStatus" ColumnName="DepartmentStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Directorates">
+      <EntityTypeMapping TypeName="ServiceDirectoryDBModel.Directorate">
+        <MappingFragment StoreEntitySet="Directorate">
+          <ScalarProperty Name="DirectorateID" ColumnName="DirectorateID" />
+          <ScalarProperty Name="ContactID" ColumnName="ContactID" />
+          <ScalarProperty Name="OrgID" ColumnName="OrgID" />
+          <ScalarProperty Name="DirectorateName" ColumnName="DirectorateName" />
+          <ScalarProperty Name="DirectoratePhoneNumber" ColumnName="DirectoratePhoneNumber" />
+          <ScalarProperty Name="DirectorateFax" ColumnName="DirectorateFax" />
+          <ScalarProperty Name="DirectorateEmail" ColumnName="DirectorateEmail" />
+          <ScalarProperty Name="DirectorateWebAddress" ColumnName="DirectorateWebAddress" />
+          <ScalarProperty Name="DirectorateCharityNumber" ColumnName="DirectorateCharityNumber" />
+          <ScalarProperty Name="DirectorateCompanyNumber" ColumnName="DirectorateCompanyNumber" />
+          <ScalarProperty Name="DirectorateAddressLine1" ColumnName="DirectorateAddressLine1" />
+          <ScalarProperty Name="DirectorateAddressLine2" ColumnName="DirectorateAddressLine2" />
+          <ScalarProperty Name="DirectorateAddressLine3" ColumnName="DirectorateAddressLine3" />
+          <ScalarProperty Name="DirectorateCountry" ColumnName="DirectorateCountry" />
+          <ScalarProperty Name="DirectorateShortDescription" ColumnName="DirectorateShortDescription" />
+          <ScalarProperty Name="DirectorateFullDescription" ColumnName="DirectorateFullDescription" />
+          <ScalarProperty Name="DirectorateNationCountry" ColumnName="DirectorateNationCountry" />
+          <ScalarProperty Name="DirectorateTownVillageCity" ColumnName="DirectorateTownVillageCity" />
+          <ScalarProperty Name="DirectoratePostcode" ColumnName="DirectoratePostcode" />
+          <ScalarProperty Name="DirectorateStatus" ColumnName="DirectorateStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GovOfficeRegions">
+      <EntityTypeMapping TypeName="ServiceDirectoryDBModel.GovOfficeRegion">
+        <MappingFragment StoreEntitySet="GovOfficeRegion">
+          <ScalarProperty Name="GovOfficeRegionID" ColumnName="GovOfficeRegionID" />
+          <ScalarProperty Name="CountyID" ColumnName="CountyID" />
+          <ScalarProperty Name="GovOfficeRegionName" ColumnName="GovOfficeRegionName" />
+          <ScalarProperty Name="GovOfficeRegionIsActive" ColumnName="GovOfficeRegionIsActive" />
+          <ScalarProperty Name="GovOfficeRegionShortDescription" ColumnName="GovOfficeRegionShortDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Organisations">
+      <EntityTypeMapping TypeName="ServiceDirectoryDBModel.Organisation">
+        <MappingFragment StoreEntitySet="Organisation">
+          <ScalarProperty Name="OrgID" ColumnName="OrgID" />
+          <ScalarProperty Name="ContactID" ColumnName="ContactID" />
+          <ScalarProperty Name="OrgName" ColumnName="OrgName" />
+          <ScalarProperty Name="OrganisationPreferred" ColumnName="OrganisationPreferred" />
+          <ScalarProperty Name="OrganisationExpressionOfInterest" ColumnName="OrganisationExpressionOfInterest" />
+          <ScalarProperty Name="OrganisationAddressLine1" ColumnName="OrganisationAddressLine1" />
+          <ScalarProperty Name="OrganisationAddressLine2" ColumnName="OrganisationAddressLine2" />
+          <ScalarProperty Name="OrganisationAddressLine3" ColumnName="OrganisationAddressLine3" />
+          <ScalarProperty Name="OrganisationPremiseNumber" ColumnName="OrganisationPremiseNumber" />
+          <ScalarProperty Name="OrganisationFax" ColumnName="OrganisationFax" />
+          <ScalarProperty Name="OrganisationEmail" ColumnName="OrganisationEmail" />
+          <ScalarProperty Name="OrganisationWebAddress" ColumnName="OrganisationWebAddress" />
+          <ScalarProperty Name="OrganisationCharityNumber" ColumnName="OrganisationCharityNumber" />
+          <ScalarProperty Name="OrganisationCompanyNumber" ColumnName="OrganisationCompanyNumber" />
+          <ScalarProperty Name="OrganisationPostode" ColumnName="OrganisationPostode" />
+          <ScalarProperty Name="OrganisationCityTown" ColumnName="OrganisationCityTown" />
+          <ScalarProperty Name="OrganisationNationCountry" ColumnName="OrganisationNationCountry" />
+          <ScalarProperty Name="OrganisationCounty" ColumnName="OrganisationCounty" />
+          <ScalarProperty Name="OrganisationShortDescription" ColumnName="OrganisationShortDescription" />
+          <ScalarProperty Name="OrganisationFullDescription" ColumnName="OrganisationFullDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Premises">
+      <EntityTypeMapping TypeName="ServiceDirectoryDBModel.Premise">
+        <MappingFragment StoreEntitySet="Premise">
+          <ScalarProperty Name="PremiseID" ColumnName="PremiseID" />
+          <ScalarProperty Name="ServiceID" ColumnName="ServiceID" />
+          <ScalarProperty Name="PremiseName" ColumnName="PremiseName" />
+          <ScalarProperty Name="PrimaryLocation" ColumnName="PrimaryLocation" />
+          <ScalarProperty Name="PremisePhoneNumber" ColumnName="PremisePhoneNumber" />
+          <ScalarProperty Name="PremiseAddress" ColumnName="PremiseAddress" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Programmes">
+      <EntityTypeMapping TypeName="ServiceDirectoryDBModel.Programme">
+        <MappingFragment StoreEntitySet="Programme">
+          <ScalarProperty Name="ProgrammeID" ColumnName="ProgrammeID" />
+          <ScalarProperty Name="ContactID" ColumnName="ContactID" />
+          <ScalarProperty Name="ProgrammeName" ColumnName="ProgrammeName" />
+          <ScalarProperty Name="ProgrammeDescription" ColumnName="ProgrammeDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ReferenceDatas">
+      <EntityTypeMapping TypeName="ServiceDirectoryDBModel.ReferenceData">
+        <MappingFragment StoreEntitySet="ReferenceData">
+          <ScalarProperty Name="RefID" ColumnName="RefID" />
+          <ScalarProperty Name="RefCode" ColumnName="RefCode" />
+          <ScalarProperty Name="RefValue" ColumnName="RefValue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Services">
+      <EntityTypeMapping TypeName="ServiceDirectoryDBModel.Service">
+        <MappingFragment StoreEntitySet="Service">
+          <ScalarProperty Name="ServiceID" ColumnName="ServiceID" />
+          <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
+          <ScalarProperty Name="ServiceActive" ColumnName="ServiceActive" />
+          <ScalarProperty Name="ShortDescription" ColumnName="ShortDescription" />
+          <ScalarProperty Name="DeptCode" ColumnName="DeptCode" />
+          <ScalarProperty Name="ClientDescription" ColumnName="ClientDescription" />
+          <ScalarProperty Name="DeliveryDescription" ColumnName="DeliveryDescription" />
+          <ScalarProperty Name="Attendance" ColumnName="Attendance" />
+          <ScalarProperty Name="StartExpected" ColumnName="StartExpected" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="Extendable" ColumnName="Extendable" />
+          <ScalarProperty Name="ExtendableYears" ColumnName="ExtendableYears" />
+          <ScalarProperty Name="ExtendableMonths" ColumnName="ExtendableMonths" />
+          <ScalarProperty Name="ContractCode" ColumnName="ContractCode" />
+          <ScalarProperty Name="ContractValue" ColumnName="ContractValue" />
+          <ScalarProperty Name="StagedPayment" ColumnName="StagedPayment" />
+          <ScalarProperty Name="ReferalProcessMethod" ColumnName="ReferalProcessMethod" />
+          <ScalarProperty Name="TimeLimited" ColumnName="TimeLimited" />
+          <ScalarProperty Name="TimeLimitedYears" ColumnName="TimeLimitedYears" />
+          <ScalarProperty Name="TimeLimitedMonths" ColumnName="TimeLimitedMonths" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SupportingMaterials">
+      <EntityTypeMapping TypeName="ServiceDirectoryDBModel.SupportingMaterial">
+        <MappingFragment StoreEntitySet="SupportingMaterial">
+          <ScalarProperty Name="SupportingMaterialID" ColumnName="SupportingMaterialID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="OrgID" ColumnName="OrgID" />
+          <ScalarProperty Name="URL" ColumnName="URL" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />
+          <ScalarProperty Name="SupportingMaterialDescription" ColumnName="SupportingMaterialDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="ServiceDirectoryDBModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Teams">
+      <EntityTypeMapping TypeName="ServiceDirectoryDBModel.Team">
+        <MappingFragment StoreEntitySet="Team">
+          <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+          <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+          <ScalarProperty Name="ContactID" ColumnName="ContactID" />
+          <ScalarProperty Name="TeamName" ColumnName="TeamName" />
+          <ScalarProperty Name="TeamAddressLine1" ColumnName="TeamAddressLine1" />
+          <ScalarProperty Name="TeamAddressLine2" ColumnName="TeamAddressLine2" />
+          <ScalarProperty Name="TeamAddressLine3" ColumnName="TeamAddressLine3" />
+          <ScalarProperty Name="TeamCountry" ColumnName="TeamCountry" />
+          <ScalarProperty Name="TeamPostcode" ColumnName="TeamPostcode" />
+          <ScalarProperty Name="TeamShortDescription" ColumnName="TeamShortDescription" />
+          <ScalarProperty Name="TeamFullDescription" ColumnName="TeamFullDescription" />
+          <ScalarProperty Name="TeamCounty" ColumnName="TeamCounty" />
+          <ScalarProperty Name="TeamFax" ColumnName="TeamFax" />
+          <ScalarProperty Name="TeamEmail" ColumnName="TeamEmail" />
+          <ScalarProperty Name="TeamWebAddress" ColumnName="TeamWebAddress" />
+          <ScalarProperty Name="TeamNationCountry" ColumnName="TeamNationCountry" />
+          <ScalarProperty Name="TeamTownVillageCity" ColumnName="TeamTownVillageCity" />
+          <ScalarProperty Name="TeamPremiseNumber" ColumnName="TeamPremiseNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Towns">
+      <EntityTypeMapping TypeName="ServiceDirectoryDBModel.Town">
+        <MappingFragment StoreEntitySet="Town">
+          <ScalarProperty Name="TownID" ColumnName="TownID" />
+          <ScalarProperty Name="CountyID" ColumnName="CountyID" />
+          <ScalarProperty Name="TownName" ColumnName="TownName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TrustDistricts">
+      <EntityTypeMapping TypeName="ServiceDirectoryDBModel.TrustDistrict">
+        <MappingFragment StoreEntitySet="TrustDistrict">
+          <ScalarProperty Name="TrustDistrictID" ColumnName="TrustDistrictID" />
+          <ScalarProperty Name="TrustRegionID" ColumnName="TrustRegionID" />
+          <ScalarProperty Name="TrustDistrictName" ColumnName="TrustDistrictName" />
+          <ScalarProperty Name="TrustDistrictShortDescription" ColumnName="TrustDistrictShortDescription" />
+          <ScalarProperty Name="TrustDistrictIsActive" ColumnName="TrustDistrictIsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TrustRegions">
+      <EntityTypeMapping TypeName="ServiceDirectoryDBModel.TrustRegion">
+        <MappingFragment StoreEntitySet="TrustRegion">
+          <ScalarProperty Name="TrustRegionID" ColumnName="TrustRegionID" />
+          <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+          <ScalarProperty Name="TrustRegionName" ColumnName="TrustRegionName" />
+          <ScalarProperty Name="TrustRegionIsActive" ColumnName="TrustRegionIsActive" />
+          <ScalarProperty Name="TrustRegionShortDescription" ColumnName="TrustRegionShortDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="ServiceDirectoryDBModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Account" ColumnName="Account" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="OrganisationProgramme" TypeName="ServiceDirectoryDBModel.OrganisationProgramme" StoreEntitySet="OrganisationProgramme">
+      <EndProperty Name="Organisation">
+        <ScalarProperty Name="OrgID" ColumnName="OrgID" />
+      </EndProperty>
+      <EndProperty Name="Programme">
+        <ScalarProperty Name="ProgrammeID" ColumnName="ProgrammeID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ServiceOrganisation" TypeName="ServiceDirectoryDBModel.ServiceOrganisation" StoreEntitySet="ServiceOrganisation">
+      <EndProperty Name="Organisation">
+        <ScalarProperty Name="OrgID" ColumnName="OrgID" />
+      </EndProperty>
+      <EndProperty Name="Service">
+        <ScalarProperty Name="ServiceID" ColumnName="ServiceID" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

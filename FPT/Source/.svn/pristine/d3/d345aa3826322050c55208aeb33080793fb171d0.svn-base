@@ -1,0 +1,16 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using CSS.ViewModels;
+
+namespace CSS.ViewModels
+{
+    public class AgreementModel
+    {
+        public BasicDetailModel ModelBasicDetail { get; set; }
+        public SearchDealerModel ModelSearchDealer { get; set; }
+        public VolumeBandingModel ModelVolumeBanding { get; set; }
+        public MiscTextModel ModelMiscText { get; set; }
+    }
+}

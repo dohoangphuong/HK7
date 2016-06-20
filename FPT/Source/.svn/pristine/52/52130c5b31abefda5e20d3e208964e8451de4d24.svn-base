@@ -1,0 +1,58 @@
+﻿.body {
+    border: 1px solid grey;
+    width: 430px;
+    height: 340px;
+}
+
+.book_main {
+    border: 1px solid grey;
+    height: 60px;
+    color: white;
+    background-color: #000077;
+}
+
+.lable {
+    color: black;
+    text-align: right;
+    width: 80px;
+}
+
+#table {
+    width: 100%;
+    padding: 10px 10px 10px 10px;
+}
+
+#table2 {
+    width: 100%;
+    padding: 1px 1px 1px 1px;
+}
+
+.text_ID {
+    width: 100px;
+    height: 20px;
+}
+
+.text_Title {
+    width: 250px;
+    height: 20px;
+}
+
+#select {
+    width: 250px;
+    height: 30px;
+}
+
+#fieldSet {
+    width: 200px;
+}
+
+#tablebutton {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.button {
+    width: 75px;
+    height: 40px;
+    text-align: center;
+}

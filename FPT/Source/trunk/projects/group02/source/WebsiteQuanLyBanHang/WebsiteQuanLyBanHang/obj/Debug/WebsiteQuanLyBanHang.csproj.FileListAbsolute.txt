@@ -1,0 +1,215 @@
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\WebsiteQuanLyBanHang.dll.config
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\WebsiteQuanLyBanHang.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\WebsiteQuanLyBanHang.pdb
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\Antlr3.Runtime.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\EntityFramework.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\EntityFramework.SqlServer.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\Microsoft.AspNet.Identity.Core.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\Microsoft.AspNet.Identity.Owin.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\Microsoft.Owin.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\Microsoft.Owin.Host.SystemWeb.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\Microsoft.Owin.Security.Cookies.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\Microsoft.Owin.Security.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\Microsoft.Owin.Security.Facebook.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\Microsoft.Owin.Security.Google.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\Microsoft.Owin.Security.OAuth.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\Microsoft.Owin.Security.Twitter.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\Microsoft.Web.Infrastructure.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\Newtonsoft.Json.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\Owin.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\System.Web.Helpers.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\System.Web.Mvc.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\System.Web.Optimization.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\System.Web.Razor.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\System.Web.WebPages.Deployment.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\System.Web.WebPages.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\System.Web.WebPages.Razor.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\WebGrease.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\Antlr3.Runtime.pdb
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\Newtonsoft.Json.xml
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\System.Web.Helpers.xml
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\System.Web.Mvc.xml
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\System.Web.Optimization.xml
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\System.Web.Razor.xml
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\System.Web.WebPages.xml
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\System.Web.WebPages.Deployment.xml
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\System.Web.WebPages.Razor.xml
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\EntityFramework.xml
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\EntityFramework.SqlServer.xml
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\Microsoft.AspNet.Identity.Core.xml
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\Microsoft.AspNet.Identity.Owin.xml
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\Microsoft.Owin.xml
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\Microsoft.Owin.Host.SystemWeb.xml
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\Microsoft.Owin.Security.xml
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\Microsoft.Owin.Security.Facebook.xml
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\Microsoft.Owin.Security.Cookies.xml
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\Microsoft.Owin.Security.OAuth.xml
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\Microsoft.Owin.Security.Google.xml
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\Microsoft.Owin.Security.Twitter.xml
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\obj\Debug\WebsiteQuanLyBanHang.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\obj\Debug\WebsiteQuanLyBanHang.pdb
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\AjaxControlToolkit.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\WebsiteQuanLyBanHang.dll.config
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\WebsiteQuanLyBanHang.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\WebsiteQuanLyBanHang.pdb
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\AjaxControlToolkit.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\Antlr3.Runtime.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\DevExpress.Office.v15.1.Core.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\EntityFramework.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\EntityFramework.SqlServer.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\Microsoft.AspNet.Identity.Core.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\Microsoft.AspNet.Identity.Owin.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\Microsoft.Owin.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\Microsoft.Owin.Host.SystemWeb.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\Microsoft.Owin.Security.Cookies.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\Microsoft.Owin.Security.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\Microsoft.Owin.Security.Facebook.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\Microsoft.Owin.Security.Google.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\Microsoft.Owin.Security.OAuth.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\Microsoft.Owin.Security.Twitter.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\Microsoft.Web.Infrastructure.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\Newtonsoft.Json.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\Owin.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\PagedList.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\PagedList.Mvc.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\System.Web.Helpers.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\System.Web.Mvc.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\System.Web.Optimization.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\System.Web.Razor.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\System.Web.WebPages.Deployment.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\System.Web.WebPages.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\System.Web.WebPages.Razor.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\WebGrease.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\DevExpress.Data.v15.1.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\DevExpress.Printing.v15.1.Core.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\Antlr3.Runtime.pdb
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\DevExpress.Office.v15.1.Core.xml
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\Newtonsoft.Json.xml
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\PagedList.xml
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\PagedList.Mvc.xml
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\System.Web.Helpers.xml
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\System.Web.Mvc.xml
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\System.Web.Optimization.xml
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\System.Web.Razor.xml
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\System.Web.WebPages.xml
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\System.Web.WebPages.Deployment.xml
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\System.Web.WebPages.Razor.xml
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\EntityFramework.xml
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\EntityFramework.SqlServer.xml
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\Microsoft.AspNet.Identity.Core.xml
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\Microsoft.AspNet.Identity.Owin.xml
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\Microsoft.Owin.xml
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\Microsoft.Owin.Host.SystemWeb.xml
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\Microsoft.Owin.Security.xml
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\Microsoft.Owin.Security.Facebook.xml
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\Microsoft.Owin.Security.Cookies.xml
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\Microsoft.Owin.Security.OAuth.xml
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\Microsoft.Owin.Security.Google.xml
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\Microsoft.Owin.Security.Twitter.xml
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\DevExpress.Data.v15.1.xml
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\DevExpress.Printing.v15.1.Core.xml
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\de\DevExpress.Office.v15.1.Core.resources.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\es\DevExpress.Office.v15.1.Core.resources.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\ja\DevExpress.Office.v15.1.Core.resources.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\ru\DevExpress.Office.v15.1.Core.resources.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\de\DevExpress.Data.v15.1.resources.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\es\DevExpress.Data.v15.1.resources.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\ja\DevExpress.Data.v15.1.resources.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\ru\DevExpress.Data.v15.1.resources.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\de\DevExpress.Printing.v15.1.Core.resources.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\es\DevExpress.Printing.v15.1.Core.resources.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\ja\DevExpress.Printing.v15.1.Core.resources.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\bin\ru\DevExpress.Printing.v15.1.Core.resources.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\obj\Debug\WebsiteQuanLyBanHang.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang(Version 2.0)\WebsiteQuanLyBanHang\obj\Debug\WebsiteQuanLyBanHang.pdb
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\DevExpress.Office.v15.1.Core.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\PagedList.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\PagedList.Mvc.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\DevExpress.Data.v15.1.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\DevExpress.Printing.v15.1.Core.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\DevExpress.Office.v15.1.Core.xml
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\PagedList.xml
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\PagedList.Mvc.xml
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\DevExpress.Data.v15.1.xml
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\DevExpress.Printing.v15.1.Core.xml
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\de\DevExpress.Office.v15.1.Core.resources.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\es\DevExpress.Office.v15.1.Core.resources.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\ja\DevExpress.Office.v15.1.Core.resources.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\ru\DevExpress.Office.v15.1.Core.resources.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\de\DevExpress.Data.v15.1.resources.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\es\DevExpress.Data.v15.1.resources.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\ja\DevExpress.Data.v15.1.resources.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\ru\DevExpress.Data.v15.1.resources.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\de\DevExpress.Printing.v15.1.Core.resources.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\es\DevExpress.Printing.v15.1.Core.resources.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\ja\DevExpress.Printing.v15.1.Core.resources.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\ru\DevExpress.Printing.v15.1.Core.resources.dll
+D:\Study\GST\SVN\trunk\projects\group02\source\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\obj\Debug\WebsiteQuanLyBanHang.csprojResolveAssemblyReference.cache
+C:\Users\PhamNamTruong\Desktop\GST\GSTwc\trunk\projects\group02\source\New folder\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\WebsiteQuanLyBanHang.dll.config
+C:\Users\PhamNamTruong\Desktop\GST\GSTwc\trunk\projects\group02\source\New folder\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\WebsiteQuanLyBanHang.dll
+C:\Users\PhamNamTruong\Desktop\GST\GSTwc\trunk\projects\group02\source\New folder\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\WebsiteQuanLyBanHang.pdb
+C:\Users\PhamNamTruong\Desktop\GST\GSTwc\trunk\projects\group02\source\New folder\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\AjaxControlToolkit.dll
+C:\Users\PhamNamTruong\Desktop\GST\GSTwc\trunk\projects\group02\source\New folder\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\Antlr3.Runtime.dll
+C:\Users\PhamNamTruong\Desktop\GST\GSTwc\trunk\projects\group02\source\New folder\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\EntityFramework.dll
+C:\Users\PhamNamTruong\Desktop\GST\GSTwc\trunk\projects\group02\source\New folder\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\EntityFramework.SqlServer.dll
+C:\Users\PhamNamTruong\Desktop\GST\GSTwc\trunk\projects\group02\source\New folder\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\PhamNamTruong\Desktop\GST\GSTwc\trunk\projects\group02\source\New folder\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\PhamNamTruong\Desktop\GST\GSTwc\trunk\projects\group02\source\New folder\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\PhamNamTruong\Desktop\GST\GSTwc\trunk\projects\group02\source\New folder\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\Microsoft.Owin.dll
+C:\Users\PhamNamTruong\Desktop\GST\GSTwc\trunk\projects\group02\source\New folder\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\PhamNamTruong\Desktop\GST\GSTwc\trunk\projects\group02\source\New folder\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\PhamNamTruong\Desktop\GST\GSTwc\trunk\projects\group02\source\New folder\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\Microsoft.Owin.Security.dll
+C:\Users\PhamNamTruong\Desktop\GST\GSTwc\trunk\projects\group02\source\New folder\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\PhamNamTruong\Desktop\GST\GSTwc\trunk\projects\group02\source\New folder\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\PhamNamTruong\Desktop\GST\GSTwc\trunk\projects\group02\source\New folder\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\PhamNamTruong\Desktop\GST\GSTwc\trunk\projects\group02\source\New folder\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\PhamNamTruong\Desktop\GST\GSTwc\trunk\projects\group02\source\New folder\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\PhamNamTruong\Desktop\GST\GSTwc\trunk\projects\group02\source\New folder\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\PhamNamTruong\Desktop\GST\GSTwc\trunk\projects\group02\source\New folder\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\Newtonsoft.Json.dll
+C:\Users\PhamNamTruong\Desktop\GST\GSTwc\trunk\projects\group02\source\New folder\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\Owin.dll
+C:\Users\PhamNamTruong\Desktop\GST\GSTwc\trunk\projects\group02\source\New folder\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\PagedList.dll
+C:\Users\PhamNamTruong\Desktop\GST\GSTwc\trunk\projects\group02\source\New folder\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\PagedList.Mvc.dll
+C:\Users\PhamNamTruong\Desktop\GST\GSTwc\trunk\projects\group02\source\New folder\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\System.Web.Helpers.dll
+C:\Users\PhamNamTruong\Desktop\GST\GSTwc\trunk\projects\group02\source\New folder\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\System.Web.Mvc.dll
+C:\Users\PhamNamTruong\Desktop\GST\GSTwc\trunk\projects\group02\source\New folder\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\System.Web.Optimization.dll
+C:\Users\PhamNamTruong\Desktop\GST\GSTwc\trunk\projects\group02\source\New folder\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\System.Web.Razor.dll
+C:\Users\PhamNamTruong\Desktop\GST\GSTwc\trunk\projects\group02\source\New folder\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\System.Web.WebPages.Deployment.dll
+C:\Users\PhamNamTruong\Desktop\GST\GSTwc\trunk\projects\group02\source\New folder\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\System.Web.WebPages.dll
+C:\Users\PhamNamTruong\Desktop\GST\GSTwc\trunk\projects\group02\source\New folder\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\System.Web.WebPages.Razor.dll
+C:\Users\PhamNamTruong\Desktop\GST\GSTwc\trunk\projects\group02\source\New folder\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\WebGrease.dll
+C:\Users\PhamNamTruong\Desktop\GST\GSTwc\trunk\projects\group02\source\New folder\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\Antlr3.Runtime.pdb
+C:\Users\PhamNamTruong\Desktop\GST\GSTwc\trunk\projects\group02\source\New folder\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\Newtonsoft.Json.xml
+C:\Users\PhamNamTruong\Desktop\GST\GSTwc\trunk\projects\group02\source\New folder\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\PagedList.xml
+C:\Users\PhamNamTruong\Desktop\GST\GSTwc\trunk\projects\group02\source\New folder\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\PagedList.Mvc.xml
+C:\Users\PhamNamTruong\Desktop\GST\GSTwc\trunk\projects\group02\source\New folder\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\System.Web.Helpers.xml
+C:\Users\PhamNamTruong\Desktop\GST\GSTwc\trunk\projects\group02\source\New folder\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\System.Web.Mvc.xml
+C:\Users\PhamNamTruong\Desktop\GST\GSTwc\trunk\projects\group02\source\New folder\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\System.Web.Optimization.xml
+C:\Users\PhamNamTruong\Desktop\GST\GSTwc\trunk\projects\group02\source\New folder\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\System.Web.Razor.xml
+C:\Users\PhamNamTruong\Desktop\GST\GSTwc\trunk\projects\group02\source\New folder\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\System.Web.WebPages.xml
+C:\Users\PhamNamTruong\Desktop\GST\GSTwc\trunk\projects\group02\source\New folder\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\System.Web.WebPages.Deployment.xml
+C:\Users\PhamNamTruong\Desktop\GST\GSTwc\trunk\projects\group02\source\New folder\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\System.Web.WebPages.Razor.xml
+C:\Users\PhamNamTruong\Desktop\GST\GSTwc\trunk\projects\group02\source\New folder\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\EntityFramework.xml
+C:\Users\PhamNamTruong\Desktop\GST\GSTwc\trunk\projects\group02\source\New folder\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\EntityFramework.SqlServer.xml
+C:\Users\PhamNamTruong\Desktop\GST\GSTwc\trunk\projects\group02\source\New folder\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\PhamNamTruong\Desktop\GST\GSTwc\trunk\projects\group02\source\New folder\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\PhamNamTruong\Desktop\GST\GSTwc\trunk\projects\group02\source\New folder\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\PhamNamTruong\Desktop\GST\GSTwc\trunk\projects\group02\source\New folder\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\Microsoft.Owin.xml
+C:\Users\PhamNamTruong\Desktop\GST\GSTwc\trunk\projects\group02\source\New folder\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\PhamNamTruong\Desktop\GST\GSTwc\trunk\projects\group02\source\New folder\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\Microsoft.Owin.Security.xml
+C:\Users\PhamNamTruong\Desktop\GST\GSTwc\trunk\projects\group02\source\New folder\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\PhamNamTruong\Desktop\GST\GSTwc\trunk\projects\group02\source\New folder\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\PhamNamTruong\Desktop\GST\GSTwc\trunk\projects\group02\source\New folder\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\PhamNamTruong\Desktop\GST\GSTwc\trunk\projects\group02\source\New folder\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\PhamNamTruong\Desktop\GST\GSTwc\trunk\projects\group02\source\New folder\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\PhamNamTruong\Desktop\GST\GSTwc\trunk\projects\group02\source\New folder\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\PhamNamTruong\Desktop\GST\GSTwc\trunk\projects\group02\source\New folder\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\obj\Debug\WebsiteQuanLyBanHang.csprojResolveAssemblyReference.cache
+C:\Users\PhamNamTruong\Desktop\GST\GSTwc\trunk\projects\group02\source\New folder\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\obj\Debug\WebsiteQuanLyBanHang.dll
+C:\Users\PhamNamTruong\Desktop\GST\GSTwc\trunk\projects\group02\source\New folder\WebsiteQuanLyBanHang\WebsiteQuanLyBanHang\obj\Debug\WebsiteQuanLyBanHang.pdb

@@ -1,0 +1,197 @@
+﻿@model ServicesDirectory.Models.DatabaseMapper.Service
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Service</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ServiceName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ServiceName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ServiceShortDescription)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ServiceShortDescription)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ServiceSubType.ServiceSubTypeName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ServiceSubType.ServiceSubTypeName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Contact.FirstName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Contact.FirstName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ClientDescription)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ClientDescription)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ServiceAttendance)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ServiceAttendance)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ServiceStartExpected)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ServiceStartExpected)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ServiceStartDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ServiceStartDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ServiceEndDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ServiceEndDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ServiceExtendable)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ServiceExtendable)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ServiceExtendableMonth)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ServiceExtendableMonth)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ServiceExtendableYear)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ServiceExtendableYear)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ServiceFullDescription)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ServiceFullDescription)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DepartmentCode)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DepartmentCode)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ServiceType.ServiceTypeName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ServiceType.ServiceTypeName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ServiceDescriptionDelivery)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ServiceDescriptionDelivery)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ServiceContractCode)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ServiceContractCode)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ServiceContractValue)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ServiceContractValue)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.IsContractStagedPayment)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IsContractStagedPayment)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ReferralMethod.ReferralMethodName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ReferralMethod.ReferralMethodName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.IsTimeLimited)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IsTimeLimited)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.LimitedYears)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LimitedYears)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.LimitedMonths)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LimitedMonths)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Programme.ProgrammeName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Programme.ProgrammeName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ContractParticipationType.ContractParticipationTypeName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ContractParticipationType.ContractParticipationTypeName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.IsActive)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IsActive)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ServiceId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

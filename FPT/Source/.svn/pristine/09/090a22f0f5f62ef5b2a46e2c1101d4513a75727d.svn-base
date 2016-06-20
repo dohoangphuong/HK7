@@ -1,0 +1,53 @@
+﻿@model CSS.ViewModels.SearchAgreementModel
+
+@{
+    ViewBag.Title = "RejectAgreement";
+}
+<div class="titleRejectAgreement">
+    <h1 style="color:blue">Corporate Sales Solution</h1>
+    <h2 style="color:gray">RejectAgreement</h2>
+</div>
+
+
+<div id="atrributes" class="atrributes">
+    <div class="form-horizontal" style="height:30%" >
+        <div class="form-group">
+              @Html.LabelFor(model => model.RFONumber, htmlAttributes: new { @class = "control-label col-md-2"})
+                <div class="col-md-10" style="color:blue">
+                    <label class="control-label col-md-2">@Model.RFONumber</label>
+                </div>
+         </div>
+
+        <div class="form-group">
+              @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10" style="color:blue">
+                    <label class="control-label col-md-2">@Model.Name</label>            
+                </div>
+         </div>
+
+        <div class="form-group">
+              @Html.LabelFor(model => model.AgreementNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10" style="color:blue">
+                     <label class="control-label col-md-2">@Model.AgreementNumber</label>
+                </div>
+         </div>
+
+        <div class="form-group">
+              @Html.LabelFor(model => model.Reason, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                     @Html.TextAreaFor(model => model.Reason,5,80, htmlAttributes: new { @class = "control-label col-md-8", @Styles ="color:blue" })
+                     @Html.ValidationMessageFor(model => model.Reason, "", new { @class = "text-danger" })
+                </div>
+         </div>
+
+    </div> 
+</div>
+
+<br />
+
+<div id="bottomMenu" class="bottomMenuReject">
+        <img src="/Images/mark.png" alt="mark logo" />
+        <a href="#">Reject</a>
+        <img src="/Images/mark.png" alt="mark logo" />
+       <a href="#">Cancel</a>
+</div>

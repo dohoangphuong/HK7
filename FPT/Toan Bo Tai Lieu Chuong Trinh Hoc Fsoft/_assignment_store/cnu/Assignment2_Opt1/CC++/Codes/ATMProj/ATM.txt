@@ -1,0 +1,2 @@
+ID	Branch	Adress 	Name	WithdrawLimit	500	200	100	50	
+1	caugiay	Hanoi	ATMcaugiay	4000	3	4	0	10	

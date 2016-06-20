@@ -1,0 +1,12 @@
+E:\Aptech\AcademicHead\ChuongTrinh\ACCP 2007i\Sem3-Xong\Winform\Ngay5\ASSforTeacher\Wellizon\Wellizon\bin\Debug\Wellizon.XML
+E:\Aptech\AcademicHead\ChuongTrinh\ACCP 2007i\Sem3-Xong\Winform\Ngay5\ASSforTeacher\Wellizon\Wellizon\obj\Debug\Wellizon.exe
+E:\Aptech\AcademicHead\ChuongTrinh\ACCP 2007i\Sem3-Xong\Winform\Ngay5\ASSforTeacher\Wellizon\Wellizon\obj\Debug\Wellizon.pdb
+E:\Aptech\AcademicHead\ChuongTrinh\ACCP 2007i\Sem3-Xong\Winform\Ngay5\ASSforTeacher\Wellizon\Wellizon\bin\Debug\Wellizon.exe
+E:\Aptech\AcademicHead\ChuongTrinh\ACCP 2007i\Sem3-Xong\Winform\Ngay5\ASSforTeacher\Wellizon\Wellizon\bin\Debug\Wellizon.pdb
+E:\Aptech\AcademicHead\ChuongTrinh\ACCP 2007i\Sem3-Xong\Winform\Ngay5\ASSforTeacher\Wellizon\Wellizon\obj\Debug\ResolveAssemblyReference.cache
+E:\Aptech\AcademicHead\ChuongTrinh\ACCP 2007i\Sem3-Xong\Winform\Ngay5\ASSforTeacher\Wellizon\Wellizon\obj\Debug\Wellizon.frmCustomerDetails.resources
+E:\Aptech\AcademicHead\ChuongTrinh\ACCP 2007i\Sem3-Xong\Winform\Ngay5\ASSforTeacher\Wellizon\Wellizon\obj\Debug\Wellizon.Properties.Resources.resources
+E:\Aptech\AcademicHead\ChuongTrinh\ACCP 2007i\Sem3-Xong\Winform\Ngay5\ASSforTeacher\Wellizon\Wellizon\obj\Debug\Wellizon.csproj.GenerateResource.Cache
+E:\_TaiLieuGiangDay\Aptech\1. Winform\Ngay5\ASSforTeacher\Wellizon\Wellizon\bin\Debug\Wellizon.XML
+E:\_TaiLieuGiangDay\Aptech\1. Winform\Ngay5\ASSforTeacher\Wellizon\Wellizon\obj\Debug\Wellizon.exe
+E:\_TaiLieuGiangDay\Aptech\1. Winform\Ngay5\ASSforTeacher\Wellizon\Wellizon\obj\Debug\Wellizon.pdb

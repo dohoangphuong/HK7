@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link href="MyStyle.css" rel="stylesheet" />
+    <title>Book Maintenance
+    </title>
+
+    <style type="text/css">
+        .auto-style1 {
+            text-align: right;
+            height: 28px;
+        }
+        .auto-style2 {
+            height: 28px;
+        }
+    </style>
+
+</head>
+<body>
+    <table>
+        <tr>
+            <td class="left-top my-style" colspan="3">
+                <h2>Book Maintenace </h2>
+            </td>
+
+        </tr>
+
+        <tr>
+            <td class="label">Book ID:
+            </td>
+            <td colspan="2">
+                <input id="TxtBookId" type="text" class="input" />
+            </td>
+        </tr>
+        <tr>
+            <td class="label">Book Title:</td>
+            <td colspan="2">
+                <input class="input" type="text" id="txtBookTitle" />
+            </td>
+        </tr>
+        <tr>
+            <td class="label">Author: </td>
+            <td colspan="2">
+                <input id="TxtAuthor" class="input" type="text" /></td>
+        </tr>
+        <tr>
+            <td class="label">Category</td>
+            <td colspan="2" class="group-check-box" >
+                
+                <table class="group-container-check-box">
+                    <tr>
+                        <td>
+                            <input id="CbxHorror" type="checkbox" /> Horror
+                             
+                        </td>
+                        <td>
+                            <input id="CbxRomance" type="checkbox" /> Romance
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input id="CbxThriller" type="checkbox" /> Thriller
+                        </td>
+                        <td>
+                            <input id="CbxSci-fi" type="checkbox" /> Sci-fi
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        
+        <tr>
+            <td class="label">Publisher: </td>
+            <td>
+                <select id="SelPublisher" class="input">
+                    <option></option>
+
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="Center">
+                <input type="button" id="SbmOK" value="OK" class="my-button"/> 
+                <input type="button" id="SbmCancle" value="Cancel" class="my-button"/>
+            </td>
+        </tr>
+
+    </table>
+</body>
+</html>

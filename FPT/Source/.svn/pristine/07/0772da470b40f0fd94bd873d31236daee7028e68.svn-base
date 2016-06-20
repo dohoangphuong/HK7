@@ -1,0 +1,42 @@
+﻿@model CSS.ViewModels.SubmitAgreement
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>CompleteAgreements</title>
+    <link href="~/Content/StyleUC_5_6_7.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <div class="body">
+        <div class="title">
+            <h3><b>CORPORATE SALES SOLUTION</b></h3>
+        </div>
+        <br />
+        <div class="center">
+            <h4><b>Agreement Complete</b></h4>
+        </div>
+        <br />
+        <div class="left">
+            <div>Thank you for creating the agreement.</div>
+            @if(Model.Name !=null)
+            { 
+                <div>The agreement has been add to a be authorised by <b>@Html.DisplayFor(model=>model.Name)</b></div>
+            }
+            else
+            {
+                <div>The agreement has been add to a be authorised by <b>you</b></div>
+            }
+            @Html.TextBoxFor(model => model.AgreementNumber, new { @type = "hidden" })
+            @Html.TextBoxFor(model => model.VariantNumber, new { @type = "hidden" })
+        </div>
+    </div>
+    <div class="right">
+        @Html.ActionLink("View Agreement", "ViewAgreement", new { agreementnumber = Model.AgreementNumber, variantnumber = Model.VariantNumber }, new { @class = " btn btn-default" })
+        <a class=" btn btn-default" href="#">Print</a>
+        <a class=" btn btn-default" href="#">Email</a>
+        <a class=" btn btn-default" href="#">Fax</a>
+    </div>
+</body>

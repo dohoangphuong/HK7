@@ -1,0 +1,23 @@
+Tao:
+
+netsh wlan set hostednetwork mode=allow ssid=wifi-win8 key=12345678
+
+Phat:
+
+netsh wlan start hostednetwork
+
+Kiem tra:
+
+netsh wlan show hostednetwork
+
+Tat:
+
+netsh wlan stop hostednetwork
+
+Huy bo 1 hosted da tao:
+
+netsh wlan set hostednetwork mode=disallow ssid=wifi-win8 key=12345678
+
+Huy bo tat ca cac hosted da tao:
+
+netsh wlan set hostednetwork mode=disallow

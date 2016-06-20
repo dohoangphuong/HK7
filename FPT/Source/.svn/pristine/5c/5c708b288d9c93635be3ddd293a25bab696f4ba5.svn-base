@@ -1,0 +1,242 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="CustID" />
+      <PropertyRef Name="CustName" />
+      <PropertyRef Name="Overdue" />
+      <PropertyRef Name="Status" />
+      <PropertyRef Name="SalesManID" />
+    </Key>
+    <Property Name="CustID" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="CustName" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="Fax" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="Overdue" Type="Int32" Nullable="false" />
+    <Property Name="Amount" Type="Decimal" Precision="13" Scale="0" />
+    <Property Name="OverdueAmt" Type="Decimal" Precision="13" Scale="0" />
+    <Property Name="DueAmt" Type="Decimal" Precision="13" Scale="0" />
+    <Property Name="Status" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+    <Property Name="SalesManID" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Inventory">
+    <Key>
+      <PropertyRef Name="InvtID" />
+      <PropertyRef Name="InvtName" />
+      <PropertyRef Name="UnitID_T" />
+      <PropertyRef Name="UnitID_L" />
+      <PropertyRef Name="UnitRate" />
+      <PropertyRef Name="Status" />
+    </Key>
+    <Property Name="InvtID" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="InvtName" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="ClassName" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="UnitID_T" Type="Int32" Nullable="false" />
+    <Property Name="UnitID_L" Type="Int32" Nullable="false" />
+    <Property Name="UnitRate" Type="Int32" Nullable="false" />
+    <Property Name="SalesPriceT" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="SalesPriceL" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="QtyStock" Type="Int32" />
+    <Property Name="SlsTax" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Status" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="InvoiceType">
+    <Key>
+      <PropertyRef Name="InvoiceType1" />
+      <PropertyRef Name="TypeName" />
+    </Key>
+    <Property Name="InvoiceType1" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="TypeName" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Payment">
+    <Key>
+      <PropertyRef Name="PaymentID" />
+      <PropertyRef Name="PaymentNo" />
+    </Key>
+    <Property Name="PaymentID" Type="Int32" Nullable="false" />
+    <Property Name="PaymentNo" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="PaymentDate" Type="DateTime" Precision="0" />
+    <Property Name="PaymentAmt" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="CustID" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="SalesPersonID" Type="Int32" />
+    <Property Name="Description" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="PurchaseOrder">
+    <Key>
+      <PropertyRef Name="OrderNo" />
+    </Key>
+    <Property Name="OrderNo" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="OrderDate" Type="DateTime" Precision="0" />
+    <Property Name="OrderType" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
+    <Property Name="SalesPersonID" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="OverdueDate" Type="DateTime" Precision="0" />
+    <Property Name="DiscAmt" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="PromAmt" Type="Double" />
+    <Property Name="ComAmt" Type="Double" />
+    <Property Name="TaxAmt" Type="Double" />
+    <Property Name="TotalAmt" Type="Decimal" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="ReturnGoodsDetail">
+    <Key>
+      <PropertyRef Name="ReturnGoodsDetailID" />
+      <PropertyRef Name="ReturnGoodsID" />
+      <PropertyRef Name="ProductsID" />
+      <PropertyRef Name="ReasonReturn" />
+    </Key>
+    <Property Name="ReturnGoodsDetailID" Type="Int32" Nullable="false" />
+    <Property Name="ReturnGoodsID" Type="Int32" Nullable="false" />
+    <Property Name="ProductsID" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" />
+    <Property Name="Amount" Type="Decimal" Precision="13" Scale="0" />
+    <Property Name="Deals" Type="Decimal" Precision="13" Scale="0" />
+    <Property Name="ReasonReturn" Type="String" MaxLength="500" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SalesOrder">
+    <Key>
+      <PropertyRef Name="OrderNo" />
+      <PropertyRef Name="OrderDate" />
+      <PropertyRef Name="InvoiceType" />
+      <PropertyRef Name="UserIDRec" />
+      <PropertyRef Name="CustID" />
+      <PropertyRef Name="OverdueDate" />
+    </Key>
+    <Property Name="OrderNo" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="InvoiceType" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="UserID" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="UserIDRec" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="CustID" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="OverdueDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="OrderDisc" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="TaxAmt" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="TotalAmt" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Payment" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Debt" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Description" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SlsOrderDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="OrderNo" />
+      <PropertyRef Name="InvtID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="OrderNo" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="InvtID" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Qty" Type="Int32" />
+    <Property Name="SalesPrice" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Discount" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="TaxAmt" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Amount" Type="Decimal" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="StkTransDetail">
+    <Key>
+      <PropertyRef Name="TransID" />
+      <PropertyRef Name="InvtID" />
+    </Key>
+    <Property Name="TransID" Type="Int32" Nullable="false" />
+    <Property Name="InvtID" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Qty" Type="Int32" />
+    <Property Name="Amount" Type="Decimal" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="Stock">
+    <Key>
+      <PropertyRef Name="StockID" />
+      <PropertyRef Name="StockName" />
+      <PropertyRef Name="StockAddress" />
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="StockID" Type="Int32" Nullable="false" />
+    <Property Name="StockName" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="StockAddress" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="StockTransfer">
+    <Key>
+      <PropertyRef Name="TransDate" />
+    </Key>
+    <Property Name="StockTransferID" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="TransDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="FromStockID" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="ToStockID" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="TotalAmt" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Description" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Unit">
+    <Key>
+      <PropertyRef Name="UnitID" />
+      <PropertyRef Name="UnitName" />
+    </Key>
+    <Property Name="UnitID" Type="Int32" Nullable="false" />
+    <Property Name="UnitName" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserID" />
+      <PropertyRef Name="UserName" />
+      <PropertyRef Name="Password" />
+      <PropertyRef Name="Avatar" />
+      <PropertyRef Name="Salt" />
+      <PropertyRef Name="Sex" />
+      <PropertyRef Name="Birthday" />
+      <PropertyRef Name="NgayVao" />
+      <PropertyRef Name="Mail" />
+      <PropertyRef Name="Phone" />
+      <PropertyRef Name="Type" />
+      <PropertyRef Name="Status" />
+      <PropertyRef Name="Address" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Avatar" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Salt" Type="String" MaxLength="32" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Sex" Type="String" MaxLength="3" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="NgayVao" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Mail" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Type" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Status" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Vendor">
+    <Key>
+      <PropertyRef Name="VendorID" />
+      <PropertyRef Name="VendorName" />
+      <PropertyRef Name="Status" />
+    </Key>
+    <Property Name="VendorID" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="VendorName" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="Fax" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="DueAmt" Type="Decimal" Precision="13" Scale="0" />
+    <Property Name="Amount" Type="Decimal" Precision="13" Scale="0" />
+    <Property Name="OverdueAmt" Type="Decimal" Precision="13" Scale="0" />
+    <Property Name="Status" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Customers" EntityType="Self.Customer" />
+    <EntitySet Name="Inventories" EntityType="Self.Inventory" />
+    <EntitySet Name="InvoiceTypes" EntityType="Self.InvoiceType" />
+    <EntitySet Name="Payments" EntityType="Self.Payment" />
+    <EntitySet Name="PurchaseOrders" EntityType="Self.PurchaseOrder" />
+    <EntitySet Name="ReturnGoodsDetails" EntityType="Self.ReturnGoodsDetail" />
+    <EntitySet Name="SalesOrders" EntityType="Self.SalesOrder" />
+    <EntitySet Name="SlsOrderDetails" EntityType="Self.SlsOrderDetail" />
+    <EntitySet Name="StkTransDetails" EntityType="Self.StkTransDetail" />
+    <EntitySet Name="Stocks" EntityType="Self.Stock" />
+    <EntitySet Name="StockTransfers" EntityType="Self.StockTransfer" />
+    <EntitySet Name="Units" EntityType="Self.Unit" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <EntitySet Name="Vendors" EntityType="Self.Vendor" />
+  </EntityContainer>
+</Schema>

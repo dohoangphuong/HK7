@@ -1,0 +1,226 @@
+﻿@model CSS_G06.Models.SelectCustomer
+@{
+    ViewBag.Title = "Edit Agreement";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/smart_wizard.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-2.0.0.min.js"></script>
+<script src="~/Scripts/jquery.smartWizard.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#wizard').smartWizard({
+            enableAllSteps: false
+        });
+    });
+    function goBackward() {
+        $('#wizard').smartWizard('goBackward');
+    };
+    function goFoward() {
+        $('#wizard').smartWizard('goForward');
+    };
+    function goFowradViewAgreementCustomer() {
+        $('#wizard').smartWizard('goForward');
+        var agreementNumber1 = '@Model.AgreementNumber';
+        var variantNumber1 = '@Model.AgreementVariant';
+        $.ajax({
+            url: '@Url.Action("ViewAgreementEdit_BasicDetail", "ViewAgreement")',
+            type: "GET",
+            dataType: "text",
+            data: { agreementNumber: agreementNumber1, variantNumber: variantNumber1 },
+            success: function (data) {
+                $('#uc2_2').html(data);
+            },
+            error: function (data) {
+                alert("Failed to load 'Basic Agreement Details'!");
+            }
+        });
+    };
+    function goBackHome() {
+        window.location.href = '@Url.Action("Index", "Home")';
+    }
+
+</script>
+
+<style>
+    .ContentView {
+        width: 800px;
+        height: 420px;
+        padding: 5px;
+        overflow-y: auto;
+    }
+
+    .ButtonView {
+        width: 800px;
+        height: 25px;
+        padding: 1px;
+    }
+
+    .ItemLeftLabel {
+        width: 180px;
+        padding: 2px;
+        font-size: 12px;
+        font-weight: bold;
+        color: black;
+    }
+
+    .ItemRightContent {
+        width: 600px;
+        padding: 2px;
+        font-size: 12px;
+        font-weight: normal;
+        color: #889EC7;
+    }
+
+    .ShowTableHeadTd {
+        border: 1px solid black;
+        font-size: 12px;
+        font-weight: bold;
+        color: whitesmoke;
+        background-color: #889EC7;
+        text-align: center;
+        padding-left: 5px;
+        padding-right: 5px;
+        padding-bottom: 1px;
+        padding-top: 1px;
+    }
+
+    .ShowTableContentTd {
+        border: 1px solid #889EC7;
+        font-size: 12px;
+        font-weight: normal;
+        color: #889EC7;
+        background-color: whitesmoke;
+        align-content: center;
+        text-align: center;
+        padding-left: 5px;
+        padding-right: 5px;
+        padding-bottom: 1px;
+        padding-top: 1px;
+    }
+</style>
+
+<div>
+    <table align="center" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td>
+                <!-- Smart Wizard -->
+                <div id="wizard" class="swMain">
+                    <!-- Start Menu -->
+                    <ul>
+                        <li>
+                            <a href="#uc2_1">
+                                <label class="stepNumber">1</label>
+                                <span class="stepDesc">
+                                    Select Customer
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#uc2_2">
+                                <label class="stepNumber">2</label>
+                                <span class="stepDesc">
+                                    Basic Agreement Details
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#uc2_3">
+                                <label class="stepNumber">3</label>
+                                <span class="stepDesc">
+                                    Select Applicable Dealer
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#uc2_4">
+                                <label class="stepNumber">4</label>
+                                <span class="stepDesc">
+                                    Volume Banding
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#uc2_5">
+                                <label class="stepNumber">5</label>
+                                <span class="stepDesc">
+                                    Model Support
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#uc2_6">
+                                <label class="stepNumber">6</label>
+                                <span class="stepDesc">
+                                    Misc Text
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#uc2_7">
+                                <label class="stepNumber">7</label>
+                                <span class="stepDesc">
+                                    Confirmation
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- End Menu -->
+
+                    <div id="uc2_1">
+                        <div id="uc2_1_ViewOnlyContent" class="ContentView">
+                            <table>
+                                <tr>
+                                    <td class="ItemLeftLabel">RFO Number</td>
+                                    <td class="ItemRightContent">@ViewBag.RFONumber</td>
+                                </tr>
+                                <tr>
+                                    <td class="ItemLeftLabel">Customer Type</td>
+                                    <td class="ItemRightContent">@ViewBag.CustomerType</td>
+                                </tr>
+                                <tr>
+                                    <td class="ItemLeftLabel">Customer Name</td>
+                                    <td class="ItemRightContent">@ViewBag.CustomerName</td>
+                                </tr>
+                                <tr>
+                                    <td class="ItemLeftLabel">Postcode</td>
+                                    <td class="ItemRightContent">@ViewBag.CustomerPostcode</td>
+                                </tr>
+                                <tr>
+                                    <td class="ItemLeftLabel">BusinessArea</td>
+                                    <td class="ItemRightContent">@ViewBag.BusinessArea</td>
+                                </tr>
+                                <tr>
+                                    <td class="ItemLeftLabel">Region</td>
+                                    <td class="ItemRightContent">@ViewBag.CustomerRegion</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <hr />
+                        <div id="uc2_1_ViewOnlyButton" class="ButtonView" align="right">
+                            &raquo;<input type="button" value="go back Home" style="border:none;background:none;padding-left:0px;padding-right:10px;" onclick="goBackHome()"/>
+                            &raquo;<input type="button" value="next" style="border:none;background:none;padding-left:0px;padding-right:10px;" onclick="goFowradViewAgreementCustomer()" />
+                        </div>
+
+                    </div><!-- End #uc2_1 -->
+                    <div id="uc2_2">
+                    </div><!-- End #uC2_2-->
+                    <div id="uc2_3">
+                    </div><!-- End #uC2_3 -->
+                    <div id="uc2_4">
+                    </div><!-- End #uc2_4-->
+                    <div id="uc2_5">
+                    </div><!-- End #uc2_5 -->
+                    <div id="uc2_6">
+                    </div><!-- End #uc2_6 -->
+                    <div id="uc2_7">
+                    </div><!-- End #uc2_7 -->
+                </div>
+                <!-- End SmartWizard Content -->
+
+            </td>
+        </tr>
+    </table>
+</div>
+

@@ -1,0 +1,40 @@
+	label.field{
+		text-align: right;
+		width:200px;
+		float:left;
+		margin-right:2px;
+	}
+	select{
+		width:250px;
+	}
+	.input-text{
+		width: 250px;
+	}
+	.checkfield{
+		margin-top:10px;
+		width: 190px;
+	}
+	.input-checkbox{
+		margin-left: 5px;
+	}
+	.input-button{
+		text-align:center;
+		padding-bottom:5px;
+	}
+	th{
+		padding:10px;
+		height:30px;
+		vertical-align:top;
+		text-align: left;
+		color:#ffffff;
+		background-color:#0000FF;	
+	}
+	.table{
+		width:700px;
+		border:1px solid black;
+		border-collapse: collapse;
+	}
+	#errmsg{
+		padding-left: 10px;
+		color:#FF0000;
+	}

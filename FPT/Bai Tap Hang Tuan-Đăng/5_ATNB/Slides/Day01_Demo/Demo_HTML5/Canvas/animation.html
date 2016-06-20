@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <style>
+      body {
+        margin: 0px;
+        padding: 0px;
+      }
+    </style>
+  </head>
+  <body onload='init();'>
+    <canvas id="myCanvas" width="578" height="200">
+		Your browser does not support canvas.
+	</canvas>
+    <script>
+		var canvas;
+		var ctx;
+		var x=10, y=50;;
+		init = function(){
+			canvas = document.getElementById('myCanvas');
+			ctx = canvas.getContext('2d');
+			act();
+		}
+		act = function(){
+			draw();
+			setTimeout(function(){act();},10);
+		}
+		draw = function(){
+			ctx.clearRect(0,0, canvas.width, canvas.height);
+			ctx.fillStyle = "#aaa";
+			ctx.fillRect(x,y, 30, 30);
+			x+=2
+		}
+    </script>
+  </body>
+</html>

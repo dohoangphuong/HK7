@@ -1,0 +1,17 @@
+﻿.horizontalList li {
+    display: inline;
+    list-style-type: none;
+    padding-right: 20px;
+    padding-left: 20px;
+    color: blue;
+}
+
+.horizontalList li::selection{
+    font-weight: bold;
+}
+
+.horizontalList li:hover{
+    cursor: pointer;
+    color: darkblue;
+    font-weight: bold;
+}

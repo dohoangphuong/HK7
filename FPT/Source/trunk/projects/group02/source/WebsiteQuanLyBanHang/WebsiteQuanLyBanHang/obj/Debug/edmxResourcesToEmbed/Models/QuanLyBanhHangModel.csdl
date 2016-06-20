@@ -1,0 +1,608 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QuanLyBanHangModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="CustID" />
+    </Key>
+    <Property Name="CustID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CustName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Fax" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Overdue" Type="Int32" Nullable="false" />
+    <Property Name="Amount" Type="Decimal" Precision="13" Scale="0" />
+    <Property Name="OverdueAmt" Type="Decimal" Precision="13" Scale="0" />
+    <Property Name="DueAmt" Type="Decimal" Precision="13" Scale="0" />
+    <Property Name="Status" Type="String" MaxLength="2" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Payments" Relationship="Self.FK_Payment_Customer" FromRole="Customer" ToRole="Payment" />
+    <NavigationProperty Name="SalesOrders" Relationship="Self.FK_SalesOrder_Customer" FromRole="Customer" ToRole="SalesOrder" />
+  </EntityType>
+  <EntityType Name="Inventory">
+    <Key>
+      <PropertyRef Name="InvtID" />
+    </Key>
+    <Property Name="InvtID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="InvtName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ClassName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UnitID_T" Type="Int32" Nullable="false" />
+    <Property Name="UnitID_L" Type="Int32" Nullable="false" />
+    <Property Name="UnitRate" Type="Int32" Nullable="false" />
+    <Property Name="SalesPriceT" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="SalesPriceL" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="QtyStock" Type="Int32" />
+    <Property Name="SlsTax" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Status" Type="String" MaxLength="2" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Unit" Relationship="Self.FK_Inventory_Unit" FromRole="Inventory" ToRole="Unit" />
+    <NavigationProperty Name="Unit1" Relationship="Self.FK_Inventory_Unit1" FromRole="Inventory" ToRole="Unit" />
+    <NavigationProperty Name="SlsOrderDetails" Relationship="Self.FK_SlsOrderDetail_Inventory" FromRole="Inventory" ToRole="SlsOrderDetail" />
+  </EntityType>
+  <EntityType Name="InvoiceType">
+    <Key>
+      <PropertyRef Name="InvoiceType1" />
+    </Key>
+    <Property Name="InvoiceType1" Type="String" MaxLength="2" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="SalesOrders" Relationship="Self.FK_SalesOrder_InvoiceType" FromRole="InvoiceType" ToRole="SalesOrder" />
+  </EntityType>
+  <EntityType Name="Payment">
+    <Key>
+      <PropertyRef Name="PaymentID" />
+    </Key>
+    <Property Name="PaymentID" Type="Int32" Nullable="false" />
+    <Property Name="PaymentNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PaymentDate" Type="DateTime" Precision="0" />
+    <Property Name="PaymentAmt" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="CustID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="UserID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK_Payment_Customer" FromRole="Payment" ToRole="Customer" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Payment_User" FromRole="Payment" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="ProductsID" />
+    </Key>
+    <Property Name="ProductsID" Type="Int32" Nullable="false" />
+    <Property Name="ProductsName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ClassProducts" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RetailUnit" Type="Int32" />
+    <Property Name="WholeSaleUnit" Type="Int32" />
+    <Property Name="WholeSalePrice" Type="Decimal" Precision="13" Scale="0" />
+    <Property Name="Status" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="PurchaseOrdDetails" Relationship="Self.FK_PurchaseOrdDetail_Products" FromRole="Products" ToRole="PurchaseOrdDetail" />
+    <NavigationProperty Name="ReturnGoodsDetails" Relationship="Self.FK_ReturnGoodsDetail_Products" FromRole="Products" ToRole="ReturnGoodsDetail" />
+    <NavigationProperty Name="StkTransDetails" Relationship="Self.FK_StkTransDetail_Products1" FromRole="Products" ToRole="StkTransDetail" />
+  </EntityType>
+  <EntityType Name="PurchaseOrdDetail">
+    <Key>
+      <PropertyRef Name="OrderDetailID" />
+    </Key>
+    <Property Name="OrderDetailID" Type="Int32" Nullable="false" />
+    <Property Name="OrderID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProductsID" Type="Int32" Nullable="false" />
+    <Property Name="Qty" Type="Int32" />
+    <Property Name="PurchasePrice" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="StockID" Type="Int32" />
+    <Property Name="QtyProm" Type="Int32" />
+    <Property Name="QtyPromAmt" Type="Decimal" Precision="13" Scale="0" />
+    <Property Name="AmtProm" Type="Decimal" Precision="13" Scale="0" />
+    <Property Name="TaxAmt" Type="Decimal" Precision="13" Scale="0" />
+    <Property Name="Amount" Type="Decimal" Precision="13" Scale="0" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_PurchaseOrdDetail_Products" FromRole="PurchaseOrdDetail" ToRole="Products" />
+    <NavigationProperty Name="PurchaseOrder" Relationship="Self.FK_PurchaseOrdDetail_PurchaseOrder" FromRole="PurchaseOrdDetail" ToRole="PurchaseOrder" />
+    <NavigationProperty Name="Stock" Relationship="Self.FK_PurchaseOrdDetail_Stock" FromRole="PurchaseOrdDetail" ToRole="Stock" />
+  </EntityType>
+  <EntityType Name="PurchaseOrder">
+    <Key>
+      <PropertyRef Name="OrderNo" />
+    </Key>
+    <Property Name="OrderNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="OrderType" Type="String" MaxLength="2" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SalesPersonID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="OverdueDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="DiscAmt" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="PromAmt" Type="Double" />
+    <Property Name="ComAmt" Type="Double" />
+    <Property Name="TaxAmt" Type="Double" />
+    <Property Name="TotalAmt" Type="Decimal" Precision="18" Scale="0" />
+    <NavigationProperty Name="PurchaseOrdDetails" Relationship="Self.FK_PurchaseOrdDetail_PurchaseOrder" FromRole="PurchaseOrder" ToRole="PurchaseOrdDetail" />
+  </EntityType>
+  <EntityType Name="ReturnGood">
+    <Key>
+      <PropertyRef Name="ReturnGoodsID" />
+    </Key>
+    <Property Name="ReturnGoodsID" Type="Int32" Nullable="false" />
+    <Property Name="DaReturnGoods" Type="DateTime" Precision="0" />
+    <Property Name="TotalAmount" Type="Decimal" Precision="13" Scale="0" />
+    <NavigationProperty Name="ReturnGoodsDetails" Relationship="Self.FK_ReturnGoodsDetail_ReturnGoods" FromRole="ReturnGoods" ToRole="ReturnGoodsDetail" />
+  </EntityType>
+  <EntityType Name="ReturnGoodsDetail">
+    <Key>
+      <PropertyRef Name="ReturnGoodsDetailID" />
+    </Key>
+    <Property Name="ReturnGoodsDetailID" Type="Int32" Nullable="false" />
+    <Property Name="ReturnGoodsID" Type="Int32" Nullable="false" />
+    <Property Name="ProductsID" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" />
+    <Property Name="Amount" Type="Decimal" Precision="13" Scale="0" />
+    <Property Name="Deals" Type="Decimal" Precision="13" Scale="0" />
+    <Property Name="ReasonReturn" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_ReturnGoodsDetail_Products" FromRole="ReturnGoodsDetail" ToRole="Products" />
+    <NavigationProperty Name="ReturnGood" Relationship="Self.FK_ReturnGoodsDetail_ReturnGoods" FromRole="ReturnGoodsDetail" ToRole="ReturnGoods" />
+  </EntityType>
+  <EntityType Name="SalesMan">
+    <Key>
+      <PropertyRef Name="SalesManID" />
+    </Key>
+    <Property Name="SalesManID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="SalesManName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="OverAmt" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SalesOrder">
+    <Key>
+      <PropertyRef Name="OrderNo" />
+    </Key>
+    <Property Name="OrderNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="InvoiceType" Type="String" MaxLength="2" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserIDRec" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="CustID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="OverdueDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="OrderDisc" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="TaxAmt" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="TotalAmt" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Payment" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Debt" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK_SalesOrder_Customer" FromRole="SalesOrder" ToRole="Customer" />
+    <NavigationProperty Name="InvoiceType1" Relationship="Self.FK_SalesOrder_InvoiceType" FromRole="SalesOrder" ToRole="InvoiceType" />
+    <NavigationProperty Name="User" Relationship="Self.FK_SalesOrder_User" FromRole="SalesOrder" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="Self.FK_SalesOrder_User1" FromRole="SalesOrder" ToRole="User" />
+    <NavigationProperty Name="SlsOrderDetails" Relationship="Self.FK_SlsOrderDetail_SalesOrder" FromRole="SalesOrder" ToRole="SlsOrderDetail" />
+  </EntityType>
+  <EntityType Name="SlsOrderDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="OrderNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="InvtID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Qty" Type="Int32" />
+    <Property Name="SalesPrice" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Discount" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="TaxAmt" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Amount" Type="Decimal" Precision="18" Scale="0" />
+    <NavigationProperty Name="Inventory" Relationship="Self.FK_SlsOrderDetail_Inventory" FromRole="SlsOrderDetail" ToRole="Inventory" />
+    <NavigationProperty Name="SalesOrder" Relationship="Self.FK_SlsOrderDetail_SalesOrder" FromRole="SlsOrderDetail" ToRole="SalesOrder" />
+  </EntityType>
+  <EntityType Name="StkTransDetail">
+    <Key>
+      <PropertyRef Name="TransID" />
+    </Key>
+    <Property Name="TransID" Type="Int32" Nullable="false" />
+    <Property Name="ProductsID" Type="Int32" Nullable="false" />
+    <Property Name="Qty" Type="Int32" />
+    <Property Name="Amount" Type="Decimal" Precision="18" Scale="0" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_StkTransDetail_Products1" FromRole="StkTransDetail" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="Stock">
+    <Key>
+      <PropertyRef Name="StockID" />
+    </Key>
+    <Property Name="StockID" Type="Int32" Nullable="false" />
+    <Property Name="StockName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StockAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="PurchaseOrdDetails" Relationship="Self.FK_PurchaseOrdDetail_Stock" FromRole="Stock" ToRole="PurchaseOrdDetail" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Stock_User" FromRole="Stock" ToRole="User" />
+    <NavigationProperty Name="StockTransfers" Relationship="Self.FK_StockTransfer_Stock" FromRole="Stock" ToRole="StockTransfer" />
+    <NavigationProperty Name="StockTransfers1" Relationship="Self.FK_StockTransfer_Stock1" FromRole="Stock" ToRole="StockTransfer" />
+  </EntityType>
+  <EntityType Name="StockTransfer">
+    <Key>
+      <PropertyRef Name="StockTransferID" />
+    </Key>
+    <Property Name="StockTransferID" Type="Int32" Nullable="false" />
+    <Property Name="TransDate" Type="DateTime" Precision="0" />
+    <Property Name="FromStockID" Type="Int32" Nullable="false" />
+    <Property Name="ToStockID" Type="Int32" Nullable="false" />
+    <Property Name="TotalAmt" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Stock" Relationship="Self.FK_StockTransfer_Stock" FromRole="StockTransfer" ToRole="Stock" />
+    <NavigationProperty Name="Stock1" Relationship="Self.FK_StockTransfer_Stock1" FromRole="StockTransfer" ToRole="Stock" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Unit">
+    <Key>
+      <PropertyRef Name="UnitID" />
+    </Key>
+    <Property Name="UnitID" Type="Int32" Nullable="false" />
+    <Property Name="UnitName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Inventories" Relationship="Self.FK_Inventory_Unit" FromRole="Unit" ToRole="Inventory" />
+    <NavigationProperty Name="Inventories1" Relationship="Self.FK_Inventory_Unit1" FromRole="Unit" ToRole="Inventory" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Avatar" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Salt" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="NgayVao" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Status" Type="String" MaxLength="2" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Payments" Relationship="Self.FK_Payment_User" FromRole="User" ToRole="Payment" />
+    <NavigationProperty Name="SalesOrders" Relationship="Self.FK_SalesOrder_User" FromRole="User" ToRole="SalesOrder" />
+    <NavigationProperty Name="SalesOrders1" Relationship="Self.FK_SalesOrder_User1" FromRole="User" ToRole="SalesOrder" />
+    <NavigationProperty Name="Stocks" Relationship="Self.FK_Stock_User" FromRole="User" ToRole="Stock" />
+  </EntityType>
+  <EntityType Name="Vendor">
+    <Key>
+      <PropertyRef Name="VendorID" />
+      <PropertyRef Name="VendorName" />
+      <PropertyRef Name="Status" />
+    </Key>
+    <Property Name="VendorID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="VendorName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Fax" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="DueAmt" Type="Decimal" Precision="13" Scale="0" />
+    <Property Name="Amount" Type="Decimal" Precision="13" Scale="0" />
+    <Property Name="OverdueAmt" Type="Decimal" Precision="13" Scale="0" />
+    <Property Name="Status" Type="String" MaxLength="2" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_Payment_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustID" />
+      </Principal>
+      <Dependent Role="Payment">
+        <PropertyRef Name="CustID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalesOrder_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="SalesOrder" Type="Self.SalesOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustID" />
+      </Principal>
+      <Dependent Role="SalesOrder">
+        <PropertyRef Name="CustID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inventory_Unit">
+    <End Role="Unit" Type="Self.Unit" Multiplicity="1" />
+    <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Unit">
+        <PropertyRef Name="UnitID" />
+      </Principal>
+      <Dependent Role="Inventory">
+        <PropertyRef Name="UnitID_T" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inventory_Unit1">
+    <End Role="Unit" Type="Self.Unit" Multiplicity="1" />
+    <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Unit">
+        <PropertyRef Name="UnitID" />
+      </Principal>
+      <Dependent Role="Inventory">
+        <PropertyRef Name="UnitID_L" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SlsOrderDetail_Inventory">
+    <End Role="Inventory" Type="Self.Inventory" Multiplicity="1" />
+    <End Role="SlsOrderDetail" Type="Self.SlsOrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Inventory">
+        <PropertyRef Name="InvtID" />
+      </Principal>
+      <Dependent Role="SlsOrderDetail">
+        <PropertyRef Name="InvtID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalesOrder_InvoiceType">
+    <End Role="InvoiceType" Type="Self.InvoiceType" Multiplicity="1" />
+    <End Role="SalesOrder" Type="Self.SalesOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InvoiceType">
+        <PropertyRef Name="InvoiceType1" />
+      </Principal>
+      <Dependent Role="SalesOrder">
+        <PropertyRef Name="InvoiceType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Payment_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Payment">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PurchaseOrdDetail_Products">
+    <End Role="Products" Type="Self.Product" Multiplicity="1" />
+    <End Role="PurchaseOrdDetail" Type="Self.PurchaseOrdDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ProductsID" />
+      </Principal>
+      <Dependent Role="PurchaseOrdDetail">
+        <PropertyRef Name="ProductsID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReturnGoodsDetail_Products">
+    <End Role="Products" Type="Self.Product" Multiplicity="1" />
+    <End Role="ReturnGoodsDetail" Type="Self.ReturnGoodsDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ProductsID" />
+      </Principal>
+      <Dependent Role="ReturnGoodsDetail">
+        <PropertyRef Name="ProductsID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StkTransDetail_Products1">
+    <End Role="Products" Type="Self.Product" Multiplicity="1" />
+    <End Role="StkTransDetail" Type="Self.StkTransDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ProductsID" />
+      </Principal>
+      <Dependent Role="StkTransDetail">
+        <PropertyRef Name="ProductsID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PurchaseOrdDetail_PurchaseOrder">
+    <End Role="PurchaseOrder" Type="Self.PurchaseOrder" Multiplicity="1" />
+    <End Role="PurchaseOrdDetail" Type="Self.PurchaseOrdDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PurchaseOrder">
+        <PropertyRef Name="OrderNo" />
+      </Principal>
+      <Dependent Role="PurchaseOrdDetail">
+        <PropertyRef Name="OrderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PurchaseOrdDetail_Stock">
+    <End Role="Stock" Type="Self.Stock" Multiplicity="0..1" />
+    <End Role="PurchaseOrdDetail" Type="Self.PurchaseOrdDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Stock">
+        <PropertyRef Name="StockID" />
+      </Principal>
+      <Dependent Role="PurchaseOrdDetail">
+        <PropertyRef Name="StockID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReturnGoodsDetail_ReturnGoods">
+    <End Role="ReturnGoods" Type="Self.ReturnGood" Multiplicity="1" />
+    <End Role="ReturnGoodsDetail" Type="Self.ReturnGoodsDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ReturnGoods">
+        <PropertyRef Name="ReturnGoodsID" />
+      </Principal>
+      <Dependent Role="ReturnGoodsDetail">
+        <PropertyRef Name="ReturnGoodsID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalesOrder_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="SalesOrder" Type="Self.SalesOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="SalesOrder">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalesOrder_User1">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="SalesOrder" Type="Self.SalesOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="SalesOrder">
+        <PropertyRef Name="UserIDRec" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SlsOrderDetail_SalesOrder">
+    <End Role="SalesOrder" Type="Self.SalesOrder" Multiplicity="1" />
+    <End Role="SlsOrderDetail" Type="Self.SlsOrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SalesOrder">
+        <PropertyRef Name="OrderNo" />
+      </Principal>
+      <Dependent Role="SlsOrderDetail">
+        <PropertyRef Name="OrderNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Stock_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Stock">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StockTransfer_Stock">
+    <End Role="Stock" Type="Self.Stock" Multiplicity="1" />
+    <End Role="StockTransfer" Type="Self.StockTransfer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Stock">
+        <PropertyRef Name="StockID" />
+      </Principal>
+      <Dependent Role="StockTransfer">
+        <PropertyRef Name="FromStockID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StockTransfer_Stock1">
+    <End Role="Stock" Type="Self.Stock" Multiplicity="1" />
+    <End Role="StockTransfer" Type="Self.StockTransfer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Stock">
+        <PropertyRef Name="StockID" />
+      </Principal>
+      <Dependent Role="StockTransfer">
+        <PropertyRef Name="ToStockID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QuanLyBanHangEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Customers" EntityType="Self.Customer" />
+    <EntitySet Name="Inventories" EntityType="Self.Inventory" />
+    <EntitySet Name="InvoiceTypes" EntityType="Self.InvoiceType" />
+    <EntitySet Name="Payments" EntityType="Self.Payment" />
+    <EntitySet Name="Products" EntityType="Self.Product" />
+    <EntitySet Name="PurchaseOrdDetails" EntityType="Self.PurchaseOrdDetail" />
+    <EntitySet Name="PurchaseOrders" EntityType="Self.PurchaseOrder" />
+    <EntitySet Name="ReturnGoods" EntityType="Self.ReturnGood" />
+    <EntitySet Name="ReturnGoodsDetails" EntityType="Self.ReturnGoodsDetail" />
+    <EntitySet Name="SalesMen" EntityType="Self.SalesMan" />
+    <EntitySet Name="SalesOrders" EntityType="Self.SalesOrder" />
+    <EntitySet Name="SlsOrderDetails" EntityType="Self.SlsOrderDetail" />
+    <EntitySet Name="StkTransDetails" EntityType="Self.StkTransDetail" />
+    <EntitySet Name="Stocks" EntityType="Self.Stock" />
+    <EntitySet Name="StockTransfers" EntityType="Self.StockTransfer" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="Units" EntityType="Self.Unit" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <EntitySet Name="Vendors" EntityType="Self.Vendor" />
+    <AssociationSet Name="FK_Payment_Customer" Association="Self.FK_Payment_Customer">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Payment" EntitySet="Payments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalesOrder_Customer" Association="Self.FK_SalesOrder_Customer">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="SalesOrder" EntitySet="SalesOrders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inventory_Unit" Association="Self.FK_Inventory_Unit">
+      <End Role="Unit" EntitySet="Units" />
+      <End Role="Inventory" EntitySet="Inventories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inventory_Unit1" Association="Self.FK_Inventory_Unit1">
+      <End Role="Unit" EntitySet="Units" />
+      <End Role="Inventory" EntitySet="Inventories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SlsOrderDetail_Inventory" Association="Self.FK_SlsOrderDetail_Inventory">
+      <End Role="Inventory" EntitySet="Inventories" />
+      <End Role="SlsOrderDetail" EntitySet="SlsOrderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalesOrder_InvoiceType" Association="Self.FK_SalesOrder_InvoiceType">
+      <End Role="InvoiceType" EntitySet="InvoiceTypes" />
+      <End Role="SalesOrder" EntitySet="SalesOrders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Payment_User" Association="Self.FK_Payment_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Payment" EntitySet="Payments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PurchaseOrdDetail_Products" Association="Self.FK_PurchaseOrdDetail_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="PurchaseOrdDetail" EntitySet="PurchaseOrdDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReturnGoodsDetail_Products" Association="Self.FK_ReturnGoodsDetail_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="ReturnGoodsDetail" EntitySet="ReturnGoodsDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StkTransDetail_Products1" Association="Self.FK_StkTransDetail_Products1">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="StkTransDetail" EntitySet="StkTransDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PurchaseOrdDetail_PurchaseOrder" Association="Self.FK_PurchaseOrdDetail_PurchaseOrder">
+      <End Role="PurchaseOrder" EntitySet="PurchaseOrders" />
+      <End Role="PurchaseOrdDetail" EntitySet="PurchaseOrdDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PurchaseOrdDetail_Stock" Association="Self.FK_PurchaseOrdDetail_Stock">
+      <End Role="Stock" EntitySet="Stocks" />
+      <End Role="PurchaseOrdDetail" EntitySet="PurchaseOrdDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReturnGoodsDetail_ReturnGoods" Association="Self.FK_ReturnGoodsDetail_ReturnGoods">
+      <End Role="ReturnGoods" EntitySet="ReturnGoods" />
+      <End Role="ReturnGoodsDetail" EntitySet="ReturnGoodsDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalesOrder_User" Association="Self.FK_SalesOrder_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="SalesOrder" EntitySet="SalesOrders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalesOrder_User1" Association="Self.FK_SalesOrder_User1">
+      <End Role="User" EntitySet="Users" />
+      <End Role="SalesOrder" EntitySet="SalesOrders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SlsOrderDetail_SalesOrder" Association="Self.FK_SlsOrderDetail_SalesOrder">
+      <End Role="SalesOrder" EntitySet="SalesOrders" />
+      <End Role="SlsOrderDetail" EntitySet="SlsOrderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Stock_User" Association="Self.FK_Stock_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Stock" EntitySet="Stocks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StockTransfer_Stock" Association="Self.FK_StockTransfer_Stock">
+      <End Role="Stock" EntitySet="Stocks" />
+      <End Role="StockTransfer" EntitySet="StockTransfers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StockTransfer_Stock1" Association="Self.FK_StockTransfer_Stock1">
+      <End Role="Stock" EntitySet="Stocks" />
+      <End Role="StockTransfer" EntitySet="StockTransfers" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

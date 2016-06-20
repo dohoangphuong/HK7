@@ -1,0 +1,13 @@
+﻿CardID	Name	PINCode	TypeOfAccount	Balance	OD	Validity
+000001	Trần Quang Chiến	111111	Checking	10000000	20000000	Valid
+000002	Bùi Văn Lượng	222222	Checking	20000000	30000000	Valid
+000003	Lương Thị Bích Hồng	333333	Checking	15000000	20000000	Valid
+000004	Đào Thị Hồng Nhung	444444	Checking	12000000	20000000	Valid
+000005	Trần Quang Chiến	111111	Saving	10000000	0	Valid
+000006	Bùi Văn Lượng	222222	Saving	2000000	0	Valid
+000007	Lương Thị Bích Hồng	333333	Saving	5000000	0	Valid
+000008	Đào Thị Hồng Nhung	444444	Saving	12000000	0	Valid
+000009	Trần Quang Chiến	111111	Checking	1000000	20000000	Blocked temporarily
+000010	Bùi Văn Lượng	222222	Saving	20000000	0	Blocked temporarily
+000011	Lương Thị Bích Hồng	333333	Checking	15000000	20000000	Blocked permanently
+000012	Đào Thị Hồng Nhung	444444	Saving	12000000	0	Blocked permanently

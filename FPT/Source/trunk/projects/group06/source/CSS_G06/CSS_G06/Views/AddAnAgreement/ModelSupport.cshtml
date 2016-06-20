@@ -1,0 +1,67 @@
+﻿@model CSS_G06.Models.VolumeBandingModel
+
+<script type="text/javascript">
+    function goFowardVolumeBanding() {
+            goFoward();
+            var agreementNumber1 = '@Model.AgreementNumber';
+            var variantNumber1 = '@Model.VariantNumber';
+            $.ajax({
+                url: '@Url.Action("MiscText", "AddAnAgreement")',
+                type: "GET",
+                dataType: "text",
+                data: { agreementNumber: agreementNumber1, variantNumber: variantNumber1 },
+                success: function (data) {
+                    $('#uc2_6').html(data);
+                },
+                error: function (data) {
+                    alert("Failed to load 'Misc text'!");
+                }
+            });
+    }
+</script>
+
+<style type="text/css">
+    #ModelSupport{
+        width:800px;
+        height:800px;
+        padding:5px;
+    }
+    #ModelSupportHeader{
+         width:100%;
+        height:200px;
+        padding:5px;
+    }
+    #ModelSupportContent{
+        width:100%;
+        height:195px;
+        padding:5px;
+        align-content:center;
+    }
+    #ModelSupportSubmit{
+        width:100%;
+        height:25px;
+        padding:5px;
+    }
+    #ModelSupportResult{
+        width:100%;
+        height:30px;
+        padding:5px;
+    }
+</style>
+
+<div id="ModelSupport">
+    @Html.HiddenFor(model => model.AgreementNumber)
+    @Html.HiddenFor(model => model.VariantNumber)
+    <div id="ModelSupportHeader">
+
+    </div>
+    <div id="ModelSupportContent" align="center">
+        <p style="font-size:14px;color:#889EC7;font-weight:bold;font-style:italic;">'Model support' is a function that will be implemented by Honda-UK, now it does not belong in this project</p>
+    </div>
+    <div id="ModelSupportSubmit" align="right">
+        &raquo; <input type="button" value="back" style="border:none;background:none;padding-left:0px;padding-right:10px;" onclick="goBackward()" />
+        &raquo;<input type="button" value="next" style="border:none;background:none;padding-left:0px;padding-right:10px;" onclick="goFowardVolumeBanding()" />
+    </div>
+    <div id="ModelSupportResult"></div>
+
+</div>

@@ -1,0 +1,178 @@
+﻿@model CSS.ViewModels.SearchCustomerModel
+
+<head>
+    <title>Add new agreement</title>
+    <link href="~/Content/themes/base/smart_wizard.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="~/Scripts/jquery.smartWizard.js"></script>
+    @Scripts.Render("~/bundles/jqueryvalidate")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#wizard').smartWizard();
+            $("#lnkCreateAgreement").click(function () {
+                var selected = $("#customerResults input[type='radio']:checked");
+                if (selected.length != 1) {
+                    alert("Please select 1 customer.");
+                    return false;
+                }
+                else {
+                    
+                    var fakedUri = $("#lnkCreateAgreement").prop("href");
+                    var uri = fakedUri.replace("placehodler", selected.val());
+                    $("#lnkCreateAgreement").prop("href", uri);
+                    return true;
+                }
+                
+            });
+        });
+    </script>
+
+</head>
+<body>
+    <div class="centre">
+        <h3 class="blue-text">Coporate Sales Solution</h3>
+        <h4 class="gray-text">Add New Agreement</h4>
+    </div>
+    <div id="wizard" class="swMain">
+        <ul>
+            <li>
+                <a href="#step-1">
+                    <label class="stepNumber">1</label>
+                    <span class="stepDesc">
+                        Customer<br />
+                        <small>Select customer</small>
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="#step-2">
+                    <label class="stepNumber">2</label>
+                    <span class="stepDesc">
+                        Basic<br />
+                        <small>Basic details</small>
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="#step-3">
+                    <label class="stepNumber">3</label>
+                    <span class="stepDesc">
+                        Dealers<br />
+                        <small>Select dealers</small>
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="#step-4">
+                    <label class="stepNumber">4</label>
+                    <span class="stepDesc">
+                        Volume<br />
+                        <small>Volume banding</small>
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="#step-5">
+                    <label class="stepNumber">5</label>
+                    <span class="stepDesc">
+                        Model Support<br />
+                        <small>Model Support</small>
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="#step-6">
+                    <label class="stepNumber">6</label>
+                    <span class="stepDesc">
+                        Misc Text<br />
+                        <small>Misc Text</small>
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="#step-7">
+                    <label class="stepNumber">7</label>
+                    <span class="stepDesc">
+                        Confirmation<br />
+                        <small>Confirmation</small>
+                    </span>
+                </a>
+            </li>
+        </ul>
+        <div id="step-1">
+    @using (Ajax.BeginForm("SearchCustomer", "Customer", null
+    , new AjaxOptions
+    {
+        HttpMethod = "POST",
+        UpdateTargetId = "customerResults"
+    }, new { @style = "height: 100%" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal" style="height: 40%">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.IsSelected)
+                    <div class="form-group" style="margin:5px">
+                        @Html.LabelFor(model => model.RFONumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.RFONumber, new { @id = "srchRFONumber" })
+                            @Html.ValidationMessageFor(model => model.RFONumber, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin:5px">
+                        @Html.LabelFor(model => model.SelectedCustomerType.CustomerType1, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.SelectedCustomerType.CustomerTypeId
+                , new SelectList(ViewBag.CustomerTypes, "CustomerTypeId", "CustomerType1")
+                , "All"
+                , new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin:5px">
+                        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin:5px">
+                        @Html.LabelFor(model => model.PostCode, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.PostCode, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.PostCode, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin:5px">
+                        @Html.LabelFor(model => model.BusinessArea, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.BusinessArea, new SelectList(ViewBag.BusinessArea, "XCONFIGVALUE", "XCONFIGVALUE"), "All", new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin:5px">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Search" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+                <div id="customerResults" style="height: 50%; overflow-y: scroll">
+                </div>
+                <div class="actionBar" style="height: 10%">
+                    @Html.ActionLink("Create", "CreateAgreement", "Agreement", new { rfoNumber = "placehodler" }, new { @class = "buttonFinish", @id = "lnkCreateAgreement" })
+                </div>
+            }
+
+        </div>
+        <div id="step-2">
+        </div>
+        <div id="step-3">
+        </div>
+        <div id="step-4">
+        </div>
+        <div id="step-5">
+        </div>
+        <div id="step-6">
+        </div>
+        <div id="step-7">
+        </div>
+    </div>
+</body>

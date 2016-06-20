@@ -1,0 +1,4 @@
+LogTypeID	Description	
+1	change PIN	
+2	withdraw money	
+3	wiew information	

@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLBanHangModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="QLBanHangEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="ChiTietHoaDons" EntityType="QLBanHangModel.ChiTietHoaDon" />
+    <EntitySet Name="HoaDons" EntityType="QLBanHangModel.HoaDon" />
+    <EntitySet Name="LoaiSanPhams" EntityType="QLBanHangModel.LoaiSanPham" />
+    <EntitySet Name="SanPhams" EntityType="QLBanHangModel.SanPham" />
+    <EntitySet Name="TaiKhoans" EntityType="QLBanHangModel.TaiKhoan" />
+    <AssociationSet Name="FK_ChiTietHoaDon_HoaDon" Association="QLBanHangModel.FK_ChiTietHoaDon_HoaDon">
+      <End Role="HoaDon" EntitySet="HoaDons" />
+      <End Role="ChiTietHoaDon" EntitySet="ChiTietHoaDons" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChiTietHoaDon_SanPham" Association="QLBanHangModel.FK_ChiTietHoaDon_SanPham">
+      <End Role="SanPham" EntitySet="SanPhams" />
+      <End Role="ChiTietHoaDon" EntitySet="ChiTietHoaDons" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HoaDon_TaiKhoan" Association="QLBanHangModel.FK_HoaDon_TaiKhoan">
+      <End Role="TaiKhoan" EntitySet="TaiKhoans" />
+      <End Role="HoaDon" EntitySet="HoaDons" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SanPham_LoaiSanPham" Association="QLBanHangModel.FK_SanPham_LoaiSanPham">
+      <End Role="LoaiSanPham" EntitySet="LoaiSanPhams" />
+      <End Role="SanPham" EntitySet="SanPhams" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="ChiTietHoaDon">
+    <Key>
+      <PropertyRef Name="SoHD" />
+      <PropertyRef Name="MaSP" />
+    </Key>
+    <Property Name="SoHD" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="MaSP" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="GiaBan" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="SoLuong" Type="Int32" />
+    <NavigationProperty Name="HoaDon" Relationship="QLBanHangModel.FK_ChiTietHoaDon_HoaDon" FromRole="ChiTietHoaDon" ToRole="HoaDon" />
+    <NavigationProperty Name="SanPham" Relationship="QLBanHangModel.FK_ChiTietHoaDon_SanPham" FromRole="ChiTietHoaDon" ToRole="SanPham" />
+  </EntityType>
+  <EntityType Name="HoaDon">
+    <Key>
+      <PropertyRef Name="SoHD" />
+    </Key>
+    <Property Name="SoHD" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="NgayLapHD" Type="DateTime" Precision="3" />
+    <Property Name="NguoiLapHD" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="HinhThucThanhToan" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="TinhTrang" Type="Boolean" />
+    <Property Name="UserName" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="ChiTietHoaDons" Relationship="QLBanHangModel.FK_ChiTietHoaDon_HoaDon" FromRole="HoaDon" ToRole="ChiTietHoaDon" />
+    <NavigationProperty Name="TaiKhoan" Relationship="QLBanHangModel.FK_HoaDon_TaiKhoan" FromRole="HoaDon" ToRole="TaiKhoan" />
+  </EntityType>
+  <EntityType Name="LoaiSanPham">
+    <Key>
+      <PropertyRef Name="MaLoaiSP" />
+    </Key>
+    <Property Name="MaLoaiSP" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="TenLoaiSP" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="SanPhams" Relationship="QLBanHangModel.FK_SanPham_LoaiSanPham" FromRole="LoaiSanPham" ToRole="SanPham" />
+  </EntityType>
+  <EntityType Name="SanPham">
+    <Key>
+      <PropertyRef Name="MaSP" />
+    </Key>
+    <Property Name="MaSP" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="TenSP" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="NgaySX" Type="DateTime" Precision="3" />
+    <Property Name="DonGia" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="MaLoaiSP" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="HinhAnh" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="ChiTietHoaDons" Relationship="QLBanHangModel.FK_ChiTietHoaDon_SanPham" FromRole="SanPham" ToRole="ChiTietHoaDon" />
+    <NavigationProperty Name="LoaiSanPham" Relationship="QLBanHangModel.FK_SanPham_LoaiSanPham" FromRole="SanPham" ToRole="LoaiSanPham" />
+  </EntityType>
+  <EntityType Name="TaiKhoan">
+    <Key>
+      <PropertyRef Name="UserName" />
+    </Key>
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="Password" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="HoTen" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Email" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="DienThoai" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+    <Property Name="DiaChi" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+    <Property Name="CongTy" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="HoaDons" Relationship="QLBanHangModel.FK_HoaDon_TaiKhoan" FromRole="TaiKhoan" ToRole="HoaDon" />
+  </EntityType>
+  <Association Name="FK_ChiTietHoaDon_HoaDon">
+    <End Role="HoaDon" Type="QLBanHangModel.HoaDon" Multiplicity="1" />
+    <End Role="ChiTietHoaDon" Type="QLBanHangModel.ChiTietHoaDon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HoaDon">
+        <PropertyRef Name="SoHD" />
+      </Principal>
+      <Dependent Role="ChiTietHoaDon">
+        <PropertyRef Name="SoHD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChiTietHoaDon_SanPham">
+    <End Role="SanPham" Type="QLBanHangModel.SanPham" Multiplicity="1" />
+    <End Role="ChiTietHoaDon" Type="QLBanHangModel.ChiTietHoaDon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SanPham">
+        <PropertyRef Name="MaSP" />
+      </Principal>
+      <Dependent Role="ChiTietHoaDon">
+        <PropertyRef Name="MaSP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HoaDon_TaiKhoan">
+    <End Role="TaiKhoan" Type="QLBanHangModel.TaiKhoan" Multiplicity="0..1" />
+    <End Role="HoaDon" Type="QLBanHangModel.HoaDon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TaiKhoan">
+        <PropertyRef Name="UserName" />
+      </Principal>
+      <Dependent Role="HoaDon">
+        <PropertyRef Name="UserName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SanPham_LoaiSanPham">
+    <End Role="LoaiSanPham" Type="QLBanHangModel.LoaiSanPham" Multiplicity="0..1" />
+    <End Role="SanPham" Type="QLBanHangModel.SanPham" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoaiSanPham">
+        <PropertyRef Name="MaLoaiSP" />
+      </Principal>
+      <Dependent Role="SanPham">
+        <PropertyRef Name="MaLoaiSP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

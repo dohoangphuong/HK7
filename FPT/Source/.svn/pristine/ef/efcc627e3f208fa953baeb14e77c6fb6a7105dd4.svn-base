@@ -1,0 +1,206 @@
+﻿@model CSS_G06.Models.Agreement
+
+@{
+    ViewBag.Title = "BasicAgreementDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#backBtn").click(function () {
+            var agreementNumber = document.getElementById("RFONumber").textContent;
+            window.location.href = "/AddAnAgreement/SelectCustomer?agreementNumber="+agreementNumber;
+                
+        });
+            
+        });
+</script>
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#startDatepicker").datepicker({
+            dateFormat: 'dd-mm-yy',
+            onClose: function (dateText, inst) {
+                $(this).datepicker('option', 'dateFormat', 'dd-mm-yy');
+            }
+        });
+        $("#endDatepicker").datepicker({
+            dateFormat: 'dd-mm-yy',
+            onClose: function (dateText, inst) {
+                $(this).datepicker('option', 'dateFormat', 'dd-mm-yy');
+            }
+        });
+
+        $("#startDatepicker").change(function () {
+            var startDate = document.getElementById("startDatepicker").value;
+            var endDate = document.getElementById("endDatepicker").value;
+
+            if ((Date.parse(startDate) >= Date.parse(endDate))) {
+                document.getElementById("startDateError").innerText = "End date should be greater than Start date";
+                document.getElementById("startDatepicker").value = "";
+            }
+            else {
+                document.getElementById("startDateError").innerText = "";
+            }
+        });
+
+        $("#endDatepicker").change(function () {
+            var startDate = document.getElementById("startDatepicker").value;
+            var endDate = document.getElementById("endDatepicker").value;
+
+            if ((Date.parse(startDate) >= Date.parse(endDate))) {
+                document.getElementById("endDateError").innerText = "End date should be greater than Start date";
+                document.getElementById("endDatepicker").value = "";
+            }
+            else {
+                document.getElementById("endDateError").innerText = "";
+            }
+        });
+    });
+
+    
+    
+</script>
+
+
+
+<style>
+    #ContentArea{
+        width:100%;
+        height:auto;
+        border:solid 1px blue;
+    }
+    #BasicAgreementDetailsArea{
+        width:800px;
+        height:auto;
+    }
+    table tr{
+        height:30px;
+        padding-top:0px;
+        padding-bottom:1px;
+    }
+    .tdLeft{
+        width:200px;
+        padding-left:5px;
+        padding-top:0px;
+        padding-bottom:1px;
+        font-size:14px;
+    }
+    .tdRight{
+        width:400px;
+        padding-left:5px;
+        padding-top:0px;
+        padding-bottom:1px;
+        font-size:14px;
+    }
+    .inputItem{
+        border: solid 1px blue;
+        border-radius:5px;
+    }
+
+</style>
+
+<div id="BasicAgreementDetailsArea">
+    @using (Html.BeginForm("BasicAgreementDetails", "AddAnAgreement", FormMethod.Post))
+        {
+            <div id="ContentArea">
+        
+                    <table>
+                        <tr>
+                            <td class="tdLeft" >RFO Number</td>
+                            <td class="tdRight"><lable id="RFONumber">@Session["RFONumber"]</lable></td>
+                        </tr>
+                        <tr>
+                            <td class="tdLeft">Customer Name</td>
+                            <td class="tdRight">@ViewBag.SumResult</td>
+                        </tr>
+                        <tr>
+                            <td class="tdLeft">Agreement Number</td>
+                            <td class="tdRight">@ViewBag.AgreementNumber</td>
+                        </tr>
+                        <tr>
+                            <td class="tdLeft">Agreement Name</td>
+                            <td class="tdRight">@Html.TextBoxFor(model => model.Name, new { style = "width: 300px; height: 30px; border: solid 1px blue; border-radius:5px;", maxlength = 30, Class = "inputItem" })</td>
+                        </tr>
+                        <tr>
+                            <td class="tdLeft">Agreement Description</td>
+                            <td style="height:100px; padding-left:5px;">@Html.TextAreaFor(model => model.Description, new { style = "width: 300px; height: 100px; border: solid 1px blue; border-radius:5px;", maxlength = 300 })</td>
+                        </tr>
+                        <tr>
+                            <td class="tdLeft">Start date</td>
+                            <td class="tdRight">
+                                <input type="text" id="startDatepicker" style="width:120px;height:30px;border: solid 1px blue; border-radius:5px;" maxlength="10">
+                                <span class="glyphicon glyphicon-calendar" style="width:25px; height:25px;"></span>
+                                <label id="startDateError" style="color:red;font-style:italic;font-size:12px;"></label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="tdLeft">End date</td>
+                            <td class="tdRight">
+                                <input type="text" id="endDatepicker" style="width:120px;height:30px;border: solid 1px blue; border-radius:5px;" maxlength="10">
+                                <span class="glyphicon glyphicon-calendar" style="width:25px; height:25px;"></span>
+                                <label id="endDateError" style="color:red;font-style:italic;font-size:12px;"></label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="tdLeft">Is a signed Agreement</td>
+                            <td align="left" class="tdRight" style="align-content:center;">
+                                Yes
+                                @Html.RadioButtonFor(model => model.SignReceived, true, new { id = "Signed", style = "padding-right:10px;border: solid 1px blue; border-radius:5px;" })
+                                No
+                                @Html.RadioButtonFor(model => model.SignReceived, false, new { id = "NotSign", @checked = true, style = "border: solid 1px blue; border-radius:5px;" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="tdLeft">Funding method</td>
+                            <td class="tdRight">
+                                @Html.DropDownListFor(model => model.FundingMethodId, new SelectList("aa"), new { style = "width:200px;height:30px;", Class = "inputItem" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="tdLeft">Payment to</td>
+                            <td class="tdRight">
+                                @Html.DropDownListFor(model => model.PaymentTo, new SelectList("aa"), new { style = "width:200px;height:30px;", Class = "inputItem" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="tdLeft">Agenda payment</td>
+                            <td class="tdRight">@Html.DropDownListFor(model => model.PaymentTo, new SelectList("aa"), new { style = "width:200px;height:30px;", Class = "inputItem" })</td>
+                        </tr>
+                        <tr>
+                            <td class="tdLeft">Handing charge</td>
+                            <td class="tdRight">@Html.TextBoxFor(model => model.HandlingCharge, new { style = "width:200px;height:30px;border: solid 1px blue; border-radius:5px;", maxlength = 8 })</td>
+                        </tr>
+                        <tr>
+                            <td class="tdLeft">Dealer visibility</td>
+                            <td class="tdRight">@Html.DropDownListFor(model => model.DealerVisibility, new SelectList("aa"), new { style = "width:200px;height:30px;", Class = "inputItem" })</td>
+                        </tr>
+                        <tr>
+                            <td class="tdLeft">Volume discount type</td>
+                            <td class="tdRight">@Html.DropDownListFor(model => model.DealerVisibility, new SelectList("aa"), new { style = "width:200px;height:30px;", Class = "inputItem" })</td>
+                        </tr>
+                        <tr>
+                            <td class="tdLeft"> Discount unit</td>
+                            <td class="tdRight">@Html.DropDownListFor(model => model.DiscountUnit, new SelectList("aa"), new { style = "width:200px;height:30px;", Class = "inputItem" })</td>
+                        </tr>
+                        <tr>
+                            <td class="tdLeft">Combinability</td>
+                            <td class="tdRight">@Html.DropDownListFor(model => model.Combinability, new SelectList("aa"), new { style = "width:200px;height:30px;", Class = "inputItem" })</td>
+                        </tr>
+
+                    </table>
+       
+            </div><!-- End #ContentArea -->
+
+            <div id="SubmitArea" align="right">
+                    &raquo;<input type="submit" value="save as draft" style="border:none;background:none;padding-right:10px;" />
+                    &raquo;<input type="button" value="back" style="border:none;background:none;padding-right:10px;" id="backBtn"/>
+                    &raquo;<input type="button" value="next" style="border:none;background:none;padding-right:10px;" id="nextBtn"/>
+            </div><!-- End #SubmitArea -->
+        }
+</div><!-- End #SelectCustomerArea -->
+<label>@ViewBag.RFONumber</label>
+
+

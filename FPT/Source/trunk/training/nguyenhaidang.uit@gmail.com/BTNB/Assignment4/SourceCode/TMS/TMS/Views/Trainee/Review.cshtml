@@ -1,0 +1,32 @@
+﻿@model IEnumerable<TMS.Models.FeedbackDetail>
+
+@{
+    ViewBag.Title = "Review";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Review</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FeedbackType.Description)
+        </th>
+        <th>Rate</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FeedbackType.Description)
+            </td>
+            <td>
+                @Html.EditorFor(modelItem => item.Rate)
+            </td>
+        </tr>
+    }
+
+</table>
+
+<input type="submit" value="Submit Review" class="btn btn-default" />

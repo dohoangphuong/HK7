@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+label.field{
+	text-align: right;
+	width:100px;
+	float:left;
+	margin-right:2px;
+}
+input, label, select{
+	margin-top: 10px;
+}
+select{
+	width:250px;
+}
+.input-text{
+	width: 250px;
+}
+.checkfield{
+	margin-top:10px;
+	width: 190px;
+}
+.input-checkbox{
+	margin-left: 5px;
+}
+.input-button{
+	text-align:center;
+	padding-bottom:10px;
+}
+th{
+	padding:10px;
+	height:30px;
+	vertical-align:top;
+	text-align: left;
+	color:#ffffff;
+	background-color:#0000FF;	
+}
+.table{
+	width:500px;
+	border:1px solid black;
+	border-collapse: collapse;
+}
+</style>
+</head>
+<body>
+	<table class="table">
+		<tr>
+		<th>BOOK MAINTENANCE</th>
+		<tr>
+		<td>
+			<form action="" method="get">
+				<label class="field">Book ID:</label><input type="text" name="bookId"></input></br>
+				<label class="field">Book Tilte:</label><input class="input-text" type="text" name="bookTitle"></input></br>
+				<label class="field">Author:</label><input class="input-text" type="text" name="author"></input></br>
+				<label class="field">Category:</label>
+				<fieldset class="checkfield">
+					<table><tr><td>
+					<input class="input-checkbox" type="checkbox" name="c1" value="horror">Horror</input><br>
+					<input class="input-checkbox" type="checkbox" name="c2" value="romance">Romance</input>
+					</td>
+					<td>
+					<input class="input-checkbox" type="checkbox" name="c3" value="thriller">Thriller</input><br>
+					<input class="input-checkbox" type="checkbox" name="c4" value="sci-fi">Sci-fi</input>
+					</td>
+					</table>
+				</fieldset>
+				<label class="field">Publisher:</label>
+				<select>
+				</select>
+				<br>
+				<div class="input-button">
+					<input type="button" name="b1" value="OK"></input>
+					<input type="button" name="b2" value="CANCEL"></input>
+				</div>
+			<form>
+		</td>		
+
+	</table>
+</body>
+</html>

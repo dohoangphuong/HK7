@@ -1,0 +1,148 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.Linq;
+using System.Net;
+using System.Threading.Tasks;
+using System.Web;
+using System.Web.Mvc;
+using WebsiteQuanLyBanHang.Models;
+using PagedList;
+
+namespace WebsiteQuanLyBanHang.Controllers
+{
+    public class SalesManController : Controller
+    {
+        private CSMSEntities db = new CSMSEntities();
+
+        // GET: SalesMan
+        public ActionResult Index(string searchName, string searchStatus, int? page)
+        {
+
+            if (searchName != null)
+            {
+                page = 1;
+            }
+            var salesMen = from s in db.SalesMen
+                           select s;
+            if (!String.IsNullOrEmpty(searchName))
+            {
+                salesMen = salesMen.Where(s => s.SalesManName.Contains(searchName));
+            }
+            if (!String.IsNullOrEmpty(searchStatus))
+            {
+                salesMen = salesMen.Where(s => s.Status.Contains(searchStatus));
+            }
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return View(salesMen.OrderBy(s=>s.SalesManID).ToPagedList(pageNumber, pageSize));
+        }
+
+        // GET: SalesMan/Create
+        public ActionResult Create()
+        {
+           
+            int id = int.Parse(db.SalesMen.ToList().Last().SalesManID) + 1;
+            string pre = "";
+            if (id < 1000)
+            {
+                pre = "0";
+            }
+            if (id < 100)
+            {
+                pre = "00";
+            }
+            if (id < 10)
+            {
+                pre = "000";
+            }
+            SalesMan salesMan = new SalesMan();
+            salesMan.SalesManID = pre + id.ToString();
+            return PartialView(salesMan);
+        }
+
+        // POST: SalesMan/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Create([Bind(Include = "SalesManID,SalesManName,Address,OverAmt,Status,Description")] SalesMan salesMan)
+        {
+            if (ModelState.IsValid)
+            {
+                db.SalesMen.Add(salesMan);
+                await db.SaveChangesAsync();
+                return Json(new { success = true });
+            }
+
+            return PartialView(salesMan);
+        }
+
+        // GET: SalesMan/Edit/5
+        public async Task<ActionResult> Edit(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            SalesMan salesMan = await db.SalesMen.FindAsync(id);
+            if (salesMan == null)
+            {
+                return HttpNotFound();
+            }
+            return PartialView(salesMan);
+        }
+
+        // POST: SalesMan/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Edit([Bind(Include = "SalesManID,SalesManName,Address,OverAmt,Status,Description")] SalesMan salesMan)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(salesMan).State = EntityState.Modified;
+                await db.SaveChangesAsync();
+                return Json(new { success = true });
+            }
+            return PartialView(salesMan);
+        }
+
+        // GET: SalesMan/Delete/5
+        public async Task<ActionResult> Delete(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            SalesMan salesMan = await db.SalesMen.FindAsync(id);
+            if (salesMan == null)
+            {
+                return HttpNotFound();
+            }
+            return PartialView(salesMan);
+        }
+
+        // POST: SalesMan/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> DeleteConfirmed(string id)
+        {
+            SalesMan salesMan =await db.SalesMen.FindAsync(id);
+            db.SalesMen.Remove(salesMan);
+            await db.SaveChangesAsync();
+            return Json(new { success = true });
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+    }
+}

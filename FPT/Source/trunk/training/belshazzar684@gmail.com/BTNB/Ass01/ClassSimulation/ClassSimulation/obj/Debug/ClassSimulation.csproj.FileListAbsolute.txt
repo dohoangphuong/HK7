@@ -1,0 +1,5 @@
+D:\TÀI LIỆU HỌC TẬP\LÝ THUYẾT\Fsoft\SVN\trunk\training\belshazzar684@gmail.com\BTNB\Ass01\ClassSimulation\ClassSimulation\bin\Debug\ClassSimulation.exe.config
+D:\TÀI LIỆU HỌC TẬP\LÝ THUYẾT\Fsoft\SVN\trunk\training\belshazzar684@gmail.com\BTNB\Ass01\ClassSimulation\ClassSimulation\bin\Debug\ClassSimulation.exe
+D:\TÀI LIỆU HỌC TẬP\LÝ THUYẾT\Fsoft\SVN\trunk\training\belshazzar684@gmail.com\BTNB\Ass01\ClassSimulation\ClassSimulation\bin\Debug\ClassSimulation.pdb
+D:\TÀI LIỆU HỌC TẬP\LÝ THUYẾT\Fsoft\SVN\trunk\training\belshazzar684@gmail.com\BTNB\Ass01\ClassSimulation\ClassSimulation\obj\Debug\ClassSimulation.exe
+D:\TÀI LIỆU HỌC TẬP\LÝ THUYẾT\Fsoft\SVN\trunk\training\belshazzar684@gmail.com\BTNB\Ass01\ClassSimulation\ClassSimulation\obj\Debug\ClassSimulation.pdb

@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "DirectoratesList";
+}
+
+<link href="~/Content/Stylesheets/jquery-ui.css" rel="stylesheet" />
+<link href="~/Content/Stylesheets/style.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery-ui.js"></script>
+<script src="~/Scripts/Tabs.js"></script>
+
+<h2>Directorates Details</h2>
+
+<div id="tabs">
+    <ul>
+        <li><a href="#tabs-1">Details</a></li>
+    </ul>
+    <div id="tabs-1">
+        @Html.Partial("~/Views/Directorates/AddDirectorates.cshtml")
+    </div>
+</div>

@@ -1,0 +1,36 @@
+namespace CSS_G06.Models
+{
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
+
+    [Table("CostCentre")]
+    public partial class CostCentre
+    {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public CostCentre()
+        {
+            FundingMethods = new HashSet<FundingMethod>();
+        }
+
+        [Key]
+        [Column("CostCentre")]
+        [StringLength(10)]
+        public string CostCentre1 { get; set; }
+
+        [Required]
+        [StringLength(100)]
+        public string Description { get; set; }
+
+        [Required]
+        [StringLength(100)]
+        public string Status { get; set; }
+
+        public decimal Verified { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FundingMethod> FundingMethods { get; set; }
+    }
+}

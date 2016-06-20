@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<!-- saved from url=(0058)https://developer.mozilla.org/vi/demos/detail/whale/launch -->
+<html lang="en-US" dir="ltr" id="developer-mozilla-org" xmlns:fb="http://www.facebook.com/2008/fbml" xmlns:og="http://ogp.me/ns#"><script id="tinyhippos-injected">if (window.top.ripple) { window.top.ripple("bootstrap").inject(window, document); }</script><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Whale | Demo Studio | MDN</title>
+  
+  <meta charset="utf-8">
+  
+
+  <meta property="og:title" content="Whale">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://developer.mozilla.org/demos/detail/whale">
+  <meta property="og:image" content="https://developer.cdn.mozilla.net/media/uploads/demos/d/i/diegoleme/1ebfd5913ef450b92b9e65b6de09acad/1372738679_screenshot_1.png">    
+  <meta property="og:site_name" content="Demo Studio | MDN">
+  <meta property="og:description" content="Whale done in Flash converted to OpenWeb">
+
+  <meta name="description" content="Whale done in Flash converted to OpenWeb">
+  
+  <link rel="stylesheet" type="text/css" media="all" href="./Whale   Demo Studio   MDN_files/demowrap.css">
+  <link rel="stylesheet" type="text/css" media="all" href="./Whale   Demo Studio   MDN_files/modals.css">
+  <link rel="stylesheet" media="screen,projection,tv" href="https://developer.cdn.mozilla.net/media/css/popup-min.css?build=54ef076">
+  <script src="./Whale   Demo Studio   MDN_files/build-54ef076"></script>
+  
+  <!--[if IE]>
+  <meta http-equiv="imagetoolbar" content="no">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <script src="https://developer.cdn.mozilla.net/media/js/libs/html5.js"></script>
+  <![endif]-->
+
+</head>
+<body class="hasJS">
+  <header id="demobar">
+  <h4 id="logo"><a href="https://developer.mozilla.org/vi/demos/"><img src="./Whale   Demo Studio   MDN_files/mdn-logo-micro.png" alt="Mozilla Developer Network" width="54" height="16"></a></h4>
+    
+    <div class="title">
+      <h1 class="demo-title"><a href="https://developer.mozilla.org/demos/detail/whale">Whale</a></h1>
+      <p class="byline vcard">by <a href="https://developer.mozilla.org/vi/profiles/diegoleme" class="url fn" title="See diegoleme&#39;s profile"><span>diegoleme</span></a></p>
+    </div>
+    
+    <ul class="tools">
+      <li>
+                <form id="demo-unlike" target="like_receiver" method="POST" action="https://developer.mozilla.org/vi/demos/detail/whale/unlike?iframe=1" style="display: none">
+                <div style="display:none"><input type="hidden" name="csrfmiddlewaretoken" value="fdPYfuEQohw8yeJzSAONcaHdN9G10AFF"></div>
+                <button type="submit" class="unlike" title="You like this demo. Undo?"><span>You Like</span></button>
+        </form>
+        <form id="demo-like" target="like_receiver" method="POST" action="https://developer.mozilla.org/vi/demos/detail/whale/like?iframe=1" style=" ">
+                <div style="display:none"><input type="hidden" name="csrfmiddlewaretoken" value="fdPYfuEQohw8yeJzSAONcaHdN9G10AFF"></div>
+                <button type="submit" class="like" title="Do you like this demo?"><span>Like It</span></button>
+        </form>
+        <iframe style="display: none" id="like_receiver" name="like_receiver"></iframe>
+      </li>
+      <li class="share"><a href="https://developer.mozilla.org/vi/demos/detail/whale/launch#share-opts" id="sharetoggle" title="Share this demo with your social network">Share It</a>
+        <ul id="share-opts" class="js" style="display: none;">
+          <li class="twitter"><a href="http://twitter.com/share?url=http%3A%2F%2Fmzl.la%2F19PXqRh&text=Whale&via=mozhacks">Share on Twitter</a></li>
+          <li class="facebook"><a href="http://www.facebook.com/sharer.php?u=https%3A%2F%2Fdeveloper.mozilla.org%2Fdemos%2Fdetail%2Fwhale&t=Whale">Share on Facebook</a></li>
+          <li class="link"><input id="shorturl" type="text" readonly="readonly" value="http://mzl.la/19PXqRh"></li>
+        </ul>
+      </li>
+      <li class="report"><a class="modal" href="https://developer.mozilla.org/vi/demos/detail/whale/flag?flag_type=notworking">Report a Problem</a>
+      </li>
+    </ul>
+
+    <!-- hide share link if no javascript present -->
+    <noscript>
+      &lt;style type="text/css"&gt;
+        .tools .share { display: none; }
+      &lt;/style&gt;
+    </noscript>
+
+
+    <nav class="paging">
+      <ul role="navigation">
+                            <li class="prev"><a href="https://developer.mozilla.org/demos/detail/4-connect-net/launch" title="Go to the previous demo, 4 connect net">Prev</a></li>
+                                    <li class="next"><a href="https://developer.mozilla.org/demos/detail/svg-clock/launch" title="Go to the next demo, SVG Clock">Next</a></li>
+              </ul>
+    </nav>
+    
+      <p id="close"><a href="./Whale   Demo Studio   MDN_files/index.htm" title="Remove this toolbar">Remove toolbar</a></p>
+    <script src="./Whale   Demo Studio   MDN_files/popup-min.js"></script>
+    <script type="text/javascript">
+
+    $(document).ready(function() {
+
+      var $shareOpts = $("#share-opts"),
+          $shareToggle = $("#sharetoggle");
+
+      // Hide the "share" dropdown options
+      $shareOpts.addClass("js").hide();
+
+      // Toggle the dropdown when the button is clicked
+      $shareToggle.click(function() {
+        $shareOpts.fadeIn(100);
+        return false;
+      });
+
+      $shareOpts.hover(
+        function() {
+          $(this).show();
+        },
+        function() {
+          $(this).fadeOut(100);
+          $shareToggle.blur();
+        }
+      );
+
+      $(document).bind("click", function(e) {
+        if (! $(e.target).parents().hasClass("share"))
+          $shareOpts.hide();
+      });
+      
+      $("a, input, textarea, button").bind("focus", function(e) {
+        if (! $(e.target).parents().hasClass("share"))
+          $shareOpts.hide();
+      });
+      
+      $("#shorturl")
+        .focus(function() {
+          $(this).select().addClass("focus");
+        })
+        .click(function() {
+          $(this).select().addClass("focus");
+        })
+        .blur(function() {
+          $(this).removeClass("focus");
+        });
+
+
+    });
+    </script>
+    
+  </header>
+  
+  <iframe id="demoframe" border="no" frameborder="0" scrolling="auto" seamless="seamless" src="./Whale   Demo Studio   MDN_files/index.htm"></iframe>
+
+  <script type="text/javascript">
+    (function() {
+      // Adaptor for demo protocol to make WoW demos run
+      var ifrm = document.getElementById('demoframe');
+      ifrm.addEventListener('load', function (ev) {
+          var contentWindow = ifrm.contentWindow;
+          if (contentWindow && contentWindow.postMessage) {
+              contentWindow.postMessage('start_demo', '*');
+          }
+      }, true);
+    })();
+  </script>
+
+  <script type="text/javascript">
+    $('#share-opts li a').click(function () {
+        window.open($(this).attr('href'), 'sharer', 
+            'toolbar=0, status=0, resizable=1, width=626, height=436');
+        return false;
+    });
+  </script>
+
+  <script type="text/javascript">
+      window.handleIFrameEvent = function (name, data) {
+          switch (name) {
+              case 'liked':
+                  $('#demo-unlike').show();
+                  $('#demo-like').hide();
+                  break;
+              case 'unliked':
+                  $('#demo-like').show();
+                  $('#demo-unlike').hide();
+                  break;
+          }
+      };
+  </script>
+
+  <!-- provide "report" functionality -->
+  <script type="text/javascript" src="./Whale   Demo Studio   MDN_files/jquery.hoverIntent.minified.js"></script>
+  <script type="text/javascript" src="./Whale   Demo Studio   MDN_files/jquery.simplemodal.1.4.1.min.js"></script>
+  <script type="text/javascript" src="./Whale   Demo Studio   MDN_files/modal-control.js"></script>
+
+
+</body></html>

@@ -1,0 +1,63 @@
+﻿@model CSS.ViewModels.MiscTextModel
+
+@{
+    Layout = null;
+}
+
+@Scripts.Render("~/bundles/jqueryvalidate")
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btnNextToConfirm").click(function () {
+            if (parent.status.length != 0 && parent.status != 0) {
+                var agrmtNumber = $("#globalAgreementNumber").val();
+                var varNumber = $("#globalVarriantNumber").val();
+                $.ajax({
+                    type: "POST",
+                    url: "/Agreement/UpdateConfirm",
+                    data: { agreementNumber: agrmtNumber, variantNumber: varNumber },
+                    success: function (result) {
+                        $("#step-7").html(result);
+                        parent.status = 0;
+                    },
+                    error: function () {
+                        alert("Call ajax failed.");
+                    }
+                });
+            }
+            forward();
+        });
+    });
+</script>
+
+@using (Ajax.BeginForm("SaveMiscText", "Agreement", null
+    , new AjaxOptions()
+    {
+        HttpMethod = "POST",
+        UpdateTargetId = "divMessage",
+        OnSuccess = "updateStatusAsChange()"
+    }, new { @style = "height:100%" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal" style="height:90%">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.AgreementNumber)
+        @Html.HiddenFor(model => model.VarriantNumber)
+
+        <div class="form-group" style="margin:5px">
+            @Html.Label("Credit Note Comments", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.TextAreaFor(model => model.CreditNoteText, 8, 80, new { @class = "col-md-8", @style = "resize: none" })
+            @Html.ValidationMessageFor(model => model.CreditNoteText, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group" style="margin:5px">
+            @Html.Label("Support Justification (Internal use only)", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.TextAreaFor(model => model.CommentText, 8, 80, new { @class = "col-md-8", @style = "resize: none" })
+            @Html.ValidationMessageFor(model => model.CommentText, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="actionBar" style="height: 10%">
+        <input id="btnNextToConfirm" class="buttonNext" type="button" value="next" />
+        <input class="buttonPrevious" type="button" value="back" onclick="backward()" />
+        <input class="buttonFinish" type="submit" value="save as draft" />
+    </div>
+}

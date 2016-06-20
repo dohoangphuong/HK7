@@ -1,0 +1,545 @@
+﻿@model CSS_G06.Models.VolumeBandingModel
+@using CSS_G06.Models
+
+@{
+    List<DefineBanding> emptyList = new List<DefineBanding>();
+    DefineBanding nitem = new DefineBanding();
+    nitem.ShowString = "0 - 100";
+    emptyList.Add(nitem);
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        window.onload = function () {
+            var s = document.getElementById("cbbTriggerCredit").value;
+            triggerCreditSelected = s;
+            var ss = document.getElementById("cbbPayableTo").value;
+            payableToSelected = ss;
+            alert(ss + " " + s);
+        }
+
+        $("#txtMinBandingValue").keyup(function (e) {
+            var text = document.getElementById("txtMinBandingValue").value;
+            if (text.length >= 10) {
+                document.getElementById("txtMinValueError").innerText = "Min of banding value have max length is 10 digits";
+            }
+            else {
+                document.getElementById("txtMinValueError").innerText = "";
+            }
+        });
+        $("#txtMinBandingValue").keydown(function (e) {
+            if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+                (e.keyCode == 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+                (e.keyCode >= 35 && e.keyCode <= 40)) {
+                return;
+            }
+            if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                e.preventDefault();
+            }
+        });
+        $("#txtMinBandingValue").change(function () {
+            var text = document.getElementById("txtMinBandingValue").value;
+            var realValue = parseInt(text);
+            var setval = realValue.toString();
+            document.getElementById("txtMinBandingValue").value = setval;
+
+        });
+        $("#txtMaxBandingValue").keyup(function (e) {
+            var text = document.getElementById("txtMaxBandingValue").value;
+            if (text.length >= 10) {
+                document.getElementById("txtMaxValueError").innerText = "Max of banding value have max length is 10 digits";
+            }
+            else {
+                document.getElementById("txtMaxValueError").innerText = "";
+            }
+        });
+        $("#txtMaxBandingValue").keydown(function (e) {
+            if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+                (e.keyCode == 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+                (e.keyCode >= 35 && e.keyCode <= 40)) {
+                return;
+            }
+            if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                e.preventDefault();
+            }
+        });
+        $("#txtMaxBandingValue").change(function () {
+            var text = document.getElementById("txtMaxBandingValue").value;
+            var realValue = parseInt(text);
+            var setval = realValue.toString();
+            document.getElementById("txtMaxBandingValue").value = setval;
+
+        });
+    });
+    function TriggerCreditOnchange() {
+        var s = document.getElementById("cbbTriggerCredit").value;
+        triggerCredit = s;
+    }
+    function PaybleToOnchange() {
+        var ss = document.getElementById("cbbPayableTo").value;
+        payableTo = ss;
+    }
+    var payableToSelected = "Customer";
+    var triggerCreditSelected = "End of ki";
+    var bandingList = [0, 100];
+    var cMax = 100;
+    var editMode = false;
+    var minEdit = -1;
+    var maxEdit = -1;
+
+    function AddBanding() {
+        var isValid = true;
+        var min = document.getElementById("txtMinBandingValue").value;
+        var max = document.getElementById("txtMaxBandingValue").value;
+        document.getElementById("txtMinValueError").innerText = "";
+        document.getElementById("txtMaxValueError").innerText = "";
+        if (min.length < 1) {
+            isValid = false;
+            document.getElementById("txtMinValueError").innerText = "Min of banding value must not null and that than more 0";
+        } else if (max.length < 1) {
+            isValid = false;
+            document.getElementById("txtMaxValueError").innerText = "Max of banding value must not null and that than more 0";
+        } else {
+            if (parseInt(min) >= parseInt(max)) {
+                isValid = false;
+                document.getElementById("txtMaxValueError").innerText = "Max of banding value must than more Min of banding value";
+            }
+            else {
+                isValid = true;
+            }
+        }
+        if (isValid == true) {
+            var length = bandingList.length;
+            for (var i = 0; i < length; i++) {
+                var tmpMin = bandingList[i++];
+                var tmpMax = bandingList[i];
+                if ((parseInt(min) <= parseInt(tmpMax) && parseInt(max) >= parseInt(tmpMax))
+                    || (parseInt(min) <= parseInt(tmpMin) && parseInt(max) >= parseInt(tmpMin))
+                    || (parseInt(min) >= parseInt(tmpMin) && parseInt(max) <= parseInt(tmpMax))
+                    || (parseInt(min) <= parseInt(tmpMin) && parseInt(max) >= parseInt(tmpMax))) {
+                    isValid = false;
+                    break;
+                }
+            }
+        }
+        if (isValid == true) {
+            bandingList.push(min);
+            bandingList.push(max);
+            $.ajax({
+                url: '@Url.Action("ViewAgreement_AddBandingValue", "ViewAgreement")',
+                type: "POST",
+                dataType: "text",
+                data: { resultBandingValue: bandingList },
+                success: function (data) {
+                    $('#VolumeBandingShowTable').html(data);
+                    if (bandingList.length < 1) {
+                        document.getElementById("cbbTriggerCredit").disabled = true;
+                        document.getElementById("cbbPayableTo").disabled = true;
+                    }
+                    else {
+                        document.getElementById("cbbTriggerCredit").disabled = false;
+                        document.getElementById("cbbPayableTo").disabled = false;
+                    }
+                },
+                error: function (data) {
+                    alert("Failed !");
+                }
+            });
+        }
+        else {
+            document.getElementById("txtMaxValueError").innerText = "Banding value enter is invalid. Please, check again!";
+            document.getElementById("txtMinValueError").innerText = "Banding value enter is invalid. Please, check again!";
+        }
+    }
+
+    function DeleteBanding() {
+        if (bandingList.length < 1) {
+            document.getElementById("cbbTriggerCredit").disabled = true;
+            document.getElementById("cbbPayableTo").disabled = true;
+        }
+        else {
+            document.getElementById("cbbTriggerCredit").disabled = false;
+            document.getElementById("cbbPayableTo").disabled = false;
+        }
+        var selected = $("#VolumeBandingShowTable input[type='radio']:checked");
+        var banding = selected.val();
+        if (!banding) {
+            document.getElementById("LabelVolumeBandingSaveResult").innerText = "You have select least row before delete!";
+            return;
+        }
+        var res = banding.split(" - ");
+        var min = parseInt(res[0]);
+        var max = parseInt(res[1]);
+        var length = bandingList.length;
+        var deleted = false;
+        for (var i = 0; i < length; i++) {
+            if (bandingList[i] == min) {
+                bandingList.splice(i, 2);
+                deleted = true;
+                break;
+            }
+        }
+        if (deleted == true) {
+            document.getElementById("LabelVolumeBandingSaveResult").innerText = "Success! Deleted banding '" + min + " - " + max + "'";
+            $.ajax({
+                url: '@Url.Action("ViewAgreement_AddBandingValue", "ViewAgreement")',
+                type: "POST",
+                dataType: "text",
+                data: { resultBandingValue: bandingList },
+                success: function (data) {
+                    $('#VolumeBandingShowTable').html(data);
+                    if (bandingList.length < 1) {
+                        document.getElementById("cbbTriggerCredit").disabled = true;
+                        document.getElementById("cbbPayableTo").disabled = true;
+                    }
+                    else {
+                        document.getElementById("cbbTriggerCredit").disabled = false;
+                        document.getElementById("cbbPayableTo").disabled = false;
+                    }
+                },
+                error: function (data) {
+                    alert("Failed to refresh banding list!");
+                }
+            });
+        }
+        else {
+            document.getElementById("LabelVolumeBandingSaveResult").innerText = "Failed! Cannot delete banding '" + min + " - " + max + "'";
+        }
+    }
+
+    function EditBanding() {
+        var selected = $("#VolumeBandingShowTable input[type='radio']:checked");
+        var banding = selected.val();
+        if (!banding) {
+            document.getElementById("LabelVolumeBandingSaveResult").innerText = "You have select least row before edit!";
+            return;
+        }
+        var res = banding.split(" - ");
+        var min = parseInt(res[0]);
+        var max = parseInt(res[1]);
+        var length = bandingList.length;
+        editMode = true;
+        minEdit = min;
+        maxEdit = max;
+        document.getElementById("txtMinBandingValue").value = min;
+        document.getElementById("txtMaxBandingValue").value = max;
+        document.getElementById("VolumeBandingAddButton").value = "save";
+        document.getElementById("VolumeBandingEditBtn").disabled = true;
+        document.getElementById("VolumeBandingDeleteBtn").disabled = true;
+        document.getElementById("cbbTriggerCredit").disabled = true;
+        document.getElementById("cbbPayableTo").disabled = true;
+        document.getElementById("VolumeBandingShowTable").disabled = true;
+    }
+
+    function SaveEditBanding() {
+        var isValid = true;
+        var min = document.getElementById("txtMinBandingValue").value;
+        var max = document.getElementById("txtMaxBandingValue").value;
+        document.getElementById("txtMinValueError").innerText = "";
+        document.getElementById("txtMaxValueError").innerText = "";
+        if (min.length < 1) {
+            isValid = false;
+            document.getElementById("txtMinValueError").innerText = "Min of banding value must not null and that than more 0";
+        } else if (max.length < 1) {
+            isValid = false;
+            document.getElementById("txtMaxValueError").innerText = "Max of banding value must not null and that than more 0";
+        } else {
+            if (parseInt(min) >= parseInt(max)) {
+                isValid = false;
+                document.getElementById("txtMaxValueError").innerText = "Max of banding value must than more Min of banding value";
+            }
+            else {
+                isValid = true;
+            }
+        }
+        if (parseInt(min) == minEdit && parseInt(max) == maxEdit) {
+            editMode = false;
+            document.getElementById("txtMinBandingValue").value = "";
+            document.getElementById("txtMaxBandingValue").value = "";
+            document.getElementById("VolumeBandingAddButton").value = "add";
+            document.getElementById("VolumeBandingEditBtn").disabled = false;
+            document.getElementById("VolumeBandingDeleteBtn").disabled = false;
+            isValid = false;
+            return;
+        }
+        var index = -1;
+        if (isValid == true) {
+            var length = bandingList.length;
+            for (var i = 0; i < length; i++) {
+                if (bandingList[i] == minEdit) {
+                    bandingList.splice(i, 2);
+                    index = i;
+                    break;
+                }
+            }
+            if (index < 0) {
+                isValid = false;
+                document.getElementById("LabelVolumeBandingSaveResult").innerText = "Failed to update banding list! The banding updating can be deleted.";
+                return;
+            }
+        }
+        if (isValid == true) {
+            var length = bandingList.length;
+            for (var i = 0; i < length; i++) {
+                var tmpMin = bandingList[i++];
+                var tmpMax = bandingList[i];
+                if ((parseInt(min) <= parseInt(tmpMax) && parseInt(max) >= parseInt(tmpMax))
+                    || (parseInt(min) <= parseInt(tmpMin) && parseInt(max) >= parseInt(tmpMin))
+                    || (parseInt(min) >= parseInt(tmpMin) && parseInt(max) <= parseInt(tmpMax))
+                    || (parseInt(min) <= parseInt(tmpMin) && parseInt(max) >= parseInt(tmpMax))) {
+                    isValid = false;
+                    break;
+                }
+            }
+        }
+        if (isValid == true) {
+            bandingList.splice(index, 0, min);
+            bandingList.splice((index + 1), 0, max);
+            editMode = false;
+            document.getElementById("txtMinBandingValue").value = "";
+            document.getElementById("txtMaxBandingValue").value = "";
+            document.getElementById("VolumeBandingAddButton").value = "add";
+            document.getElementById("VolumeBandingEditBtn").disabled = false;
+            document.getElementById("VolumeBandingDeleteBtn").disabled = false;
+            $.ajax({
+                url: '@Url.Action("ViewAgreement_AddBandingValue", "ViewAgreement")',
+                type: "POST",
+                dataType: "text",
+                data: { resultBandingValue: bandingList },
+                success: function (data) {
+                    $('#VolumeBandingShowTable').html(data);
+                    if (bandingList.length < 1) {
+                        document.getElementById("cbbTriggerCredit").disabled = true;
+                        document.getElementById("cbbPayableTo").disabled = true;
+                    }
+                    else {
+                        document.getElementById("cbbTriggerCredit").disabled = false;
+                        document.getElementById("cbbPayableTo").disabled = false;
+                    }
+                },
+                error: function (data) {
+                    alert("Failed to refresh banding list!");
+                }
+            });
+        }
+        else {
+            document.getElementById("txtMaxValueError").innerText = "Banding value enter is invalid. Please, check again!";
+            document.getElementById("txtMinValueError").innerText = "Banding value enter is invalid. Please, check again!";
+        }
+    }
+
+    function ButtonAddClick() {
+        if (editMode == false) {
+            AddBanding();
+        }
+        else {
+            SaveEditBanding();
+        }
+    }
+
+    function saveAsDraft() {
+        var selected = $("#VolumeBandingShowTable input[type='radio']:checked");
+        var banding = selected.val();
+        if (!banding) {
+            document.getElementById("LabelVolumeBandingSaveResult").innerText = "Don't save. You must selected banding value to save.";
+        }
+        else {
+            var agreementNumber1 = '@Model.AgreementNumber';
+            var variantNumber1 = '@Model.VariantNumber';
+            var res = banding.split(" - ");
+            var min = parseInt(res[0]);
+            var max = parseInt(res[1]);
+            var nMin = parseInt(min);
+            var nMax = parseInt(max);
+            var triggerCredit1 = triggerCreditSelected;
+            var payableTo1 = payableToSelected;
+            $.ajax({
+                url: '@Url.Action("SaveBandingValue", "ViewAgreement")',
+                type: "GET",
+                dataType: "json",
+                data: { agreementNumber:agreementNumber1, variantNumber:variantNumber1, triggerCredit: triggerCredit1,
+                    payableTo:payableTo1, min: nMin, max:nMax },
+                success: function (data) {
+                    document.getElementById("LabelVolumeBandingSaveResult").innerText = data;
+                },
+                error: function (data) {
+                    document.getElementById("LabelVolumeBandingSaveResult").innerText = data;
+                }
+            });
+        }
+    }
+
+    function goFowardVolumeBanding() {
+            goFoward();
+            var agreementNumber1 = '@Model.AgreementNumber';
+            var variantNumber1 = '@Model.VariantNumber';
+            $.ajax({
+                url: '@Url.Action("ViewAgreementEdit_ModelSupport", "ViewAgreement")',
+                type: "GET",
+                dataType: "text",
+                data: { agreementNumber: agreementNumber1, variantNumber: variantNumber1 },
+                success: function (data) {
+                    $('#uc2_5').html(data);
+                },
+                error: function (data) {
+                    alert("Failed to load 'Model support'!");
+                }
+            });
+    }
+</script>
+
+<style type="text/css">
+    #VolumeBanding {
+        width: 800px;
+        height: 450px;
+        padding: 1px;
+    }
+
+    #VolumeBandingAddBandingArea {
+        width: 100%;
+        height: 195px;
+        padding: 1px;
+    }
+
+    #VolumeBandingShowListArea {
+        width: 600px;
+        height: 120px;
+        padding: 1px;
+    }
+    #VolumebandingTriggerCredit
+    {
+        width: 100%;
+        height: 65px;
+        padding: 1px;
+    }
+    #VolumeBandingSaveResult {
+        width: 100%;
+        height: 25px;
+        align-content: initial;
+        padding: 1px;
+    }
+
+    #VolumeBandingSubmit {
+        width: 600px;
+        height: 25px;
+        padding: 1px;
+    }
+    td {
+        padding: 1px;
+    }
+
+    tr {
+        padding: 1px;
+    }
+
+    .rdRight {
+        width: 380px;
+    }
+    .labelAreaEdit {
+        width: 200px;
+        height: auto;
+        font-size: 12px;
+        font-weight: bold;
+    }
+</style>
+
+<div id="VolumeBanding">
+
+    <div id="VolumeBandingAddBandingArea">
+        @using (Ajax.BeginForm("ViewAgreementEdit_EditVolumeBanding", "ViewAnAgreement",
+                new AjaxOptions { UpdateTargetId = "VolumeBandingEditBanding", HttpMethod = "POST" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            <table id="tabel1">
+                <tr>
+                    <td class="labelAreaEdit">Current Banding Value</td>
+                    <td class="rdRight" style="color:#1D7EDC">
+                        @ViewBag.CurrentBandingValue
+                    </td>
+                </tr><!--RFO Number-->
+                <tr>
+                    <td class="labelAreaEdit">Current Trigger Credit</td>
+                    <td class="rdRight" style="color:#1D7EDC">
+                        @ViewBag.CurrentTriggerCredit
+                    </td>
+                </tr><!--RFO Number-->
+                <tr>
+                    <td class="labelAreaEdit">Current Payable To</td>
+                    <td class="rdRight" style="color:#1D7EDC">
+                        @ViewBag.CurrentPayableTo
+                    </td>
+                </tr><!--RFO Number-->
+
+                <tr>
+                    <td class="labelAreaEdit">RFO Number</td>
+                    <td class="rdRight" style="color:#1D7EDC">
+                        @Html.HiddenFor(model => model.AgreementNumber)
+                        @Html.HiddenFor(model => model.VariantNumber)
+                        @Html.HiddenFor(model => model.ShowBanding, new { id = "ShowBandingList" })
+                        @ViewBag.RFONumber
+                    </td>
+                </tr><!--RFO Number-->
+                <tr>
+                    <td class="labelAreaEdit">Customer Name</td>
+                    <td class="rdRight" style="color:#1D7EDC">
+                        @ViewBag.CustomerName
+                    </td>
+                </tr><!--Customer Name-->
+                <tr>
+                    <td class="labelAreaEdit">Banding Volume From</td>
+                    <td class="rdRight">
+                        @Html.TextBoxFor(model => model.AddBandingMin, new { id = "txtMinBandingValue", maxlength = 10, style = " width: 200px;height: 25px;font-size: 12px;font-weight: normal;border: 1px solid #889EC7;border-radius: 2px;color: black;" })
+                        <label id="txtMinValueError" style="color:red;font-style:italic;font-size:12px;"></label>
+                    </td>
+                </tr><!--Banding value from-->
+                <tr>
+                    <td class="labelAreaEdit">Banding Volume From</td>
+                    <td class="rdRight">
+                        @Html.TextBoxFor(model => model.AddBandingMax, new { id = "txtMaxBandingValue", maxlength = 10, style = " width: 200px;height: 25px;font-size: 12px;font-weight: normal;border: 1px solid #889EC7;border-radius: 2px;color: black;" })
+                        <label id="txtMaxValueError" style="color:red;font-style:italic;font-size:12px;"></label>
+                    </td>
+                </tr><!--Banding value to-->
+                <tr>
+                    <td class="labelAreaEdit"></td>
+                    <td align="left" class="rdRight">
+                        &raquo;<input type="button" value="add" onclick="ButtonAddClick()" id="VolumeBandingAddButton" style="border:none;background:none;padding:0px;" />
+                    </td>
+                </tr><!--Add button-->
+            </table>
+        }
+    </div>
+
+    <div id="VolumeBandingShowListArea">
+        <div id="VolumeBandingShowTable">
+            @Html.Partial("ViewAgreementEdit_EditVolumeBanding", emptyList)
+        </div>
+        <div id="VolumeBandingEditButton" align="right">
+            &raquo;<input type="button" value="delete" onclick="DeleteBanding()" style="border:none;background:none;padding-left:0px;padding-right:10px;" id="VolumeBandingDeleteBtn" />
+            &raquo;<input type="button" value="edit" onclick="EditBanding()" style="border:none;background:none;padding-left:0px;padding-right:10px;" id="VolumeBandingEditBtn" />
+        </div>
+    </div>
+    <div id="VolumebandingTriggerCredit">
+        <table id="table2">
+            <tr>
+                <td class="labelAreaEdit">Trigger credit</td>
+                <td class="rdRight">
+                    @Html.DropDownListFor(model => model.TriggerCredit, new SelectList(ViewBag.TriggerCredit, "ConfigValue", "ConfigValue"), new { id = "cbbTriggerCredit", onchange = "TriggerCreditOnchange()", style = " width: 200px;height: 25px;font-size: 12px;font-weight: normal;border: 1px solid #889EC7;border-radius: 2px;color: black;" })
+                </td>
+            </tr><!--Trigger credit-->
+            <tr>
+                <td class="labelAreaEdit">Payable to</td>
+                <td class="rdRight">
+                    @Html.DropDownListFor(model => model.PayalbeTo, new SelectList(ViewBag.PayableTo, "ConfigValue", "ConfigValue"), new { id = "cbbPayableTo", onchange = "PaybleToOnchange()", style = " width: 200px;height: 25px;font-size: 12px;font-weight: normal;border: 1px solid #889EC7;border-radius: 2px;color: black;" })
+                </td>
+            </tr><!--Payable to-->
+        </table>
+    </div>
+    <div id="VolumeBandingSubmit" align="right">
+        &raquo;<input type="button" value="save as draft" style="border:none;background:none;padding-left:0px;padding-right:10px;" onclick="saveAsDraft()" />
+        &raquo;<input type="button" value="back" style="border:none;background:none;padding-left:0px;padding-right:10px;" onclick="goBackward()" />
+        &raquo;<input type="button" value="next" style="border:none;background:none;padding-left:0px;padding-right:10px;" onclick="goFowardVolumeBanding()" />
+    </div>
+    <div id="VolumeBandingSaveResult">
+        <label id="LabelVolumeBandingSaveResult" style="font-size:12px; color:red; font-style:italic"></label>
+    </div>
+</div>

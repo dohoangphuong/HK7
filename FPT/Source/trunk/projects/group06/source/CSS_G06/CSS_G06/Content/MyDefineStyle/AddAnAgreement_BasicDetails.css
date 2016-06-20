@@ -1,0 +1,22 @@
+﻿#ContentArea {
+    width: 100%;
+    height: 400px;
+    overflow-y: scroll;
+    border: 1px solid #889EC7;
+}
+#BasicAgreementResultArea {
+    width: 100%;
+    height: 25px;
+}
+#BasicAgreementDetails {
+    width: 800px;
+    height: 450px;
+    padding-top: 10px;
+}
+#SubmitArea {
+    width: 100%;
+    height: 25px;
+}
+td {
+    padding: 3px;
+}

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding='ISO-8859-1' standalone='yes' ?>
+<TestRun>
+  <FailedTests></FailedTests>
+  <SuccessfulTests>
+    <Test id="1">
+      <Name>CTestCalculator::UTCID01</Name>
+    </Test>
+    <Test id="2">
+      <Name>CTestCalculator::UTCID02</Name>
+    </Test>
+    <Test id="3">
+      <Name>CTestCalculator::UTCID03</Name>
+    </Test>
+    <Test id="4">
+      <Name>CTestCalculator::UTCID04</Name>
+    </Test>
+    <Test id="5">
+      <Name>CTestCalculator::UTCID05</Name>
+    </Test>
+    <Test id="6">
+      <Name>CTestCalculator::UTCID06</Name>
+    </Test>
+    <Test id="7">
+      <Name>CTestCalculator::UTCID07</Name>
+    </Test>
+  </SuccessfulTests>
+  <Statistics>
+    <Tests>7</Tests>
+    <FailuresTotal>0</FailuresTotal>
+    <Errors>0</Errors>
+    <Failures>0</Failures>
+  </Statistics>
+</TestRun>

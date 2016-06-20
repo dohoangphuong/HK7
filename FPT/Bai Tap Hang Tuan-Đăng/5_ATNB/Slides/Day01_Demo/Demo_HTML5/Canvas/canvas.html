@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<body>
+	<canvas id="myCanvas" width="500" height="500" style="border:1px solid #000000;">
+		Your browser does not support the HTML5 canvas tag.
+	</canvas>
+	
+	<script>
+		//var c=document.getElementById("myCanvas");
+		var ctx=document.getElementById("myCanvas").getContext("2d");
+		// fill rect
+		ctx.fillStyle="#FF0000";
+		ctx.fillRect(0,0,50,25);
+		// draw line - moveTo, lineTo
+		ctx.moveTo(100,100);
+		ctx.lineTo(200,200);
+		ctx.stroke();
+		// draw circle - arc(x,y,r,start,stop)
+		ctx.beginPath();
+		ctx.arc(95,50,40,0,2*Math.PI);
+		ctx.stroke();
+		ctx.fillStyle = '#8ED6FF';
+		ctx.fill();
+		/* draw Text font - defines the font properties for text
+		fillText(text,x,y) - Draws "filled" text on the canvas
+		strokeText(text,x,y) - Draws text on the canvas (no fill) */
+		ctx.font="30px Arial";
+		ctx.strokeText("Hello World",300,350);
+		/* fill Gradient - createLinearGradient(x,y,x1,y1) - Creates a linear gradient
+		createRadialGradient(x,y,r,x1,y1,r1) - Creates a radial/circular gradient*/
+		// Create gradient
+		var grd=ctx.createLinearGradient(10,300,200,300);
+		grd.addColorStop(0,"#ff0000");
+		grd.addColorStop(1,"#ffffff");
+		// Fill with gradient
+		ctx.fillStyle=grd;
+		ctx.fillRect(10,250,150,200);
+		
+		// Create gradient
+		var grd=ctx.createRadialGradient(275,50,5,290,60,100);
+		grd.addColorStop(0,"red");
+		grd.addColorStop(1,"white");
+
+		// Fill with gradient
+		ctx.fillStyle=grd;
+		ctx.fillRect(210,10,350,80);
+	</script>
+</body>
+</html>

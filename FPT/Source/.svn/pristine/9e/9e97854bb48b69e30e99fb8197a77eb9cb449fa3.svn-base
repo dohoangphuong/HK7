@@ -1,0 +1,139 @@
+﻿@model CSS.ViewModels.SearchDealerModel
+
+@{
+    Layout = null;
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.ajax({
+            type: "POST",
+            url: "/Agreement/GetAllDealer",
+            success: function (result) {
+                $("#srchDealerResult").html(result);
+            },
+            error: function () {
+                alert("Call ajax failed.");
+            }
+        });
+        $("#btnAddDealer").click(function () {
+            var selectedDealers = $('#tbSearchDealerResult input:checked');
+            if (selectedDealers.length == 0)
+                alert("Please select at least one dealer to add.");
+            else {
+                selectedDealers.each(function () {
+                    var row = $(this).closest('tr');
+                    if (row.length > 0) {
+                        var existRow = $("#tbSelectedDealer tbody #" + this.value);
+                        if (existRow.length == 0) {
+                            $("#tbSelectedDealer tbody").append("<tr id='" + this.value + "'>" + row.html() + "</tr>");
+                        }
+                        else {
+                            alert("Dealer has code: " + this.value + " is exist in Selected Dealer List");
+                        }
+                    }
+                });
+            }
+        });
+        $("#btnRemoveDealer").click(function () {
+            var selectedDealers = $('#tbSelectedDealer input:checked');
+            if (selectedDealers.length == 0)
+                alert("Please select at least one dealer to remove.");
+            else {
+                selectedDealers.each(function () {
+                    $(this).closest('tr').remove();
+                });
+            }
+        });
+        $("#ajaxSaveDealers").click(function () {
+            var rows = $("#tbSelectedDealer > tbody > tr");
+            if (rows.length == 0)
+                alert("Please select at least one dealer");
+            else {
+                var agrmtNumber = $("#agrmtNumber").val();
+                var varNumber = $("#varNumber").val();
+                var selectedValue = [];
+                rows.each(function () {
+                    selectedValue.push(this.id);
+                });
+                $.ajax({
+                    type: "POST",
+                    url: "/Agreement/SaveDealers",
+                    traditional: true,
+                    data: {
+                        selectedDealers: selectedValue,
+                        agreementNumber: agrmtNumber,
+                        varriantNumber: varNumber
+                    },
+                    success: function (result) {
+                        alert("Save success.");
+                        $("#step-4").html(result);
+                    },
+                    error: function () {
+                        alert("Call ajax failed.");
+                    }
+                });
+            }
+        });
+    });
+</script>
+
+@using (Ajax.BeginForm("SearchDealer", "Agreement"
+    , new AjaxOptions()
+    {
+        HttpMethod = "POST",
+        UpdateTargetId = "srchDealerResult"
+    }, new { @style = "height: 100%" }))
+{
+    @Html.AntiForgeryToken();
+    @Html.HiddenFor(model => model.AgreementNumber, new { @id = "agrmtNumber" });
+    @Html.HiddenFor(model => model.VarriantNumber, new { @id = "varNumber" });
+
+    <div class="form-horizontal" style="height: 25%">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group" style="margin:5px">
+            @Html.LabelFor(model => model.Code, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.EditorFor(model => model.Code, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Code, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group" style="margin:5px">
+            @Html.LabelFor(model => model.DealerName, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.EditorFor(model => model.DealerName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.DealerName, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-offset-2 col-md-6">
+            <input type="submit" value="Search" class="btn btn-default col-md-2">
+        </div>
+    </div>
+
+    <div id="srchDealerResult" style="height: 30%; overflow-y:scroll"></div>
+    <br />
+    <div style="height:10%">
+        <input id="btnAddDealer" type="button" class="btn btn-default" value="Add to Selected List" />
+        <input id="btnRemoveDealer" type="button" class="btn btn-default" value="Remove from Selected List" />
+    </div>
+
+    <p style="font-weight:bold; height:3%">Selected Dealers</p>
+    <div id="selectedDealer" style="height: 20%; overflow-y:scroll">
+        <table id="tbSelectedDealer" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>DealerName</th>
+                    <th>Town</th>
+                    <th>County</th>
+                    <th>select</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+
+    <div class="actionBar" style="height: 10%">
+        <input class="buttonNext" type="button" value="next" onclick="forward()" />
+        <input class="buttonPrevious" type="button" value="back" onclick="backward()" />
+        <input id="ajaxSaveDealers" class="buttonFinish" type="button" value="save as draft" />
+    </div>
+}

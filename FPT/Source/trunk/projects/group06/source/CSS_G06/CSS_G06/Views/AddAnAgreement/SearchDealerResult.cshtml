@@ -1,0 +1,89 @@
+﻿@model IEnumerable<CSS_G06.Models.DealerResult>
+
+<style type="text/css">
+    table.gridtable {
+        font-family: verdana,arial,sans-serif;
+        font-size: 11px;
+        color: whitesmoke;
+        border-width: 1px;
+        border-color: #889EC7;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+        table.gridtable th {
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #889EC7;
+            background-color: #889EC7;
+        }
+        table.gridtable tr:hover {
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #666666;;
+        }
+
+        table.gridtable td {
+            border: solid 1px #889EC7;
+            color:black;
+            font-size:12px;
+        }
+        .hover{
+            cursor: pointer;
+            background-color:#EAEAEA;
+        }
+        .clickable{
+            cursor: pointer;
+            background-color:#CCCCCC;
+        }
+}
+</style>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#ResultContent tr').hover(function () {
+            $(this).toggleClass('hover');
+        }).on('click', function () {
+            var title = "Matching dealer:";
+            var select = $(this).find('td:first').text();
+            var text = document.getElementById("lblMatchingDealer").textContent;
+            if (text.indexOf(select) < 0 && title.length < text.length)
+            {
+                text = text + ", " + select;
+                $(this).find('td').toggleClass('clickable');
+            }
+            else if (text.indexOf(select) < 0)
+            {
+                text = text + " " + select;
+                $(this).find('td').toggleClass('clickable');
+            }
+                
+            document.getElementById("lblMatchingDealer").innerText = text;
+        });
+
+    });
+</script>
+
+<div id="ResultContent" style="width:100%;height:100%;">
+    <label style="font-style:italic; color:#889EC7; height:30px;" id="lblMatchingDealer">Matching dealer:</label>
+    <div id="ResultTable"style="border: 1px solid #889EC7; height:240px;width:100%;overflow-y:auto">
+        @{
+            WebGrid grid = new WebGrid(source: Model, canSort: false, ajaxUpdateContainerId: "ResultTable");
+        }
+        @grid.GetHtml(
+                            tableStyle: "gridtable",
+                            headerStyle: "header",
+                            alternatingRowStyle: "alt",
+                            selectedRowStyle: "select",
+                            columns: grid.Columns(
+                                grid.Column("DealerCode", "Dealer code"),
+                                grid.Column("DealerName", "Dealer Name"),
+                                grid.Column("Town", "Town"),
+                                grid.Column("County", "Country")
+                                ))
+
+    </div>
+</div><!-- End #ResultContent -->
+

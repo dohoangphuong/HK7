@@ -1,0 +1,194 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using CSS.Models;
+using CSS.ViewModels;
+
+namespace CSS.Controllers
+{
+    public class VolumeController : Controller
+    {
+        private CSSEntities1 db = new CSSEntities1();
+
+        //get all banding of volume(volumeId)
+        [ChildActionOnly]
+        public ActionResult GetListBanding(int? volumeId)
+        {
+            if (volumeId == null)
+            {
+                ViewBag.errorMessage = "Cannot find bandings of this volume.";
+                return PartialView("~/Views/Agreement/Warning.cshtml");
+            }
+            else
+            {
+                var bandings = db.Bandings.Where(b => b.VolumeId == volumeId);
+                return PartialView("RetroBanding", bandings.ToArray<Banding>());
+            }
+        }
+
+        //return view AddBanding
+        public ActionResult CreateBanding(int? volumeId)
+        {
+            if (volumeId == null)
+            {
+                ViewBag.errorMessage = "Cannot find bandings of this volume.";
+                return View("~/Views/Agreement/Warning.cshtml");
+            }
+            else
+            {
+                Banding banding = new Banding();
+                var lastBanding = db.Bandings.Where(b => b.VolumeId == volumeId).ToList().LastOrDefault();
+                if (lastBanding != null)
+                    banding.Min = lastBanding.Max + 1;
+                banding.VolumeId = volumeId;
+                return View("AddBanding", banding);
+            }
+        }
+
+        //add new banding
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddBanding()
+        {
+            Banding banding = new Banding();
+            if (TryUpdateModel(banding))
+            {
+                var volume = db.Volumes.Find(banding.VolumeId);
+                if (volume == null)
+                {
+                    ViewBag.errorMessage = "Cannot fine volume of banding. ";
+                    return PartialView("~/Views/Agreement/Warning.cshtml");
+                }
+
+                try
+                {
+                    volume.Bandings.Add(banding);
+                    db.Entry(volume).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.errorMessage = "Cannot save banding. " + ex.Message;
+                    return PartialView("~/Views/Agreement/Warning.cshtml");
+                }
+                return GetListBanding(banding.VolumeId);
+            }
+            else
+            {
+                ViewBag.errorMessage = "Cannot receive input.";
+                return View("~/Views/Agreement/Warning.cshtml");
+            }
+        }
+
+        //return view EditBanding
+        public ActionResult EditBanding(int? bandingId)
+        {
+            var banding = db.Bandings.Find(bandingId);
+            if (banding == null)
+            {
+                ViewBag.errorMessage = "Cannot find banding.";
+                return View("~/Views/Agreement/Warning.cshtml");
+            }
+            else
+            {
+                return View("EditBanding", banding);
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditBanding()
+        {
+            Banding banding = new Banding();
+            if (TryUpdateModel(banding))
+            {
+                db.Entry(banding).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                return GetListBanding(banding.VolumeId);
+            }
+            else
+            {
+                ViewBag.errorMessage = "Cannot edit banding.";
+                return View("~/Views/Agreement/Warning.cshtml");
+            }
+        }
+
+        //return view DeleteBanding
+        public ActionResult DeleteBanding(int? bandingId)
+        {
+            var banding = db.Bandings.Find(bandingId);
+            if (banding == null)
+            {
+                ViewBag.errorMessage = "Cannot find banding.";
+                return View("~/Views/Agreement/Warning.cshtml");
+            }
+            else
+            {
+                return View("DeleteBanding", banding);
+            }
+        }
+
+        [HttpPost, ActionName("DeleteBanding")]
+        [ValidateAntiForgeryToken]
+        public ActionResult ConfirmDeleteBanding(int? bandingId)
+        {
+            var banding = db.Bandings.Find(bandingId);
+            if (banding != null)
+            {
+                int? volumeId = banding.VolumeId;
+                try
+                {
+                    db.Bandings.Remove(banding);
+                    db.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.errorMessage = "Cannot delete banding. " + ex.Message;
+                    return View("~/Views/Agreement/Warning.cshtml");
+                }
+                return GetListBanding(volumeId);
+            }
+            else
+            {
+                ViewBag.errorMessage = "Cannot find banding.";
+                return View("~/Views/Agreement/Warning.cshtml");
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SaveVolumeBanding()
+        {
+            VolumeBandingModel volumeModel = new VolumeBandingModel();
+            if (TryUpdateModel(volumeModel))
+            {
+                var volume = db.Volumes.Find(volumeModel.VolumeId);
+                if (volume == null)
+                {
+                    ViewBag.errorMessage = "Volume not found.";
+                    return PartialView("~/Views/Agreement/Warning.cshtml");
+                }
+                volume.TriggerCredit = volumeModel.TriggerCredit;
+                volume.PaymentTo = volumeModel.PayableTo;
+                try
+                {
+                    db.Entry(volume).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.errorMessage = "Cannot save volume banding. " + ex.Message;
+                    return PartialView("~/Views/Agreement/Warning.cshtml");
+                }
+                return PartialView("~/Views/Shared/Alert.cshtml");
+            }
+            else
+            {
+                ViewBag.errorMessage = "Cannot receive input values.";
+                return PartialView("~/Views/Agreement/Warning.cshtml");
+            }
+        }
+    }
+}

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="03101c221ff94a019f255fe6865838ce" Name="Diagram1">
+        <EntityTypeShape EntityType="ServiceDirectoryDBModel.Address" Width="1.5" PointX="7.5" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDirectoryDBModel.Contact" Width="1.5" PointX="0.75" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDirectoryDBModel.Country" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDirectoryDBModel.County" Width="1.5" PointX="3" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDirectoryDBModel.Department" Width="1.5" PointX="3" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDirectoryDBModel.Directorate" Width="1.5" PointX="5.25" PointY="17.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDirectoryDBModel.GovOfficeRegion" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDirectoryDBModel.Organisation" Width="1.5" PointX="3" PointY="23" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDirectoryDBModel.Premise" Width="1.5" PointX="7.5" PointY="27.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDirectoryDBModel.Programme" Width="1.5" PointX="8.25" PointY="19" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDirectoryDBModel.ReferenceData" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDirectoryDBModel.Service" Width="1.5" PointX="5.25" PointY="26.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDirectoryDBModel.SupportingMaterial" Width="1.5" PointX="8.25" PointY="23.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDirectoryDBModel.sysdiagram" Width="1.5" PointX="7.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDirectoryDBModel.Team" Width="1.5" PointX="5.25" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDirectoryDBModel.Town" Width="1.5" PointX="5.25" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDirectoryDBModel.TrustDistrict" Width="1.5" PointX="5.25" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDirectoryDBModel.TrustRegion" Width="1.5" PointX="3" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDirectoryDBModel.User" Width="1.5" PointX="6" PointY="32.875" IsExpanded="true" />
+        <AssociationConnector Association="ServiceDirectoryDBModel.FK_ADDRESS_IN3_TOWN" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDirectoryDBModel.FK_CONTACT_MANAGER_CONTACT" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDirectoryDBModel.FK_DEPARTME_HAVE_CONTACT" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDirectoryDBModel.FK_DIRECTOR_OF1_CONTACT" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDirectoryDBModel.FK_ORGANISA_OF2_CONTACT" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDirectoryDBModel.FK_PROGRAMM_OF4_CONTACT" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDirectoryDBModel.FK_TEAM_OF3_CONTACT" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDirectoryDBModel.FK_COUNTY_IS_COUNTRY" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDirectoryDBModel.FK_TRUSTREG_INCLUDE_COUNTRY" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDirectoryDBModel.FK_GOVOFFIC_OF_COUNTY" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDirectoryDBModel.FK_TOWN_IN4_COUNTY" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDirectoryDBModel.FK_DEPARTME_HAVE3_DIRECTOR" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDirectoryDBModel.FK_TEAM_HAVE4_DEPARTME" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDirectoryDBModel.FK_DIRECTOR_HAVE2_ORGANISA" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDirectoryDBModel.FK_SUPPORTI_USE2_ORGANISA" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDirectoryDBModel.FK_PREMISE_IN2_SERVICE" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDirectoryDBModel.FK_SUPPORTI_USE1_USER" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDirectoryDBModel.FK_TRUSTDIS_IN_TRUSTREG" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDirectoryDBModel.OrganisationProgramme" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDirectoryDBModel.ServiceOrganisation" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

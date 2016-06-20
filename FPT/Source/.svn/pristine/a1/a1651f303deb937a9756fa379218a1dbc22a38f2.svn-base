@@ -1,0 +1,185 @@
+﻿@model CSS.ViewModels.BasicDetailModel
+
+@{
+    Layout = null;
+}
+
+@Scripts.Render("~/bundles/jqueryvalidate")
+<script type="text/javascript">
+    function saveSuccess() {
+        alert("Save success");
+    }
+    function saveFailed() {
+        alert("Save failed");
+    }
+    function updateRadiobutton(signedContract) {
+        switch (signedContract) {
+            case "Yes(Enable)":
+                document.getElementById("mainSignRequired").disabled = false;
+                document.getElementById("subSignRequired").disabled = false;
+                break;
+            case "Yes(Protected)":
+                $('input:radio[id=mainSignRequired]').prop('checked', true);
+                $('input:radio[id=subSignRequired]').prop('checked', false);
+
+                document.getElementById("mainSignRequired").disabled = false;
+                document.getElementById("subSignRequired").disabled = true;
+
+                break;
+            case "No":
+                $('input:radio[id=mainSignRequired]').prop('checked', false);
+                $('input:radio[id=subSignRequired]').prop('checked', true);
+
+                document.getElementById("mainSignRequired").disabled = true;
+                document.getElementById("subSignRequired").disabled = true;
+                break;
+        }
+    }
+
+    $("#FundingMethodId").change(function () {
+        var signedContract = $("#FundingMethodId").val().split("/")[1];
+        updateRadiobutton(signedContract);
+    });
+
+    $(document).ready(function () {
+        //update radio button
+        var signedContract = $("#FundingMethodId").val().split("/")[1];
+        updateRadiobutton(signedContract);
+
+        var stDate = $("#CurrentDate").val();
+        var minStDate = new Date(stDate);
+        var maxStDate = new Date(stDate);
+        minStDate.setDate(minStDate.getDate() - 30);
+        maxStDate.setDate(maxStDate.getDate() + 30);
+
+        $("#StartDate").datepicker({
+            dateFormat: "mm/dd/yy",
+            minDate: minStDate,
+            maxDate: maxStDate,
+            onClose: function () {
+                var sDate = $("#StartDate").val();
+                var minD = new Date(sDate);
+                var maxD = new Date(sDate);
+                minD.setDate(minD.getDate() + 90);
+                maxD.setDate(maxD.getDate() + 730);
+                $("#EndDate").datepicker(
+                        "change",
+                        {
+                            minDate: minD,
+                            maxDate: maxD
+                        }
+                );
+            }
+        });
+
+        var minEnDate = new Date(stDate);
+        var maxEnDate = new Date(stDate);
+        minEnDate.setDate(minEnDate.getDate() + 90);
+        maxEnDate.setDate(maxEnDate.getDate() + 730);
+
+        $("#EndDate").datepicker({
+            dateFormat: 'mm/dd/yy',
+            minDate: minEnDate,
+            maxDate: maxEnDate
+        });
+    });
+</script>
+
+@using (Ajax.BeginForm("BasicDetails", "Agreement"
+    , new AjaxOptions
+    {
+        HttpMethod = "POST",
+        UpdateTargetId = "step-3",
+        OnSuccess = "saveSuccess",
+        OnFailure = "saveFailed",
+    }, new { @style = "height: 100%" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal" style="height:90%">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        @Html.HiddenFor(model => model.RFONumber)
+        @Html.HiddenFor(model => model.CustomerName)
+        @Html.HiddenFor(model => model.AgreementNumber)
+        @Html.HiddenFor(model => model.VarriantNumber)
+        @Html.HiddenFor(model => model.CurrentDate)
+
+        <div class="form-group" style="margin:5px">
+            @Html.LabelFor(model => model.RFONumber, htmlAttributes: new { @class = "control-label col-md-3" })
+            @Html.DisplayFor(model => model.RFONumber, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+        <div class="form-group" style="margin:5px">
+            @Html.LabelFor(model => model.CustomerName, htmlAttributes: new { @class = "control-label col-md-3" })
+            @Html.DisplayFor(model => model.CustomerName, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+        <div class="form-group" style="margin:5px">
+            @Html.LabelFor(model => model.AgreementNumber, htmlAttributes: new { @class = "control-label col-md-3" })
+            @Html.Label(Model.AgreementNumber + "/" + Model.VarriantNumber, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+        <div class="form-group" style="margin:5px">
+            @Html.LabelFor(model => model.AgreementName, htmlAttributes: new { @class = "control-label col-md-3" })
+            @Html.EditorFor(model => model.AgreementName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.AgreementName, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group" style="margin:5px">
+            @Html.LabelFor(model => model.AgeementDescription, htmlAttributes: new { @class = "control-label col-md-3" })
+            @Html.EditorFor(model => model.AgeementDescription, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.AgeementDescription, "", new { @class = "text-danger" })
+        </div>
+
+
+        <div class="form-group" style="margin:5px">
+            @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-3" })
+            @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+            @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group" style="margin:5px">
+            @Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "control-label col-md-3" })
+            @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+            @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group" style="margin:5px">
+            @Html.Label("Funding Method", htmlAttributes: new { @class = "control-label col-md-3" })
+            @Html.DropDownListFor(model => model.FundingMethodId, new SelectList(ViewBag.FundingMethod, "SignedContractDefault", "FundingMethodName"), new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+
+        <div class="form-group" style="margin:5px">
+            @Html.LabelFor(model => model.SignRequired, htmlAttributes: new { @class = "control-label col-md-3" })
+            @Html.RadioButtonFor(model => model.SignRequired, true, new { id = "mainSignRequired" }) YES
+            @Html.RadioButtonFor(model => model.SignRequired, false, new { id = "subSignRequired" }) NO
+        </div>
+
+        <div class="form-group" style="margin:5px">
+            @Html.Label("Payment To", htmlAttributes: new { @class = "control-label col-md-3" })
+            @Html.DropDownListFor(model => model.PaymentTo, new SelectList(ViewBag.PaymentTo, "XCONFIGVALUE", "XCONFIGVALUE"), new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+        <div class="form-group" style="margin:5px">
+            @Html.LabelFor(model => model.HandingCharge, htmlAttributes: new { @class = "control-label col-md-3" })
+            @Html.EditorFor(model => model.HandingCharge, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.HandingCharge, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group" style="margin:5px">
+            @Html.Label("Dealer Visibility", htmlAttributes: new { @class = "control-label col-md-3" })
+            @Html.DropDownListFor(model => model.DealerVisibility, new SelectList(ViewBag.DealerVisibility, "XCONFIGVALUE", "XCONFIGVALUE"), new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+        <div class="form-group" style="margin:5px">
+            @Html.Label("Volume Discount Type", htmlAttributes: new { @class = "control-label col-md-3" })
+            @Html.DropDownListFor(model => model.VolumeDiscountType, new SelectList(ViewBag.VolumeDiscountType, "XCONFIGVALUE", "XCONFIGVALUE"), new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+        <div class="form-group" style="margin:5px">
+            @Html.Label("Discount Unit", htmlAttributes: new { @class = "control-label col-md-3" })
+            @Html.DropDownListFor(model => model.DiscountUnit, new SelectList(ViewBag.DiscountUnit, "XCONFIGVALUE", "XCONFIGVALUE"), new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+        <div class="form-group" style="margin:5px">
+            @Html.Label("Combinability", htmlAttributes: new { @class = "control-label col-md-3" })
+            @Html.DropDownListFor(model => model.Combinability, new SelectList(ViewBag.Combinability, "XCONFIGVALUE", "XCONFIGVALUE"), new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+    <div class="actionBar" style="height: 10%">
+        <input class="buttonNext" type="button" value="next" onclick="forward()" />
+        <input class="buttonPrevious" type="button" value="back" onclick="backward()" />
+        <input class="buttonFinish" type="submit" value="save as draft" />
+    </div>
+}

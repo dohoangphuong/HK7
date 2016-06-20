@@ -1,0 +1,64 @@
+﻿@model PagedList.IPagedList<ServiceDirectory.Models.tblSupportingMaterial>
+@using PagedList.Mvc;
+
+<table class="table table-bordered table-hover">
+    <tr class="label-info">
+        <th class="col-md-2">URL</th>
+        <th class="col-md-3">Description</th>
+        <th class="col-md-1">Type</th>
+        <th class="col-md-2">Added By</th>
+        <th class="col-md-2">Added Date</th>
+        <th class="col-md-2">Action</th>
+    </tr>
+    <tbody>
+        @foreach (var item in @Model)
+        {
+            <tr>
+                <td>
+                    @item.URL
+                </td>
+                <td>
+                    @item.ShortDescription
+                </td>
+                <td>
+                    @item.TypeFile
+                </td>
+                <td>
+                    @if(item.UserID != null)
+                    {
+                        @item.tblUser.FullName 
+                    }
+                </td>
+                <td>
+                    @item.AddedDate.Value.ToString("dd-MM-yyyy")
+                </td>
+                <td>
+                    @if (item.IsActive == true)
+                    {
+                         @Ajax.ActionLink("Edit", "Add_ActionLink", new { SupportID = @item.SupportID },
+                                         new AjaxOptions { UpdateTargetId = "supportingmaterial_popup", InsertionMode = InsertionMode.Replace, OnComplete = "set_attr_link_popup('edit_supportingmaterial_link_" + @item.SupportID + "', 'supportingmaterial_popup', 'organisation_popup')" },
+                                         new { @id = "edit_supportingmaterial_link_" + @item.SupportID })
+                    }
+                    else
+                    {
+                          @Ajax.ActionLink("Edit", "Add_ActionLink", new { SupportID = @item.SupportID },
+                                         new AjaxOptions { UpdateTargetId = "supportingmaterial_popup", InsertionMode = InsertionMode.Replace, OnComplete = "set_attr_link_popup('edit_supportingmaterial_link_" + @item.SupportID + "', 'supportingmaterial_popup', 'organisation_popup')", Confirm = "Do you want make this supporting material active?" },
+                                         new { @id = "edit_supportingmaterial_link_" + @item.SupportID })
+                    }
+
+                    |
+                    <!-- After delete will update list item -->
+                    @Ajax.ActionLink("Delete", "Delete_ActionLink", new { SupportID = @item.SupportID },
+                                     new AjaxOptions { UpdateTargetId = "supporting_material_table", InsertionMode = InsertionMode.Replace, Confirm = "Do you really want to delete it?" })
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("List", new { page }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions { UpdateTargetId = "supporting_material_table", InsertionMode = InsertionMode.Replace, HttpMethod = "POST" }))
+</div>
+

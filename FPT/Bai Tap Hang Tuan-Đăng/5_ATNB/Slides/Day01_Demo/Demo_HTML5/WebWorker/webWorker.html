@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Big for loop</title>
+  <script>
+	startWorker = function(){
+		if(typeof(Worker)!=="undefined"){
+			var worker = new Worker('bigLoop.js');
+			worker.onmessage = function (event) {
+				alert("Completed " + event.data + "iterations" );
+			};
+		}
+		else{
+			alert("Sorry, your browser does not support Web Workers...");
+		}
+	}
+    function sayHello(){
+        alert("Hello sir...." );
+    }
+  </script>
+</head>
+<body onload="startWorker();">
+   <input type="button" onclick="sayHello();" value="Say Hello"/>
+</body>
+</html>

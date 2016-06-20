@@ -1,0 +1,457 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'C-SMS.dbo.Customer' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="CustID" />
+      <PropertyRef Name="CustName" />
+      <PropertyRef Name="Overdue" />
+      <PropertyRef Name="Status" />
+      <PropertyRef Name="SalesManID" />
+    </Key>
+    <Property Name="CustID" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="CustName" Type="nchar" MaxLength="50" Nullable="false" />
+    <Property Name="Address" Type="nchar" MaxLength="10" />
+    <Property Name="Phone" Type="nchar" MaxLength="20" />
+    <Property Name="Fax" Type="nchar" MaxLength="20" />
+    <Property Name="Email" Type="nchar" MaxLength="50" />
+    <Property Name="Overdue" Type="int" Nullable="false" />
+    <Property Name="Amount" Type="decimal" Precision="13" Scale="0" />
+    <Property Name="OverdueAmt" Type="decimal" Precision="13" Scale="0" />
+    <Property Name="DueAmt" Type="decimal" Precision="13" Scale="0" />
+    <Property Name="Status" Type="nchar" MaxLength="2" Nullable="false" />
+    <Property Name="Description" Type="nchar" MaxLength="200" />
+    <Property Name="SalesManID" Type="nchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'C-SMS.dbo.Inventory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Inventory">
+    <Key>
+      <PropertyRef Name="InvtID" />
+      <PropertyRef Name="InvtName" />
+      <PropertyRef Name="UnitID_T" />
+      <PropertyRef Name="UnitID_L" />
+      <PropertyRef Name="UnitRate" />
+      <PropertyRef Name="Status" />
+    </Key>
+    <Property Name="InvtID" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="InvtName" Type="nchar" MaxLength="50" Nullable="false" />
+    <Property Name="ClassName" Type="nchar" MaxLength="50" />
+    <Property Name="UnitID_T" Type="int" Nullable="false" />
+    <Property Name="UnitID_L" Type="int" Nullable="false" />
+    <Property Name="UnitRate" Type="int" Nullable="false" />
+    <Property Name="SalesPriceT" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="SalesPriceL" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="QtyStock" Type="int" />
+    <Property Name="SlsTax" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="Status" Type="nchar" MaxLength="2" Nullable="false" />
+    <Property Name="Description" Type="nchar" MaxLength="200" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'C-SMS.dbo.InvoiceType' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="InvoiceType">
+    <Key>
+      <PropertyRef Name="InvoiceType" />
+      <PropertyRef Name="TypeName" />
+    </Key>
+    <Property Name="InvoiceType" Type="nchar" MaxLength="2" Nullable="false" />
+    <Property Name="TypeName" Type="nchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'C-SMS.dbo.Payment' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Payment">
+    <Key>
+      <PropertyRef Name="PaymentID" />
+      <PropertyRef Name="PaymentNo" />
+    </Key>
+    <Property Name="PaymentID" Type="int" Nullable="false" />
+    <Property Name="PaymentNo" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="PaymentDate" Type="date" />
+    <Property Name="PaymentAmt" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="CustID" Type="nchar" MaxLength="20" />
+    <Property Name="SalesPersonID" Type="int" />
+    <Property Name="Description" Type="nchar" MaxLength="200" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'C-SMS.dbo.PurchaseOrdDetail' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="PurchaseOrdDetail">
+          <Property Name="OrderDetailID" Type="int" />
+          <Property Name="OrderID" Type="int" />
+          <Property Name="ProductsID" Type="int" />
+          <Property Name="Qty" Type="int" />
+          <Property Name="PurchasePrice" Type="nchar" MaxLength="10" />
+          <Property Name="StockID" Type="int" />
+          <Property Name="QtyProm" Type="int" />
+          <Property Name="QtyPromAmt" Type="nchar" MaxLength="10" />
+          <Property Name="AmtProm" Type="nchar" MaxLength="10" />
+          <Property Name="TaxAmt" Type="nchar" MaxLength="10" />
+          <Property Name="Amount" Type="nchar" MaxLength="10" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'C-SMS.dbo.PurchaseOrder' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="PurchaseOrder">
+    <Key>
+      <PropertyRef Name="OrderNo" />
+    </Key>
+    <Property Name="OrderNo" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="OrderDate" Type="date" />
+    <Property Name="OrderType" Type="nchar" MaxLength="2" />
+    <Property Name="SalesPersonID" Type="nchar" MaxLength="20" />
+    <Property Name="OverdueDate" Type="date" />
+    <Property Name="DiscAmt" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="PromAmt" Type="float" />
+    <Property Name="ComAmt" Type="float" />
+    <Property Name="TaxAmt" Type="float" />
+    <Property Name="TotalAmt" Type="decimal" Precision="18" Scale="0" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'C-SMS.dbo.ReturnGoods' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="ReturnGoods">
+          <Property Name="ReturnGoodsID" Type="int" />
+          <Property Name="DaReturnGoods" Type="smalldatetime" />
+          <Property Name="TotalAmount" Type="decimal" Precision="13" Scale="0" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'C-SMS.dbo.ReturnGoodsDetail' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="ReturnGoodsDetail">
+    <Key>
+      <PropertyRef Name="ReturnGoodsDetailID" />
+      <PropertyRef Name="ReturnGoodsID" />
+      <PropertyRef Name="ProductsID" />
+      <PropertyRef Name="ReasonReturn" />
+    </Key>
+    <Property Name="ReturnGoodsDetailID" Type="int" Nullable="false" />
+    <Property Name="ReturnGoodsID" Type="int" Nullable="false" />
+    <Property Name="ProductsID" Type="int" Nullable="false" />
+    <Property Name="Quantity" Type="int" />
+    <Property Name="Amount" Type="decimal" Precision="13" Scale="0" />
+    <Property Name="Deals" Type="decimal" Precision="13" Scale="0" />
+    <Property Name="ReasonReturn" Type="nchar" MaxLength="500" Nullable="false" />
+    <Property Name="Description" Type="nchar" MaxLength="100" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'C-SMS.dbo.SalesMan' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="SalesMan">
+          <Property Name="SalesManID" Type="nchar" MaxLength="10" />
+          <Property Name="SalesManName" Type="nchar" MaxLength="10" />
+          <Property Name="Address" Type="nchar" MaxLength="10" />
+          <Property Name="OverAmt" Type="nchar" MaxLength="10" />
+          <Property Name="Status" Type="nchar" MaxLength="10" />
+          <Property Name="Description" Type="nchar" MaxLength="10" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'C-SMS.dbo.SalesOrder' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="SalesOrder">
+    <Key>
+      <PropertyRef Name="OrderNo" />
+      <PropertyRef Name="OrderDate" />
+      <PropertyRef Name="InvoiceType" />
+      <PropertyRef Name="UserIDRec" />
+      <PropertyRef Name="CustID" />
+      <PropertyRef Name="OverdueDate" />
+    </Key>
+    <Property Name="OrderNo" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="OrderDate" Type="date" Nullable="false" />
+    <Property Name="InvoiceType" Type="nchar" MaxLength="2" Nullable="false" />
+    <Property Name="UserID" Type="nchar" MaxLength="20" />
+    <Property Name="UserIDRec" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="CustID" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="OverdueDate" Type="date" Nullable="false" />
+    <Property Name="OrderDisc" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="TaxAmt" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="TotalAmt" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="Payment" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="Debt" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="Description" Type="nchar" MaxLength="200" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'C-SMS.dbo.SlsOrderDetail' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="SlsOrderDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="OrderNo" />
+      <PropertyRef Name="InvtID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="OrderNo" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="InvtID" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="Qty" Type="int" />
+    <Property Name="SalesPrice" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="Discount" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="TaxAmt" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="Amount" Type="decimal" Precision="18" Scale="0" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'C-SMS.dbo.StkTransDetail' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="StkTransDetail">
+    <Key>
+      <PropertyRef Name="TransID" />
+      <PropertyRef Name="InvtID" />
+    </Key>
+    <Property Name="TransID" Type="int" Nullable="false" />
+    <Property Name="InvtID" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="Qty" Type="int" />
+    <Property Name="Amount" Type="decimal" Precision="18" Scale="0" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'C-SMS.dbo.Stock' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Stock">
+    <Key>
+      <PropertyRef Name="StockID" />
+      <PropertyRef Name="StockName" />
+      <PropertyRef Name="StockAddress" />
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="StockID" Type="int" Nullable="false" />
+    <Property Name="StockName" Type="nchar" MaxLength="100" Nullable="false" />
+    <Property Name="StockAddress" Type="nchar" MaxLength="100" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'C-SMS.dbo.StockTransfer' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="StockTransfer">
+    <Key>
+      <PropertyRef Name="TransDate" />
+    </Key>
+    <Property Name="StockTransferID" Type="nchar" MaxLength="20" />
+    <Property Name="TransDate" Type="date" Nullable="false" />
+    <Property Name="FromStockID" Type="nchar" MaxLength="20" />
+    <Property Name="ToStockID" Type="nchar" MaxLength="20" />
+    <Property Name="TotalAmt" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="Description" Type="nchar" MaxLength="200" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'C-SMS.dbo.Unit' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Unit">
+    <Key>
+      <PropertyRef Name="UnitID" />
+      <PropertyRef Name="UnitName" />
+    </Key>
+    <Property Name="UnitID" Type="int" Nullable="false" />
+    <Property Name="UnitName" Type="nchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'C-SMS.dbo.User' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserID" />
+      <PropertyRef Name="UserName" />
+      <PropertyRef Name="Password" />
+      <PropertyRef Name="Avatar" />
+      <PropertyRef Name="Salt" />
+      <PropertyRef Name="Sex" />
+      <PropertyRef Name="Birthday" />
+      <PropertyRef Name="NgayVao" />
+      <PropertyRef Name="Mail" />
+      <PropertyRef Name="Phone" />
+      <PropertyRef Name="Type" />
+      <PropertyRef Name="Status" />
+      <PropertyRef Name="Address" />
+    </Key>
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="UserName" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="Password" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="Avatar" Type="nchar" MaxLength="100" Nullable="false" />
+    <Property Name="Salt" Type="nchar" MaxLength="32" Nullable="false" />
+    <Property Name="Sex" Type="nchar" MaxLength="3" Nullable="false" />
+    <Property Name="Birthday" Type="smalldatetime" Nullable="false" />
+    <Property Name="NgayVao" Type="smalldatetime" Nullable="false" />
+    <Property Name="Mail" Type="nchar" MaxLength="50" Nullable="false" />
+    <Property Name="Phone" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="Type" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="Status" Type="nchar" MaxLength="2" Nullable="false" />
+    <Property Name="Address" Type="nchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'C-SMS.dbo.Vendor' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Vendor">
+    <Key>
+      <PropertyRef Name="VendorID" />
+      <PropertyRef Name="VendorName" />
+      <PropertyRef Name="Status" />
+    </Key>
+    <Property Name="VendorID" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="VendorName" Type="nchar" MaxLength="50" Nullable="false" />
+    <Property Name="Address" Type="nchar" MaxLength="50" />
+    <Property Name="Email" Type="nchar" MaxLength="50" />
+    <Property Name="Phone" Type="nchar" MaxLength="20" />
+    <Property Name="Fax" Type="nchar" MaxLength="20" />
+    <Property Name="DueAmt" Type="decimal" Precision="13" Scale="0" />
+    <Property Name="Amount" Type="decimal" Precision="13" Scale="0" />
+    <Property Name="OverdueAmt" Type="decimal" Precision="13" Scale="0" />
+    <Property Name="Status" Type="nchar" MaxLength="2" Nullable="false" />
+    <Property Name="Description" Type="nchar" MaxLength="200" />
+  </EntityType>
+  <EntityContainer Name="ModelStoreContainer">
+    <EntitySet Name="Customer" EntityType="Self.Customer" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Customer].[CustID] AS [CustID], 
+    [Customer].[CustName] AS [CustName], 
+    [Customer].[Address] AS [Address], 
+    [Customer].[Phone] AS [Phone], 
+    [Customer].[Fax] AS [Fax], 
+    [Customer].[Email] AS [Email], 
+    [Customer].[Overdue] AS [Overdue], 
+    [Customer].[Amount] AS [Amount], 
+    [Customer].[OverdueAmt] AS [OverdueAmt], 
+    [Customer].[DueAmt] AS [DueAmt], 
+    [Customer].[Status] AS [Status], 
+    [Customer].[Description] AS [Description], 
+    [Customer].[SalesManID] AS [SalesManID]
+    FROM [dbo].[Customer] AS [Customer]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Inventory" EntityType="Self.Inventory" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Inventory].[InvtID] AS [InvtID], 
+    [Inventory].[InvtName] AS [InvtName], 
+    [Inventory].[ClassName] AS [ClassName], 
+    [Inventory].[UnitID_T] AS [UnitID_T], 
+    [Inventory].[UnitID_L] AS [UnitID_L], 
+    [Inventory].[UnitRate] AS [UnitRate], 
+    [Inventory].[SalesPriceT] AS [SalesPriceT], 
+    [Inventory].[SalesPriceL] AS [SalesPriceL], 
+    [Inventory].[QtyStock] AS [QtyStock], 
+    [Inventory].[SlsTax] AS [SlsTax], 
+    [Inventory].[Status] AS [Status], 
+    [Inventory].[Description] AS [Description]
+    FROM [dbo].[Inventory] AS [Inventory]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="InvoiceType" EntityType="Self.InvoiceType" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [InvoiceType].[InvoiceType] AS [InvoiceType], 
+    [InvoiceType].[TypeName] AS [TypeName]
+    FROM [dbo].[InvoiceType] AS [InvoiceType]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Payment" EntityType="Self.Payment" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Payment].[PaymentID] AS [PaymentID], 
+    [Payment].[PaymentNo] AS [PaymentNo], 
+    [Payment].[PaymentDate] AS [PaymentDate], 
+    [Payment].[PaymentAmt] AS [PaymentAmt], 
+    [Payment].[CustID] AS [CustID], 
+    [Payment].[SalesPersonID] AS [SalesPersonID], 
+    [Payment].[Description] AS [Description]
+    FROM [dbo].[Payment] AS [Payment]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="PurchaseOrder" EntityType="Self.PurchaseOrder" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [PurchaseOrder].[OrderNo] AS [OrderNo], 
+    [PurchaseOrder].[OrderDate] AS [OrderDate], 
+    [PurchaseOrder].[OrderType] AS [OrderType], 
+    [PurchaseOrder].[SalesPersonID] AS [SalesPersonID], 
+    [PurchaseOrder].[OverdueDate] AS [OverdueDate], 
+    [PurchaseOrder].[DiscAmt] AS [DiscAmt], 
+    [PurchaseOrder].[PromAmt] AS [PromAmt], 
+    [PurchaseOrder].[ComAmt] AS [ComAmt], 
+    [PurchaseOrder].[TaxAmt] AS [TaxAmt], 
+    [PurchaseOrder].[TotalAmt] AS [TotalAmt]
+    FROM [dbo].[PurchaseOrder] AS [PurchaseOrder]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="ReturnGoodsDetail" EntityType="Self.ReturnGoodsDetail" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [ReturnGoodsDetail].[ReturnGoodsDetailID] AS [ReturnGoodsDetailID], 
+    [ReturnGoodsDetail].[ReturnGoodsID] AS [ReturnGoodsID], 
+    [ReturnGoodsDetail].[ProductsID] AS [ProductsID], 
+    [ReturnGoodsDetail].[Quantity] AS [Quantity], 
+    [ReturnGoodsDetail].[Amount] AS [Amount], 
+    [ReturnGoodsDetail].[Deals] AS [Deals], 
+    [ReturnGoodsDetail].[ReasonReturn] AS [ReasonReturn], 
+    [ReturnGoodsDetail].[Description] AS [Description]
+    FROM [dbo].[ReturnGoodsDetail] AS [ReturnGoodsDetail]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="SalesOrder" EntityType="Self.SalesOrder" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [SalesOrder].[OrderNo] AS [OrderNo], 
+    [SalesOrder].[OrderDate] AS [OrderDate], 
+    [SalesOrder].[InvoiceType] AS [InvoiceType], 
+    [SalesOrder].[UserID] AS [UserID], 
+    [SalesOrder].[UserIDRec] AS [UserIDRec], 
+    [SalesOrder].[CustID] AS [CustID], 
+    [SalesOrder].[OverdueDate] AS [OverdueDate], 
+    [SalesOrder].[OrderDisc] AS [OrderDisc], 
+    [SalesOrder].[TaxAmt] AS [TaxAmt], 
+    [SalesOrder].[TotalAmt] AS [TotalAmt], 
+    [SalesOrder].[Payment] AS [Payment], 
+    [SalesOrder].[Debt] AS [Debt], 
+    [SalesOrder].[Description] AS [Description]
+    FROM [dbo].[SalesOrder] AS [SalesOrder]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="SlsOrderDetail" EntityType="Self.SlsOrderDetail" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [SlsOrderDetail].[ID] AS [ID], 
+    [SlsOrderDetail].[OrderNo] AS [OrderNo], 
+    [SlsOrderDetail].[InvtID] AS [InvtID], 
+    [SlsOrderDetail].[Qty] AS [Qty], 
+    [SlsOrderDetail].[SalesPrice] AS [SalesPrice], 
+    [SlsOrderDetail].[Discount] AS [Discount], 
+    [SlsOrderDetail].[TaxAmt] AS [TaxAmt], 
+    [SlsOrderDetail].[Amount] AS [Amount]
+    FROM [dbo].[SlsOrderDetail] AS [SlsOrderDetail]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="StkTransDetail" EntityType="Self.StkTransDetail" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [StkTransDetail].[TransID] AS [TransID], 
+    [StkTransDetail].[InvtID] AS [InvtID], 
+    [StkTransDetail].[Qty] AS [Qty], 
+    [StkTransDetail].[Amount] AS [Amount]
+    FROM [dbo].[StkTransDetail] AS [StkTransDetail]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Stock" EntityType="Self.Stock" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Stock].[StockID] AS [StockID], 
+    [Stock].[StockName] AS [StockName], 
+    [Stock].[StockAddress] AS [StockAddress], 
+    [Stock].[UserID] AS [UserID]
+    FROM [dbo].[Stock] AS [Stock]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="StockTransfer" EntityType="Self.StockTransfer" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [StockTransfer].[StockTransferID] AS [StockTransferID], 
+    [StockTransfer].[TransDate] AS [TransDate], 
+    [StockTransfer].[FromStockID] AS [FromStockID], 
+    [StockTransfer].[ToStockID] AS [ToStockID], 
+    [StockTransfer].[TotalAmt] AS [TotalAmt], 
+    [StockTransfer].[Description] AS [Description]
+    FROM [dbo].[StockTransfer] AS [StockTransfer]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Unit" EntityType="Self.Unit" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Unit].[UnitID] AS [UnitID], 
+    [Unit].[UnitName] AS [UnitName]
+    FROM [dbo].[Unit] AS [Unit]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="User" EntityType="Self.User" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [User].[UserID] AS [UserID], 
+    [User].[UserName] AS [UserName], 
+    [User].[Password] AS [Password], 
+    [User].[Avatar] AS [Avatar], 
+    [User].[Salt] AS [Salt], 
+    [User].[Sex] AS [Sex], 
+    [User].[Birthday] AS [Birthday], 
+    [User].[NgayVao] AS [NgayVao], 
+    [User].[Mail] AS [Mail], 
+    [User].[Phone] AS [Phone], 
+    [User].[Type] AS [Type], 
+    [User].[Status] AS [Status], 
+    [User].[Address] AS [Address]
+    FROM [dbo].[User] AS [User]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Vendor" EntityType="Self.Vendor" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Vendor].[VendorID] AS [VendorID], 
+    [Vendor].[VendorName] AS [VendorName], 
+    [Vendor].[Address] AS [Address], 
+    [Vendor].[Email] AS [Email], 
+    [Vendor].[Phone] AS [Phone], 
+    [Vendor].[Fax] AS [Fax], 
+    [Vendor].[DueAmt] AS [DueAmt], 
+    [Vendor].[Amount] AS [Amount], 
+    [Vendor].[OverdueAmt] AS [OverdueAmt], 
+    [Vendor].[Status] AS [Status], 
+    [Vendor].[Description] AS [Description]
+    FROM [dbo].[Vendor] AS [Vendor]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

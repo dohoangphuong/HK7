@@ -1,0 +1,61 @@
+﻿@model WebsiteQuanLyBanHang.Models.SalesMan
+
+<div class="modal-header" style="background-color:coral">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4 class="modal-title" id="myModalLabel">Xóa nhân viên</h4>
+</div>
+<h3 style="color:red">Bạn có chắc là muốn xóa nhân viên này?</h3>
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SalesManName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SalesManName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OverAmt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OverAmt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color panel-body">           
+            <input type="submit" value="Delete" class="btn btn-small btn-primary " />
+        </div>
+        <br/>
+    }
+</div>

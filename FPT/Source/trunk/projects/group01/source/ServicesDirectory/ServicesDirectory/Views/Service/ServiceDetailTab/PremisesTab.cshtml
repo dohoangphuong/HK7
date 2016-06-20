@@ -1,0 +1,29 @@
+﻿@using System.Web.Mvc
+@using GridMvc.Html
+@using ServicesDirectory.Models.DatabaseMapper
+@model IEnumerable<ServicesDirectory.Models.DatabaseMapper.Premise>
+
+<div class="well" style="background:#ffffff">
+    <div class="row">
+        @Html.Grid(Model).Columns(columns =>
+           {
+               columns.Add(o => o.Service_Premise)
+                   .Titled("Premise Name");
+               columns.Add(o => o.AddressLine1)
+                   .Titled("Address");
+               columns.Add(o => o.PhoneNumber)
+                   .Titled("Phone Number");
+               columns.Add(o => o.Postcode)
+                   .Titled("Project Code");
+               columns.Add()
+                   .Encoded(false)
+                   .Sanitized(false)
+                   .SetWidth(30)
+                   .RenderValueAs(d =>
+                    @<b>
+                        @Html.ActionLink("Remove", "Index")
+                    </b>);
+           }).WithPaging(15).Sortable().Filterable().WithMultipleFilters()
+        <button type="button" class="btn btn-default pull-right" aria-hidden="true" style="margin-right:20px;">Associate new premise</button>
+    </div>
+</div>

@@ -1,0 +1,486 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ABSDDatabaseModelStoreContainer" CdmEntityContainer="ABSDDatabaseEntities">
+    <EntitySetMapping Name="Addresses">
+      <EntityTypeMapping TypeName="ABSDDatabaseModel.Address">
+        <MappingFragment StoreEntitySet="Address">
+          <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+          <ScalarProperty Name="Address1" ColumnName="Address" />
+          <ScalarProperty Name="Postcode" ColumnName="Postcode" />
+          <ScalarProperty Name="Town" ColumnName="Town" />
+          <ScalarProperty Name="County" ColumnName="County" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BestContactMethods">
+      <EntityTypeMapping TypeName="ABSDDatabaseModel.BestContactMethod">
+        <MappingFragment StoreEntitySet="BestContactMethod">
+          <ScalarProperty Name="BestContactMethodId" ColumnName="BestContactMethodId" />
+          <ScalarProperty Name="BestContactMethodName" ColumnName="BestContactMethodName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Contacts">
+      <EntityTypeMapping TypeName="ABSDDatabaseModel.Contact">
+        <MappingFragment StoreEntitySet="Contact">
+          <ScalarProperty Name="ContactId" ColumnName="ContactId" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="KnownAs" ColumnName="KnownAs" />
+          <ScalarProperty Name="OfficePhone" ColumnName="OfficePhone" />
+          <ScalarProperty Name="MobilePhone" ColumnName="MobilePhone" />
+          <ScalarProperty Name="STHomePhone" ColumnName="STHomePhone" />
+          <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+          <ScalarProperty Name="ManagerContactId" ColumnName="ManagerContactId" />
+          <ScalarProperty Name="ContactTypeId" ColumnName="ContactTypeId" />
+          <ScalarProperty Name="BestContactMethodId" ColumnName="BestContactMethodId" />
+          <ScalarProperty Name="JobRole" ColumnName="JobRole" />
+          <ScalarProperty Name="WorkBase" ColumnName="WorkBase" />
+          <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ContactTypes">
+      <EntityTypeMapping TypeName="ABSDDatabaseModel.ContactType">
+        <MappingFragment StoreEntitySet="ContactType">
+          <ScalarProperty Name="ContactTypeId" ColumnName="ContactTypeId" />
+          <ScalarProperty Name="ContactTypeName" ColumnName="ContactTypeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ContractParticipationTypes">
+      <EntityTypeMapping TypeName="ABSDDatabaseModel.ContractParticipationType">
+        <MappingFragment StoreEntitySet="ContractParticipationType">
+          <ScalarProperty Name="ContractParticipationTypeId" ColumnName="ContractParticipationTypeId" />
+          <ScalarProperty Name="ContractParticipationTypeName" ColumnName="ContractParticipationTypeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Countries">
+      <EntityTypeMapping TypeName="ABSDDatabaseModel.Country">
+        <MappingFragment StoreEntitySet="Country">
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+          <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Counties">
+      <EntityTypeMapping TypeName="ABSDDatabaseModel.County">
+        <MappingFragment StoreEntitySet="County">
+          <ScalarProperty Name="CountyId" ColumnName="CountyId" />
+          <ScalarProperty Name="CountyName" ColumnName="CountyName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Departments">
+      <EntityTypeMapping TypeName="ABSDDatabaseModel.Department">
+        <MappingFragment StoreEntitySet="Department">
+          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+          <ScalarProperty Name="DepartmentShortDescription" ColumnName="DepartmentShortDescription" />
+          <ScalarProperty Name="LeadContactId" ColumnName="LeadContactId" />
+          <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
+          <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
+          <ScalarProperty Name="AddressLine3" ColumnName="AddressLine3" />
+          <ScalarProperty Name="Postcode" ColumnName="Postcode" />
+          <ScalarProperty Name="TownVillagecity" ColumnName="TownVillagecity" />
+          <ScalarProperty Name="CountyId" ColumnName="CountyId" />
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+          <ScalarProperty Name="TypeOfBusiness" ColumnName="TypeOfBusiness" />
+          <ScalarProperty Name="SICCode" ColumnName="SICCode" />
+          <ScalarProperty Name="DepartmentFullDescription" ColumnName="DepartmentFullDescription" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="Fax" ColumnName="Fax" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="WebAddress" ColumnName="WebAddress" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="DirectorateId" ColumnName="DirectorateId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Directorates">
+      <EntityTypeMapping TypeName="ABSDDatabaseModel.Directorate">
+        <MappingFragment StoreEntitySet="Directorate">
+          <ScalarProperty Name="DirectorateId" ColumnName="DirectorateId" />
+          <ScalarProperty Name="DirectorateName" ColumnName="DirectorateName" />
+          <ScalarProperty Name="DirectorateShortDescription" ColumnName="DirectorateShortDescription" />
+          <ScalarProperty Name="LeadContactId" ColumnName="LeadContactId" />
+          <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
+          <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
+          <ScalarProperty Name="AddressLine3" ColumnName="AddressLine3" />
+          <ScalarProperty Name="Postcode" ColumnName="Postcode" />
+          <ScalarProperty Name="TownVillageCity" ColumnName="TownVillageCity" />
+          <ScalarProperty Name="CountyId" ColumnName="CountyId" />
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+          <ScalarProperty Name="TypeOfBusiness" ColumnName="TypeOfBusiness" />
+          <ScalarProperty Name="SICCode" ColumnName="SICCode" />
+          <ScalarProperty Name="DirectorateFullDescription" ColumnName="DirectorateFullDescription" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="Fax" ColumnName="Fax" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="WebAddress" ColumnName="WebAddress" />
+          <ScalarProperty Name="CharityNumber" ColumnName="CharityNumber" />
+          <ScalarProperty Name="CompanyNumber" ColumnName="CompanyNumber" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="OrganizationId" ColumnName="OrganizationId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FundingSources">
+      <EntityTypeMapping TypeName="ABSDDatabaseModel.FundingSource">
+        <MappingFragment StoreEntitySet="FundingSource">
+          <ScalarProperty Name="FundingSourceId" ColumnName="FundingSourceId" />
+          <ScalarProperty Name="FundingSourceName" ColumnName="FundingSourceName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GovOfficeRegions">
+      <EntityTypeMapping TypeName="ABSDDatabaseModel.GovOfficeRegion">
+        <MappingFragment StoreEntitySet="GovOfficeRegion">
+          <ScalarProperty Name="GovOfficeRegionId" ColumnName="GovOfficeRegionId" />
+          <ScalarProperty Name="GovOfficeRegionName" ColumnName="GovOfficeRegionName" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GovOfficeRegion_County">
+      <EntityTypeMapping TypeName="ABSDDatabaseModel.GovOfficeRegion_County">
+        <MappingFragment StoreEntitySet="GovOfficeRegion_County">
+          <ScalarProperty Name="GovOfficeRegion_CountyId" ColumnName="GovOfficeRegion_CountyId" />
+          <ScalarProperty Name="GovOfficeRegionId" ColumnName="GovOfficeRegionId" />
+          <ScalarProperty Name="CountyId" ColumnName="CountyId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LocationStatus">
+      <EntityTypeMapping TypeName="ABSDDatabaseModel.LocationStatu">
+        <MappingFragment StoreEntitySet="LocationStatus">
+          <ScalarProperty Name="LocationStatusId" ColumnName="LocationStatusId" />
+          <ScalarProperty Name="LocationStatusName" ColumnName="LocationStatusName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LocationTypes">
+      <EntityTypeMapping TypeName="ABSDDatabaseModel.LocationType">
+        <MappingFragment StoreEntitySet="LocationType">
+          <ScalarProperty Name="LocationTypeId" ColumnName="LocationTypeId" />
+          <ScalarProperty Name="LocationTypeName" ColumnName="LocationTypeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Organizations">
+      <EntityTypeMapping TypeName="ABSDDatabaseModel.Organization">
+        <MappingFragment StoreEntitySet="Organization">
+          <ScalarProperty Name="OrganizationId" ColumnName="OrganizationId" />
+          <ScalarProperty Name="OrganizationName" ColumnName="OrganizationName" />
+          <ScalarProperty Name="OrganizationShortDescription" ColumnName="OrganizationShortDescription" />
+          <ScalarProperty Name="LeadContactId" ColumnName="LeadContactId" />
+          <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
+          <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
+          <ScalarProperty Name="AddressLine3" ColumnName="AddressLine3" />
+          <ScalarProperty Name="Postcode" ColumnName="Postcode" />
+          <ScalarProperty Name="CityTown" ColumnName="CityTown" />
+          <ScalarProperty Name="CountyId" ColumnName="CountyId" />
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+          <ScalarProperty Name="IsPreferredOrganization" ColumnName="IsPreferredOrganization" />
+          <ScalarProperty Name="IsExpressionOfInterest" ColumnName="IsExpressionOfInterest" />
+          <ScalarProperty Name="TypeOfBusiness" ColumnName="TypeOfBusiness" />
+          <ScalarProperty Name="SICCode" ColumnName="SICCode" />
+          <ScalarProperty Name="OrganizationFullDescription" ColumnName="OrganizationFullDescription" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="Fax" ColumnName="Fax" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="WebAddress" ColumnName="WebAddress" />
+          <ScalarProperty Name="CharityNumber" ColumnName="CharityNumber" />
+          <ScalarProperty Name="CompanyNumber" ColumnName="CompanyNumber" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Organization_Programme">
+      <EntityTypeMapping TypeName="ABSDDatabaseModel.Organization_Programme">
+        <MappingFragment StoreEntitySet="Organization_Programme">
+          <ScalarProperty Name="Organization_ProgrammeId" ColumnName="Organization_ProgrammeId" />
+          <ScalarProperty Name="OrganizationId" ColumnName="OrganizationId" />
+          <ScalarProperty Name="ProgrammeId" ColumnName="ProgrammeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Organization_RefDataDetail">
+      <EntityTypeMapping TypeName="ABSDDatabaseModel.Organization_RefDataDetail">
+        <MappingFragment StoreEntitySet="Organization_RefDataDetail">
+          <ScalarProperty Name="Organization_RefDataDetailId" ColumnName="Organization_RefDataDetailId" />
+          <ScalarProperty Name="OrganizationId" ColumnName="OrganizationId" />
+          <ScalarProperty Name="RefDataDetailId" ColumnName="RefDataDetailId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrganizationRoleTypes">
+      <EntityTypeMapping TypeName="ABSDDatabaseModel.OrganizationRoleType">
+        <MappingFragment StoreEntitySet="OrganizationRoleType">
+          <ScalarProperty Name="OrganizationRoleTypeId" ColumnName="OrganizationRoleTypeId" />
+          <ScalarProperty Name="OrganizationRoleTypeName" ColumnName="OrganizationRoleTypeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Premises">
+      <EntityTypeMapping TypeName="ABSDDatabaseModel.Premise">
+        <MappingFragment StoreEntitySet="Premise">
+          <ScalarProperty Name="PremiseId" ColumnName="PremiseId" />
+          <ScalarProperty Name="LocationName" ColumnName="LocationName" />
+          <ScalarProperty Name="KnownAs" ColumnName="KnownAs" />
+          <ScalarProperty Name="LocationOrganizationId" ColumnName="LocationOrganizationId" />
+          <ScalarProperty Name="LocationStatusId" ColumnName="LocationStatusId" />
+          <ScalarProperty Name="LocationStatusDate" ColumnName="LocationStatusDate" />
+          <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
+          <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
+          <ScalarProperty Name="AddressLine3" ColumnName="AddressLine3" />
+          <ScalarProperty Name="Postcode" ColumnName="Postcode" />
+          <ScalarProperty Name="CityTown" ColumnName="CityTown" />
+          <ScalarProperty Name="CountyId" ColumnName="CountyId" />
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+          <ScalarProperty Name="IsPrimaryLocation" ColumnName="IsPrimaryLocation" />
+          <ScalarProperty Name="IsLocationManaged" ColumnName="IsLocationManaged" />
+          <ScalarProperty Name="HasSTNetworkConnectivity" ColumnName="HasSTNetworkConnectivity" />
+          <ScalarProperty Name="LocationDescription" ColumnName="LocationDescription" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="GeneralFaxNumber" ColumnName="GeneralFaxNumber" />
+          <ScalarProperty Name="MinicommNumber" ColumnName="MinicommNumber" />
+          <ScalarProperty Name="IsNewShop" ColumnName="IsNewShop" />
+          <ScalarProperty Name="ShopFlagDate" ColumnName="ShopFlagDate" />
+          <ScalarProperty Name="IsSpecialistShop" ColumnName="IsSpecialistShop" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Premise_LocationType">
+      <EntityTypeMapping TypeName="ABSDDatabaseModel.Premise_LocationType">
+        <MappingFragment StoreEntitySet="Premise_LocationType">
+          <ScalarProperty Name="Premise_LocationTypeId" ColumnName="Premise_LocationTypeId" />
+          <ScalarProperty Name="PremiseId" ColumnName="PremiseId" />
+          <ScalarProperty Name="LocationTypeId" ColumnName="LocationTypeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Programmes">
+      <EntityTypeMapping TypeName="ABSDDatabaseModel.Programme">
+        <MappingFragment StoreEntitySet="Programme">
+          <ScalarProperty Name="ProgrammeId" ColumnName="ProgrammeId" />
+          <ScalarProperty Name="ProgrammeName" ColumnName="ProgrammeName" />
+          <ScalarProperty Name="ProgrammeDescription" ColumnName="ProgrammeDescription" />
+          <ScalarProperty Name="ContactId" ColumnName="ContactId" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RefDatas">
+      <EntityTypeMapping TypeName="ABSDDatabaseModel.RefData">
+        <MappingFragment StoreEntitySet="RefData">
+          <ScalarProperty Name="RefDataId" ColumnName="RefDataId" />
+          <ScalarProperty Name="RefDataName" ColumnName="RefDataName" />
+          <ScalarProperty Name="RefDataValue" ColumnName="RefDataValue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RefDataDetails">
+      <EntityTypeMapping TypeName="ABSDDatabaseModel.RefDataDetail">
+        <MappingFragment StoreEntitySet="RefDataDetail">
+          <ScalarProperty Name="RefDataDetailId" ColumnName="RefDataDetailId" />
+          <ScalarProperty Name="RefDataDetailValue" ColumnName="RefDataDetailValue" />
+          <ScalarProperty Name="RefDataId" ColumnName="RefDataId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ReferralMethods">
+      <EntityTypeMapping TypeName="ABSDDatabaseModel.ReferralMethod">
+        <MappingFragment StoreEntitySet="ReferralMethod">
+          <ScalarProperty Name="ReferralMethodId" ColumnName="ReferralMethodId" />
+          <ScalarProperty Name="ReferralMethodName" ColumnName="ReferralMethodName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Services">
+      <EntityTypeMapping TypeName="ABSDDatabaseModel.Service">
+        <MappingFragment StoreEntitySet="Service">
+          <ScalarProperty Name="ServiceId" ColumnName="ServiceId" />
+          <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
+          <ScalarProperty Name="ServiceShortDescription" ColumnName="ServiceShortDescription" />
+          <ScalarProperty Name="ServiceSubTypeId" ColumnName="ServiceSubTypeId" />
+          <ScalarProperty Name="LeadContactId" ColumnName="LeadContactId" />
+          <ScalarProperty Name="ClientDescription" ColumnName="ClientDescription" />
+          <ScalarProperty Name="ServiceAttendance" ColumnName="ServiceAttendance" />
+          <ScalarProperty Name="ServiceStartExpected" ColumnName="ServiceStartExpected" />
+          <ScalarProperty Name="ServiceStartDate" ColumnName="ServiceStartDate" />
+          <ScalarProperty Name="ServiceEndDate" ColumnName="ServiceEndDate" />
+          <ScalarProperty Name="ServiceExtendable" ColumnName="ServiceExtendable" />
+          <ScalarProperty Name="ServiceExtendableMonth" ColumnName="ServiceExtendableMonth" />
+          <ScalarProperty Name="ServiceExtendableYear" ColumnName="ServiceExtendableYear" />
+          <ScalarProperty Name="ServiceFullDescription" ColumnName="ServiceFullDescription" />
+          <ScalarProperty Name="DepartmentCode" ColumnName="DepartmentCode" />
+          <ScalarProperty Name="ServiceTypeId" ColumnName="ServiceTypeId" />
+          <ScalarProperty Name="ServiceDescriptionDelivery" ColumnName="ServiceDescriptionDelivery" />
+          <ScalarProperty Name="ServiceContractCode" ColumnName="ServiceContractCode" />
+          <ScalarProperty Name="ServiceContractValue" ColumnName="ServiceContractValue" />
+          <ScalarProperty Name="IsContractStagedPayment" ColumnName="IsContractStagedPayment" />
+          <ScalarProperty Name="ReferralMethodId" ColumnName="ReferralMethodId" />
+          <ScalarProperty Name="IsTimeLimited" ColumnName="IsTimeLimited" />
+          <ScalarProperty Name="LimitedYears" ColumnName="LimitedYears" />
+          <ScalarProperty Name="LimitedMonths" ColumnName="LimitedMonths" />
+          <ScalarProperty Name="ProgrammeId" ColumnName="ProgrammeId" />
+          <ScalarProperty Name="ContractParticipationTypeId" ColumnName="ContractParticipationTypeId" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Service_Organization_OrganizationRoleType">
+      <EntityTypeMapping TypeName="ABSDDatabaseModel.Service_Organization_OrganizationRoleType">
+        <MappingFragment StoreEntitySet="Service_Organization_OrganizationRoleType">
+          <ScalarProperty Name="Service_Organization_OrganizationRoleTypeId" ColumnName="Service_Organization_OrganizationRoleTypeId" />
+          <ScalarProperty Name="ServiceId" ColumnName="ServiceId" />
+          <ScalarProperty Name="OrganizationId" ColumnName="OrganizationId" />
+          <ScalarProperty Name="OrganizationRoleTypeId" ColumnName="OrganizationRoleTypeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Service_Premise">
+      <EntityTypeMapping TypeName="ABSDDatabaseModel.Service_Premise">
+        <MappingFragment StoreEntitySet="Service_Premise">
+          <ScalarProperty Name="Service_PremiseId" ColumnName="Service_PremiseId" />
+          <ScalarProperty Name="ServiceId" ColumnName="ServiceId" />
+          <ScalarProperty Name="PremiseId" ColumnName="PremiseId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Service_RefDataDetail">
+      <EntityTypeMapping TypeName="ABSDDatabaseModel.Service_RefDataDetail">
+        <MappingFragment StoreEntitySet="Service_RefDataDetail">
+          <ScalarProperty Name="Service_RefDataDetailId" ColumnName="Service_RefDataDetailId" />
+          <ScalarProperty Name="ServiceId" ColumnName="ServiceId" />
+          <ScalarProperty Name="RefDataDetailId" ColumnName="RefDataDetailId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ServiceFundings">
+      <EntityTypeMapping TypeName="ABSDDatabaseModel.ServiceFunding">
+        <MappingFragment StoreEntitySet="ServiceFunding">
+          <ScalarProperty Name="ServiceFundingId" ColumnName="ServiceFundingId" />
+          <ScalarProperty Name="FundingSourceId" ColumnName="FundingSourceId" />
+          <ScalarProperty Name="FundingContactId" ColumnName="FundingContactId" />
+          <ScalarProperty Name="FundingAmount" ColumnName="FundingAmount" />
+          <ScalarProperty Name="FundingStart" ColumnName="FundingStart" />
+          <ScalarProperty Name="FundingEnd" ColumnName="FundingEnd" />
+          <ScalarProperty Name="FundingNeeds" ColumnName="FundingNeeds" />
+          <ScalarProperty Name="IsFundingContinuationNeeded" ColumnName="IsFundingContinuationNeeded" />
+          <ScalarProperty Name="FundingContinuationAmount" ColumnName="FundingContinuationAmount" />
+          <ScalarProperty Name="FundingContinuationDetail" ColumnName="FundingContinuationDetail" />
+          <ScalarProperty Name="FundraisingForText" ColumnName="FundraisingForText" />
+          <ScalarProperty Name="FundraisingWhy" ColumnName="FundraisingWhy" />
+          <ScalarProperty Name="FundraisingNeeds" ColumnName="FundraisingNeeds" />
+          <ScalarProperty Name="FundraisingRequiredBy" ColumnName="FundraisingRequiredBy" />
+          <ScalarProperty Name="IsFundRaisingComplete" ColumnName="IsFundRaisingComplete" />
+          <ScalarProperty Name="FundraisingCompletedDate" ColumnName="FundraisingCompletedDate" />
+          <ScalarProperty Name="FundraisingDonorAnynymous" ColumnName="FundraisingDonorAnynymous" />
+          <ScalarProperty Name="FundraisingDonorAmount" ColumnName="FundraisingDonorAmount" />
+          <ScalarProperty Name="FundDonationDate" ColumnName="FundDonationDate" />
+          <ScalarProperty Name="IsFundraisingDonationIncremental" ColumnName="IsFundraisingDonationIncremental" />
+          <ScalarProperty Name="ServiceId" ColumnName="ServiceId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ServiceSubTypes">
+      <EntityTypeMapping TypeName="ABSDDatabaseModel.ServiceSubType">
+        <MappingFragment StoreEntitySet="ServiceSubType">
+          <ScalarProperty Name="ServiceSubTypeId" ColumnName="ServiceSubTypeId" />
+          <ScalarProperty Name="ServiceSubTypeName" ColumnName="ServiceSubTypeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ServiceTypes">
+      <EntityTypeMapping TypeName="ABSDDatabaseModel.ServiceType">
+        <MappingFragment StoreEntitySet="ServiceType">
+          <ScalarProperty Name="ServiceTypeId" ColumnName="ServiceTypeId" />
+          <ScalarProperty Name="ServiceTypeName" ColumnName="ServiceTypeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SupportingMaterials">
+      <EntityTypeMapping TypeName="ABSDDatabaseModel.SupportingMaterial">
+        <MappingFragment StoreEntitySet="SupportingMaterial">
+          <ScalarProperty Name="SupportingMaterialId" ColumnName="SupportingMaterialId" />
+          <ScalarProperty Name="Url" ColumnName="Url" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="SupportingMaterialTypeId" ColumnName="SupportingMaterialTypeId" />
+          <ScalarProperty Name="UserAddedId" ColumnName="UserAddedId" />
+          <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="OrganizationId" ColumnName="OrganizationId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SupportingMaterialTypes">
+      <EntityTypeMapping TypeName="ABSDDatabaseModel.SupportingMaterialType">
+        <MappingFragment StoreEntitySet="SupportingMaterialType">
+          <ScalarProperty Name="SupportingMaterialTypeId" ColumnName="SupportingMaterialTypeId" />
+          <ScalarProperty Name="SupportingMaterialTypeName" ColumnName="SupportingMaterialTypeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Teams">
+      <EntityTypeMapping TypeName="ABSDDatabaseModel.Team">
+        <MappingFragment StoreEntitySet="Team">
+          <ScalarProperty Name="TeamId" ColumnName="TeamId" />
+          <ScalarProperty Name="TeamName" ColumnName="TeamName" />
+          <ScalarProperty Name="TeamShortDescription" ColumnName="TeamShortDescription" />
+          <ScalarProperty Name="LeadContactId" ColumnName="LeadContactId" />
+          <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
+          <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
+          <ScalarProperty Name="AddressLine3" ColumnName="AddressLine3" />
+          <ScalarProperty Name="Postcode" ColumnName="Postcode" />
+          <ScalarProperty Name="TownVillageCity" ColumnName="TownVillageCity" />
+          <ScalarProperty Name="CountyId" ColumnName="CountyId" />
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+          <ScalarProperty Name="TypeOfBusiness" ColumnName="TypeOfBusiness" />
+          <ScalarProperty Name="SICCode" ColumnName="SICCode" />
+          <ScalarProperty Name="TeamFullDescription" ColumnName="TeamFullDescription" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="Fax" ColumnName="Fax" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="WebAddress" ColumnName="WebAddress" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TrustDistricts">
+      <EntityTypeMapping TypeName="ABSDDatabaseModel.TrustDistrict">
+        <MappingFragment StoreEntitySet="TrustDistrict">
+          <ScalarProperty Name="TrustDistrictId" ColumnName="TrustDistrictId" />
+          <ScalarProperty Name="TrustDistrictName" ColumnName="TrustDistrictName" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="TrustRegionId" ColumnName="TrustRegionId" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TrustRegions">
+      <EntityTypeMapping TypeName="ABSDDatabaseModel.TrustRegion">
+        <MappingFragment StoreEntitySet="TrustRegion">
+          <ScalarProperty Name="TrustRegionId" ColumnName="TrustRegionId" />
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+          <ScalarProperty Name="TrustRegionName" ColumnName="TrustRegionName" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TypeOfBusinesses">
+      <EntityTypeMapping TypeName="ABSDDatabaseModel.TypeOfBusiness">
+        <MappingFragment StoreEntitySet="TypeOfBusiness">
+          <ScalarProperty Name="TypeOfBusinessId" ColumnName="TypeOfBusinessId" />
+          <ScalarProperty Name="BusinessName" ColumnName="BusinessName" />
+          <ScalarProperty Name="SICCode" ColumnName="SICCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

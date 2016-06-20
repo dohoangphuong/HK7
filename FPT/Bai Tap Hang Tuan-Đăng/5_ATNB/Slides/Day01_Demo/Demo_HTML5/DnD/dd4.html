@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+ 
+var oldX;
+var oldy;
+var newX;
+var newY;
+var x;
+var y;
+ 
+var pressed;
+pressed = 0;
+ 
+function press(event){
+  if(event.srcElement.id == 'wnd'){
+    pressed = 1;
+    oldX = event.clientX;
+    oldY = event.clientY;
+  }
+}
+ 
+function release(event){
+  pressed = 0;
+}
+ 
+function move(event){
+  if(pressed)
+  {
+    newX=event.clientX;
+    newY=event.clientY;
+    x = parseInt((document.getElementById('wnd').style.left));
+    y =  parseInt((document.getElementById('wnd').style.top));
+    document.getElementById('wnd').style.left = x + newX - oldX + "px";
+    document.getElementById('wnd').style.top = y + newY - oldY + "px";
+ 
+    oldX = newX;
+    oldY = newY;
+  }
+}
+ 
+function onLoad(){
+    document.addEventListener("mousedown",press);
+    document.addEventListener("mouseup",release);
+    document.addEventListener("mousemove",move);
+}
+ 
+</script>
+</head>
+<body onload = "onLoad();">
+<div id="wnd" style="position:absolute;background-color:green;top:10px;left:10px;width:200px;height:150px;">
+    <div style="position:relative;background-color:white;left:5px;top:25px;width:190px;height:120px;">
+    Try to drag this window?</div>
+</div>
+</body>
+</html>

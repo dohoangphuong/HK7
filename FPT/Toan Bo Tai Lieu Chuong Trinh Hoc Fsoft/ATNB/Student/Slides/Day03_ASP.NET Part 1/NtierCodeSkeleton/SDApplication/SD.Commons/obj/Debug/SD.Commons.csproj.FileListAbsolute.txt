@@ -1,0 +1,11 @@
+D:\Template\SDApplication\SD.Commons\bin\Debug\SD.Commons.dll
+D:\Template\SDApplication\SD.Commons\bin\Debug\SD.Commons.pdb
+D:\Template\SDApplication\SD.Commons\obj\Debug\ResolveAssemblyReference.cache
+D:\Template\SDApplication\SD.Commons\obj\Debug\SD.Commons.dll
+D:\Template\SDApplication\SD.Commons\obj\Debug\SD.Commons.pdb
+D:\NtierCodeSkeleton\SDApplication\SD.Commons\bin\Debug\SD.Commons.dll
+D:\NtierCodeSkeleton\SDApplication\SD.Commons\bin\Debug\SD.Commons.pdb
+D:\NtierCodeSkeleton\SDApplication\SD.Commons\obj\Debug\ResolveAssemblyReference.cache
+D:\NtierCodeSkeleton\SDApplication\SD.Commons\obj\Debug\SD.Commons.dll
+D:\NtierCodeSkeleton\SDApplication\SD.Commons\obj\Debug\SD.Commons.pdb
+D:\NtierCodeSkeleton\SDApplication\SD.Commons\bin\Debug\SD.Commons.dll.config

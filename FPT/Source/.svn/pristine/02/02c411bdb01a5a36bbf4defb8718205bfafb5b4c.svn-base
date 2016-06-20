@@ -1,0 +1,39 @@
+﻿.body_View {
+    border: 1px solid grey;
+    width: 520px;
+    height: 400px;
+}
+
+.titleHead {
+    border: 1px solid groove;
+    height: 43px;
+    color: white;
+    background-color: #000077;
+}
+
+#table1 {
+    width: 100%;
+    padding: 10px 10px 10px 10px;
+}
+
+.lable {
+    color: black;
+    text-align: right;
+    width: 150px; /*kích thước khung chứa chữ*/
+}
+
+.text_150 {
+    width: 150px;
+    height: 20px;
+}
+
+.text_300 {
+    width: 300px;
+    height: 20px;
+}
+
+.button {
+    width: 75px;
+    height: 40px;
+    text-align: center;
+}

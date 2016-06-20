@@ -1,0 +1,149 @@
+﻿@using WebsiteQuanLyBanHang.Models
+@model WebsiteQuanLyBanHang.Models.SalesOrder
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4 class="modal-title" id="myModalLabel">Details</h4>
+</div>
+
+<div class="modal-body">
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OverdueDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OverdueDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderDisc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderDisc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TaxAmt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TaxAmt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalAmt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalAmt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Payment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Payment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Debt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Debt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.CustName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer.CustName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InvoiceType1.TypeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InvoiceType1.TypeName)
+        </dd>
+    </dl>
+    <table class="table ">
+        <tr>
+            <th>
+                @Html.Label("ID")
+            </th>
+            <th>
+                @Html.Label("Name")
+            </th>
+            <th>
+                @Html.Label("Quantity")
+            </th>
+            <th>
+                @Html.Label("Sales Prices")
+            </th>
+            <th>
+                @Html.Label("Amount")
+            </th>
+            <th>
+                @Html.Label("Discount")
+            </th>
+            <th>
+                @Html.Label("Tax")
+            </th>
+        </tr>
+
+        @foreach (var item in Model.SlsOrderDetails.Where(n=>n.OrderNo == Model.OrderNo))
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Inventory.InvtName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Qty)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SalesPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Discount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TaxAmt)
+                </td>
+           
+            </tr>
+        }
+
+    </table>
+</div>
+<div class="modal-footer">
+    @Html.ActionLink("Print", "Print", new { id = Model.OrderNo})
+    <button class="btn" data-dismiss="modal">Ok</button>
+</div>

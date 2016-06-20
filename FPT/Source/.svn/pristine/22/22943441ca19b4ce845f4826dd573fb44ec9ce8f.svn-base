@@ -1,0 +1,61 @@
+﻿@model IEnumerable<CSS_G06.Models.CustomerResult>
+@{
+    ViewBag.Title = "SearchCustomerResult";
+    Layout = null;
+}
+
+<style type="text/css">
+    table.gridtable {
+        font-family: verdana,arial,sans-serif;
+        font-size: 11px;
+        color: #333333;
+        border-width: 1px;
+        border-color: #666666;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+        table.gridtable th {
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #666666;
+            background-color: #dedede;
+        }
+
+        table.gridtable td {
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #666666;
+            background-color: #ffffff;
+            padding: 5px;
+        }
+</style>
+
+<div id="ResultContent">
+    <label style="font-style:italic; color:blue">Search result: @ViewBag.SumResult</label>
+    @{
+        WebGrid grid = new WebGrid(source: Model, canSort: false);
+    }
+    @grid.GetHtml(
+            tableStyle: "gridtable",
+            columns: grid.Columns(
+                grid.Column("RFONumer", "RFO Numer"),
+                grid.Column("Name", "RFO Name"),
+                grid.Column("CustomerType", "Customer Type"),
+                grid.Column("PostCode", "Post Code"),
+                grid.Column("BusinessArea", "Business Area"),
+                grid.Column("Region", "Region"),
+                grid.Column((format: @<text> <input type="radio" name="select" checked="checked" value="@item.RFONumer" /> </text>), header: "Select")
+                )
+        )
+
+</div><!-- End #ResultContent -->
+
+
+
+
+    
+
+

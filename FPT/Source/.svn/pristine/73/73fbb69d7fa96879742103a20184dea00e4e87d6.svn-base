@@ -1,0 +1,117 @@
+namespace CSS_G06.Models
+{
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
+
+    [Table("Agreement")]
+    public partial class Agreement
+    {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Agreement()
+        {
+            Comments = new HashSet<Comment>();
+            CreditNoteTexts = new HashSet<CreditNoteText>();
+            RFOUsers = new HashSet<RFOUser>();
+            RFONumbers = new HashSet<RFONumber>();
+        }
+
+        [Key]
+        [Column(Order = 0)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int AgreementNumber { get; set; }
+
+        [Key]
+        [Column(Order = 1)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int VariantNumber { get; set; }
+
+        [StringLength(100)]
+        public string Name { get; set; }
+
+        [StringLength(1000)]
+        public string Description { get; set; }
+
+        [Column(TypeName = "date")]
+        public DateTime? StartDate { get; set; }
+
+        [Column(TypeName = "date")]
+        public DateTime? EndDate { get; set; }
+
+        public int StatusId { get; set; }
+
+        [Column(TypeName = "date")]
+        public DateTime LastStatusUpdatedDate { get; set; }
+
+        [StringLength(50)]
+        public string AuthorisedBy { get; set; }
+
+        [Column(TypeName = "date")]
+        public DateTime? AuthorisedDate { get; set; }
+
+        [Column(TypeName = "date")]
+        public DateTime CreatedDate { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        public string CreatedBy { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        public string LastUpdBy { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        public string LastUpdatedBy { get; set; }
+
+        [StringLength(50)]
+        public string PaymentTo { get; set; }
+
+        [StringLength(10)]
+        public string AMISAccountCode { get; set; }
+
+        [Column(TypeName = "money")]
+        public decimal? HandlingCharge { get; set; }
+
+        public int? FundingMethodId { get; set; }
+
+        public bool? SignRequired { get; set; }
+
+        public bool? SignReceived { get; set; }
+
+        [Column(TypeName = "date")]
+        public DateTime? SignReceivedDate { get; set; }
+
+        [StringLength(50)]
+        public string DealerVisibility { get; set; }
+
+        [StringLength(50)]
+        public string Combinability { get; set; }
+
+        public int? NumberOfRegistrations { get; set; }
+
+        public int? VolumeId { get; set; }
+
+        public int? DiscountUnit { get; set; }
+
+        public virtual AgreementStatu AgreementStatu { get; set; }
+
+        public virtual FundingMethod FundingMethod { get; set; }
+
+        public virtual Volume Volume { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Comment> Comments { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CreditNoteText> CreditNoteTexts { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RFOUser> RFOUsers { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RFONumber> RFONumbers { get; set; }
+    }
+}

@@ -1,0 +1,57 @@
+﻿@model CSS.ViewModels.RejectModel
+
+@{
+    ViewBag.Title = "RejectAgreement";
+}
+<div class="titleRejectAgreement">
+    <h3 style="color:blue">Corporate Sales Solution</h3>
+    <h4 style="color:gray">RejectAgreement</h4>
+</div>
+
+@using (Html.BeginForm()) {
+<div id="atrributes" class="atrributes">
+    <div class="form-horizontal" style="height:30%" >
+        <div class="form-group">
+              @Html.LabelFor(model=>model.RFONumber,htmlAttributes: new { @class = "control-label-reject col-md-2"})
+                <div class="control-label-result col-md-10" >
+                    <label class="control-label-result  col-md-2">@Model.RFONumber</label>
+                    @Html.HiddenFor(model => model.RFONumber);
+                </div>
+         </div>
+
+        <div class="form-group">
+              @Html.LabelFor(model => model.CustormerName, htmlAttributes: new { @class = "control-label-reject col-md-2" })
+                <div class="control-label-result col-md-10">
+                    <label class="control-label-result  col-md-2">@Model.CustormerName</label>
+                    @Html.HiddenFor(model => model.CustormerName)            
+                </div>
+         </div>
+
+        <div class="form-group">
+              @Html.LabelFor(model => model.AgreementNumber, htmlAttributes: new { @class = "control-label-reject col-md-2" })
+                <div class="control-label-result col-md-10">
+                     <label class="control-label-result  col-md-2">@Model.AgreementNumber / @Model.VariantNumber</label>
+                </div>
+         </div>
+
+        <div class="form-group">
+              @Html.LabelFor(model => model.Reason, htmlAttributes: new { @class = " control-label-reject col-md-2" })
+                <div class="control-label-result col-md-10">
+                    <br />
+                     @Html.TextAreaFor(model => model.Reason,5,80, htmlAttributes: new { @class = "control-label-result col-md-8"})
+                     @Html.ValidationMessageFor(model => model.Reason, "", new { @class = "text-danger" })
+                </div>
+         </div>
+
+    </div> 
+</div>
+
+<div id="bottomMenu" class="bottomMenuReject">
+       
+        @*@Html.ActionLink("Reject", "RejectAgreement", new {agreementNumber =Model.AgreementNumber, variantNumber=Model.VariantNumber , reason = Model.Reason }, new{ @class="btn btn-default"});*@
+    
+        <button type="submit" id ="rejectagreement" class ="btn btn-default">Reject Agreement</button>
+
+        @Html.ActionLink("Cancel", "ViewAgreement", new { agreementNumber =@Model.AgreementNumber, variantNumber=@Model.VariantNumber },new{  @class="btn btn-default" })
+</div>
+}

@@ -1,0 +1,14 @@
+1. class NativeExample {
+2. native void doSomethingLocal(int i);
+3.
+4. static {
+5. System.loadLibrary(“MyNativeLib”);
+6. }
+7. }
+
+Notice the native declaration on line 2, which declares that the code that implements doSomethingLocal() resides in a local library. Lines 4–6 are static initializer code, so they are executed at the time that class NativeExample is loaded; this ensures that the library will be available by the time somebody needs it.
+
+Callers of native methods do not have to know that the method is native. The call is made in exactly the same way as if it were non-native:
+1. NativeExample natex;
+2. natex = new NativeExample();
+3. natex.doSomethingLocal(5);

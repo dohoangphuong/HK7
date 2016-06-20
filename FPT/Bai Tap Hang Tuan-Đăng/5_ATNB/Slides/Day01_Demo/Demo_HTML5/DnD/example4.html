@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+	<style>
+		body{width:800px;}
+		div{float:left;width:40px;height:40px;background-color:#8ab;margin:10px;}
+		#drop{ min-height: 100px;width: 600px;border: 3px dashed #ccc;padding: 10px;background-color:#fff;}
+		p{float:left;width:100px;}
+		#div1{background-color:#ff0000;}
+		#div2{background-color:#ff5511;}
+		#div3{background-color:#ff9922;}
+		#div4{background-color:#ffDD33;}
+	</style>
+</head>
+<body>
+	<div id="div1" draggable="true" ></div>
+	<div id="div2" draggable="true"></div>
+	<div id="div3" draggable="true"></div>
+	<div id="div4" draggable="true"></div>
+	
+	<div id="drop"></div>
+
+	<script>
+		cancel = function(e){
+			if(e.preventDefault)
+				e.preventDefault();
+			return false;
+		}
+		// add event dragstart to all elements which you want to drag
+		var dragItems = document.querySelectorAll("[draggable=true]");
+		for (var i=0;i<dragItems.length;i++)
+			dragItems[i].addEventListener('dragstart', function(e){
+				e.dataTransfer.setData("Text", this.id);
+			}, false);
+		// add event dragover, dragenter, drop to target "drop" object
+		var drop = document.querySelector("#drop");
+		drop.addEventListener("dragover", cancel, false);
+		drop.addEventListener("dragenter", cancel, false);
+		drop.addEventListener("drop", function(e){
+			if(e.preventDefault)
+				e.preventDefault();
+			//this.innerHTML += "<p>"+e.dataTransfer.getData("Text")+"</p>";
+			this.innerHTML += "<div id='"+e.dataTransfer.getData("Text")+"'>"+e.dataTransfer.getData("Text")+"</div>";
+			return false;
+		}, false);
+	</script>
+</body>
+</html>

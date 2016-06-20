@@ -1,0 +1,68 @@
+/*body {
+	text-shadow: 0 0 1px #ff0000;
+}*/
+
+input {
+	background: transparent;
+	border: solid 1px #000;
+	box-shadow: 0 0 1px #bbb;
+}
+
+input[name=bookId] {
+	width: 100px;
+}
+
+input[name=bookTitle], input[name=author] {
+	width: 220px;
+}
+
+input[type=submit], input[type=reset] {
+	font-family: Georgia, Serif;
+	font-size: 1.1em;
+	cursor: pointer;
+	text-shadow: 0 0 1px #bbb;
+}
+
+SELECT {
+	BORDER: SOLID 1PX #000;
+	cursor: pointer;
+	box-shadow: 0 0 1px #bbb;
+	width: 225px;
+}
+
+input[type=checkbox] {
+	display: none;
+}
+
+input[type=checkbox]:checked+label:after {
+	opacity: 1;
+	background: whitesmoke;
+}
+
+label:after {
+	opacity: 0;
+	content: 'X';
+	padding: 0 3px;
+}
+
+label {
+	cursor: pointer;
+	border: 1px solid #000;
+	box-shadow: 0 0 1px #bbb;
+}
+
+.container {
+	width: 550px;
+	border: solid 1px #000;
+	margin: auto;
+	box-shadow: 0 0 5px #bbb;
+}
+
+#topheader {
+	background: rgb(0, 0, 128);
+	box-shadow: 0 0 1px rgb(0, 0, 128);
+	font-family: Georgia, Serif;
+	height: 40PX;
+	width: 550px;
+	color: white;
+}

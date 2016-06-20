@@ -1,0 +1,407 @@
+﻿@model CSS_G06.Models.SelectCustomer
+
+@{
+    ViewBag.Title = "View Agreement";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/smart_wizard.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-2.0.0.min.js"></script>
+<script src="~/Scripts/jquery.smartWizard.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#wizard').smartWizard({
+            enableAllSteps: true
+        });
+    });
+    $(document).on("pageload", function () {
+        alert("pageload event fired - the external page has been successfully loaded and inserted into the DOM!");
+    });
+
+    function goBackward() {
+        $('#wizard').smartWizard('goBackward');
+    };
+    function goFoward() {
+        $('#wizard').smartWizard('goForward');
+    };
+    function goBackHome() {
+        window.location.href = '@Url.Action("Index", "Home")';
+    }
+
+</script>
+
+<style>
+    .ContentView{
+        width:800px;
+        height:420px;
+        padding:5px;
+        overflow-y:auto;
+    }
+    .ButtonView{
+        width:800px;
+        height:25px;
+        padding:1px;
+    }
+    .ItemLeftLabel{
+        width:180px;
+        padding:2px;
+        font-size:12px;
+        font-weight:bold;
+        color:black;
+    }
+    .ItemRightContent{
+        width:600px;
+        padding:2px;
+        font-size:12px;
+        font-weight:normal;
+        color:#889EC7;
+    }
+    .ShowTableHeadTd{
+        border: 1px solid black;
+        font-size: 12px;
+        font-weight:bold;
+        color: whitesmoke;
+        background-color:#889EC7;
+        text-align:center;
+        padding-left:5px;
+        padding-right:5px;
+        padding-bottom:1px;
+        padding-top:1px;
+    }
+    .ShowTableContentTd{
+        border: 1px solid #889EC7;
+        font-size: 12px;
+        font-weight:normal;
+        color: #889EC7;
+        background-color:whitesmoke;
+        align-content:center;
+        text-align:center;
+        padding-left:5px;
+        padding-right:5px;
+        padding-bottom:1px;
+        padding-top:1px;
+    }
+
+</style>
+
+<div>
+    <table align="center" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td>
+                <!-- Smart Wizard -->
+                <div id="wizard" class="swMain">
+                    <!-- Start Menu -->
+                    <ul>
+                        <li>
+                            <a href="#uc2_1">
+                                <label class="stepNumber">1</label>
+                                <span class="stepDesc">
+                                    Select Customer
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#uc2_2">
+                                <label class="stepNumber">2</label>
+                                <span class="stepDesc">
+                                    Basic Agreement Details
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#uc2_3">
+                                <label class="stepNumber">3</label>
+                                <span class="stepDesc">
+                                    Select Applicable Dealer
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#uc2_4">
+                                <label class="stepNumber">4</label>
+                                <span class="stepDesc">
+                                    Volume Banding
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#uc2_5">
+                                <label class="stepNumber">5</label>
+                                <span class="stepDesc">
+                                    Model Support
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#uc2_6">
+                                <label class="stepNumber">6</label>
+                                <span class="stepDesc">
+                                    Misc Text
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- End Menu -->
+
+                    <div id="uc2_1">
+                        <div id="uc2_1_ViewOnlyContent" class="ContentView">
+                            <table>
+                                <tr>
+                                    <td class="ItemLeftLabel">RFO Number</td>
+                                    <td class="ItemRightContent">@ViewBag.RFONumber</td>
+                                </tr>
+                                <tr>
+                                    <td class="ItemLeftLabel">Customer Type</td>
+                                    <td class="ItemRightContent">@ViewBag.CustomerType</td>
+                                </tr>
+                                <tr>
+                                    <td class="ItemLeftLabel">Customer Name</td>
+                                    <td class="ItemRightContent">@ViewBag.CustomerName</td>
+                                </tr>
+                                <tr>
+                                    <td class="ItemLeftLabel">Postcode</td>
+                                    <td class="ItemRightContent">@ViewBag.CustomerPostcode</td>
+                                </tr>
+                                <tr>
+                                    <td class="ItemLeftLabel">BusinessArea</td>
+                                    <td class="ItemRightContent">@ViewBag.BusinessArea</td>
+                                </tr>
+                                <tr>
+                                    <td class="ItemLeftLabel">Region</td>
+                                    <td class="ItemRightContent">@ViewBag.CustomerRegion</td>
+                            </tr>
+                        </table>
+                    </div>
+                        <hr />
+                        <div id="uc2_1_ViewOnlyButton" class="ButtonView" align="right">
+                            &raquo;<input type="button" value="go back Home" style="border:none;background:none;padding-left:0px;padding-right:10px;" onclick="goBackHome()"/>
+                            &raquo;<input type="button" value="back" style="border:none;background:none;padding-left:0px;padding-right:10px;" onclick="goBackward()"/>
+                            &raquo;<input type="button" value="next" style="border:none;background:none;padding-left:0px;padding-right:10px;" onclick="goFoward()"/>
+                        </div>
+
+                    </div><!-- End #uc2_1 -->
+                    <div id="uc2_2">
+                        <div id="uc2_2_ViewOnlyContent" class="ContentView">
+                            <table>
+                                <tr>
+                                    <td class="ItemLeftLabel">RFO Number</td>
+                                    <td class="ItemRightContent">@ViewBag.RFONumber</td>
+                                </tr>
+                                <tr>
+                                    <td class="ItemLeftLabel">Customer Name</td>
+                                    <td class="ItemRightContent">@ViewBag.CustomerName</td>
+                                </tr>
+                                <tr>
+                                    <td class="ItemLeftLabel">Agreement Number</td>
+                                    <td class="ItemRightContent">@Model.AgreementNumber / @Model.AgreementVariant</td>
+                                </tr>
+                                <tr>
+                                    <td class="ItemLeftLabel">Agreement Name</td>
+                                    <td class="ItemRightContent">@ViewBag.AgreementName</td>
+                                </tr>
+                                <tr>
+                                    <td class="ItemLeftLabel">Status</td>
+                                    <td class="ItemRightContent">@ViewBag.AgreementStatus</td>
+                                </tr>
+                                <tr>
+                                    <td class="ItemLeftLabel">Created Date</td>
+                                    <td class="ItemRightContent">@ViewBag.CreatedDate</td>
+                                </tr>
+                                <tr>
+                                    <td class="ItemLeftLabel">Created By</td>
+                                    <td class="ItemRightContent">@ViewBag.CreatedBy</td>
+                                </tr>
+                                <tr>
+                                    <td class="ItemLeftLabel">Authorised Date</td>
+                                    <td class="ItemRightContent">@ViewBag.AuthorisedDate</td>
+                                </tr>
+                                <tr>
+                                    <td class="ItemLeftLabel">Authorised By</td>
+                                    <td class="ItemRightContent">@ViewBag.AuthorisedBy</td>
+                                </tr>
+                                <tr>
+                                    <td class="ItemLeftLabel">Desription</td>
+                                    <td class="ItemRightContent">
+                                        <textarea style="width:400px;height:100px;resize:none;overflow-y:auto;">@ViewBag.Description</textarea>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="ItemLeftLabel">Start Date</td>
+                                    <td class="ItemRightContent">@ViewBag.StartDate</td>
+                                </tr>
+                                <tr>
+                                    <td class="ItemLeftLabel">End Date</td>
+                                    <td class="ItemRightContent">@ViewBag.EndDate</td>
+                                </tr>
+                                <tr>
+                                    <td class="ItemLeftLabel">Is Signed Agreement Required?</td>
+                                    <td class="ItemRightContent">@ViewBag.SignedRequired</td>
+                                </tr>
+                                <tr>
+                                    <td class="ItemLeftLabel">Is Signed Agreement Received?</td>
+                                    <td class="ItemRightContent">@ViewBag.SignedReceived</td>
+                                </tr>
+                                <tr>
+                                    <td class="ItemLeftLabel">Signed Agreement Received Date?</td>
+                                    <td class="ItemRightContent">@ViewBag.SignedReceivedDate</td>
+                                </tr>
+                                <tr>
+                                    <td class="ItemLeftLabel">Number of Registrations</td>
+                                    <td class="ItemRightContent">@ViewBag.NumberOfRegistrations</td>
+                                </tr>
+                                <tr>
+                                    <td class="ItemLeftLabel">AMIS Account Code</td>
+                                    <td class="ItemRightContent">@ViewBag.AMISAccountCode</td>
+                                </tr>
+                                <tr>
+                                    <td class="ItemLeftLabel">Funding Method</td>
+                                    <td class="ItemRightContent">@ViewBag.FundingMethod</td>
+                                </tr>
+                                <tr>
+                                    <td class="ItemLeftLabel">Payment To</td>
+                                    <td class="ItemRightContent">@ViewBag.PaymentTo</td>
+                                </tr>
+                                <tr>
+                                    <td class="ItemLeftLabel">Agenda Payment</td>
+                                    <td class="ItemRightContent">@ViewBag.AgendaPayment</td>
+                                </tr>
+                                <tr>
+                                    <td class="ItemLeftLabel">Handing Charge</td>
+                                    <td class="ItemRightContent">@ViewBag.HandingCharge</td>
+                                </tr>
+                                <tr>
+                                    <td class="ItemLeftLabel">Dealer Visibility</td>
+                                    <td class="ItemRightContent">@ViewBag.DealerVisibility</td>
+                                </tr>
+                                <tr>
+                                    <td class="ItemLeftLabel">Discount Unit</td>
+                                    <td class="ItemRightContent">@ViewBag.DiscountUnit</td>
+                                </tr>
+                                <tr>
+                                    <td class="ItemLeftLabel">Combinability</td>
+                                    <td class="ItemRightContent">@ViewBag.Combinability</td>
+                                </tr>
+                                <tr>
+                                    <td class="ItemLeftLabel">Lastest Updated By</td>
+                                    <td class="ItemRightContent">@ViewBag.LastestUpdatedBy</td>
+                                </tr>
+                                <tr>
+                                    <td class="ItemLeftLabel">Lastest Updated Date</td>
+                                    <td class="ItemRightContent">@ViewBag.LastestUpdatedDate</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <hr />
+                        <div id="uc2_2_ViewOnlyButton" class="ButtonView" align="right">
+                            &raquo;<input type="button" value="go back Home" style="border:none;background:none;padding-left:0px;padding-right:10px;" onclick="goBackHome()" />
+                            &raquo;<input type="button" value="back" style="border:none;background:none;padding-left:0px;padding-right:10px;" onclick="goBackward()" />
+                            &raquo;<input type="button" value="next" style="border:none;background:none;padding-left:0px;padding-right:10px;" onclick="goFoward()" />
+                        </div>
+                    </div><!-- End #uC2_2-->
+                    <div id="uc2_3">
+                        <div id="uc2_3_ViewOnlyContent" class="ContentView" style="border:1px solid #889EC7;">
+                            <table style="width:100%;">
+                                <tr>
+                                    <td class="ShowTableHeadTd">Dealer Code</td>
+                                    <td class="ShowTableHeadTd">Dealer Name</td>
+                                    <td class="ShowTableHeadTd">Town</td>
+                                    <td class="ShowTableHeadTd">Country</td>
+                                </tr>
+                                @{
+                                    foreach (var item in ViewBag.DealerList)
+                                    {
+                                        <tr>
+                                            <td class="ShowTableContentTd">@item.DealerCode</td>
+                                            <td class="ShowTableContentTd">@item.DealerName</td>
+                                            <td class="ShowTableContentTd">@item.Town</td>
+                                            <td class="ShowTableContentTd">@item.Country</td>
+                                        </tr>
+                                    }
+                                }
+
+                            </table>
+                        </div>
+                        <hr />
+                        <div id="uc2_3_ViewOnlyButton" class="ButtonView" align="right">
+                            &raquo;<input type="button" value="go back Home" style="border:none;background:none;padding-left:0px;padding-right:10px;" onclick="goBackHome()" />
+                            &raquo;<input type="button" value="back" style="border:none;background:none;padding-left:0px;padding-right:10px;" onclick="goBackward()" />
+                            &raquo;<input type="button" value="next" style="border:none;background:none;padding-left:0px;padding-right:10px;" onclick="goFoward()" />
+                        </div>
+
+                    </div><!-- End #uC2_3 -->
+                    <div id="uc2_4">
+                        <div id="uc2_4_ViewOnlyContent" class="ContentView">
+                            <table>
+                                <tr>
+                                    <td class="ItemLeftLabel">RFO Number</td>
+                                    <td class="ItemRightContent">@ViewBag.RFONumber</td>
+                                </tr>
+                                <tr>
+                                    <td class="ItemLeftLabel">Customer Name</td>
+                                    <td class="ItemRightContent">@ViewBag.CustomerName</td>
+                                </tr>
+                                <tr>
+                                    <td class="ItemLeftLabel">Banding Value</td>
+                                    <td class="ItemRightContent">@ViewBag.BandingValue</td>
+                                </tr>
+                                <tr>
+                                    <td class="ItemLeftLabel">Trigger Credit</td>
+                                    <td class="ItemRightContent">@ViewBag.TriggerCredit</td>
+                                </tr>
+                                <tr>
+                                    <td class="ItemLeftLabel">Payable To</td>
+                                    <td class="ItemRightContent">@ViewBag.PayableTo</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <hr />
+                        <div id="uc2_4_ViewOnlyButton" class="ButtonView" align="right">
+                            &raquo;<input type="button" value="go back Home" style="border:none;background:none;padding-left:0px;padding-right:10px;" onclick="goBackHome()" />
+                            &raquo;<input type="button" value="back" style="border:none;background:none;padding-left:0px;padding-right:10px;" onclick="goBackward()" />
+                            &raquo;<input type="button" value="next" style="border:none;background:none;padding-left:0px;padding-right:10px;" onclick="goFoward()" />
+                        </div>
+                    </div><!-- End #uc2_4-->
+                    <div id="uc2_5">
+                        <div id="uc2_5_ViewOnlyContent" class="ContentView">
+                            <p style="font-size:14px;color:#889EC7"> Current not Available</p>
+                        </div>
+                        <hr />
+                        <div id="uc2_5_ViewOnlyButton" class="ButtonView" align="right">
+                            &raquo;<input type="button" value="go back Home" style="border:none;background:none;padding-left:0px;padding-right:10px;" onclick="goBackHome()" />
+                            &raquo;<input type="button" value="back" style="border:none;background:none;padding-left:0px;padding-right:10px;" onclick="goBackward()" />
+                            &raquo;<input type="button" value="next" style="border:none;background:none;padding-left:0px;padding-right:10px;" onclick="goFoward()" />
+                        </div>
+                    </div><!-- End #uc2_5 -->
+                    <div id="uc2_6">
+                        <div id="uc2_6_ViewOnlyContent" class="ContentView">
+                            <table>
+                                <tr>
+                                    <td class="ItemLeftLabel">Credit Note Comment</td>
+                                    <td class="ItemRightContent">
+                                        <textarea style="width:500px;height:150px;resize:none;overflow-y:auto;">@ViewBag.CreditComment</textarea>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="ItemLeftLabel">Support Justification (Internal user only)</td>
+                                    <td class="ItemRightContent">
+                                        <textarea style="width:500px;height:250px;resize:none;overflow-y:auto;">@ViewBag.CreditNote</textarea>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <hr />
+                        <div id="uc2_6_ViewOnlyButton" class="ButtonView" align="right">
+                            &raquo;<input type="button" value="go back Home" style="border:none;background:none;padding-left:0px;padding-right:10px;" onclick="goBackHome()" />
+                            &raquo;<input type="button" value="back" style="border:none;background:none;padding-left:0px;padding-right:10px;" onclick="goBackward()" />
+                            &raquo;<input type="button" value="next" style="border:none;background:none;padding-left:0px;padding-right:10px;" onclick="goFoward()" />
+                        </div>
+                    </div><!-- End #uc2_6 -->
+                </div>
+                <!-- End SmartWizard Content -->
+
+            </td>
+        </tr>
+    </table>
+</div>
+

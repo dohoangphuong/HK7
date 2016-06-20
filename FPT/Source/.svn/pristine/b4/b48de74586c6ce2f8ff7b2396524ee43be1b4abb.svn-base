@@ -1,0 +1,8 @@
+﻿
+@{
+    ViewBag.Title = "BasicAgreementDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>BasicAgreementDetails</h2>
+

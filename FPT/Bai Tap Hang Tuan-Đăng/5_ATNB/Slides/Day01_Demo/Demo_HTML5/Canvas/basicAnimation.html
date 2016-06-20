@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head></head>
+<body onload="init();">
+	<canvas id="myCanvas" width="400" height="400">
+		Your browser does not support.
+	</canvas>
+	<script>
+		var ctx;
+		
+		init = function(){
+			ctx = document.getElementById("myCanvas").getContext("2d");
+			tick();
+		}
+		
+		tick = function(){
+			draw();
+			setTimeout(function(){tick();},1000);
+		}
+		
+		draw = function(){
+			for(var y=0;y<400;y+=10)
+				for(var i=0;i<400;i+=10){
+					var rgb1 = Math.ceil(Math.random()*255);
+					var rgb2 = Math.ceil(Math.random()*255);
+					var rgb3 = Math.ceil(Math.random()*255);
+					
+					var rgbVal = "rgb("+rgb1+","+rgb2+","+rgb3+")";
+					ctx.fillStyle = rgbVal;
+					ctx.fillRect(i,y,10,10);
+				}
+		}
+	</script>
+</body>
+</html>

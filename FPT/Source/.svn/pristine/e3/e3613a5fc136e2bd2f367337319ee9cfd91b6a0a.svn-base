@@ -1,0 +1,1016 @@
+﻿@using System.Web.Mvc
+@using GridMvc.Html
+@using ServicesDirectory.Models.DatabaseMapper
+@using ServicesDirectory.Models.ViewModels
+@model ServiceDetailViewModel
+
+@{
+    ViewBag.Title = "Service Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+
+<script>
+    function handle_date_picker_lost_focus(eventData)
+    {
+        //$("#service_start_date").prop("readonly", false);
+        //$("#service_end_date").prop("readonly", false);
+        var start_date_str = $("#service_start_date").val();
+        var end_date_str = $("#service_end_date").val();
+        //$("#service_start_date").prop("readonly", true);
+        //$("#service_end_date").prop("readonly", true);
+        console.log("start_date: " + start_date_str);
+        console.log("end_date: " + end_date_str);
+        var condition = true;
+        console.log("current date: " + new Date());
+        if(start_date_str)
+        {
+            var pattern = /(\d{2})\/(\d{2})\/(\d{4})/;
+            var start_date = new Date(start_date_str.replace(pattern, '$3-$1-$2'));
+            console.log("start date: " + start_date);
+
+            current_date = new Date();
+            //alert(start_date + " > " + current_date + " ?");
+            
+            console.log(start_date > current_date);
+            if(start_date > current_date)
+            {
+                condition = false;
+            }
+            else
+            {
+                condition = true;
+            }
+            //alert($("#service_start_date").val());
+            //alert(start_date_str.replace(pattern, '$3-$2-$1'));
+        }
+        if (end_date_str) {
+            var pattern = /(\d{2})\/(\d{2})\/(\d{4})/;
+            var end_date = new Date(end_date_str.replace(pattern, '$3-$1-$2'));
+            var real_end_date = end_date;
+            console.log("end date: " + real_end_date);
+            current_date = new Date();
+            console.log(real_end_date < current_date);
+            if (real_end_date < current_date) {
+                condition = false;
+            }
+        }
+        if(condition == false)
+        {
+            $("#service_active").prop("checked", false);
+        }
+        else
+        {
+            $("#service_active").prop("checked", true);
+        }
+    }
+
+    var date_picker_lost_focus_registered = false;
+
+    function handle_date_lost_focus(eventData)
+    {
+        if (!date_picker_lost_focus_registered)
+        {
+            $("#ui-datepicker-div").focusout(handle_date_picker_lost_focus);
+            date_picker_lost_focus_registered = true;
+        }
+    }
+
+    $(document).ready(function () {
+        /*
+        $("#service_start_expected").datepicker();
+        $("#service_start_date").datepicker();
+        $("#service_end_date").datepicker();
+        */
+        $("#service_start_date").change(handle_date_picker_lost_focus);
+        $("#service_start_expected").change(handle_date_picker_lost_focus);
+        $("#service_end_date").change(handle_date_picker_lost_focus);
+    });
+
+    function handle_save_detail2_refdata(service_id) {
+        var checked_ref_data_detail_ids = [];
+        $(".list_checkbox_item_details2").each(function (index) {
+            if ($(this).is(":checked").valueOf() == true) {
+                checked_ref_data_detail_ids.push(parseInt($(this).val()));
+            }
+        });
+
+        var save_detail2_refdata_url = "/Service/LinkServiceToRefDataDetails_Detail2";
+
+        alert(JSON.stringify({
+            ref_data_detail_ids: checked_ref_data_detail_ids,
+            service_id: service_id
+        }));
+
+        $.ajax({
+            type: "POST",
+            url: save_detail2_refdata_url,
+            data: JSON.stringify({
+                ref_data_detail_ids: checked_ref_data_detail_ids,
+                service_id: service_id
+            }),
+            contentType: "application/json",
+            success: function (data) {
+                alert("Service created!\n" + data.is_succeeded);
+
+
+            },
+            fail: function (data) {
+                alert("Unknown problem while creating service!");
+            }
+        });
+
+        alert(checked_ref_data_detail_ids);
+    }
+
+    function handle_save()
+    {
+        create_service_url = "/Service/CreateService";
+        detail11 = $("#detail11_form");
+        detail12 = $("#detail12_form");
+        alert(detail11.serialize() + "&" + detail12.serialize());
+        $.ajax({
+            type: "POST",
+            url: create_service_url,
+            data: detail11.serialize() + "&" + detail12.serialize(),
+            success: function (data) {
+                alert("Service created!\n" + data.service_id);
+
+                handle_save_detail2_refdata(data.service_id);
+            },
+            fail: function (data) {
+                alert("Unknown problem while creating service!");
+            }
+        });
+    }
+
+    function handle_service_extendable_click()
+    {
+        if ($("#service_extendable").is(":checked").valueOf() == true)
+        {
+            $("#extendable_year").prop("disabled", false);
+            $("#extendable_month").prop("disabled", false);
+        }
+        else
+        {
+            $("#extendable_year").prop("disabled", true);
+            $("#extendable_month").prop("disabled", true);
+        }
+    }
+
+    function handle_time_limited_click()
+    {
+        //alert($("#service_time_limited").is(":checked").valueOf());
+        if ($("#service_time_limited").is(":checked").valueOf() == true) {
+            $("#limited_year").prop("disabled", false);
+            $("#limited_month").prop("disabled", false);
+        }
+        else {
+            $("#limited_year").prop("disabled", true);
+            $("#limited_month").prop("disabled", true);
+        }
+    }
+</script>
+
+<h2>Service Details</h2>
+
+<button type="button" class="btn btn-default pull-right" aria-hidden="true" style="width:80px; margin-right:20px;">@Html.ActionLink("Back", "Index")</button>
+<button type="button" class="btn btn-info pull-right" aria-hidden="true" style="width:80px; margin-right:20px;" onclick="handle_save()">Save</button>
+<button type="button" class="btn btn-default pull-right" aria-hidden="true" style="margin-right:20px;">In-activate</button>
+<ul class="nav nav-tabs">
+    <li class="active">
+        <a href="#detailsone" data-toggle="tab">Details 1</a>
+    </li>
+    <li>
+        <a href="#detailstwo" data-toggle="tab">Details 2</a>
+    </li>
+    <li>
+        <a href="#detailsthree" data-toggle="tab">Details 3</a>
+    </li>
+    <li>
+        <a style="display:none" href="#contract" data-toggle="tab">Contract</a>
+    </li>
+    <li>
+        <a style="display:none" href="#funding" data-toggle="tab">Funding</a>
+    </li>
+    <li>
+        <a style="display:none" href="#organisations" data-toggle="tab">Organisations</a>
+    </li>
+    <li>
+        <a style="display:none" href="#premises" data-toggle="tab">Premises</a>
+    </li>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+    <div class="tab-pane fade in active" id="detailsone">
+        <div class="well" style="background:#ffffff">
+            <div class="row">
+                <div class="col-md-6">
+                    <form class="form-horizontal" id="detail11_form" role="form">
+                        <div class="form-group">
+                            <label class="control-label col-sm-5">Service Name<font color="red"> *</font></label>
+                            <div class="col-sm-7">
+                                <input type="text" name="ServiceName" class="form-control" value="@Model.Service.ServiceName" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-5">Service Short Description<font color="red"> *</font></label>
+                            <div class="col-sm-7">
+                                <textarea style="resize:none" name="ServiceShortDescription" class="form-control" rows="3" required>@Model.Service.ServiceShortDescription</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-5">Sub Type<font color="red"> *</font></label>
+                            <div class="col-sm-7">
+                                <select class="form-control" name="ServiceSubTypeId" required>
+                                    <option value="">Choose a Service Sub Type</option>
+                                    @foreach(var subType in Model.ServiceSubTypeList)
+                                    {
+                                        if(subType.ServiceSubTypeId != Model.Service.ServiceSubTypeId)
+                                        {
+                                            <option value="@subType.ServiceSubTypeId">@subType.ServiceSubTypeName</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@subType.ServiceSubTypeId" selected="selected">@subType.ServiceSubTypeName</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-5">Lead Contact<font color="red"> *</font></label>
+                            <div class="col-sm-7">
+                                <select class="form-control" name="LeadContactId" required>
+                                    @foreach(var contact in Model.ServiceContactList)
+                                    {
+                                        if(contact.ContactId != Model.Service.LeadContactId)
+                                        {
+                                            <option value="@contact.ContactId">@contact.LastName @contact.FirstName</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@contact.ContactId" selected="selected">@contact.LastName @contact.FirstName</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                            @*<button class="btn btn-link col-sm-2">Lookup</button>*@
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-5">Client Description</label>
+                            <div class="col-sm-7">
+                                <textarea style="resize:none" name="ClientDescription" class="form-control" rows="3">@Model.Service.ClientDescription</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-5">Service Attendance</label>
+                            <div class="col-sm-7">
+                                <input type="text" name="ServiceAttendance" value="@Model.Service.ServiceAttendance" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-5">Service Start Expected</label>
+                            <div class="col-sm-7">
+                                <input type="date" name="ServiceStartExpected" value="" id="service_start_expected" class="form-control" data-provide="date-picker">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-5">Service Start Date</label>
+                            <div class="col-sm-7">
+                                <input type="date" name="ServiceStartDate" id="service_start_date" class="form-control" data-provide="date-picker">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-5">Service End Date</label>
+                            <div class="col-sm-7">
+                                <input type="date" name="ServiceEndDate" id="service_end_date" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-5">Service Extendable</label>
+                            <div class="col-sm-7" style="margin-top:7px">
+                                <input type="hidden" name="ServiceExtendable" value="false"/>
+                                @if(Model.Service.ServiceExtendable == false)
+                                {
+                                    <input type="checkbox" name="ServiceExtendable" value="true" id="service_extendable" onclick="handle_service_extendable_click()">
+                                }
+                                else
+                                {
+                                    <input type="checkbox" name="ServiceExtendable" value="true" checked="checked" id="service_extendable" onclick="handle_service_extendable_click()">
+                                }
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-7 col-sm-offset-4">
+                                <div class="form-group">
+                                    <div class="col-xs-4">
+                                        @if(Model.Service.ServiceExtendable == false)
+                                        { 
+                                            <input type="number" name="ServiceExtendableYear" value="@Model.Service.ServiceExtendableYear" id="extendable_year" min="0" class="form-control" disabled="disabled">
+                                        }
+                                        else
+                                        {
+                                            <input type="number" name="ServiceExtendableYear" value="@Model.Service.ServiceExtendableYear" id="extendable_year" min="0" class="form-control">
+                                        }
+                                    </div>
+                                    <label class="control-label col-xs-2">Years</label>
+                                    <div class="col-xs-4">
+                                        @if(Model.Service.ServiceExtendable == false)
+                                        {
+                                            <input type="number" name="ServiceExtendableMonth" value="@Model.Service.ServiceExtendableMonth" id="extendable_month" min="0" class="form-control" disabled="disabled">
+                                        }
+                                        else
+                                        {
+                                            <input type="number" name="ServiceExtendableYear" value="@Model.Service.ServiceExtendableYear" id="extendable_year" min="0" class="form-control">
+                                        }
+                                    </div>
+                                    <label class="control-label col-xs-2">Months</label>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <form class="form-horizontal" id="detail12_form" role="form">
+                        <div class="form-group">
+                            <label class="control-label col-sm-5">Service Active</label>
+                            <div class="col-sm-7" style="margin-top:7px">
+                                <input type="hidden" name="IsActive" value="false"/>
+                                @if(Model.Service.IsActive == false)
+                                { 
+                                    <input type="checkbox" name="IsActive" id="service_active" value="true" disabled>
+                                }
+                                else
+                                {
+                                    <input type="checkbox" name="IsActive" id="service_active" value="true" checked="checked" disabled>
+                                }
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-5">Service Full Description</label>
+                            <div class="col-sm-7">
+                                <textarea style="resize:none" name="ServiceFullDescription" class="form-control" rows="3">@Model.Service.ServiceFullDescription</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-5">Dept Code<font color="red"> *</font></label>
+                            <div class="col-sm-7">
+                                <input type="text" name="DepartmentCode" value="@Model.Service.DepartmentCode" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-5">Service Type<font color="red"> *</font></label>
+                            <div class="col-sm-7">
+                                <select class="form-control" name="ServiceTypeId" required>
+                                    @foreach(var serviceType in Model.ServiceTypeList)
+                                    {
+                                        if(serviceType.ServiceTypeId != Model.Service.ServiceTypeId)
+                                        {
+                                            <option value="@serviceType.ServiceTypeId">@serviceType.ServiceTypeName</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@serviceType.ServiceTypeId" selected="selected">@serviceType.ServiceTypeName</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-5">Service Description - Delivery</label>
+                            <div class="col-sm-7">
+                                <textarea style="resize:none" name="ServiceDescriptionDelivery" class="form-control" rows="3">@Model.Service.ServiceDescriptionDelivery</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-5">Service Contract Code</label>
+                            <div class="col-sm-7">
+                                <input type="text" name="ServiceContractCode" value="@Model.Service.ServiceContractCode" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-5">Service Contract Value</label>
+                            <div class="col-sm-7">
+                                <input type="text" name="ServiceContractValue" value="@Model.Service.ServiceContractValue" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-5">Contract Staged Payment</label>
+                            <div class="col-sm-7" style="margin-top:7px">
+                                <input type="hidden" name="IsContractStagedPayment" value="false"/>
+                                @if(Model.Service.IsContractStagedPayment == false)
+                                { 
+                                    <input type="checkbox" name="IsContractStagedPayment" value="true"/>
+                                }
+                                else
+                                {
+                                    <input type="checkbox" name="IsContractStagedPayment" checked="checked" value="true"/>
+                                }
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-5">Referal Process/Method</label>
+                            <div class="col-sm-7">
+                                <select class="form-control" name="ReferralMethodId">
+                                    <option value="">Choose a Referral Method</option>
+                                    @foreach(var referralMethod in Model.ReferralMethodList)
+                                    {
+                                        if(referralMethod.ReferralMethodId != Model.Service.ReferralMethodId)
+                                        {
+                                            <option value="@referralMethod.ReferralMethodId">@referralMethod.ReferralMethodName</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@referralMethod.ReferralMethodId" selected="selected">@referralMethod.ReferralMethodName</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-5">Service Time Limited</label>
+                            <div class="col-sm-7" style="margin-top:7px">
+                                <input type="hidden" name="IsTimeLimited" value="true"/>
+                                @if(Model.Service.IsTimeLimited == false)
+                                {
+                                    <input type="checkbox" name="IsTimeLimited" value="false" id="service_time_limited" onclick="handle_time_limited_click()">
+                                }
+                                else
+                                {
+                                    <input type="checkbox" name="IsTimeLimited" checked="checked" value="false" id="service_time_limited" onclick="handle_time_limited_click()">
+                                }
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-7 col-sm-offset-4">
+                                <div class="form-group">
+                                    <div class="col-xs-4">
+                                        @if(Model.Service.IsTimeLimited == false)
+                                        { 
+                                            <input type="number" name="LimitedYears" id="limited_year" min="0" class="form-control" disabled="disabled">
+                                        }
+                                        else
+                                        {
+                                            <input type="number" name="LimitedYears" id="limited_year" min="0" class="form-control">
+                                        }
+                                    </div>
+                                    <label class="control-label col-xs-2">Years</label>
+                                    <div class="col-xs-4">
+                                        @if(Model.Service.IsTimeLimited == false)
+                                        {
+                                            <input type="number" name="LimitedMonths" id="limited_month" min="0" class="form-control" disabled="disabled">
+                                        }
+                                        else
+                                        {
+                                            <input type="number" name="LimitedMonths" id="limited_month" min="0" class="form-control">
+                                        }
+                                    </div>
+                                    <label class="control-label col-xs-2">Months</label>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="detailstwo">
+        <div class="well" style="background:#ffffff">
+            <div class="row">
+                <div class="col-md-6">
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <label class="control-label col-sm-5">@RefDataConstants.ServiceBenefitsCriterion</label>
+                            <div class="col-sm-7">
+                                <div class="checkbox-container">
+                                    @foreach(var item in Model.BenefitsCriterionChildren)
+                                    {
+                                        if(item.IsChecked == false)
+                                        {
+                                            <label><input type="checkbox" value="@item.RefDataDetailId" class="list_checkbox_item_details2"/>@item.RefDataDetailValue</label><br />
+                                        }
+                                        else
+                                        {
+                                            <label><input type="checkbox" value="@item.RefDataDetailId" class="list_checkbox_item_details2" checked="checked"/>@item.RefDataDetailValue</label><br />
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-5">@RefDataConstants.ServiceBarriersCriterion</label>
+                            <div class="col-sm-7">
+                                <div class="checkbox-container">
+                                    @foreach (var item in Model.BarriersCriterionChildren)
+                                    {
+                                        if(item.IsChecked == false)
+                                        {
+                                            <label><input type="checkbox" value="@item.RefDataDetailId" class="list_checkbox_item_details2"/>@item.RefDataDetailValue</label><br />
+                                        }
+                                        else
+                                        {
+                                            <label><input type="checkbox" value="@item.RefDataDetailId" class="list_checkbox_item_details2" checked="checked"/>@item.RefDataDetailValue</label><br />
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-5">@RefDataConstants.ServiceEthnicityCriterion</label>
+                            <div class="col-sm-7">
+                                <div class="checkbox-container">
+                                    @foreach (var item in Model.EthnicityCriterionChildren)
+                                    {
+                                        if(item.IsChecked == false)
+                                        {
+                                            <label><input type="checkbox" value="@item.RefDataDetailId" class="list_checkbox_item_details2"/>@item.RefDataDetailValue</label><br />
+                                        }
+                                        else
+                                        {
+                                            <label><input type="checkbox" value="@item.RefDataDetailId" class="list_checkbox_item_details2" checked="checked"/>@item.RefDataDetailValue</label><br />
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <label class="control-label col-sm-5">@RefDataConstants.ServiceDisabilityCriterion</label>
+                            <div class="col-sm-7">
+                                <div class="checkbox-container">
+                                    @foreach (var item in Model.DisabilityCriterionChildren)
+                                    {
+                                        if(item.IsChecked == false)
+                                        {
+                                            <label><input type="checkbox" value="@item.RefDataDetailId" class="list_checkbox_item_details2"/>@item.RefDataDetailValue</label><br />
+                                        }
+                                        else
+                                        {
+                                            <label><input type="checkbox" value="@item.RefDataDetailId" class="list_checkbox_item_details2" checked="checked"/>@item.RefDataDetailValue</label><br />
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-5">@RefDataConstants.ServicePersonalCircumstancesCriterion</label>
+                            <div class="col-sm-7">
+                                <div class="checkbox-container">
+                                    @foreach (var item in Model.PersonalCircumstancesChildren)
+                                    {
+                                        if(item.IsChecked == false)
+                                        {
+                                            <label><input type="checkbox" value="@item.RefDataDetailId" class="list_checkbox_item_details2"/>@item.RefDataDetailValue</label><br />
+                                        }
+                                        else
+                                        {
+                                            <label><input type="checkbox" value="@item.RefDataDetailId" class="list_checkbox_item_details2" checked="checked"/>@item.RefDataDetailValue</label><br />
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-5">@RefDataConstants.OtherServiceParticipationCriterion</label>
+                            <div class="col-sm-7">
+                                <div class="checkbox-container">
+                                    @foreach (var item in Model.OtherServiceParticipationCriterionChildren)
+                                    {
+                                        if(item.IsChecked == false)
+                                        {
+                                            <label><input type="checkbox" value="@item.RefDataDetailId" class="list_checkbox_item_details2"/>@item.RefDataDetailValue</label><br />
+                                        }
+                                        else
+                                        {
+                                            <label><input type="checkbox" value="@item.RefDataDetailId" class="list_checkbox_item_details2" checked="checked"/>@item.RefDataDetailValue</label><br />
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="detailsthree">
+        <div class="well" style="background:#ffffff">
+            <div class="row">
+                <div class="col-md-6">
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <label class="control-label col-sm-5">@RefDataConstants.ClientSupportProcess</label>
+                            <div class="col-sm-7">
+                                <div class="checkbox-container">
+                                    @foreach (var item in Model.ClientSupportProcessChildren)
+                                    {
+                                        if(item.IsChecked == false)
+                                        {
+                                            <label><input type="checkbox" value="@item.RefDataDetailId" class="list_checkbox_item_details3"/>@item.RefDataDetailValue</label><br />
+                                        }
+                                        else
+                                        {
+                                            <label><input type="checkbox" value="@item.RefDataDetailId" class="list_checkbox_item_details3" checked="checked"/>@item.RefDataDetailValue</label><br />
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-5">Intervention</label>
+                            <div class="col-sm-7">
+                                <div class="checkbox-container">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-5">Client Journey</label>
+                            <div class="col-sm-7">
+                                <div class="checkbox-container">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-5">Other Services</label>
+                            <div class="col-sm-7">
+                                <div class="checkbox-container">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-5">Support Centres</label>
+                            <div class="col-sm-7">
+                                <div class="checkbox-container">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <label class="control-label col-sm-5">Client Outcome</label>
+                            <div class="col-sm-7">
+                                <div class="checkbox-container">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-5">Target Client</label>
+                            <div class="col-sm-7">
+                                <div class="checkbox-container">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-5">Accreditations</label>
+                            <div class="col-sm-7">
+                                <div class="checkbox-container">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-5">Referral Sources</label>
+                            <div class="col-sm-7">
+                                <div class="checkbox-container">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-5">Programme</label>
+                            <div class="col-sm-7">
+                                <select class="form-control">
+                                    <option>1</option>
+                                    <option>2</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="contract">
+        <div class="well" style="background:#ffffff">
+            <div class="row">
+                <div class="col-md-6">
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <label class="control-label col-sm-5">@RefDataConstants.ContractOutcome</label>
+                            <div class="col-sm-7">
+                                <div class="checkbox-container">
+                                    @foreach (var item in Model.ContractOutcomeChildren)
+                                    {
+                                        if(item.IsChecked == false)
+                                        {
+                                            <label><input type="checkbox" value="@item.RefDataDetailId" class="list_checkbox_item_contract"/>@item.RefDataDetailValue</label><br />
+                                        }
+                                        else
+                                        {
+                                            <label><input type="checkbox" value="@item.RefDataDetailId" class="list_checkbox_item_contract" checked="checked"/>@item.RefDataDetailValue</label><br />
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-5">Participation</label>
+                            <div class="col-sm-7">
+                                <select class="form-control">
+                                    <option>1</option>
+                                    <option>2</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <label class="control-label col-sm-5">@RefDataConstants.ContractObligation</label>
+                            <div class="col-sm-7">
+                                <div class="checkbox-container">
+                                    @foreach (var item in Model.OtherServiceParticipationCriterionChildren)
+                                    {
+                                        if(item.IsChecked == false)
+                                        {
+                                            <label><input type="checkbox" value="@item.RefDataDetailId" class="list_checkbox_item_contract"/>@item.RefDataDetailValue</label><br />
+                                        }
+                                        else
+                                        {
+                                            <label><input type="checkbox" value="@item.RefDataDetailId" class="list_checkbox_item_contract" checked="checked"/>@item.RefDataDetailValue</label><br />
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="funding">
+        <div class="well" style="background:#ffffff">
+            <div class="row">
+                <h4 class="control-label">General</h4>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <label class="control-label col-sm-5">Funding Source</label>
+                            <div class="col-sm-7">
+                                <select class="form-control" required>
+                                    <option>1</option>
+                                    <option>2</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-7">Funding Contact Details<font color="red"> *</font></label>
+                            <div class="col-sm-5">
+                                <select class="form-control" required>
+                                    <option>1</option>
+                                    <option>2</option>
+                                </select>
+                            </div>
+                            @*<button class="btn btn-link col-sm-2">Lookup</button>*@
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-5">Funding Amount<font color="red"> *</font></label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-5">Funding Start</label>
+                            <div class="col-sm-7">
+                                <input type="date" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-5">Funding End</label>
+                            <div class="col-sm-7">
+                                <input type="date" class="form-control">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <label class="control-label col-sm-5">Funding Needs</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-5">Funding Continuation Needed</label>
+                            <div class="col-sm-7" style="margin-top:7px">
+                                <input type="checkbox">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-5">Funding Continuation Amount</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-5">Funding Continuation Detail</label>
+                            <div class="col-sm-7">
+                                <textarea style="resize:none" class="form-control" rows="3" required></textarea>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <h4 class="control-label">Fundraising For Service Project</h4>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <label class="control-label col-sm-5">Fundraising For Text</label>
+                            <div class="col-sm-7">
+                                <textarea style="resize:none" class="form-control" rows="3" required></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-5">Fundraising Why</label>
+                            <div class="col-sm-7">
+                                <textarea style="resize:none" class="form-control" rows="3" required></textarea>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <label class="control-label col-sm-5">Fundraising Needs</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-5">Fundrasing Required By</label>
+                            <div class="col-sm-7">
+                                <input type="date" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-5">Fundrasing Complete</label>
+                            <div class="col-sm-7" style="margin-top:7px">
+                                <input type="checkbox">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-5">Fundrasing Completed Date</label>
+                            <div class="col-sm-7">
+                                <input type="date" class="form-control" readonly disabled>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <h4 class="control-label">Fundraising Donor</h4>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <label class="control-label col-sm-5">Fundraising Donor Anonymous</label>
+                            <div class="col-sm-7" style="margin-top:7px">
+                                <input type="checkbox">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-5">Fundraising Donor Amount</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <label class="control-label col-sm-5">Fundraising Donation Date</label>
+                            <div class="col-sm-7">
+                                <input type="date" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-5">Fundrasing Donation Incremental</label>
+                            <div class="col-sm-7" style="margin-top:7px">
+                                <input type="checkbox">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="organisations">
+        <div class="well" style="background:#ffffff">
+            
+            <div class="row">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Organisation Name</th>
+                                <th>Description</th>
+                                <th>Roles</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td><a href="">edit roles</a></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Jacob</td>
+                                <td>Thornton</td>
+                                <td><a href="">edit roles</a></td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Larry</td>
+                                <td>the Bird</td>
+                                <td><a href="">edit roles</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+                
+        </div>
+    </div>
+    <div class="tab-pane fade" id="premises">
+        <div class="well" style="background:#ffffff">
+            
+            <div class="row">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Premise Name</th>
+                                <th>Address</th>
+                                <th>Phone Number</th>
+                                <th>Project Code</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>Otto</td>
+                                <td><a href="">Remove</a></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Jacob</td>
+                                <td>Thornton</td>
+                                <td>Otto</td>
+                                <td><a href="">Remove</a></td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Larry</td>
+                                <td>the Bird</td>
+                                <td>Otto</td>
+                                <td><a href="">Remove</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <button type="button" class="btn btn-default pull-right" aria-hidden="true" style="margin-right:20px;">Associate new premise</button>
+            </div>
+                -->
+        </div>
+    </div>
+</div>

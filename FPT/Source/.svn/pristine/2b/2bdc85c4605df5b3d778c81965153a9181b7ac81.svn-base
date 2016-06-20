@@ -1,0 +1,173 @@
+﻿<div class="well" style="background:#ffffff">
+    <div class="row">
+        <div class="col-md-6">
+            <form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label class="control-label col-sm-5">Service Name<font color="red"> *</font></label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-5">Service Short Description<font color="red"> *</font></label>
+                    <div class="col-sm-7">
+                        <textarea style="resize:none" class="form-control" rows="3" required></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-5">Sub Type</label>
+                    <div class="col-sm-7">
+                        <select class="form-control" required>
+                            <option>1</option>
+                            <option>2</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-5">Lead Contact<font color="red"> *</font></label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" readonly required>
+                    </div>
+                    <button class="btn btn-link col-sm-2">Lookup</button>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-5">Client Description</label>
+                    <div class="col-sm-7">
+                        <textarea style="resize:none" class="form-control" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-5">Service Attendance</label>
+                    <div class="col-sm-7">
+                        <select class="form-control">
+                            <option>1</option>
+                            <option>2</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-5">Service Start Expected</label>
+                    <div class="col-sm-7">
+                        <input type="date" class="form-control" placeholder="<dd/MM/yyyy>">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-5">Service Start Date</label>
+                    <div class="col-sm-7">
+                        <input type="date" class="form-control" placeholder="<dd/MM/yyyy>">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-5">Service End Date</label>
+                    <div class="col-sm-7">
+                        <input type="date" class="form-control" placeholder="<dd/MM/yyyy>">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-5">Service Extendable</label>
+                    <div class="col-sm-7" style="margin-top:7px">
+                        <input type="checkbox">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-7 col-sm-offset-4">
+                        <div class="form-group">
+                            <div class="col-xs-4">
+                                <input type="number" class="form-control" readonly>
+                            </div>
+                            <label class="control-label col-xs-2">Years</label>
+                            <div class="col-xs-4">
+                                <input type="number" class="form-control" readonly>
+                            </div>
+                            <label class="control-label col-xs-2">Months</label>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label class="control-label col-sm-5">Service Active</label>
+                    <div class="col-sm-7" style="margin-top:7px">
+                        <input type="checkbox" disabled>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-5">Service Full Description</label>
+                    <div class="col-sm-7">
+                        <textarea style="resize:none" class="form-control" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-5">Dept Code<font color="red"> *</font></label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-5">Service Type<font color="red"> *</font></label>
+                    <div class="col-sm-7">
+                        <select class="form-control" required>
+                            <option>1</option>
+                            <option>2</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-5">Service Description - Delivery</label>
+                    <div class="col-sm-7">
+                        <textarea style="resize:none" class="form-control" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-5">Service Contract Code</label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-5">Service Contract Value</label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-5">Contract Staged Payment</label>
+                    <div class="col-sm-7" style="margin-top:7px">
+                        <input type="checkbox">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-5">Referal Process/Method</label>
+                    <div class="col-sm-7">
+                        <select class="form-control">
+                            <option>1</option>
+                            <option>2</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-5">Service Time Limited</label>
+                    <div class="col-sm-7" style="margin-top:7px">
+                        <input type="checkbox">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-7 col-sm-offset-4">
+                        <div class="form-group">
+                            <div class="col-xs-4">
+                                <input type="number" class="form-control" readonly>
+                            </div>
+                            <label class="control-label col-xs-2">Years</label>
+                            <div class="col-xs-4">
+                                <input type="number" class="form-control" readonly>
+                            </div>
+                            <label class="control-label col-xs-2">Months</label>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

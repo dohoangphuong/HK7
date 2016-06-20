@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      video {
+        width: 400px;
+        height: 224px;
+        border: 1px solid black;
+      }
+      
+      .video-container {
+        display: inline-block;
+        text-align: center;
+      }
+      
+      p {
+        font: 14px Arial;
+      }
+    </style>
+  </head>
+  <body>
+	<div class="video-container">
+      <p>Error Handling</p>
+      <video poster="resource/star.png" autoplay loop controls tabindex="0" >
+        <source src="resource/Chrome_ImF.ogv" type='video/ogg; codecs="theora, vorbis"' />
+		<source src="resource/Chrome_ImF.webm" type='video/webm; codecs="vp8, vorbis"' />
+		<source src="resource/Chrome_ImF.ogv" type='video/ogg; codecs="theora, vorbis"' />
+		Your browser does not support the video tag.
+      </video>
+    </div>
+  </body>
+</html>​

@@ -1,0 +1,133 @@
+﻿@model CSS_G06.Models.Agreement
+
+@{
+    ViewBag.Title = "BasicAgreementDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#datepicker").datepicker({
+            dateFormat: 'dd-mm-yy',
+            onClose: function (dateText, inst) {
+                $(this).datepicker('option', 'dateFormat', 'dd-mm-yy');
+            }
+        });
+    });
+</script>
+
+
+
+<style>
+    #ContentArea{
+        width:100%;
+        height:500px;
+        border:solid 1px blue;
+    }
+    #BasicAgreementDetailsArea{
+        width:800px;
+        height:auto;
+    }
+
+</style>
+<div id="BasicAgreementDetailsArea">
+
+    <div id="ContentArea">
+        @using (Html.BeginForm("BasicAgreementDetails", "AddAnAgreement", FormMethod.Post))
+        {
+            <table>
+                <tr>
+                    <td>RFO Number</td>
+                    <td>@Session["RFONumber"]</td>
+                </tr>
+                <tr>
+                    <td>Customer Name</td>
+                    <td>@ViewBag.SumResult</td>
+                </tr>
+                <tr>
+                    <td>Agreement Number</td>
+                    <td>@ViewBag.AgreementNumber</td>
+                </tr>
+                <tr>
+                    <td>Agreement Name</td>
+                    <td>@Html.TextBoxFor(model => model.Name, new { maxlength = 30})</td>
+                </tr>
+                <tr>
+                    <td>Agreement Description</td>
+                    <td>@Html.TextBoxFor(model => model.Description, new { maxlength = 300 })</td>
+                </tr>
+                <tr>
+                    <td>Start date</td>
+                    <td>
+                        <input type="text" id="datepicker">
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+        }
+    </div><!-- End #ContentArea -->
+
+    <div id="SubmitArea" align="right">
+        &raquo;@Html.ActionLink("save as draft", "BasicAgreementDetails", "AddAnAgreement")
+        &raquo;@Html.ActionLink("back", "SelectCustomer", "AddAnAgreement")
+        &raquo;@Html.ActionLink("next", "#", "AddAnAgreement")
+    </div><!-- End #SubmitArea -->
+
+</div><!-- End #SelectCustomerArea -->
+<label>@ViewBag.RFONumber</label>
+
+

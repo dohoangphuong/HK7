@@ -1,0 +1,27 @@
+namespace CSS_G06.Models
+{
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
+
+    public partial class AgreementStatu
+    {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public AgreementStatu()
+        {
+            Agreements = new HashSet<Agreement>();
+        }
+
+        [Key]
+        public int StatusId { get; set; }
+
+        [Required]
+        [StringLength(100)]
+        public string AgreementStatus { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Agreement> Agreements { get; set; }
+    }
+}

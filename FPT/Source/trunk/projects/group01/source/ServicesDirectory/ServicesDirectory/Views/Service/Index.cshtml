@@ -1,0 +1,276 @@
+﻿@using System.Web.Mvc
+@using GridMvc.Html
+@using ServicesDirectory.Models.DatabaseMapper
+@model IEnumerable<ServicesDirectory.Models.DatabaseMapper.Service>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<style>
+    table.populair {
+        background-image: url(populair.png);
+        background-position: 27px 27px;
+        background-repeat: no-repeat;
+    }
+
+
+    table tr td {
+        border: solid 1px #ccc;
+        border-radius: 4px;
+        display: table-cell;
+        width: 10%;
+        height: 100%;
+    }
+
+        table tr td a {
+            display: block;
+            width: 100%;
+            height: 100%;
+            margin-left: -3px;
+            margin-top: -2px;
+            z-index: 15;
+        }
+</style>
+
+
+<h2>Service List</h2>
+
+<form class="form-inline row" role="form">
+    <div class="form-group">
+        @Html.ActionLink("All ", "Create")|
+        @Html.ActionLink("A B C D E ", "Create")|
+        @Html.ActionLink("F G H I J ", "Create")|
+        @Html.ActionLink("K L M N ", "Create")|
+        @Html.ActionLink("O P Q R ", "Create")|
+        @Html.ActionLink("S T U V ", "Create")|
+        @Html.ActionLink("W X Y Z", "Create")
+    </div>
+    <div class="form-group pull-right">
+        @*@Html.ActionLink("Create", "ServiceDetails", new { @class = "btn btn-default", style = "margin-right:20px" })*@
+        <button type="button" class="btn btn-default" style="margin-right:20px">@Html.ActionLink("Create", "ServiceDetails")</button>
+        <label class="checkbox-inline"><input type="checkbox" value="">Include In-active</label>
+    </div>
+</form>
+<br />
+<div class="row">
+    @Html.Grid(Model).Columns(columns =>
+{
+
+    columns.Add(o => o.ServiceName)
+        .Titled("Service Name")
+        .Filterable(true)
+        .Sanitized(false)
+        .Encoded(false)
+        .RenderValueAs(o => Html.ActionLink(o.ServiceName, "ServiceDetails", "Service", new { service_id = o.ServiceId, page_action = "edit" }, null).ToHtmlString());
+        
+        @*
+        .RenderValueAs(d => 
+            @Html.ActionLink("Details", "Details", new { id=d.ServiceId }))
+        .ToHtmlString();
+            *@
+    columns.Add(o => o.ServiceShortDescription)
+        .Titled("Description");
+
+    columns.Add(o => o.ServiceType.ServiceTypeName)
+        .Titled("Service Type");
+
+    columns.Add(o => o.Contact.FirstName)
+        .Titled("Contact");
+
+    columns.Add(o => o.IsActive)
+        .Titled("Is Active?");
+    
+    columns.Add()
+        .Encoded(false)
+        .Sanitized(false)
+        .SetWidth(30)
+        .RenderValueAs(o => Html.ActionLink("Clone", "ServiceDetails", "Service", new { service_id = o.ServiceId, page_action = "edit" }, null).ToHtmlString());
+        @*.RenderValueAs(d =>
+            @<b>
+                @Html.ActionLink("Clone", "ServiceDetails")
+            </b>);*@
+}).WithPaging(15).Sortable().Filterable().WithMultipleFilters()
+</div>
+
+@* add *@
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+@*
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ServiceName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ServiceShortDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ServiceSubType.ServiceSubTypeName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Contact.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ClientDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ServiceAttendance)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ServiceStartExpected)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ServiceStartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ServiceEndDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ServiceExtendable)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ServiceExtendableMonth)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ServiceExtendableYear)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ServiceFullDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DepartmentCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ServiceType.ServiceTypeName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ServiceDescriptionDelivery)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ServiceContractCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ServiceContractValue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsContractStagedPayment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReferralMethod.ReferralMethodName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsTimeLimited)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LimitedYears)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LimitedMonths)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Programme.ProgrammeName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContractParticipationType.ContractParticipationTypeName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ServiceName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ServiceShortDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ServiceSubType.ServiceSubTypeName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Contact.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ClientDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ServiceAttendance)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ServiceStartExpected)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ServiceStartDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ServiceEndDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ServiceExtendable)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ServiceExtendableMonth)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ServiceExtendableYear)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ServiceFullDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DepartmentCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ServiceType.ServiceTypeName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ServiceDescriptionDelivery)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ServiceContractCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ServiceContractValue)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsContractStagedPayment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReferralMethod.ReferralMethodName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsTimeLimited)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LimitedYears)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LimitedMonths)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Programme.ProgrammeName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContractParticipationType.ContractParticipationTypeName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsActive)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ServiceId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ServiceId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ServiceId })
+        </td>
+    </tr>
+}
+   
+
+</table>
+    *@
+

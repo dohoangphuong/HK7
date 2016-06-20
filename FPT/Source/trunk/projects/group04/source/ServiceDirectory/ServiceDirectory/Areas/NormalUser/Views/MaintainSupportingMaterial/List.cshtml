@@ -1,0 +1,37 @@
+﻿@model PagedList.IPagedList<ServiceDirectory.Models.tblSupportingMaterial>
+@using PagedList.Mvc;
+
+<div class="row" style="border: 1px ridge silver; ">
+    <div><strong>Current List of Supporting Materials</strong></div>
+    <div style="margin-top:10px;">
+        <div class="row">
+            @Ajax.ActionLink("Add", "Add_ActionLink", "MaintainSupportingMaterial",
+                             new AjaxOptions { UpdateTargetId = "supportingmaterial_popup", InsertionMode = InsertionMode.Replace, OnComplete = "set_attr_link_popup('add_supportingmaterial_link', 'supportingmaterial_popup', 'organisation_popup')" },
+                             new { @id = "add_supportingmaterial_link", @class = "btn btn-default col-md-offset-9 col-md-1" })
+
+            <input type="checkbox" style="margin: 8px 8px;" onchange="maintain_supportingmaterial_include_inactive(this)" />Include In-active
+        </div>
+        <div id="supporting_material_table">
+            @Html.Action("GetListSupportingMaterials", "MaintainSupportingMaterial", new { page = 1 })
+        </div>
+    </div>
+</div>
+
+<script>
+    function maintain_supportingmaterial_include_inactive(checkbox)
+    {
+        var url = "/MaintainSupportingMaterial/GetListSupportingMaterialsFromCheckbox";
+
+        if (checkbox.checked) {
+            $.post(url, { IncludeInActive: true }, function (data) {
+                $("#supporting_material_table").html(data);
+            });
+        }
+        else {
+            $.post(url, { IncludeInActive: false }, function (data) {
+                $("#supporting_material_table").html(data);
+            });
+        }
+    }
+</script>
+

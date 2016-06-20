@@ -1,0 +1,45 @@
+﻿.gridtable {
+    font-family: verdana,arial,sans-serif;
+    font-size: 11px;
+    color: #333333;
+    border-width: 1px;
+    border-color: #889EC7;
+    border-collapse: collapse;
+    width: 100%;
+}
+.colWidth {
+    width: 110px;
+}
+
+#GridBody {
+    width: 100%;
+    height: 170px;
+    overflow-y: scroll;
+    border: solid 1px #889EC7;
+}
+    #GridBody table td {
+        border-width: 1px;
+        border-style: solid;
+        border-color: #889EC7;
+        background-color: #ffffff;
+        padding: 5px;
+        width: 111px;
+    }
+#GridHeader table th {
+    border-width: 1px;
+    border-style: solid;
+    border-color: #889EC7;
+    background-color: #ffffff;
+    width: 111px;
+    padding: 5px;
+    height: 30px;
+}
+
+#gridContent {
+    width: 100%;
+    height: 100%;
+}
+#Outer{
+    width: 800px;
+    height: 220px;
+}

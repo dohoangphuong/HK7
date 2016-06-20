@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "SupportingMaterialsList";
+}
+
+
+<link href="~/Content/Stylesheets/jquery-ui.css" rel="stylesheet" />
+<link href="~/Content/Stylesheets/style.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery-ui.js"></script>
+<script src="~/Scripts/Tabs.js"></script>
+
+<h1 style="color:green">Supporting Materials Details</h1>
+
+<div id="tabs">
+    <ul>
+        <li><a href="#tabs-1"style="font-weight:bold;">Details</a></li>
+    </ul>
+    <div id="tabs-1">
+        @Html.Partial("~/Views/SupportingMaterials/AddSupportingMaterials.cshtml")
+    </div>
+</div>

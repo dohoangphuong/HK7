@@ -1,0 +1,60 @@
+﻿@model IEnumerable<CSS.Models.AgreementStatu>
+
+@{
+    ViewBag.Title = "AgreementStatics";
+}
+
+<div class="content-wrap">
+    <div class="centre">
+        <h3 class="blue-text">Coporate Sales Solution</h3>
+        <p class="gray-text">Recent activity</p>
+    </div>
+
+    <table>
+        @foreach (var item in Model)
+        { 
+            <tr>
+                <td style="padding-right:10px">@item.AgreementStatus</td>
+                <td><label>@item.Agreements.Where(x=> (x.CreatedBy == @User.Identity.Name) && ((DateTime.Now - (DateTime)x.LastUpdatedDate).TotalDays < 1)).Count()</label></td>
+            </tr>
+        }
+    </table>
+    <br />
+    <p class="gray-text">Recently Accessed Agreement</p>
+    <table class="table table-striped">
+        <thead>
+            <tr class="info">
+                <th>Customer Name</th>
+                <th>Customer Code</th>
+                <th>Post code</th>
+                <th>CSM</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Agreement</th>
+                <th>Variant</th>
+                <th>Status</th>
+                <th>Select</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (CSS.Models.Agreement item in ViewBag.recentAgreement)
+            {
+                <tr>
+                    <td>@item.RFONumbers.First().Company.Name</td>
+                    <td>@item.RFONumbers.First().RFONumber1</td>
+                    <td>@item.RFONumbers.First().PostCode</td>
+                    <td></td>
+                    <td>@item.StartDate</td>
+                    <td>@item.EndDate</td>
+                    <td>@item.AgreementNumber</td>
+                    <td>@item.VariantNumber</td>
+                    <td>@item.AgreementStatu.AgreementStatus</td>
+                    <td><input type="radio" name="Select"/></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div class="action-panel">
+    <a href="#">View agreement</a>
+</div>

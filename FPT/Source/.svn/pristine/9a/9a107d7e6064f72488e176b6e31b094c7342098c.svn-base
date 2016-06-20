@@ -1,0 +1,22 @@
+﻿#SearchArea {
+    width: 800px;
+    height: 235px;
+    padding-top: 2px;
+    padding-left: 10px;
+    padding-bottom: 2px;
+}
+#SelectCustomerResultArea {
+    width: 800px;
+    height: 220px;
+    padding:5px;
+}
+#SelectCustomer {
+    width: 800px;
+    height: 475px;
+    padding-top: 10px;
+}
+#SubmitArea
+{
+    height:20px;
+    width:800px;
+}

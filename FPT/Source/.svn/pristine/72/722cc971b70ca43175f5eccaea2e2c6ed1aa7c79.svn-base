@@ -1,0 +1,236 @@
+﻿@model ServicesDirectory.Models.DatabaseMapper.Service
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Service</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ServiceName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ServiceName)
+            @Html.ValidationMessageFor(model => model.ServiceName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ServiceShortDescription)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ServiceShortDescription)
+            @Html.ValidationMessageFor(model => model.ServiceShortDescription)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ServiceSubTypeId, "ServiceSubType")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("ServiceSubTypeId", String.Empty)
+            @Html.ValidationMessageFor(model => model.ServiceSubTypeId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LeadContactId, "Contact")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("LeadContactId", String.Empty)
+            @Html.ValidationMessageFor(model => model.LeadContactId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ClientDescription)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ClientDescription)
+            @Html.ValidationMessageFor(model => model.ClientDescription)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ServiceAttendance)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ServiceAttendance)
+            @Html.ValidationMessageFor(model => model.ServiceAttendance)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ServiceStartExpected)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ServiceStartExpected)
+            @Html.ValidationMessageFor(model => model.ServiceStartExpected)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ServiceStartDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ServiceStartDate)
+            @Html.ValidationMessageFor(model => model.ServiceStartDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ServiceEndDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ServiceEndDate)
+            @Html.ValidationMessageFor(model => model.ServiceEndDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ServiceExtendable)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ServiceExtendable)
+            @Html.ValidationMessageFor(model => model.ServiceExtendable)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ServiceExtendableMonth)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ServiceExtendableMonth)
+            @Html.ValidationMessageFor(model => model.ServiceExtendableMonth)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ServiceExtendableYear)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ServiceExtendableYear)
+            @Html.ValidationMessageFor(model => model.ServiceExtendableYear)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ServiceFullDescription)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ServiceFullDescription)
+            @Html.ValidationMessageFor(model => model.ServiceFullDescription)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DepartmentCode)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DepartmentCode)
+            @Html.ValidationMessageFor(model => model.DepartmentCode)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ServiceTypeId, "ServiceType")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("ServiceTypeId", String.Empty)
+            @Html.ValidationMessageFor(model => model.ServiceTypeId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ServiceDescriptionDelivery)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ServiceDescriptionDelivery)
+            @Html.ValidationMessageFor(model => model.ServiceDescriptionDelivery)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ServiceContractCode)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ServiceContractCode)
+            @Html.ValidationMessageFor(model => model.ServiceContractCode)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ServiceContractValue)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ServiceContractValue)
+            @Html.ValidationMessageFor(model => model.ServiceContractValue)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IsContractStagedPayment)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IsContractStagedPayment)
+            @Html.ValidationMessageFor(model => model.IsContractStagedPayment)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ReferralMethodId, "ReferralMethod")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("ReferralMethodId", String.Empty)
+            @Html.ValidationMessageFor(model => model.ReferralMethodId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IsTimeLimited)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IsTimeLimited)
+            @Html.ValidationMessageFor(model => model.IsTimeLimited)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LimitedYears)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LimitedYears)
+            @Html.ValidationMessageFor(model => model.LimitedYears)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LimitedMonths)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LimitedMonths)
+            @Html.ValidationMessageFor(model => model.LimitedMonths)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProgrammeId, "Programme")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("ProgrammeId", String.Empty)
+            @Html.ValidationMessageFor(model => model.ProgrammeId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ContractParticipationTypeId, "ContractParticipationType")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("ContractParticipationTypeId", String.Empty)
+            @Html.ValidationMessageFor(model => model.ContractParticipationTypeId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IsActive)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IsActive)
+            @Html.ValidationMessageFor(model => model.IsActive)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

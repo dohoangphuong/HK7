@@ -1,0 +1,305 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using CSS.Models;
+using System.IO;
+using System.Data.Entity.Validation;
+using PagedList;
+using System.Data.Entity;
+
+namespace CSS.Controllers
+{
+    public class MaintainController : Controller
+    {
+        private CSSEntities1 db = new CSSEntities1();
+
+        //UC29 Maintain funding methods
+        //public ActionResult FundingMethod()
+        //{
+        //    if (Request.IsAuthenticated)
+        //    {
+        //        //List display in table
+        //        ViewBag.FundingMethods = db.FundingMethods.ToList();
+        //        //Funding type
+        //        ViewBag.FundingType = db.SYSCFTs.Find(7).SYSCVTs.ToList();
+        //        //Signed Contact Default
+        //        ViewBag.SignedContractDefault = db.SYSCFTs.Find(14).SYSCVTs.ToList();
+        //        //Funding status
+        //        ViewBag.FundingStatus = db.SYSCFTs.Find(8).SYSCVTs.ToList();
+        //        return View();
+        //    }
+        //    else
+        //    {
+        //        return RedirectToAction("Index", "Home");
+        //    }
+        //}
+
+        //[HttpPost]
+        //public ActionResult FundingMethod(FundingMethod fundingMethod, int choice, string select)
+        //{
+        //    try
+        //    {
+        //        if (Request.IsAuthenticated)
+        //        {
+        //            //Save file to server
+        //            if (Request.Files.Count > 0)
+        //            {
+        //                var file = Request.Files[0];
+
+        //                if (file != null && file.ContentLength > 0)
+        //                {
+        //                    fundingMethod.FileName = Path.GetFileName(file.FileName);
+        //                    string extension = Path.GetExtension(file.FileName);
+        //                    string newFileName;
+        //                    if (select == null)
+        //                    {
+        //                        if (db.FundingMethods.Count() > 0)
+        //                        {
+        //                            newFileName = (db.FundingMethods.OrderByDescending(m => m.FundingMethodId).FirstOrDefault().FundingMethodId + 1) + extension;
+        //                        }
+        //                        else
+        //                        {
+        //                            newFileName = 1 + extension;
+        //                        }
+        //                    }
+        //                    else
+        //                    {
+        //                        newFileName = select + extension;
+        //                    }
+        //                    string path = Path.Combine(Server.MapPath("~/Documents/"), newFileName);
+        //                    fundingMethod.ContractTemplateLocation = path;
+        //                    file.SaveAs(path);
+        //                }
+        //            }
+
+        //            switch (choice)
+        //            {
+        //                //Save
+        //                case 1:
+        //                    db.FundingMethods.Add(fundingMethod);
+        //                    db.SaveChanges();
+
+        //                    return RedirectToAction("FundingMethod");
+        //                //Edit
+        //                case 2:
+        //                    int selectedID = -1;
+        //                    if (int.TryParse(select, out selectedID))
+        //                    {
+        //                        FundingMethod temp = db.FundingMethods.Find(selectedID);
+        //                        temp.FundingMethodName = fundingMethod.FundingMethodName;
+        //                        temp.FundingType = fundingMethod.FundingType;
+        //                        temp.SignedContractDefault = fundingMethod.SignedContractDefault;
+        //                        temp.Status = fundingMethod.Status;
+        //                        temp.BudgetCode = fundingMethod.BudgetCode;
+        //                        temp.CostCentre = fundingMethod.CostCentre;
+        //                        temp.FileName = fundingMethod.FileName;
+        //                    }
+        //                    db.SaveChanges();
+        //                    return RedirectToAction("FundingMethod");
+        //                default:
+        //                    return RedirectToAction("Index", "Home");
+        //            }
+        //        }
+        //        else
+        //        {
+        //            return RedirectToAction("Index", "Home");
+        //        }
+        //    }
+        //    catch (DbEntityValidationException e)
+        //    {
+        //        Console.WriteLine(e.Message);
+        //        return RedirectToAction("Index", "Home");
+        //    }
+        //}
+
+        //Download file from server
+        public FileResult Download(string file, string fileName)
+        {
+            byte[] fileBytes = System.IO.File.ReadAllBytes(file);
+            var response = new FileContentResult(fileBytes, "application/octet-stream");
+            response.FileDownloadName = fileName;
+            return response;
+        }
+
+        //Funding method table
+        public ActionResult FundingMethod(int? page = 1, string searchString = null)
+        {
+            if (Request.IsAuthenticated)
+            {
+                List<FundingMethod> fundingMethods = db.FundingMethods.ToList();
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    fundingMethods = fundingMethods.Where(s => s.FundingMethodName.Contains(searchString)).ToList();
+                }
+                int pageSize = 10;
+                int pageNumber = (page ?? 1);
+                return View(fundingMethods.ToPagedList(pageNumber, pageSize));
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        //Add new method
+        public ActionResult AddFundingMethod()
+        {
+            if (Request.IsAuthenticated)
+            {
+                //Funding type
+                ViewBag.FundingType = db.SYSCFTs.Find(7).SYSCVTs.ToList();
+                //Signed Contact Default
+                ViewBag.SignedContractDefault = db.SYSCFTs.Find(14).SYSCVTs.ToList();
+                //Funding status
+                ViewBag.FundingStatus = db.SYSCFTs.Find(8).SYSCVTs.ToList();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult AddFundingMethod(FundingMethod fundingMethod)
+        {
+            try
+            {
+                if (Request.IsAuthenticated)
+                {
+                    string newFileName = null;
+                    bool isFileExist = false;
+                    string extension = null;
+                    //Save file to server
+                    if (Request.Files.Count > 0)
+                    {
+                        var file = Request.Files[0];
+
+                        if (file != null && file.ContentLength > 0)
+                        {
+                            isFileExist = true;
+                            fundingMethod.FileName = Path.GetFileName(file.FileName);
+                            extension = Path.GetExtension(file.FileName);
+                        }
+                    }
+
+                    db.FundingMethods.Add(fundingMethod);
+                    db.SaveChanges();
+
+                    if (isFileExist)
+                    {
+                        var file = Request.Files[0];
+                        //New file name to store = funding method ID
+                        newFileName = fundingMethod.FundingMethodId + extension;
+                        string path = Path.Combine(Server.MapPath("~/Resources/Documents/"), newFileName);
+                        fundingMethod.ContractTemplateLocation = path;
+                        file.SaveAs(path);
+                        db.SaveChanges();
+                    }
+
+                    return RedirectToAction("FundingMethod");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+            catch (DbEntityValidationException e)
+            {
+                ViewBag.errorText = e.Message;
+                return PartialView("Error");
+            }
+        }
+
+        //Edit a method
+        public ActionResult EditFundingMethod(int id)
+        {
+            if (Request.IsAuthenticated)
+            {
+                FundingMethod fundingMethod = db.FundingMethods.Find(id);
+                if (fundingMethod == null)
+                {
+                    return HttpNotFound();
+                }
+
+                //Funding type
+                ViewBag.FundingType = db.SYSCFTs.Find(7).SYSCVTs.ToList();
+                //Signed Contact Default
+                ViewBag.SignedContractDefault = db.SYSCFTs.Find(14).SYSCVTs.ToList();
+                //Funding status
+                ViewBag.FundingStatus = db.SYSCFTs.Find(8).SYSCVTs.ToList();
+                return View(fundingMethod);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult EditFundingMethod(FundingMethod fundingMethod)
+        {
+            try
+            {
+                if (Request.IsAuthenticated)
+                {
+                    //Save file to server
+                    if (Request.Files.Count > 0)
+                    {
+                        var file = Request.Files[0];
+
+                        if (file != null && file.ContentLength > 0)
+                        {
+                            fundingMethod.FileName = Path.GetFileName(file.FileName);
+                            string extension = Path.GetExtension(file.FileName);
+                            //New file name to store = funding method ID
+                            string newFileName = fundingMethod.FundingMethodId + extension;
+                            string path = Path.Combine(Server.MapPath("~/Resources/Documents/"), newFileName);
+                            fundingMethod.ContractTemplateLocation = path;
+                            file.SaveAs(path);
+                        }
+                    }
+
+                    db.Entry(fundingMethod).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                    return RedirectToAction("FundingMethod");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+            catch (DbEntityValidationException e)
+            {
+                ViewBag.errorText = e.Message;
+                return PartialView("Error");
+            }
+        }
+
+        public ActionResult DeleteFundingMethod(int id = 0)
+        {
+            FundingMethod fundingMethod = db.FundingMethods.Find(id);
+            if (fundingMethod == null)
+            {
+                return HttpNotFound();
+            }
+            return View(fundingMethod);
+        }
+
+        //
+        // POST: /Default1/Delete/5
+
+        [HttpPost, ActionName("DeleteFundingMethod")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteFundingMethodConfirmed(int id)
+        {
+            FundingMethod fundingMethod = db.FundingMethods.Find(id);
+            db.FundingMethods.Remove(fundingMethod);
+            db.SaveChanges();
+            return RedirectToAction("FundingMethod");
+        }
+    }
+}

@@ -1,0 +1,69 @@
+﻿@model CMS2.Models.CourseStudentsModel
+
+@{
+    ViewBag.Title = "Add students";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+    function checkStudents()
+    {
+        var chbStudents = $('input:checkbox').map(function() {
+            return this;
+        }).get();
+        if (chbStudents.length == 0)
+            return true;
+        else {
+            var checkedStudents = $('input:checkbox:checked').map(function () {
+                return this.value;
+            }).get();
+            if (checkedStudents.length > 0)
+                return true;
+            else {
+                alert("You haven't checked any student!");
+                return false;
+            }
+        }
+    }
+</script>
+
+<h2>Add students</h2>
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { name = "form", id = "form" }))
+{
+    @Html.AntiForgeryToken()
+
+    <h3>@Html.DisplayFor(model => model.Course.CourseName)</h3>
+
+    @Html.HiddenFor(model => model.Course.CourseId)
+    @Html.HiddenFor(model => model.Course.CourseNo)
+    @Html.HiddenFor(model => model.Course.CourseName)
+    @Html.HiddenFor(model => model.Course.Location)
+    <table class="table">
+        <tr>
+            <th>Student Id</th>
+            <th>Student Name</th>
+            <th></th>
+        </tr>
+
+        @for (int i = 0; i < Model.Students.Count; i++)
+        {
+            @Html.HiddenFor(x => x.Students[i].StudentId)
+            @Html.HiddenFor(x => x.Students[i].StudentNo)
+            @Html.HiddenFor(x => x.Students[i].StudentName)
+            <tr>
+                <td>
+                    @Html.DisplayFor(x => x.Students[i].StudentId)
+                </td>
+                <td>
+                    @Html.DisplayFor(x => x.Students[i].StudentName)
+                </td>
+                <td>
+                    @Html.CheckBoxFor(x => x.CheckStudents[i])
+                </td>
+            </tr>
+        }
+    </table>
+
+    <input type="submit" value="Add" onclick="javascript: return checkStudents();" class="btn btn-default" />
+}

@@ -1,0 +1,742 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CSSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="UserName" />
+    </Key>
+    <Property Name="UserName" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="Password" Type="nchar" MaxLength="32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AgendaPayment">
+    <Key>
+      <PropertyRef Name="AgendaPaymentId" />
+    </Key>
+    <Property Name="AgendaPaymentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AgendaPayment" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Agreement">
+    <Key>
+      <PropertyRef Name="AgreementNumber" />
+      <PropertyRef Name="VariantNumber" />
+    </Key>
+    <Property Name="AgreementNumber" Type="int" Nullable="false" />
+    <Property Name="VariantNumber" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="Description" Type="nvarchar" MaxLength="1000" />
+    <Property Name="StartDate" Type="date" />
+    <Property Name="EndDate" Type="date" />
+    <Property Name="StatusId" Type="int" Nullable="false" />
+    <Property Name="LastStatusUpdatedDate" Type="date" Nullable="false" />
+    <Property Name="AuthorisedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="AuthorisedDate" Type="date" />
+    <Property Name="CreatedDate" Type="date" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastUpdatedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="PaymentTo" Type="nvarchar" MaxLength="50" />
+    <Property Name="AMISAccountCode" Type="nvarchar" MaxLength="10" />
+    <Property Name="HandlingCharge" Type="money" />
+    <Property Name="FundingMethodId" Type="int" />
+    <Property Name="SignRequired" Type="bit" />
+    <Property Name="SignReceived" Type="bit" />
+    <Property Name="SignReceivedDate" Type="date" />
+    <Property Name="DealerVisibility" Type="nvarchar" MaxLength="50" />
+    <Property Name="Combinability" Type="nvarchar" MaxLength="50" />
+    <Property Name="NumberOfRegistrations" Type="int" />
+    <Property Name="VolumeId" Type="int" />
+    <Property Name="DiscountUnit" Type="nvarchar" MaxLength="10" />
+    <Property Name="AgendaPaymentId" Type="int" />
+  </EntityType>
+  <EntityType Name="AgreementDealer">
+    <Key>
+      <PropertyRef Name="AgreementNumber" />
+      <PropertyRef Name="VariantNumber" />
+      <PropertyRef Name="DealerCode" />
+    </Key>
+    <Property Name="AgreementNumber" Type="int" Nullable="false" />
+    <Property Name="VariantNumber" Type="int" Nullable="false" />
+    <Property Name="DealerCode" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AgreementRFO">
+    <Key>
+      <PropertyRef Name="AgreementNumber" />
+      <PropertyRef Name="VariantNumber" />
+      <PropertyRef Name="RFONumber" />
+    </Key>
+    <Property Name="AgreementNumber" Type="int" Nullable="false" />
+    <Property Name="VariantNumber" Type="int" Nullable="false" />
+    <Property Name="RFONumber" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AgreementStatus">
+    <Key>
+      <PropertyRef Name="StatusId" />
+    </Key>
+    <Property Name="StatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AgreementStatus" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Banding">
+    <Key>
+      <PropertyRef Name="BandingId" />
+    </Key>
+    <Property Name="BandingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VolumeId" Type="int" Nullable="false" />
+    <Property Name="Min" Type="int" Nullable="false" />
+    <Property Name="Max" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BudgetCode">
+    <Key>
+      <PropertyRef Name="BudgetCode" />
+    </Key>
+    <Property Name="BudgetCode" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Status" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Verified" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Comment">
+    <Key>
+      <PropertyRef Name="CommentId" />
+    </Key>
+    <Property Name="CommentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AgreementNumber" Type="int" Nullable="false" />
+    <Property Name="VariantNumber" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="DateTime" Type="datetime" Nullable="false" />
+    <Property Name="Comment" Type="nvarchar" MaxLength="1000" Nullable="false" />
+    <Property Name="CommentTypeId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CommentType">
+    <Key>
+      <PropertyRef Name="CommentTypeId" />
+    </Key>
+    <Property Name="CommentTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CommentType" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Company">
+    <Key>
+      <PropertyRef Name="CompanyId" />
+    </Key>
+    <Property Name="CompanyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Type" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Status" Type="bit" Nullable="false" />
+    <Property Name="Sector" Type="nvarchar" MaxLength="100" />
+    <Property Name="PhoneNumber" Type="nvarchar" MaxLength="20" />
+    <Property Name="FaxNumber" Type="nvarchar" MaxLength="20" />
+    <Property Name="Emailaddress" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="CreatedDate" Type="date" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="AMISCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="BusinessArea" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CompanyAddress">
+    <Key>
+      <PropertyRef Name="CompanyId" />
+    </Key>
+    <Property Name="Address1" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address2" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address3" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address4" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address5" Type="nvarchar" MaxLength="50" />
+    <Property Name="City" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="State" Type="nvarchar" MaxLength="50" />
+    <Property Name="Country" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="RegionId" Type="int" Nullable="false" />
+    <Property Name="Postcode" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CompanyId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ContactAddress">
+    <Key>
+      <PropertyRef Name="ContactAddressId" />
+    </Key>
+    <Property Name="ContactAddressId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="Town" Type="nvarchar" MaxLength="50" />
+    <Property Name="County" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="City" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Country" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Postcode" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="MobileNo" Type="varchar" MaxLength="20" />
+    <Property Name="OfficeNo" Type="varchar" MaxLength="20" />
+    <Property Name="FaxNo" Type="varchar" MaxLength="20" />
+    <Property Name="Address1" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address2" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address3" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address4" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address5" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="CostCentre">
+    <Key>
+      <PropertyRef Name="CostCentre" />
+    </Key>
+    <Property Name="CostCentre" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Status" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Verified" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CreditNoteText">
+    <Key>
+      <PropertyRef Name="CreditNoteTextId" />
+    </Key>
+    <Property Name="CreditNoteTextId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AgreementNumber" Type="int" Nullable="false" />
+    <Property Name="VariantNumber" Type="int" Nullable="false" />
+    <Property Name="DateTime" Type="datetime" Nullable="false" />
+    <Property Name="CreditNoteText" Type="nvarchar" MaxLength="1000" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CustomerType">
+    <Key>
+      <PropertyRef Name="CustomerTypeId" />
+    </Key>
+    <Property Name="CustomerTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerType" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FundingMethod">
+    <Key>
+      <PropertyRef Name="FundingMethodId" />
+    </Key>
+    <Property Name="FundingMethodId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FundingMethodName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="FundingType" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="BudgetCode" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="CostCentre" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="ContractTemplateLocation" Type="nvarchar" MaxLength="50" />
+    <Property Name="SignedContractDefault" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Status" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="AMISDeptCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="AMISReasonCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PostCode">
+    <Key>
+      <PropertyRef Name="PostCodeId" />
+    </Key>
+    <Property Name="PostCodeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PostCode" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PostCodeCovered">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="PostCodeId" />
+    </Key>
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="PostCodeId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Region">
+    <Key>
+      <PropertyRef Name="RegionId" />
+    </Key>
+    <Property Name="RegionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RegionName" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RFONumber">
+    <Key>
+      <PropertyRef Name="RFONumber" />
+    </Key>
+    <Property Name="RFONumber" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RFOName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="CustomerTypeId" Type="int" Nullable="false" />
+    <Property Name="CompanyId" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="date" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="UpdatedDate" Type="date" Nullable="false" />
+    <Property Name="UpdatedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="PostCode" Type="varchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RFOUser">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ManagerId" Type="int" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ExtranetUser" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="EmailAddress" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserTypeId" Type="int" Nullable="false" />
+    <Property Name="Status" Type="varchar" MaxLength="50" />
+    <Property Name="TargetNumberOfRegistrations" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SystemConfig">
+    <Key>
+      <PropertyRef Name="SystemConfigId" />
+    </Key>
+    <Property Name="SystemConfigId" Type="int" Nullable="false" />
+    <Property Name="ConfigName" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SystemConfigValue">
+    <Key>
+      <PropertyRef Name="SystemConfigValueId" />
+    </Key>
+    <Property Name="SystemConfigValueId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SystemConfigId" Type="int" Nullable="false" />
+    <Property Name="ConfigValue" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Order" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserType">
+    <Key>
+      <PropertyRef Name="UserTypeId" />
+    </Key>
+    <Property Name="UserTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserType" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Volume">
+    <Key>
+      <PropertyRef Name="VolumeId" />
+    </Key>
+    <Property Name="VolumeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TriggerCredit" Type="nvarchar" MaxLength="50" />
+    <Property Name="PaymentTo" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_Account_User">
+    <End Role="RFOUser" Type="Self.RFOUser" Multiplicity="1" />
+    <End Role="Account" Type="Self.Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RFOUser">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Agreement_AgendaPayment">
+    <End Role="AgendaPayment" Type="Self.AgendaPayment" Multiplicity="0..1" />
+    <End Role="Agreement" Type="Self.Agreement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AgendaPayment">
+        <PropertyRef Name="AgendaPaymentId" />
+      </Principal>
+      <Dependent Role="Agreement">
+        <PropertyRef Name="AgendaPaymentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Agreement_AgreementStatus">
+    <End Role="AgreementStatus" Type="Self.AgreementStatus" Multiplicity="1" />
+    <End Role="Agreement" Type="Self.Agreement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AgreementStatus">
+        <PropertyRef Name="StatusId" />
+      </Principal>
+      <Dependent Role="Agreement">
+        <PropertyRef Name="StatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Agreement_FundingMethod">
+    <End Role="FundingMethod" Type="Self.FundingMethod" Multiplicity="0..1" />
+    <End Role="Agreement" Type="Self.Agreement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FundingMethod">
+        <PropertyRef Name="FundingMethodId" />
+      </Principal>
+      <Dependent Role="Agreement">
+        <PropertyRef Name="FundingMethodId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Agreement_Volume">
+    <End Role="Volume" Type="Self.Volume" Multiplicity="0..1" />
+    <End Role="Agreement" Type="Self.Agreement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Volume">
+        <PropertyRef Name="VolumeId" />
+      </Principal>
+      <Dependent Role="Agreement">
+        <PropertyRef Name="VolumeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AgreementDealer_Agreement">
+    <End Role="Agreement" Type="Self.Agreement" Multiplicity="1" />
+    <End Role="AgreementDealer" Type="Self.AgreementDealer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Agreement">
+        <PropertyRef Name="AgreementNumber" />
+        <PropertyRef Name="VariantNumber" />
+      </Principal>
+      <Dependent Role="AgreementDealer">
+        <PropertyRef Name="AgreementNumber" />
+        <PropertyRef Name="VariantNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AgreementDealer_DealerCode">
+    <End Role="RFOUser" Type="Self.RFOUser" Multiplicity="1" />
+    <End Role="AgreementDealer" Type="Self.AgreementDealer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RFOUser">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="AgreementDealer">
+        <PropertyRef Name="DealerCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AgreementRFO_Agreement">
+    <End Role="Agreement" Type="Self.Agreement" Multiplicity="1" />
+    <End Role="AgreementRFO" Type="Self.AgreementRFO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Agreement">
+        <PropertyRef Name="AgreementNumber" />
+        <PropertyRef Name="VariantNumber" />
+      </Principal>
+      <Dependent Role="AgreementRFO">
+        <PropertyRef Name="AgreementNumber" />
+        <PropertyRef Name="VariantNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AgreementRFO_RFONumber">
+    <End Role="RFONumber" Type="Self.RFONumber" Multiplicity="1" />
+    <End Role="AgreementRFO" Type="Self.AgreementRFO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RFONumber">
+        <PropertyRef Name="RFONumber" />
+      </Principal>
+      <Dependent Role="AgreementRFO">
+        <PropertyRef Name="RFONumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Banding_Volume">
+    <End Role="Volume" Type="Self.Volume" Multiplicity="1" />
+    <End Role="Banding" Type="Self.Banding" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Volume">
+        <PropertyRef Name="VolumeId" />
+      </Principal>
+      <Dependent Role="Banding">
+        <PropertyRef Name="VolumeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Comment_Agreement">
+    <End Role="Agreement" Type="Self.Agreement" Multiplicity="1" />
+    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Agreement">
+        <PropertyRef Name="AgreementNumber" />
+        <PropertyRef Name="VariantNumber" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="AgreementNumber" />
+        <PropertyRef Name="VariantNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Comment_CommentType">
+    <End Role="CommentType" Type="Self.CommentType" Multiplicity="1" />
+    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CommentType">
+        <PropertyRef Name="CommentTypeId" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="CommentTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Comment_User">
+    <End Role="RFOUser" Type="Self.RFOUser" Multiplicity="1" />
+    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RFOUser">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CompanyAddress_Company">
+    <End Role="Company" Type="Self.Company" Multiplicity="1" />
+    <End Role="CompanyAddress" Type="Self.CompanyAddress" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Company">
+        <PropertyRef Name="CompanyId" />
+      </Principal>
+      <Dependent Role="CompanyAddress">
+        <PropertyRef Name="CompanyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CompanyAddress_Region">
+    <End Role="Region" Type="Self.Region" Multiplicity="1" />
+    <End Role="CompanyAddress" Type="Self.CompanyAddress" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Region">
+        <PropertyRef Name="RegionId" />
+      </Principal>
+      <Dependent Role="CompanyAddress">
+        <PropertyRef Name="RegionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ContactAddress_User">
+    <End Role="RFOUser" Type="Self.RFOUser" Multiplicity="1" />
+    <End Role="ContactAddress" Type="Self.ContactAddress" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RFOUser">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="ContactAddress">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CreditNoteText_Agreement">
+    <End Role="Agreement" Type="Self.Agreement" Multiplicity="1" />
+    <End Role="CreditNoteText" Type="Self.CreditNoteText" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Agreement">
+        <PropertyRef Name="AgreementNumber" />
+        <PropertyRef Name="VariantNumber" />
+      </Principal>
+      <Dependent Role="CreditNoteText">
+        <PropertyRef Name="AgreementNumber" />
+        <PropertyRef Name="VariantNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FundingMethod_BudgetCode">
+    <End Role="BudgetCode" Type="Self.BudgetCode" Multiplicity="1" />
+    <End Role="FundingMethod" Type="Self.FundingMethod" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BudgetCode">
+        <PropertyRef Name="BudgetCode" />
+      </Principal>
+      <Dependent Role="FundingMethod">
+        <PropertyRef Name="BudgetCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FundingMethod_CostCentre">
+    <End Role="CostCentre" Type="Self.CostCentre" Multiplicity="1" />
+    <End Role="FundingMethod" Type="Self.FundingMethod" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CostCentre">
+        <PropertyRef Name="CostCentre" />
+      </Principal>
+      <Dependent Role="FundingMethod">
+        <PropertyRef Name="CostCentre" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PostCodeCovered_PostCode">
+    <End Role="PostCode" Type="Self.PostCode" Multiplicity="1" />
+    <End Role="PostCodeCovered" Type="Self.PostCodeCovered" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PostCode">
+        <PropertyRef Name="PostCodeId" />
+      </Principal>
+      <Dependent Role="PostCodeCovered">
+        <PropertyRef Name="PostCodeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PostCodeCovered_User">
+    <End Role="RFOUser" Type="Self.RFOUser" Multiplicity="1" />
+    <End Role="PostCodeCovered" Type="Self.PostCodeCovered" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RFOUser">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="PostCodeCovered">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RFONumber_Company">
+    <End Role="Company" Type="Self.Company" Multiplicity="1" />
+    <End Role="RFONumber" Type="Self.RFONumber" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company">
+        <PropertyRef Name="CompanyId" />
+      </Principal>
+      <Dependent Role="RFONumber">
+        <PropertyRef Name="CompanyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RFONumber_CustomerTypeId">
+    <End Role="CustomerType" Type="Self.CustomerType" Multiplicity="1" />
+    <End Role="RFONumber" Type="Self.RFONumber" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CustomerType">
+        <PropertyRef Name="CustomerTypeId" />
+      </Principal>
+      <Dependent Role="RFONumber">
+        <PropertyRef Name="CustomerTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RFOUser_Manager">
+    <End Role="RFOUser" Type="Self.RFOUser" Multiplicity="0..1" />
+    <End Role="RFOUser1" Type="Self.RFOUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RFOUser">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="RFOUser1">
+        <PropertyRef Name="ManagerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RFOUser_UserType">
+    <End Role="UserType" Type="Self.UserType" Multiplicity="1" />
+    <End Role="RFOUser" Type="Self.RFOUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserType">
+        <PropertyRef Name="UserTypeId" />
+      </Principal>
+      <Dependent Role="RFOUser">
+        <PropertyRef Name="UserTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SystemConfigValue_SystemConfig">
+    <End Role="SystemConfig" Type="Self.SystemConfig" Multiplicity="1" />
+    <End Role="SystemConfigValue" Type="Self.SystemConfigValue" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SystemConfig">
+        <PropertyRef Name="SystemConfigId" />
+      </Principal>
+      <Dependent Role="SystemConfigValue">
+        <PropertyRef Name="SystemConfigId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CSSModelStoreContainer">
+    <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AgendaPayment" EntityType="Self.AgendaPayment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Agreement" EntityType="Self.Agreement" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AgreementDealer" EntityType="Self.AgreementDealer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AgreementRFO" EntityType="Self.AgreementRFO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AgreementStatus" EntityType="Self.AgreementStatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Banding" EntityType="Self.Banding" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BudgetCode" EntityType="Self.BudgetCode" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CommentType" EntityType="Self.CommentType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CompanyAddress" EntityType="Self.CompanyAddress" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ContactAddress" EntityType="Self.ContactAddress" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CostCentre" EntityType="Self.CostCentre" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CreditNoteText" EntityType="Self.CreditNoteText" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CustomerType" EntityType="Self.CustomerType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FundingMethod" EntityType="Self.FundingMethod" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PostCode" EntityType="Self.PostCode" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PostCodeCovered" EntityType="Self.PostCodeCovered" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Region" EntityType="Self.Region" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RFONumber" EntityType="Self.RFONumber" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RFOUser" EntityType="Self.RFOUser" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SystemConfig" EntityType="Self.SystemConfig" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SystemConfigValue" EntityType="Self.SystemConfigValue" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserType" EntityType="Self.UserType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Volume" EntityType="Self.Volume" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Account_User" Association="Self.FK_Account_User">
+      <End Role="RFOUser" EntitySet="RFOUser" />
+      <End Role="Account" EntitySet="Account" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Agreement_AgendaPayment" Association="Self.FK_Agreement_AgendaPayment">
+      <End Role="AgendaPayment" EntitySet="AgendaPayment" />
+      <End Role="Agreement" EntitySet="Agreement" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Agreement_AgreementStatus" Association="Self.FK_Agreement_AgreementStatus">
+      <End Role="AgreementStatus" EntitySet="AgreementStatus" />
+      <End Role="Agreement" EntitySet="Agreement" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Agreement_FundingMethod" Association="Self.FK_Agreement_FundingMethod">
+      <End Role="FundingMethod" EntitySet="FundingMethod" />
+      <End Role="Agreement" EntitySet="Agreement" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Agreement_Volume" Association="Self.FK_Agreement_Volume">
+      <End Role="Volume" EntitySet="Volume" />
+      <End Role="Agreement" EntitySet="Agreement" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AgreementDealer_Agreement" Association="Self.FK_AgreementDealer_Agreement">
+      <End Role="Agreement" EntitySet="Agreement" />
+      <End Role="AgreementDealer" EntitySet="AgreementDealer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AgreementDealer_DealerCode" Association="Self.FK_AgreementDealer_DealerCode">
+      <End Role="RFOUser" EntitySet="RFOUser" />
+      <End Role="AgreementDealer" EntitySet="AgreementDealer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AgreementRFO_Agreement" Association="Self.FK_AgreementRFO_Agreement">
+      <End Role="Agreement" EntitySet="Agreement" />
+      <End Role="AgreementRFO" EntitySet="AgreementRFO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AgreementRFO_RFONumber" Association="Self.FK_AgreementRFO_RFONumber">
+      <End Role="RFONumber" EntitySet="RFONumber" />
+      <End Role="AgreementRFO" EntitySet="AgreementRFO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Banding_Volume" Association="Self.FK_Banding_Volume">
+      <End Role="Volume" EntitySet="Volume" />
+      <End Role="Banding" EntitySet="Banding" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Comment_Agreement" Association="Self.FK_Comment_Agreement">
+      <End Role="Agreement" EntitySet="Agreement" />
+      <End Role="Comment" EntitySet="Comment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Comment_CommentType" Association="Self.FK_Comment_CommentType">
+      <End Role="CommentType" EntitySet="CommentType" />
+      <End Role="Comment" EntitySet="Comment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Comment_User" Association="Self.FK_Comment_User">
+      <End Role="RFOUser" EntitySet="RFOUser" />
+      <End Role="Comment" EntitySet="Comment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CompanyAddress_Company" Association="Self.FK_CompanyAddress_Company">
+      <End Role="Company" EntitySet="Company" />
+      <End Role="CompanyAddress" EntitySet="CompanyAddress" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CompanyAddress_Region" Association="Self.FK_CompanyAddress_Region">
+      <End Role="Region" EntitySet="Region" />
+      <End Role="CompanyAddress" EntitySet="CompanyAddress" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ContactAddress_User" Association="Self.FK_ContactAddress_User">
+      <End Role="RFOUser" EntitySet="RFOUser" />
+      <End Role="ContactAddress" EntitySet="ContactAddress" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CreditNoteText_Agreement" Association="Self.FK_CreditNoteText_Agreement">
+      <End Role="Agreement" EntitySet="Agreement" />
+      <End Role="CreditNoteText" EntitySet="CreditNoteText" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FundingMethod_BudgetCode" Association="Self.FK_FundingMethod_BudgetCode">
+      <End Role="BudgetCode" EntitySet="BudgetCode" />
+      <End Role="FundingMethod" EntitySet="FundingMethod" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FundingMethod_CostCentre" Association="Self.FK_FundingMethod_CostCentre">
+      <End Role="CostCentre" EntitySet="CostCentre" />
+      <End Role="FundingMethod" EntitySet="FundingMethod" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PostCodeCovered_PostCode" Association="Self.FK_PostCodeCovered_PostCode">
+      <End Role="PostCode" EntitySet="PostCode" />
+      <End Role="PostCodeCovered" EntitySet="PostCodeCovered" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PostCodeCovered_User" Association="Self.FK_PostCodeCovered_User">
+      <End Role="RFOUser" EntitySet="RFOUser" />
+      <End Role="PostCodeCovered" EntitySet="PostCodeCovered" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RFONumber_Company" Association="Self.FK_RFONumber_Company">
+      <End Role="Company" EntitySet="Company" />
+      <End Role="RFONumber" EntitySet="RFONumber" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RFONumber_CustomerTypeId" Association="Self.FK_RFONumber_CustomerTypeId">
+      <End Role="CustomerType" EntitySet="CustomerType" />
+      <End Role="RFONumber" EntitySet="RFONumber" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RFOUser_Manager" Association="Self.FK_RFOUser_Manager">
+      <End Role="RFOUser" EntitySet="RFOUser" />
+      <End Role="RFOUser1" EntitySet="RFOUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RFOUser_UserType" Association="Self.FK_RFOUser_UserType">
+      <End Role="UserType" EntitySet="UserType" />
+      <End Role="RFOUser" EntitySet="RFOUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SystemConfigValue_SystemConfig" Association="Self.FK_SystemConfigValue_SystemConfig">
+      <End Role="SystemConfig" EntitySet="SystemConfig" />
+      <End Role="SystemConfigValue" EntitySet="SystemConfigValue" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

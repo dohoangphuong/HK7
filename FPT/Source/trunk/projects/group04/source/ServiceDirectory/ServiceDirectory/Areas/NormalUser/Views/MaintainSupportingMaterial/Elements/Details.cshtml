@@ -1,0 +1,37 @@
+﻿@model ServiceDirectory.Models.tblSupportingMaterial
+
+<!-- must be put into modals -->
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+<div class="row">
+    <div class="col-md-2"><strong>URL </strong><font color="red">*</font></div>
+    <div class="col-md-4">
+        @Html.TextBoxFor(model => model.URL, new { @class="btn-block"})       
+        <input type="hidden" name="SupportID" value="@Model.SupportID" /> 
+    </div>
+    <div class="col-md-2"><strong>Added By</strong></div>
+    <div class="col-md-4">
+        <input type="text" disabled="disabled" value="@Model.tblUser.FullName" />
+        <input type="hidden" name="UserID" value="@Model.UserID" />
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-2"><strong>Description</strong></div>
+    <div class="col-md-4">
+        <textarea name="ShortDescription" style="resize:none;" class="btn-block">@Model.ShortDescription</textarea>
+    </div>
+    <div class="col-md-2"><strong>Added Date</strong></div>
+    <div class="col-md-4">
+        <input type="text" name="AddedDate" disabled="disabled" value="@Model.AddedDate.Value.ToString("dd-MM-yyyy") " />
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-2"><strong>Type</strong></div>
+    <div class="col-md-4">
+        <select name="TypeFile" class="btn-block">
+            <option value="Doc">Doc</option>
+            <option value="PDF">PDF</option>
+            <option value="Excel">Excel</option>
+        </select>
+    </div>
+</div>

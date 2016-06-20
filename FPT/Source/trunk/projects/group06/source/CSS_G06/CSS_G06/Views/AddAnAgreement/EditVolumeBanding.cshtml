@@ -1,0 +1,74 @@
+﻿@model List<CSS_G06.Models.DefineBanding>
+
+<style type="text/css">
+    table.gridtable {
+        font-family: verdana,arial,sans-serif;
+        font-size: 11px;
+        color: whitesmoke;
+        border-width: 1px;
+        border-color: #889EC7;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+        table.gridtable th {
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #889EC7;
+            background-color: #889EC7;
+        }
+
+        table.gridtable tr:hover {
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #666666;
+        }
+
+        table.gridtable td {
+            border: solid 1px #889EC7;
+            color: black;
+            font-size: 12px;
+        }
+
+    .clickable {
+        cursor: pointer;
+        background-color: #CCCCCC;
+    }
+    .selectColumn{
+        width:40px;
+    }
+</style>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#ResultTable tr').hover(function () {
+            $(this).toggleClass('clickable');
+        });
+        $('input:radio').change(function () {
+            var parentTr = $(this).closest('tr');
+            parentTr.siblings().css('background-color', '#EAEAEA');
+            parentTr.css('background-color', '#CCCCCC');
+        });
+    });
+</script>
+
+<div id="ResultContent" style="width:800px;height:150px;">
+    <div id="ResultTable" style="border: 1px solid #889EC7; height:150px;width:100%;overflow-y:auto">
+        @{
+            WebGrid grid = new WebGrid(source: Model, canSort: false, ajaxUpdateContainerId: "ResultTable", canPage: false);
+        }
+        @grid.GetHtml(
+                            tableStyle: "gridtable",
+                            headerStyle: "header",
+                            alternatingRowStyle: "alt",
+                            selectedRowStyle: "select",
+                            columns: grid.Columns(
+                                         grid.Column("ShowString", "Banding Value"), 
+                                         grid.Column((format: @<text> <input type="radio" name="select" checked="checked" value="@item.ShowString" style="width:30px" /> </text>), header: "Select", style:"selectColumn")
+                                 ))
+
+    </div>
+</div><!-- End #ResultContent -->
+

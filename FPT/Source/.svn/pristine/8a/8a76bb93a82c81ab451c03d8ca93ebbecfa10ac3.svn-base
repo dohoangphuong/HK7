@@ -1,0 +1,72 @@
+﻿@model Service_Directory.Models.SupportingMaterial
+<link href="~/Content/Stylesheets/form-input.css" rel="stylesheet" />
+
+@using (Html.BeginForm("AddSupportingMaterials", "SupportingMaterials", FormMethod.Post, new { @name = "" }))
+{
+    <div style="height:6%;">
+        @Html.ActionLink("Back", "Index", "SupportingMaterials", new { @class = "Buton" })
+        <input class="submit" type="submit" value="Save" @*style="float:right; width:80px; height:25px; margin-right: 30px;"*@ />
+    </div>
+    <fieldset>
+        <div class="container">
+            <div class="left-container">
+                <div class="formRowContainer">
+                    <div class="labelContainer">URL <label style="color:red;">*</label></div>
+                    <div class="valueContainer">@Html.TextBox("url")</div>
+                </div>
+                <div class="formRowContainer">
+                    <div class="labelContainer">Description</div>
+                    <div class="valueContainer">@Html.TextArea("Description", new { @class = "textarea" })</div>
+                </div>
+
+                <div class="formRowContainer">
+                    <div class="labelContainer">Type</div>
+                    <div class="valueContainer">@Html.DropDownList("Type")</div>
+
+                </div>
+
+            </div>
+            <div class="right-container">
+                <div class="formRowContainer">
+                    <div class="labelContainer">Added By</div>
+                    <div class="valueContainer">@Html.TextBox("AddedBy", null, new { @disabled = "true" })</div>
+                </div>
+                <div class="formRowContainer">
+                    <div class="labelContainer">Added Date</div>
+                    <div class="valueContainer">@Html.TextBox("AddedDate", DateTime.Today.ToShortDateString().ToString(), new { @disabled = "true" })</div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+}
+
+@if (TempData["Success"] != null)
+{
+    <div style="color:green;">
+        <p><strong>@TempData["Success"].ToString()</strong></p>
+    </div>
+}
+
+
+@if (TempData["urlIsNull"] != null)
+{
+    <div style="color:red;">
+        <p><strong>@TempData["urlIsNull"].ToString()</strong></p>
+    </div>
+
+    <script>
+        $("#url").addClass('errorClass');
+    </script>
+}
+
+<style>
+    .errorClass {
+        border: 1px solid red;
+    }
+</style>
+
+
+
+
+
+

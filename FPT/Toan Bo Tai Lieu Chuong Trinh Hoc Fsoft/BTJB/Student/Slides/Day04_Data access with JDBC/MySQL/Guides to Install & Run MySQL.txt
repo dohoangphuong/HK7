@@ -1,0 +1,65 @@
+1.Install:
+- If you are doing an upgrade => stop the current server
+	C:\> NET STOP MySQL
+- If you want to use a different server after the upgrade => Remove existing service
+	C:\> C:\mysql\bin\mysqld --remove
+- If you are not running the MySQL server as a service, stop it like this: 
+	C:\> C:\mysql\bin\mysqladmin -u root shutdown
+- Exit the WinMySQLAdmin program if it is running
+- Run setup.exe database server & client from \mysql-4.0.21-win
+
+2.Prepare the Windows MySQL environment:
+- To start the server, enter this command: 
+	C:\> C:\mysql\bin\mysqld --console
+- You can stop the MySQL server by executing this command: 
+	C:\> C:\mysql\bin\mysqladmin -u root shutdown
+- Install the server as a service: 
+	C:\> C:\mysql\bin\mysqld --install
+- To remove a server that is installed as a service
+	C:\> C:\mysql\bin\mysqld --remove
+
+3.Test
+You can test whether the MySQL server is working by executing any of the following commands: 
+	C:\> C:\mysql\bin\mysqlshow
+	C:\> C:\mysql\bin\mysqlshow -u root mysql
+	C:\> C:\mysql\bin\mysqladmin version status proc
+	C:\> C:\mysql\bin\mysql test
+
+4.SELECT VERSION(); 
+  SELECT NOW();
+  SELECT CURRENT_DATE;
+  select user();
+
+  SHOW DATABASES;
+  USE test
+  GRANT ALL ON menagerie.* TO 'your_mysql_name'@'your_client_host';
+  GRANT ALL ON address_book.* TO ODBC@localhost;
+  CREATE DATABASE menagerie;
+  USE menagerie;
+  mysql -h host -u user -p menagerie
+
+  SHOW TABLES;
+  CREATE TABLE pet (name VARCHAR(20), owner VARCHAR(20), species VARCHAR(20), sex CHAR(1), birth DATE, death DATE);
+  DESCRIBE pet;
+  LOAD DATA LOCAL INFILE '/path/pet.txt' INTO TABLE pet;
+  INSERT INTO pet VALUES ('Puffball','Diane','hamster','f','1999-03-30',NULL);
+  SELECT DISTINCT owner FROM pet;
+  SELECT name, species, birth FROM pet
+    -> WHERE species = 'dog' OR species = 'cat';
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+

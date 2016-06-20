@@ -1,0 +1,200 @@
+namespace CSS_G06.Models
+{
+    using System;
+    using System.Data.Entity;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Linq;
+
+    public partial class CSSDatabaseModel : DbContext
+    {
+        public CSSDatabaseModel()
+            : base("name=CSSDatabaseModel")
+        {
+        }
+
+        public virtual DbSet<Account> Accounts { get; set; }
+        public virtual DbSet<Agreement> Agreements { get; set; }
+        public virtual DbSet<AgreementStatu> AgreementStatus { get; set; }
+        public virtual DbSet<Banding> Bandings { get; set; }
+        public virtual DbSet<BudgetCode> BudgetCodes { get; set; }
+        public virtual DbSet<Comment> Comments { get; set; }
+        public virtual DbSet<CommentType> CommentTypes { get; set; }
+        public virtual DbSet<Company> Companies { get; set; }
+        public virtual DbSet<CompanyAddress> CompanyAddresses { get; set; }
+        public virtual DbSet<ContactAddress> ContactAddresses { get; set; }
+        public virtual DbSet<CostCentre> CostCentres { get; set; }
+        public virtual DbSet<CreditNoteText> CreditNoteTexts { get; set; }
+        public virtual DbSet<CustomerType> CustomerTypes { get; set; }
+        public virtual DbSet<FundingMethod> FundingMethods { get; set; }
+        public virtual DbSet<PostCode> PostCodes { get; set; }
+        public virtual DbSet<RFONumber> RFONumbers { get; set; }
+        public virtual DbSet<RFOUser> RFOUsers { get; set; }
+        public virtual DbSet<UserType> UserTypes { get; set; }
+        public virtual DbSet<Volume> Volumes { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Account>()
+                .Property(e => e.UserName)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Account>()
+                .Property(e => e.Password)
+                .IsFixedLength();
+
+            modelBuilder.Entity<Agreement>()
+                .Property(e => e.HandlingCharge)
+                .HasPrecision(19, 4);
+
+            modelBuilder.Entity<Agreement>()
+                .HasMany(e => e.Comments)
+                .WithRequired(e => e.Agreement)
+                .HasForeignKey(e => new { e.AgreementNumber, e.VariantNumber })
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Agreement>()
+                .HasMany(e => e.CreditNoteTexts)
+                .WithRequired(e => e.Agreement)
+                .HasForeignKey(e => new { e.AgreementNumber, e.VariantNumber })
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Agreement>()
+                .HasMany(e => e.RFOUsers)
+                .WithMany(e => e.Agreements)
+                .Map(m => m.ToTable("AgreementDealer").MapLeftKey(new[] { "AgreementNumber", "VariantNumber" }).MapRightKey("DealerCode"));
+
+            modelBuilder.Entity<Agreement>()
+                .HasMany(e => e.RFONumbers)
+                .WithMany(e => e.Agreements)
+                .Map(m => m.ToTable("AgreementRFO").MapLeftKey(new[] { "AgreementNumber", "VariantNumber" }).MapRightKey("RFONumber"));
+
+            modelBuilder.Entity<AgreementStatu>()
+                .HasMany(e => e.Agreements)
+                .WithRequired(e => e.AgreementStatu)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<BudgetCode>()
+                .Property(e => e.BudgetCode1)
+                .IsFixedLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<BudgetCode>()
+                .Property(e => e.Verified)
+                .HasPrecision(18, 0);
+
+            modelBuilder.Entity<BudgetCode>()
+                .HasMany(e => e.FundingMethods)
+                .WithRequired(e => e.BudgetCode1)
+                .HasForeignKey(e => e.BudgetCode)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<CommentType>()
+                .HasMany(e => e.Comments)
+                .WithRequired(e => e.CommentType)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Company>()
+                .HasOptional(e => e.CompanyAddress)
+                .WithRequired(e => e.Company);
+
+            modelBuilder.Entity<Company>()
+                .HasMany(e => e.RFONumbers)
+                .WithRequired(e => e.Company)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<ContactAddress>()
+                .Property(e => e.Postcode)
+                .IsFixedLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ContactAddress>()
+                .Property(e => e.MobileNo)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ContactAddress>()
+                .Property(e => e.OfficeNo)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ContactAddress>()
+                .Property(e => e.FaxNo)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CostCentre>()
+                .Property(e => e.CostCentre1)
+                .IsFixedLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CostCentre>()
+                .Property(e => e.Verified)
+                .HasPrecision(18, 0);
+
+            modelBuilder.Entity<CostCentre>()
+                .HasMany(e => e.FundingMethods)
+                .WithRequired(e => e.CostCentre1)
+                .HasForeignKey(e => e.CostCentre)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<CustomerType>()
+                .HasMany(e => e.RFONumbers)
+                .WithRequired(e => e.CustomerType)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<FundingMethod>()
+                .Property(e => e.BudgetCode)
+                .IsFixedLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<FundingMethod>()
+                .Property(e => e.CostCentre)
+                .IsFixedLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<PostCode>()
+                .HasMany(e => e.RFOUsers)
+                .WithMany(e => e.PostCodes)
+                .Map(m => m.ToTable("PostCodeCovered").MapLeftKey("PostCodeId").MapRightKey("UserId"));
+
+            modelBuilder.Entity<RFONumber>()
+                .Property(e => e.PostCode)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<RFOUser>()
+                .Property(e => e.EmailAddress)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<RFOUser>()
+                .Property(e => e.Status)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<RFOUser>()
+                .HasMany(e => e.Accounts)
+                .WithRequired(e => e.RFOUser)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<RFOUser>()
+                .HasMany(e => e.Comments)
+                .WithRequired(e => e.RFOUser)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<RFOUser>()
+                .HasMany(e => e.ContactAddresses)
+                .WithRequired(e => e.RFOUser)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<RFOUser>()
+                .HasMany(e => e.RFOUser1)
+                .WithOptional(e => e.RFOUser2)
+                .HasForeignKey(e => e.ManagerId);
+
+            modelBuilder.Entity<UserType>()
+                .HasMany(e => e.RFOUsers)
+                .WithRequired(e => e.UserType)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Volume>()
+                .HasMany(e => e.Bandings)
+                .WithRequired(e => e.Volume)
+                .WillCascadeOnDelete(false);
+        }
+    }
+}

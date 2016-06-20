@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "DepartmentList";
+}
+
+<link href="~/Content/Stylesheets/jquery-ui.css" rel="stylesheet" />
+<link href="~/Content/Stylesheets/style.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery-ui.js"></script>
+<script src="~/Scripts/Tabs.js"></script>
+
+<h1 style="color:green">Department Details</h1>
+
+<div id="tabs">
+    <ul>
+        <li><a href="#tabs-1">Details</a></li>
+        <li style="visibility:hidden;"><a href="#tabs-2">Teams</a></li>
+    </ul>
+    <div id="tabs-1">
+        @Html.Partial("~/Views/Department/AddDepartment.cshtml")
+    </div>
+    <div id="tabs-2">
+        <p>This is tab 2</p>
+    </div>
+</div>

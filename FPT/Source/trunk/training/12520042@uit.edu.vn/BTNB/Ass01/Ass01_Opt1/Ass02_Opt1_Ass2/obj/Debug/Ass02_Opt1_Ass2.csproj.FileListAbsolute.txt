@@ -1,0 +1,6 @@
+D:\TÀI LIỆU HỌC TẬP\LÝ THUYẾT\Fsoft\SVN\trunk\training\12520042@uit.edu.vn\BTNB\Ass01\Ass01_Opt1\Ass02_Opt1_Ass2\bin\Debug\Ass02_Opt1_Ass2.exe.config
+D:\TÀI LIỆU HỌC TẬP\LÝ THUYẾT\Fsoft\SVN\trunk\training\12520042@uit.edu.vn\BTNB\Ass01\Ass01_Opt1\Ass02_Opt1_Ass2\bin\Debug\Ass02_Opt1_Ass2.exe
+D:\TÀI LIỆU HỌC TẬP\LÝ THUYẾT\Fsoft\SVN\trunk\training\12520042@uit.edu.vn\BTNB\Ass01\Ass01_Opt1\Ass02_Opt1_Ass2\bin\Debug\Ass02_Opt1_Ass2.pdb
+D:\TÀI LIỆU HỌC TẬP\LÝ THUYẾT\Fsoft\SVN\trunk\training\12520042@uit.edu.vn\BTNB\Ass01\Ass01_Opt1\Ass02_Opt1_Ass2\obj\Debug\Ass02_Opt1_Ass2.csprojResolveAssemblyReference.cache
+D:\TÀI LIỆU HỌC TẬP\LÝ THUYẾT\Fsoft\SVN\trunk\training\12520042@uit.edu.vn\BTNB\Ass01\Ass01_Opt1\Ass02_Opt1_Ass2\obj\Debug\Ass02_Opt1_Ass2.exe
+D:\TÀI LIỆU HỌC TẬP\LÝ THUYẾT\Fsoft\SVN\trunk\training\12520042@uit.edu.vn\BTNB\Ass01\Ass01_Opt1\Ass02_Opt1_Ass2\obj\Debug\Ass02_Opt1_Ass2.pdb

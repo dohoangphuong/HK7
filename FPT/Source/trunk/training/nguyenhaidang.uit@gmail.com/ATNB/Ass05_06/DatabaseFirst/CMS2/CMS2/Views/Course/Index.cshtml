@@ -1,0 +1,63 @@
+﻿@model IEnumerable<CMS2.Models.Course>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+@using (Html.BeginForm())
+{
+<p>
+    @Html.ActionLink("Create New Course", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CourseId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CourseName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Teacher.TeacherName)
+        </th>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    @Html.HiddenFor(modelItem => item.CourseId)
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CourseId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CourseName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Location)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Teacher.TeacherName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { courseId = item.CourseId }) |
+            @Html.ActionLink("Details", "Details", new { courseId = item.CourseId }) |
+            @Html.ActionLink("Delete", "Delete", new { courseId = item.CourseId })
+        </td>
+        <td>
+            @Html.ActionLink("Add Students", "AddStudents", new { courseId = item.CourseId })
+        </td>
+        <td>
+            @Html.ActionLink("Remove Students", "RemoveStudents", new { courseId = item.CourseId })
+        </td>
+    </tr>
+}
+
+</table>
+}

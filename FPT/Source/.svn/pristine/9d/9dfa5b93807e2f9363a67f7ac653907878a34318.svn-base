@@ -1,0 +1,76 @@
+namespace CSS_G06.Models
+{
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
+
+    [Table("RFOUser")]
+    public partial class RFOUser
+    {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public RFOUser()
+        {
+            Accounts = new HashSet<Account>();
+            Comments = new HashSet<Comment>();
+            ContactAddresses = new HashSet<ContactAddress>();
+            RFOUser1 = new HashSet<RFOUser>();
+            Agreements = new HashSet<Agreement>();
+            PostCodes = new HashSet<PostCode>();
+        }
+
+        [Key]
+        public int UserId { get; set; }
+
+        public int? ManagerId { get; set; }
+
+        [StringLength(50)]
+        public string Title { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        public string FirstName { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        public string LastName { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        public string ExtranetUser { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        public string EmailAddress { get; set; }
+
+        public int UserTypeId { get; set; }
+
+        [StringLength(50)]
+        public string Status { get; set; }
+
+        public int TargetNumberOfRegistrations { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Account> Accounts { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Comment> Comments { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ContactAddress> ContactAddresses { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RFOUser> RFOUser1 { get; set; }
+
+        public virtual RFOUser RFOUser2 { get; set; }
+
+        public virtual UserType UserType { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Agreement> Agreements { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PostCode> PostCodes { get; set; }
+    }
+}

@@ -1,0 +1,67 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using CSS_G06.Models;
+
+namespace CSS_G06.Controllers
+{
+    public class AddAnAgreementController : Controller
+    {
+        public ActionResult SelectCustomer()
+        {
+            var model = new CSSDatabaseModel();
+            IEnumerable<RFONumber> allRFONumber = model.RFONumbers.ToList();
+            List<CustomerResult> allResult = new List<CustomerResult>();
+            foreach (var item in allRFONumber)
+            {
+                try
+                {
+                    CustomerResult cust = new CustomerResult();
+                    cust.RFONumer = item.RFONumber1 + "";
+                    cust.Name = item.RFOName;
+                    cust.PostCode = item.PostCode;
+                    cust.BusinessArea = model.Companies.Single(company => (company.CompanyId == item.CompanyId)).BusinessArea;
+                    cust.CustomerType = model.CustomerTypes.Single(type => (type.CustomerTypeId == item.CustomerTypeId)).CustomerType1;
+                    cust.Region = model.CompanyAddresses.Single(company => (company.CompanyId == item.CompanyId)).City;
+                    allResult.Add(cust);
+                }catch
+                {
+                }
+            }
+            ViewBag.Result = allResult;
+
+            var allCustomerType = model.CustomerTypes.ToList();
+            List<SelectListItem> customerType = new List<SelectListItem>();
+            foreach (var item in allCustomerType)
+            {
+                customerType.Add(new SelectListItem { Value = item.CustomerTypeId+"", Text = item.CustomerType1 });
+            }
+
+            ViewBag.CustomerType = customerType;
+
+
+            return View();
+        }
+
+        // GET: AddAnAgreement
+        [HttpPost]
+        public ActionResult SelectCustomer(CustomerResult model)
+        {
+            ViewBag.Name = model.Name;
+            return View();
+        }
+
+        public ActionResult BasicAgreementDetails()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult BasicAgreementDetails(CustomerResult model)
+        {
+            return View();
+        }
+    }
+}

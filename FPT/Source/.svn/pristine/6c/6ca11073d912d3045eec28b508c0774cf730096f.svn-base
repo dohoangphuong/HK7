@@ -1,0 +1,92 @@
+﻿@model PagedList.IPagedList<CSS.Models.FundingMethod>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Funding Method";
+}
+
+<script>
+    function ShowPopup() {
+        $('#divModal').modal('show');
+    }
+</script>
+
+<div class="content-wrap centre">
+    <h3 class="blue-text">Coporate Sales Solution</h3>
+    <p class="gray-text">Maintain funding methods</p>
+</div>
+
+<p>
+    @Ajax.ActionLink("Add New", "AddFundingMethod", "Maintain", null, 
+        new AjaxOptions
+        {
+            UpdateTargetId = "divModal",
+            InsertionMode = InsertionMode.Replace,
+            OnComplete = "ShowPopup()"
+        })
+</p>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Find by name: @Html.TextBox("SearchString")  
+        <input type="submit" value="Search" /></p>
+}
+
+<table class="table table-striped" id ="listMethod">
+    <thead>
+        <tr class="info">
+            <th>Funding Method</th>
+            <th>Budget Code</th>
+            <th>Cost Centre</th>
+            <th>Template</th>
+            <th>Signed</th>
+            <th>Status</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.FundingMethodName</td>
+                <td>@item.BudgetCode</td>
+                <td>@item.CostCentre</td>
+                <td>
+                    @if (item.ContractTemplateLocation != null)
+                    {
+                        @Html.ActionLink(@item.FileName, "Download", new { file = @item.ContractTemplateLocation, fileName = @item.FileName }, new {@targer = "_blank"})
+                    }
+                </td>
+                <td>@item.SignedContractDefault</td>
+                <td>@item.Status</td>
+                <td>
+                    @Ajax.ActionLink("Edit", "EditFundingMethod", new { id = item.FundingMethodId },
+                            new AjaxOptions
+                            {
+                                UpdateTargetId = "divModal",
+                                InsertionMode = InsertionMode.Replace,
+                                OnComplete = "ShowPopup()"
+                            }) |
+                    @Ajax.ActionLink("Delete", "DeleteFundingMethod", new { id = item.FundingMethodId },
+                            new AjaxOptions
+                            {
+                                UpdateTargetId = "divModal",
+                                InsertionMode = InsertionMode.Replace,
+                                OnComplete = "ShowPopup()"
+                            })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Paging-->
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("FundingMethod", 
+    new { page}), 
+    PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing( new AjaxOptions(){  HttpMethod = "GET", UpdateTargetId = "content"}))
+
+<!-- Placeholder div to replace with modal-->
+<div id="divModal" class="modal fade" role="dialog"></div>

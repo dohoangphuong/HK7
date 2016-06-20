@@ -1,0 +1,26 @@
+﻿@using System.Web.Mvc
+@using GridMvc.Html
+@using ServicesDirectory.Models.DatabaseMapper
+@model IEnumerable<ServicesDirectory.Models.DatabaseMapper.Organization>
+
+<div class="well" style="background:#ffffff">
+    <div class="row">
+        @Html.Grid(Model).Columns(columns =>
+           {
+               columns.Add(o => o.OrganizationName)
+                   .Titled("Organisation Name");
+               columns.Add(o => o.OrganizationShortDescription)
+                   .Titled("Description");
+               columns.Add(o => o.Service_Organization_OrganizationRoleType)
+                   .Titled("Role");
+               columns.Add()
+                   .Encoded(false)
+                   .Sanitized(false)
+                   .SetWidth(30)
+                   .RenderValueAs(d =>
+                    @<b>
+                        @Html.ActionLink("edits roles", "Index")
+                    </b>);
+           }).WithPaging(15).Sortable().Filterable().WithMultipleFilters()
+    </div>
+</div>

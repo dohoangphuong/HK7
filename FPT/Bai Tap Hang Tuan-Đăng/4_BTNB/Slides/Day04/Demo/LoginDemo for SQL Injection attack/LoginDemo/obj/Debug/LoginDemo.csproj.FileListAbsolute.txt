@@ -1,0 +1,42 @@
+D:\Haipt\Mydocuments\Visual Studio 2008\Projects\LoginDemo\LoginDemo\bin\Debug\LoginDemo.exe
+D:\Haipt\Mydocuments\Visual Studio 2008\Projects\LoginDemo\LoginDemo\bin\Debug\LoginDemo.pdb
+D:\Haipt\Mydocuments\Visual Studio 2008\Projects\LoginDemo\LoginDemo\obj\Debug\ResolveAssemblyReference.cache
+D:\Haipt\Mydocuments\Visual Studio 2008\Projects\LoginDemo\LoginDemo\obj\Debug\LoginDemo.FrmLogin.resources
+D:\Haipt\Mydocuments\Visual Studio 2008\Projects\LoginDemo\LoginDemo\obj\Debug\LoginDemo.FrmMain.resources
+D:\Haipt\Mydocuments\Visual Studio 2008\Projects\LoginDemo\LoginDemo\obj\Debug\LoginDemo.Properties.Resources.resources
+D:\Haipt\Mydocuments\Visual Studio 2008\Projects\LoginDemo\LoginDemo\obj\Debug\LoginDemo.csproj.GenerateResource.Cache
+D:\Haipt\Mydocuments\Visual Studio 2008\Projects\LoginDemo\LoginDemo\obj\Debug\LoginDemo.exe
+D:\Haipt\Mydocuments\Visual Studio 2008\Projects\LoginDemo\LoginDemo\obj\Debug\LoginDemo.pdb
+E:\Fsoft Training documents\.NET Stream v 1.1\Materials\Demo\LoginDemo\LoginDemo\obj\Debug\LoginDemo.exe
+E:\Fsoft Training documents\.NET Stream v 1.1\Materials\Demo\LoginDemo\LoginDemo\obj\Debug\LoginDemo.pdb
+E:\Fsoft Training documents\NET STREAM  v 1.1\Day 07_ADO.NET Basics\Demo\LoginDemo for SQL Injection attack\LoginDemo\obj\Debug\LoginDemo.exe
+E:\Fsoft Training documents\NET STREAM  v 1.1\Day 07_ADO.NET Basics\Demo\LoginDemo for SQL Injection attack\LoginDemo\obj\Debug\LoginDemo.pdb
+E:\Fsoft Training documents\NET STREAM  v 1.1\Day 07_ADO.NET Basics\Demo\LoginDemo for SQL Injection attack\LoginDemo\bin\Debug\LoginDemo.exe
+E:\Fsoft Training documents\NET STREAM  v 1.1\Day 07_ADO.NET Basics\Demo\LoginDemo for SQL Injection attack\LoginDemo\bin\Debug\LoginDemo.pdb
+E:\Fsoft Training documents\NET STREAM  v 1.1\Day 07_ADO.NET Basics\Demo\LoginDemo for SQL Injection attack\LoginDemo\obj\Debug\ResolveAssemblyReference.cache
+E:\Fsoft Training documents\NET STREAM  v 1.1\Day 07_ADO.NET Basics\Demo\LoginDemo for SQL Injection attack\LoginDemo\obj\Debug\LoginDemo.FrmLogin.resources
+E:\Fsoft Training documents\NET STREAM  v 1.1\Day 07_ADO.NET Basics\Demo\LoginDemo for SQL Injection attack\LoginDemo\obj\Debug\LoginDemo.FrmMain.resources
+E:\Fsoft Training documents\NET STREAM  v 1.1\Day 07_ADO.NET Basics\Demo\LoginDemo for SQL Injection attack\LoginDemo\obj\Debug\LoginDemo.Properties.Resources.resources
+E:\Fsoft Training documents\NET STREAM  v 1.1\Day 07_ADO.NET Basics\Demo\LoginDemo for SQL Injection attack\LoginDemo\obj\Debug\LoginDemo.csproj.GenerateResource.Cache
+E:\Fsoft Training documents\NET STREAM  v 1.1\Day 09_ASP.NET &ADO.NET Part I\TOPIC 2 ADO.NET\Demo\LoginDemo for SQL Injection attack\LoginDemo\obj\Debug\LoginDemo.exe
+E:\Fsoft Training documents\NET STREAM  v 1.1\Day 09_ASP.NET &ADO.NET Part I\TOPIC 2 ADO.NET\Demo\LoginDemo for SQL Injection attack\LoginDemo\obj\Debug\LoginDemo.pdb
+E:\Fsoft Training documents\NET STREAM  v 1.1\Day 09_ASP.NET &ADO.NET Part I\TOPIC 2 ADO.NET\Demo\LoginDemo for SQL Injection attack\LoginDemo\bin\Debug\LoginDemo.exe
+E:\Fsoft Training documents\NET STREAM  v 1.1\Day 09_ASP.NET &ADO.NET Part I\TOPIC 2 ADO.NET\Demo\LoginDemo for SQL Injection attack\LoginDemo\bin\Debug\LoginDemo.pdb
+E:\Fsoft Training documents\NET STREAM  v 1.1\Day 09_ASP.NET &ADO.NET Part I\TOPIC 2 ADO.NET\Demo\LoginDemo for SQL Injection attack\LoginDemo\obj\Debug\ResolveAssemblyReference.cache
+E:\Fsoft Training documents\NET STREAM  v 1.1\Day 09_ASP.NET &ADO.NET Part I\TOPIC 2 ADO.NET\Demo\LoginDemo for SQL Injection attack\LoginDemo\obj\Debug\LoginDemo.FrmLogin.resources
+E:\Fsoft Training documents\NET STREAM  v 1.1\Day 09_ASP.NET &ADO.NET Part I\TOPIC 2 ADO.NET\Demo\LoginDemo for SQL Injection attack\LoginDemo\obj\Debug\LoginDemo.FrmMain.resources
+E:\Fsoft Training documents\NET STREAM  v 1.1\Day 09_ASP.NET &ADO.NET Part I\TOPIC 2 ADO.NET\Demo\LoginDemo for SQL Injection attack\LoginDemo\obj\Debug\LoginDemo.Properties.Resources.resources
+E:\Fsoft Training documents\NET STREAM  v 1.1\Day 09_ASP.NET &ADO.NET Part I\TOPIC 2 ADO.NET\Demo\LoginDemo for SQL Injection attack\LoginDemo\obj\Debug\LoginDemo.csproj.GenerateResource.Cache
+E:\Fsoft Training documents\NET STREAM  v 1.1\Day 09_ASP.NET &ADO.NET Part I\TOPIC 2 ADO.NET\Demo\LoginDemo for SQL Injection attack\LoginDemo\bin\Debug\nunit.framework.dll
+E:\Fsoft Training documents\NET STREAM  v 1.1\Day 09_ASP.NET &ADO.NET Part I\TOPIC 2 ADO.NET\Demo\LoginDemo for SQL Injection attack\LoginDemo\bin\Debug\nunit.framework.xml
+E:\Fsoft Training documents\NET STREAM v3\Day 09_ADO.NET Part I\Demo\LoginDemo for SQL Injection attack\LoginDemo\obj\Debug\LoginDemo.exe
+E:\Fsoft Training documents\NET STREAM v3\Day 09_ADO.NET Part I\Demo\LoginDemo for SQL Injection attack\LoginDemo\obj\Debug\LoginDemo.pdb
+E:\Fsoft Training documents\NET STREAM v3\Day 09_ADO.NET Part I\Demo\LoginDemo for SQL Injection attack\LoginDemo\bin\Debug\LoginDemo.exe
+E:\Fsoft Training documents\NET STREAM v3\Day 09_ADO.NET Part I\Demo\LoginDemo for SQL Injection attack\LoginDemo\bin\Debug\LoginDemo.pdb
+E:\Fsoft Training documents\NET STREAM v3\Day 09_ADO.NET Part I\Demo\LoginDemo for SQL Injection attack\LoginDemo\bin\Debug\nunit.framework.dll
+E:\Fsoft Training documents\NET STREAM v3\Day 09_ADO.NET Part I\Demo\LoginDemo for SQL Injection attack\LoginDemo\bin\Debug\nunit.framework.xml
+E:\Fsoft Training documents\NET STREAM v3\Day 09_ADO.NET Part I\Demo\LoginDemo for SQL Injection attack\LoginDemo\obj\Debug\ResolveAssemblyReference.cache
+E:\Fsoft Training documents\NET STREAM v3\Day 09_ADO.NET Part I\Demo\LoginDemo for SQL Injection attack\LoginDemo\obj\Debug\LoginDemo.FrmLogin.resources
+E:\Fsoft Training documents\NET STREAM v3\Day 09_ADO.NET Part I\Demo\LoginDemo for SQL Injection attack\LoginDemo\obj\Debug\LoginDemo.FrmMain.resources
+E:\Fsoft Training documents\NET STREAM v3\Day 09_ADO.NET Part I\Demo\LoginDemo for SQL Injection attack\LoginDemo\obj\Debug\LoginDemo.Properties.Resources.resources
+E:\Fsoft Training documents\NET STREAM v3\Day 09_ADO.NET Part I\Demo\LoginDemo for SQL Injection attack\LoginDemo\obj\Debug\LoginDemo.csproj.GenerateResource.Cache

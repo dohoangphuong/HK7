@@ -1,0 +1,17 @@
+D:\Template\SDApplication\SD.Entities\bin\Debug\SD.Entities.dll
+D:\Template\SDApplication\SD.Entities\bin\Debug\SD.Entities.pdb
+D:\Template\SDApplication\SD.Entities\obj\Debug\ResolveAssemblyReference.cache
+D:\Template\SDApplication\SD.Entities\obj\Debug\SD.Entities.dll
+D:\Template\SDApplication\SD.Entities\obj\Debug\SD.Entities.pdb
+D:\NtierCodeSkeleton\SDApplication\SD.Entities\bin\Debug\SD.Entities.dll
+D:\NtierCodeSkeleton\SDApplication\SD.Entities\bin\Debug\SD.Entities.pdb
+D:\NtierCodeSkeleton\SDApplication\SD.Entities\obj\Debug\ResolveAssemblyReference.cache
+D:\NtierCodeSkeleton\SDApplication\SD.Entities\obj\Debug\SD.Entities.dll
+D:\NtierCodeSkeleton\SDApplication\SD.Entities\obj\Debug\SD.Entities.pdb
+D:\NtierCodeSkeleton\SDApplication\SD.Entities\bin\Debug\SD.Entities.dll.config
+E:\GST\5_ATNB\Slides\Day03_ASP.NET Part 1\NtierCodeSkeleton\SDApplication\SD.Entities\bin\Debug\SD.Entities.dll.config
+E:\GST\5_ATNB\Slides\Day03_ASP.NET Part 1\NtierCodeSkeleton\SDApplication\SD.Entities\bin\Debug\SD.Entities.dll
+E:\GST\5_ATNB\Slides\Day03_ASP.NET Part 1\NtierCodeSkeleton\SDApplication\SD.Entities\bin\Debug\SD.Entities.pdb
+E:\GST\5_ATNB\Slides\Day03_ASP.NET Part 1\NtierCodeSkeleton\SDApplication\SD.Entities\obj\Debug\SD.Entities.csprojResolveAssemblyReference.cache
+E:\GST\5_ATNB\Slides\Day03_ASP.NET Part 1\NtierCodeSkeleton\SDApplication\SD.Entities\obj\Debug\SD.Entities.dll
+E:\GST\5_ATNB\Slides\Day03_ASP.NET Part 1\NtierCodeSkeleton\SDApplication\SD.Entities\obj\Debug\SD.Entities.pdb

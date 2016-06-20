@@ -1,0 +1,12 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@if(ViewBag.errorMessage != null)
+{
+    <div class="alert-block">@ViewBag.errorMessage</div>
+}
+
+@if (Request.IsAuthenticated)
+{
+    Html.RenderAction("ParticialStatics", "Agreement");
+}

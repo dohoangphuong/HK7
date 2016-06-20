@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Big for loop</title>
+  <script>
+      function bigLoop(){
+         for (var i = 0; i <= 10000000000; i += 1){
+            var j = i;
+         }
+         alert("Completed " + i + "iterations" );
+      }
+      function sayHello(){
+         alert("Hello sir...." );
+      }
+  </script>
+</head>
+<body onload="bigLoop();">
+   <input type="button" onclick="sayHello();" value="Say Hello" />
+</body>
+</html>

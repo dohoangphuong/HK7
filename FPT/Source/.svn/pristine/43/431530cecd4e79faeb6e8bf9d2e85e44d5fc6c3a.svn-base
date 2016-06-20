@@ -1,0 +1,168 @@
+﻿@using CSS.Models
+@model CSS.ViewModels.SearchAgreementModel
+ 
+@{
+    ViewBag.Title = "SearchAgreement";
+}
+
+
+  <script type="text/javascript">
+      $(document).ready(function () {
+          $("#viewAgreement").click(function (e) {
+              var selected = $("#results input[type='radio']:checked");
+              if (selected.length != 1) {
+                  alert("Please select 1 agreement.");
+                  $("form").submit(function () {
+                      return false;
+                  })
+              }
+              else {
+                  $.ajax({
+                      error: function () { console.log('error!!'); }
+                  });
+                  true;
+              }
+          })
+      });
+</script>
+
+    <script>
+        function checkDate(StartDate, EndDate) {
+            var _startDate = document.getElementById(StartDate).value;
+            var _endDate = document.getElementById(EndDate).value;
+
+            if (Date.parse(_startDate) > Date.parse(_endDate)) {
+                alert("Please enter the end date larger the start and try again!");
+                return false;
+            }
+            return true;
+        }
+    </script>
+
+
+    <div class="searchagreementstyle">
+            <div class="titleRejectAgreement">
+                <h1 style="color:blue">Corporate Sales Solution</h1>
+                <h2 style="color:gray">Search Agreements</h2>
+             </div>
+                @using (Ajax.BeginForm("SearchAgreementResults", "Agreement"
+                    , new AjaxOptions
+                    {
+                        HttpMethod = "POST",
+                        OnSuccess = "OnSuccess",
+                        UpdateTargetId = "results"
+                    }, new { @style = "height: 100%"}
+                    ))
+                {
+                       @Html.AntiForgeryToken()
+                       @Html.ValidationSummary(true)
+                       @Html.HiddenFor(model => model.VariantNumber)
+                       @Html.HiddenFor(model => model.IsSelected)
+               
+
+                    <div class="form-horizontal" style="height:30%" >
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.CustomerType.CustomerType1, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                 @Html.DropDownListFor(model => model.CustomerType.CustomerTypeId, new SelectList(ViewBag.ListCustomerType, "CustomerTypeId", "CustomerType1"), new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                       <div class="form-group">
+                           @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                          <div class="col-md-10">
+                                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                          </div>
+                       </div>
+
+                      <div class="form-group">
+                          @Html.LabelFor(model => model.RFONumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                          <div class="col-md-10">
+                            @Html.EditorFor(model => model.RFONumber, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.RFONumber, "", new { @class = "text-danger" })
+                          </div>
+                      </div>
+                       
+                       <div class="form-group">
+                           @Html.LabelFor(model => model.PostCode, htmlAttributes: new { @class = "control-label col-md-2" })
+                           <div class="col-md-10">
+                             @Html.EditorFor(model => model.PostCode, new { htmlAttributes = new { @class = "form-control" } })
+                             @Html.ValidationMessageFor(model => model.PostCode, "", new { @class = "text-danger" })
+                           </div>
+                       </div>
+                        <br />
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.CSM, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                           @Html.DropDownListFor(model => model.CSM, (IEnumerable<SelectListItem>)ViewBag.ListCSM, "All", new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.AgreementStatus.AgreementStatus, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                         @Html.DropDownListFor(model => model.AgreementStatus.StatusId, new SelectList(ViewBag.ListStatus, "StatusId", "AgreementStatus"), new { htmlAttributes = new { @class = "form-control" } })
+                         
+                        </div>
+                    </div>
+                     
+                   <div class="form-group">
+                       @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                        <div id="stardatesearch" class="col-md-10" >
+                           @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control", id = "StartDate", name = "StartDate" } })
+                            <script>
+                                $(function () {
+                                    $("#StartDate").datepicker();
+                                });
+                            </script>    
+                            @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+                        </div>
+                  </div>
+                    
+                  <div class="form-group">
+                      @Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div id="enddatesearch" class="col-md-10">
+                              @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control", id = "EndDate", name = "EndDate" } })
+                            <script>
+
+                                $(function () {
+                                    $("#EndDate").datepicker();
+                                });
+                            </script>
+                            @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
+                       </div>
+                    </div>
+
+                   <div class="form-group">
+                         @Html.LabelFor(model => model.AgreementNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                         <div class="col-md-10" >
+                             @Html.EditorFor(model => model.AgreementNumber, new { htmlAttributes = new { @class = "form-control" } })
+                             @Html.ValidationMessageFor(model => model.AgreementNumber, "", new { @class = "text-danger" })
+                         </div>
+                   </div>
+                        <br />
+                 <div class="form-group">
+                      <div class="col-md-offset-2 col-md-10">
+                          <input type="submit" value="Search" id="Search" class="btn btn-default" onclick="return checkDate('StartDate', 'EndDate')" />
+                    </div>
+                 </div>
+           </div>
+                }
+        @using (Html.BeginForm())
+        {
+                
+            <div class="bottomMenuReject" > 
+               
+                @* @Html.ActionLink("View Audit Agreement", "#","", new{ @class = "btn btn-default" } )*@
+                
+                 @Html.ActionLink("Copy Agreement", "CopyAgreement", "", new { @class = "btn btn-default" })
+                
+                 <button type="submit" id ="viewAgreement" name="choice" value ="3" class="btn btn-default">View Agreement</button>
+            </div>
+            
+             <div id="results" class="results"> </div>
+                
+            
+        }
+    </div>

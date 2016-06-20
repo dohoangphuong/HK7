@@ -1,0 +1,128 @@
+﻿@model CSS_G06.Models.CustomerResult
+
+@{
+    ViewBag.Title = "SelectCustomer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style type="text/css">
+        #SearchArea{
+            width:100%;
+            height:auto;
+            border:solid 1px blue;
+            padding:1px;
+        }
+        #ResultArea{
+            width:100%;
+            height:auto;
+            border:solid 1px blue;
+            padding:1px;
+        }
+        .labelArea{
+            width:100px;
+            height:auto;
+            font-size:12px;
+            font-weight:bold;
+        }
+        .inputAreaShort{
+            width:150px;
+            height:auto;
+            font-size:12px;
+            font-weight:bold;
+        }
+        .inputAreaLong{
+            width:250px;
+            height:auto;
+            font-size:12px;
+            font-weight:bold;
+        }
+        td{
+            padding:5px;
+        }
+        #SelectCustomerArea{
+            width:800px;
+            height:auto;
+        }
+</style>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#submitButton").click(function () {
+            var selected = $("#ResultArea input[type='radio']:checked");
+            var rfoNumber = selected.val();
+            var agreementNumber = '@ViewBag.AgreementNumber';
+            if(parseInt(agreementNumber) < 0)
+                agreementNumber = -1;
+            if(parseInt(rfoNumber)>0)
+            {
+                window.location.href = "/AddAnAgreement/BasicAgreementDetails?agreementNumber="+agreementNumber+"&RFONumber="+parseInt(rfoNumber);
+            }
+        });
+    });
+</script>
+
+
+<h2>@ViewBag.AgreementNumber</h2>
+
+<div id="SelectCustomerArea">
+
+    <div id="SearchArea">
+          
+        @using (Ajax.BeginForm("SelectCustomer", "AddAnAgreement",
+            new AjaxOptions { UpdateTargetId = "ResultArea", HttpMethod = "POST", OnSuccess = "onCreateEvolucionesGetSuccess" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+    
+            <table>
+                <tr>
+                    <td class="labelArea">RFO Number</td>
+                    <td class="inputAreaShort">@Html.TextBoxFor(model => model.RFONumer, new { maxlength = 10 })</td>
+                </tr>
+                <tr>
+                    <td class="labelArea">Customer Type</td>
+                    <td class="inputAreaLong">
+                        @Html.DropDownListFor(model => model.CustomerType, new SelectList(ViewBag.CustomerType, "CustomerTypeId", "CustomerType1"),"All", new { style = "width: 150px;" })
+                    </td>
+                </tr>
+                <tr>
+                    <td class="labelArea">Name</td>
+                    <td class="inputAreaLong">@Html.TextBoxFor(model => model.Name, new { maxlength = 50, style = "width: 200px;" })</td>
+                </tr>
+                <tr>
+                    <td class="labelArea">Post Code</td>
+                    <td class="inputAreaShort">@Html.TextBoxFor(model => model.PostCode, new { maxlength = 10 })</td>
+                </tr>
+                <tr>
+                    <td class="labelArea">Business Area</td>
+                    <td class="inputAreaShort">
+                        @Html.DropDownListFor(model => model.BusinessArea, new SelectList(ViewBag.BusinessArea, "Value", "Text"),"All", new { style = "width: 150px;" })
+                    </td>
+                </tr>
+                <tr>
+                    <td class="labelArea">Region</td>
+                    <td class="inputAreaShort">
+                        @Html.DropDownListFor(model => model.Region, new SelectList(ViewBag.Region, "RegionId", "RegionName"),"All", new { style = "width: 150px;" })
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class="inputAreaShort" align="left">
+                        <input type="submit" value="search"/>
+                       @* @Ajax.ActionLink("AddAnAgreement", "SelectCustomer", "AddAnAgreement", new { resultModel = Model.CustomerType }, new AjaxOptions { HttpMethod = "POST", OnSuccess = "onCreateEvolucionesGetSuccess", UpdateTargetId = "ResultArea" }, new { @class = "btn btn-default" })*@
+                    </td>
+                </tr>
+            </table>
+           
+}
+    </div><!-- End #SearchArea -->
+
+    <div id="ResultArea">
+
+    </div><!-- End #ResultArea -->
+
+    <div id="SubmitArea" align="right">
+        &raquo;<input id="submitButton" type="button" value="create agreement" style="border:none;background-color:none" />
+    </div><!-- End #SubmitArea -->
+
+</div><!-- End #SelectCustomerArea -->

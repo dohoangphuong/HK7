@@ -1,0 +1,103 @@
+﻿
+@model PagedList.IPagedList<WebsiteQuanLyBanHang.Models.SalesMan>
+@using PagedList.Mvc;
+@using PagedList;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "SalesMan";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- modal placeholder-->
+<div id='myModal' class='modal fade in'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id='myModalContent'></div>
+        </div>
+    </div>
+</div>
+
+
+@using (Html.BeginForm("Index", "SalesMan", FormMethod.Get))
+{
+
+    <p>
+        @Html.Label("Tên:", new { htmlAttributes = new { @class = "control - label col - md - 2" } })
+        @Html.Editor("searchName", "", new { htmlAttributes = new { @class = "form-control" } })
+
+        @Html.Label("Trạng thái:", new { htmlAttributes = new { @class = "control - label col - md - 2" } })
+        @Html.Editor("searchStatus", "", new { htmlAttributes = new { @class = "form-control" } })
+        <input type="submit" value="Search" class="btn btn-default" />
+
+
+    </p>
+}
+
+<div class="panel panel-primary">
+    <div class="panel-heading">SalesMan</div>
+     <div class="panel-body ">
+        @Html.ActionLink("Add", "Create", "SalesMan", null, new { data_modal = "", id = "btnCreate", @class = "btn btn-small btn-primary pull-right" })
+    </div>
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th>
+                @Html.DisplayName("Mã")
+            </th>
+            <th>
+                @Html.DisplayName("Tên")
+            </th>
+            <th>
+                @Html.DisplayName("Địa chỉ")
+            </th>
+            <th>
+                @Html.DisplayName("Hạn mức")
+            </th>
+            <th>
+                @Html.DisplayName("Trạng thái")
+            </th>
+            <th>
+                @Html.DisplayName("Mô tả")
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SalesManID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SalesManName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OverAmt)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>                  
+                    @Html.ActionLink("Edit", "Edit", new { id = item.SalesManID }, new { data_modal = "" })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.SalesManID }, new { data_modal = "" })
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+        @Scripts.Render("~/bundles/modalform")
+    }

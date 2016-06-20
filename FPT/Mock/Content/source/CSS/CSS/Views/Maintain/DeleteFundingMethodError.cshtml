@@ -1,0 +1,31 @@
+﻿@model CSS.Models.FundingMethod
+
+@{
+    ViewBag.Title = "Delete Error";
+}
+<!-- Modal -->
+
+<div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Error</h4>
+        </div>
+        <div class="modal-body">
+            <h4>There are @Model.Agreements.Count agreements using this funding method</h4>
+            <h4>Please correct these agreements before delete this funding method</h4>
+            @foreach (CSS.Models.Agreement item in Model.Agreements)
+            {
+                <div style ="display:inline">(@item.AgreementNumber/@item.VariantNumber);</div>
+            }
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+        </div>
+    </div>
+</div>
+
+

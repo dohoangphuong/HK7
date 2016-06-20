@@ -1,0 +1,23 @@
+c:\Users\Khoa\documents\visual studio 2013\Projects\Bank\BankTest\obj\Debug\BankTest.csprojResolveAssemblyReference.cache
+c:\Users\Khoa\documents\visual studio 2013\Projects\Bank\BankTest\bin\Debug\BankTest.dll
+c:\Users\Khoa\documents\visual studio 2013\Projects\Bank\BankTest\bin\Debug\BankTest.pdb
+c:\Users\Khoa\documents\visual studio 2013\Projects\Bank\BankTest\bin\Debug\Bank.dll
+c:\Users\Khoa\documents\visual studio 2013\Projects\Bank\BankTest\bin\Debug\Bank.pdb
+c:\Users\Khoa\documents\visual studio 2013\Projects\Bank\BankTest\obj\Debug\BankTest.dll
+c:\Users\Khoa\documents\visual studio 2013\Projects\Bank\BankTest\obj\Debug\BankTest.pdb
+C:\Users\khoadlb\Downloads\Bank\BankTest\obj\Debug\BankTest.csprojResolveAssemblyReference.cache
+C:\Users\khoadlb\Downloads\Bank\BankTest\obj\Debug\BankTest.dll
+C:\Users\khoadlb\Downloads\Bank\BankTest\bin\Debug\BankTest.dll
+C:\Users\khoadlb\Downloads\Bank\BankTest\bin\Debug\BankTest.pdb
+C:\Users\khoadlb\Downloads\Bank\BankTest\bin\Debug\Bank.dll
+C:\Users\khoadlb\Downloads\Bank\BankTest\bin\Debug\Bank.pdb
+C:\Users\khoadlb\Downloads\Bank\BankTest\obj\Debug\BankTest.pdb
+C:\Users\khoadlb\Downloads\Bank\BankTest\bin\Debug\XMLFile1.xml
+E:\GST\5_ATNB\Slides\Day05_Demo\Day05_Bank_Demo\BankTest\bin\Debug\XMLFile1.xml
+E:\GST\5_ATNB\Slides\Day05_Demo\Day05_Bank_Demo\BankTest\bin\Debug\BankTest.dll
+E:\GST\5_ATNB\Slides\Day05_Demo\Day05_Bank_Demo\BankTest\bin\Debug\BankTest.pdb
+E:\GST\5_ATNB\Slides\Day05_Demo\Day05_Bank_Demo\BankTest\bin\Debug\Bank.dll
+E:\GST\5_ATNB\Slides\Day05_Demo\Day05_Bank_Demo\BankTest\bin\Debug\Bank.pdb
+E:\GST\5_ATNB\Slides\Day05_Demo\Day05_Bank_Demo\BankTest\obj\Debug\BankTest.csprojResolveAssemblyReference.cache
+E:\GST\5_ATNB\Slides\Day05_Demo\Day05_Bank_Demo\BankTest\obj\Debug\BankTest.dll
+E:\GST\5_ATNB\Slides\Day05_Demo\Day05_Bank_Demo\BankTest\obj\Debug\BankTest.pdb

@@ -1,0 +1,28 @@
+namespace CSS_G06.Models
+{
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
+
+    [Table("AgendaPayment")]
+    public partial class AgendaPayment
+    {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public AgendaPayment()
+        {
+            Agreements = new HashSet<Agreement>();
+        }
+
+        public int AgendaPaymentId { get; set; }
+
+        [Column("AgendaPayment")]
+        [Required]
+        [StringLength(100)]
+        public string AgendaPayment1 { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Agreement> Agreements { get; set; }
+    }
+}

@@ -1,0 +1,29 @@
+﻿@model IEnumerable<CSS.ViewModels.DealerSelectionModel>
+
+@{
+    Layout = null;
+}
+<p style="font-weight:bold">Search Dealer List</p>
+<table id="tbSearchDealerResult" class="table table-striped">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Code)</th>
+            <th>@Html.DisplayNameFor(model => model.DealerName)</th>
+            <th>@Html.DisplayNameFor(model => model.Town)</th>
+            <th>@Html.DisplayNameFor(model => model.County)</th>
+            <th>@Html.DisplayNameFor(model => model.IsSelected)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr id="@item.Code">
+                <td>@Html.DisplayFor(modelItem => item.Code)</td>
+                <td>@Html.DisplayFor(modelItem => item.DealerName)</td>
+                <td>@Html.DisplayFor(modelItem => item.Town)</td>
+                <td>@Html.DisplayFor(modelItem => item.County)</td>
+                <td>@Html.CheckBoxFor(modelItem => item.IsSelected, new { @value = item.Code })</td>
+            </tr>
+        }
+    </tbody>
+</table>

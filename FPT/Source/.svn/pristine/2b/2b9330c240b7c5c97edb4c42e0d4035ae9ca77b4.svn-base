@@ -1,0 +1,26 @@
+﻿@model CSS_G06.Models.CustomerResult
+@{
+    ViewBag.Title = "SearchCustomerResult";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div>
+    @{
+        WebGrid grid = new WebGrid(source: ViewBag.Result, canSort: false);
+    }
+
+    @grid.GetHtml(
+        tableStyle: "gridtable",
+        columns: grid.Columns(
+            grid.Column("RFONumer", "RFO Numer"),
+            grid.Column("Name", "RFO Name"),
+            grid.Column("CustomerType", "Customer Type"),
+            grid.Column("PostCode", "Post Code"),
+            grid.Column("BusinessArea", "Business Area"),
+            grid.Column("Region", "Region"),
+            grid.Column(
+                (format: @<text> <input type="radio" value="aa" name="ids" id="ckbCustomer" /> </text>), header: "Select")
+                 )
+                 )
+</div>
+
+

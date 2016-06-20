@@ -1,0 +1,221 @@
+﻿@model ServiceDirectory.Models.tblTeam
+
+<style>
+    .table th, .table td {
+        border-top: none !important;
+        padding:5px;
+    }
+</style>
+
+<table class="table">
+    <tr>
+        <td width="20%;">
+            <label class="btn-block"> Team Name</label>
+            <input type="hidden" name="TeamID" value="@Model.TeamID"/>           
+        </td>
+        <td width="30%;">
+            @Html.TextBoxFor(model => model.TeamName, new { @class = "btn-block"})
+        </td>
+        <td width="20%;">
+            <strong>Type of Business</strong>
+        </td>
+        <td width="30%;">
+            @if(@Model.BusinessID != null)
+            {
+                <input type="text" id="team_business_type" disabled="disabled" value="@Model.tblBusinessType.BusinessName" />
+            }
+            else
+            {
+                <input type="text" id="team_business_type" disabled="disabled" value="" />
+            }
+            
+            <a href="#">  Lookup</a>
+            <input type="hidden" name="BusinessID" value="@Model.BusinessID"/>
+        </td>
+    </tr>
+
+    <tr>
+        <td rowspan="2">
+            <strong>Team Short Description</strong>
+        </td>
+        <td rowspan="2">
+            @Html.TextAreaFor(model => model.ShortDescription, new { @class = "btn-block"})
+        </td>
+        <td>
+            <strong>SIC Code</strong>
+        </td>
+        <td>
+            @if(@Model.BusinessID != null)
+            {
+                <input type="text" readonly="readonly" name="siccode" disabled="disabled" value="@Model.tblBusinessType.SICCode"/>
+            }
+            else
+            {
+                <input type="text" readonly="readonly" name="siccode" disabled="disabled" value=""/>
+            }
+            
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>
+            <strong>Lead Contact</strong>
+        </td>
+        <td>
+            @if(@Model.ContactID == null)
+            {
+                <input type="text" readonly="readonly" disabled="disabled" value="" />
+            }
+            else
+            {
+                <input type="text" readonly="readonly" disabled="disabled" value="@Model.tblContact.FirstName @Model.tblContact.Surname" />
+            }
+            
+            <a href="#">  Lookup</a>
+            <input type="hidden" name="ContactID" value="@Model.ContactID" />
+        </td>
+        <td rowspan="2">
+            <strong>Team Full Description</strong>
+        </td>
+        <td rowspan="2">
+            @Html.TextAreaFor(model => model.FullDescription, new { @class = "btn-block" })
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <strong>Copy Address from</strong>
+        </td>
+        <td>
+            <input type="radio" name="copy_address" id="team_organisation"/> Orgnisation
+            <input type="radio" name="copy_address" id="team_parent" /> Parent
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <strong>Address Line 1</strong>
+        </td>
+        <td>
+            @Html.TextBoxFor(model => model.AddressLine1, new { @class = "btn-block" })
+        </td>
+        <td>
+            <strong>Phone Number</strong>
+        </td>
+        <td>
+            @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "btn-block" })
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <strong>Address Line 2</strong>
+        </td>
+        <td>
+            @Html.TextBoxFor(model => model.AddressLine2, new { @class = "btn-block" })
+        </td>
+        <td>
+            <strong>Fax</strong>
+        </td>
+        <td>
+            @Html.TextBoxFor(model => model.Fax, new { @class = "btn-block" })
+        </td>
+    </tr>
+
+    <tr>
+        <td><strong>Address Line 3</strong></td>
+        <td>
+            @Html.TextBoxFor(model => model.AddressLine3, new { @class = "btn-block" })
+        </td>
+        <td><strong>Email</strong></td>
+        <td>
+            @Html.TextBoxFor(model => model.Email, new { @class = "btn-block" })
+        </td>
+    </tr>
+
+    <tr>
+        <td><strong>Postcode</strong></td>
+        <td>
+            @if(@Model.AddressID != null)
+            {
+                <input type="text" readonly="readonly" disabled="disabled" value="@Model.tblAddress.PostCode" />
+            }
+            else
+            {
+                <input type="text" readonly="readonly" disabled="disabled" value="" />
+            }
+            
+            <a href="#">  Lookup</a>
+            <input type="hidden" name="AddressID" value="@Model.AddressID" />
+        </td>
+        <td><strong>Web Address</strong></td>
+        <td>
+            @Html.TextBoxFor(model => model.WebAddress, new { @class = "btn-block" })
+        </td>
+    </tr>
+
+    <tr>
+        <td><strong>City/Town</strong></td>
+        <td>
+            @if (@Model.AddressID != null)
+            {
+                <input type="text" readonly="readonly" disabled="disabled" value="@Model.tblAddress.tblTown.TownName" />
+            }
+            else
+            {
+                <input type="text" readonly="readonly" disabled="disabled" value="" />
+            }
+        </td>
+    </tr>
+
+    <tr>
+        <td><strong>County</strong></td>
+        <td>
+            @if (@Model.AddressID != null)
+            {
+                <input type="text" readonly="readonly" disabled="disabled" value="@Model.tblAddress.tblTown.tblCounty.CountyName" />
+            }
+            else
+            {
+                <input type="text" readonly="readonly" disabled="disabled" value="" />
+            }
+            
+        </td>
+    </tr>
+
+    <tr>
+        <td><strong>Nation/Country</strong></td>
+        <td>
+            @if (@Model.AddressID != null)
+            {
+                <input type="text" readonly="readonly" disabled="disabled" value="@Model.tblAddress.tblTown.tblCounty.tblCountry.CountryName" />
+            }
+            else
+            {
+                <input type="text" readonly="readonly" disabled="disabled" value="" />
+            }
+        </td>
+    </tr>
+</table>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("input[name=copy_address]:radio").change(function () {
+
+            // get id of tag
+            var id = $(this).attr('id');
+            if (id == 'team_organisation') {
+                $('#AddressLine1').val('@ViewBag.OrgAddressLine1');
+                $('#AddressLine2').val('@ViewBag.OrgAddressLine2');
+                $('#AddressLine3').val('@ViewBag.OrgAddressLine3');
+            }
+            else
+            {
+                $('#AddressLine1').val('@ViewBag.DeparAddressLine1');
+                $('#AddressLine2').val('@ViewBag.DeparAddressLine2');
+                $('#AddressLine3').val('@ViewBag.DeparAddressLine3');
+            }
+        })
+    })
+
+</script>

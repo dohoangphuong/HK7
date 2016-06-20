@@ -1,0 +1,11 @@
+﻿a.linkItem{
+    text-decoration: none; 
+    color: #07c;
+}
+
+a.linkItem:hover {
+    color: red; 
+    border: 2px;
+    border-color: #33f1e5;
+    text-decoration: underline;
+}

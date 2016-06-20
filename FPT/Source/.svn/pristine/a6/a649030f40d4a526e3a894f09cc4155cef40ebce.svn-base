@@ -1,0 +1,45 @@
+﻿@model IEnumerable<CSS.Models.Banding>
+
+@{
+    Layout = null;
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr class="info">
+            <th>Banding Value From</th>
+            <th>Banding Value To</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            if (@Model != null)
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Min</td>
+                        <td>@item.Max</td>
+                        <td>
+                            @Ajax.ActionLink("Edit", "EditBanding", new { bandingId = item.BandingId },
+                                new AjaxOptions
+                                {
+                                    UpdateTargetId = "divPopup",
+                                    InsertionMode = InsertionMode.Replace,
+                                    OnComplete = "ShowPopup()"
+                                }) |
+                            @Ajax.ActionLink("Delete", "DeleteBanding", new { bandingId = item.BandingId },
+                                new AjaxOptions
+                                {
+                                    UpdateTargetId = "divPopup",
+                                    InsertionMode = InsertionMode.Replace,
+                                    OnComplete = "ShowPopup()"
+                                })
+                        </td>
+                    </tr>
+                }
+            }
+        }
+    </tbody>
+</table>

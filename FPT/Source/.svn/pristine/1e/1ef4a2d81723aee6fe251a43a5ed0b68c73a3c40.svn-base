@@ -1,0 +1,80 @@
+﻿@model List<CSS_G06.Models.AgreementByStatus>
+
+@{
+    ViewBag.Title = "View Agreement By Status";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style type="text/css">
+    table{
+        background-color:whitesmoke;
+        border:none;
+    }
+    a{
+        text-decoration:none;
+        color:#889EC7;
+    }
+
+    td{
+        color:#4C1A00;
+        border-bottom: 1px solid #477519;
+        padding:5px;
+    }
+</style>
+
+<h3 style="color:black;font-style:italic">@ViewBag.TitleContent</h3>
+
+<div id="AgreementListByStatus" style="width:800px;">
+    <table style="border: solid 1px #889EC7;padding:0px;width:100%;">
+        <tr>
+            <td style="width:20%; background-color:#a7bc7a;">
+                Agreement Number
+            </td>
+            <td style="width:30%; background-color:#a7bc7a;">
+                Agreement Name
+            </td>
+            <td style="width:20%;background-color:#a7bc7a;">
+                Create By
+            </td>
+            <td style="width:15%;background-color:#a7bc7a;">
+
+            </td>
+            <td style="width:15%;background-color:#a7bc7a;">
+
+            </td>
+        </tr>
+
+        @{
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td style="width:20%;">
+                        <a href="~/ViewAgreement/ViewAgreement_ReadOnly?agreementNumber=@item.AgreementNumber&variantNumber=@item.VariantNumber">@item.AgreementNumber / @item.VariantNumber</a>
+                     </td>
+                    <td style="width:30%; ">
+                        <a href="~/ViewAgreement/ViewAgreement_ReadOnly?agreementNumber=@item.AgreementNumber&variantNumber=@item.VariantNumber">@item.AgreementName</a>
+                    </td>
+                    <td style="width:20%;">
+                       @item.CreateBy
+                    </td>
+                    <td style="width:15%;">
+                        <a href="~/ViewAgreement/ViewAgreement_ReadOnly?agreementNumber=@item.AgreementNumber&variantNumber=@item.VariantNumber">View Details</a>
+                    </td>
+                    @if(@item.IsEdit == true)
+                    {
+                        <td style="width:15%; padding-left:10px;">
+                            <a href="~/ViewAgreement/ViewAgreementEdit?agreementNumber=@item.AgreementNumber&variantNumber=@item.VariantNumber">Edit</a>
+                        </td>
+                    }
+                    else
+                    {
+                        <td style="width:15%; padding-left:10px;">
+                           
+                        </td>
+                    }
+                </tr>
+            }
+        }
+    </table>
+
+</div>

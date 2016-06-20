@@ -1,0 +1,42 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Default.cshtml";
+}
+
+<h1 style="color:green">Organisation List</h1>
+
+@*<script src="~/Scripts/jquery-1.11.0.min.js"></script>*@
+
+<link href="~/Content/Stylesheets/style.css" rel="stylesheet" />
+<link href="~/Content/Stylesheets/jquery-ui.css" rel="stylesheet" />
+
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+
+<script src="~/Scripts/jquery-ui.js"></script>
+<script src="~/Scripts/Tabs.js"></script>
+<link href="~/Content/Stylesheets/form-input.css" rel="stylesheet" />
+<link href="~/Content/Stylesheets/ui.jqgrid.css" rel="stylesheet" />
+
+<div id="tabs">
+    <ul>
+        @*<li><a href="#tabs-1">Details</a></li>*@
+        <li><a href="#tabs-2">Organisation</a></li>
+    </ul>
+    @*<div id="tabs-1">
+       This is tab for BU/Directorate Details
+    </div>*@
+
+    <div id="tabs-2">
+        <div style="height:50px;">
+            @Html.ActionLink("Create", "AddOrganisationDetail", "Organisation", new { @class = "Buton" })
+        </div>
+        
+        <div style="width:100%;">
+            @Html.Partial("~/Views/Organisation/OrganisationList.cshtml")
+        </div>
+    </div>
+</div>
+
+
+
+

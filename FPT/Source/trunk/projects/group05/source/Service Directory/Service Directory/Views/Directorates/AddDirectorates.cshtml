@@ -1,0 +1,152 @@
+﻿@model Service_Directory.Models.Directorate
+
+<link href="~/Content/Stylesheets/form-input.css" rel="stylesheet" />
+
+
+    @using (Html.BeginForm("AddDirectorates", "Directorates", FormMethod.Post, new { @name = "" }))
+    {
+        <div style="height:5%;">
+        @Html.ActionLink("Back", "Index", "Directorate", new { @class = "Buton" })
+            <input type="submit" value="Save" style="float:right; width:80px; height:25px; margin-right: 30px;" />
+        </div>
+        <fieldset>
+        <div class="container">
+            <div class="left-container">
+                <div class="formRowContainer">
+                    <div class="labelContainer">Directorate Name
+                        <label style="color: red;">*</label></div>
+                    <div class="valueContainer">@Html.TextBox("name")</div>
+                </div>
+                <div class="formRowContainer">
+                    <div class="labelContainer">BU/Directorate Short Description</div>
+                    <div class="valueContainer">@Html.TextArea("shortDescription", new { @class = "textarea" })</div>
+                </div>
+                <div class="formRowContainer">
+                    <div class="labelContainer">Lead Contact</div>
+                    <div class="valueContainer">
+                        @Html.TextBox("leadContact", null, new { @disabled = "true" })
+                        @Html.ActionLink("Lookup", "", "", new { @class = "link" })
+                    </div>
+                </div>
+                <div class="formRowContainer">                    
+@*                    <div class="valueContainer">*@
+                        @Html.CheckBox("Checkbox")                       
+                  @*  </div>*@
+                    <div class="labelContainer">Copy Address from Organisation </div>
+                </div>
+                <div class="formRowContainer">
+                    <div class="labelContainer">Address Line 1
+                        <label style="color: red;">*</label></div>
+                    <div class="valueContainer">@Html.TextBox("addressLin1")</div>
+                </div>
+                <div class="formRowContainer">
+                    <div class="labelContainer">Address Line 2</div>
+                    <div class="valueContainer">@Html.TextBox("addressLin2")</div>
+                </div>
+                <div class="formRowContainer">
+                    <div class="labelContainer">Address Line 3</div>
+                    <div class="valueContainer">@Html.TextBox("addressLin3")</div>
+                </div>
+                <div class="formRowContainer">
+                    <div class="labelContainer">Postcode
+                        <label style="color: red;">*</label></div>
+                    <div class="valueContainer">
+                        @Html.TextBox("postode")
+                        @Html.ActionLink("Lookup", "", "", new { @class = "link" })
+                    </div>
+                </div>
+                <div class="formRowContainer">
+                    <div class="labelContainer">Town/Village/City</div>
+                    <div class="valueContainer">@Html.TextBox("town/village/city")</div>
+                </div>
+                <div class="formRowContainer">
+                    <div class="labelContainer">County</div>
+                    <div class="valueContainer">@Html.TextBox("county")</div>
+                </div>
+                <div class="formRowContainer">
+                    <div class="labelContainer">Nation/Country</div>
+                    <div class="valueContainer">@Html.DropDownList("NationCountry", "Select Nation/Country")</div>
+                </div>
+            </div>
+
+            <div class="right-container">
+                <div class="formRowContainer">
+                    <div class="labelContainer">Type of Business
+                        <label style="color: red;">*</label></div>
+                    <div class="valueContainer">
+                        @Html.TextBox("typeBusiness", null, new { @disabled = "true" })
+                        @Html.ActionLink("Lookup", "", "", new { @class = "link" })
+                    </div>
+                </div>
+                <div class="formRowContainer">
+                    <div class="labelContainer">SIC Code</div>
+                    <div class="valueContainer">@Html.TextBox("SICCode", null, new { @disabled = "true" })</div>
+                </div>
+                <div class="formRowContainer">
+                    <div class="labelContainer">BU/Directorate Full Description</div>
+                    <div class="valueContainer">@Html.TextArea("DepartmentFullDescription", new { @class = "textarea" })</div>
+                </div>
+                <div class="formRowContainer">
+                    <div class="labelContainer">Phone Number</div>
+                    <div class="valueContainer">@Html.TextBox("phoneNumber")</div>
+                </div>
+                <div class="formRowContainer">
+                    <div class="labelContainer">Fax</div>
+                    <div class="valueContainer">@Html.TextBox("fax")</div>
+                </div>
+                <div class="formRowContainer">
+                    <div class="labelContainer">Email</div>
+                    <div class="valueContainer">@Html.TextBox("email")</div>
+                </div>
+                <div class="formRowContainer">
+                    <div class="labelContainer">Web Address</div>
+                    <div class="valueContainer">@Html.TextBox("webAddress")</div>
+                </div>
+                <div class="formRowContainer">
+                    <div class="labelContainer">Charity Number</div>
+                    <div class="valueContainer">@Html.TextBox("charityNumber")</div>
+                </div>
+                <div class="formRowContainer">
+                    <div class="labelContainer">Company Number</div>
+                    <div class="valueContainer">@Html.TextBox("companyNumber")</div>
+                </div>
+            </div>
+        </div>
+        </fieldset>
+    
+    }
+
+    @if (TempData["Success"] != null)
+{
+    <div style="color:green;">
+        <p><strong>@TempData["Success"].ToString()</strong></p>
+    </div>
+}
+
+
+@if (TempData["NameIsNull"] != null)
+    {
+        <div style="color:red;">
+            <p><strong>@TempData["NameIsNull"].ToString()</strong></p>
+        </div>
+    
+        <script>
+            $("#name").addClass('errorClass');
+        </script>   
+    }
+ 
+@if (TempData["DescriptionIsNull"] != null)
+{
+    <div style="color:red;">
+        <p><strong>@TempData["DescriptionIsNull"].ToString()</strong></p>
+    </div>
+    <script>
+        $("#shortDescription").addClass('errorClass');
+    </script>   
+}
+
+<style>
+    .errorClass {
+        border: 1px solid red;
+    }   
+</style>

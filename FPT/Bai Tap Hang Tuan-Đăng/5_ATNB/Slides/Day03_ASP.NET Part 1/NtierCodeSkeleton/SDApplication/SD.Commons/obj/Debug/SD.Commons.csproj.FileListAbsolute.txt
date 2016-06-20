@@ -1,0 +1,17 @@
+D:\Template\SDApplication\SD.Commons\bin\Debug\SD.Commons.dll
+D:\Template\SDApplication\SD.Commons\bin\Debug\SD.Commons.pdb
+D:\Template\SDApplication\SD.Commons\obj\Debug\ResolveAssemblyReference.cache
+D:\Template\SDApplication\SD.Commons\obj\Debug\SD.Commons.dll
+D:\Template\SDApplication\SD.Commons\obj\Debug\SD.Commons.pdb
+D:\NtierCodeSkeleton\SDApplication\SD.Commons\bin\Debug\SD.Commons.dll
+D:\NtierCodeSkeleton\SDApplication\SD.Commons\bin\Debug\SD.Commons.pdb
+D:\NtierCodeSkeleton\SDApplication\SD.Commons\obj\Debug\ResolveAssemblyReference.cache
+D:\NtierCodeSkeleton\SDApplication\SD.Commons\obj\Debug\SD.Commons.dll
+D:\NtierCodeSkeleton\SDApplication\SD.Commons\obj\Debug\SD.Commons.pdb
+D:\NtierCodeSkeleton\SDApplication\SD.Commons\bin\Debug\SD.Commons.dll.config
+E:\GST\5_ATNB\Slides\Day03_ASP.NET Part 1\NtierCodeSkeleton\SDApplication\SD.Commons\bin\Debug\SD.Commons.dll.config
+E:\GST\5_ATNB\Slides\Day03_ASP.NET Part 1\NtierCodeSkeleton\SDApplication\SD.Commons\bin\Debug\SD.Commons.dll
+E:\GST\5_ATNB\Slides\Day03_ASP.NET Part 1\NtierCodeSkeleton\SDApplication\SD.Commons\bin\Debug\SD.Commons.pdb
+E:\GST\5_ATNB\Slides\Day03_ASP.NET Part 1\NtierCodeSkeleton\SDApplication\SD.Commons\obj\Debug\SD.Commons.csprojResolveAssemblyReference.cache
+E:\GST\5_ATNB\Slides\Day03_ASP.NET Part 1\NtierCodeSkeleton\SDApplication\SD.Commons\obj\Debug\SD.Commons.dll
+E:\GST\5_ATNB\Slides\Day03_ASP.NET Part 1\NtierCodeSkeleton\SDApplication\SD.Commons\obj\Debug\SD.Commons.pdb

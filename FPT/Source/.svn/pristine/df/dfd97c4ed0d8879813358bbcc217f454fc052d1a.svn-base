@@ -1,0 +1,47 @@
+﻿@model IEnumerable<CSS.ViewModels.SearchAgreementModel>
+@{
+    ViewBag.Title = "SearchAgreementResults";
+}
+
+  <div id="results" class="results">
+       @if (@ViewBag.errorMessage ==null)
+           {
+                <table class="table">
+                    <thead>
+                      <tr class="info">
+                        <th>RFO Number</th>
+                        <th>Customer</th>
+                        <th>PostCode</th>
+                        <th>CSM</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Agreement Number</th>
+                        <th>Status</th>
+                        <th>Select</th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                       @foreach( var agreement in Model)
+                       {
+                          <tr class="active">
+                             <td>@agreement.RFONumber</td>
+                             <td>@agreement.Name</td>
+                             <td>@agreement.PostCode</td>
+                             <td>@agreement.CSM </td>
+                             <td>@agreement.StartDate</td>
+                             <td>@agreement.EndDate</td>
+                             <td>@agreement.AgreementNumber</td>
+                             <td>@agreement.AgreementStatus.AgreementStatus</td>
+                             <td>@Html.RadioButton("select", @agreement.AgreementNumber +"/"+@agreement.VariantNumber)</td>
+                         </tr>
+                      }
+                    </tbody>
+
+                    </table>
+       }
+       else{
+               <p style="color:red">@ViewBag.errorMessage</p>  
+       }
+   </div>
+

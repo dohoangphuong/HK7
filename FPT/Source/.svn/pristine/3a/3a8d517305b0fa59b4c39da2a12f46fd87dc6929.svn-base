@@ -1,0 +1,656 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ServiceDirectoryDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Address">
+    <Key>
+      <PropertyRef Name="AddressID" />
+    </Key>
+    <Property Name="AddressID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TownID" Type="int" />
+    <Property Name="AddressPostcode" Type="char" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Contact">
+    <Key>
+      <PropertyRef Name="ContactID" />
+    </Key>
+    <Property Name="ContactID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ManagerID" Type="int" />
+    <Property Name="FirstName" Type="varchar" MaxLength="200" />
+    <Property Name="SurnName" Type="varchar" MaxLength="100" />
+    <Property Name="KnowAs" Type="varchar" MaxLength="200" />
+    <Property Name="ContactType" Type="char" MaxLength="10" />
+    <Property Name="BestContactMethod" Type="char" MaxLength="10" />
+    <Property Name="MobilePhone" Type="char" MaxLength="20" />
+    <Property Name="OfficePhone" Type="char" MaxLength="20" />
+    <Property Name="STHomePhone" Type="char" MaxLength="20" />
+    <Property Name="ContactEmail" Type="text" />
+    <Property Name="ContactIsActive" Type="bit" />
+    <Property Name="Workbase" Type="varchar" MaxLength="100" />
+    <Property Name="JobRole" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="CountryID" />
+    </Key>
+    <Property Name="CountryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CountryName" Type="text" />
+  </EntityType>
+  <EntityType Name="County">
+    <Key>
+      <PropertyRef Name="CountyID" />
+    </Key>
+    <Property Name="CountyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CountryID" Type="int" Nullable="false" />
+    <Property Name="CountyName" Type="text" />
+  </EntityType>
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="DepartmentID" />
+    </Key>
+    <Property Name="DepartmentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DirectorateID" Type="int" />
+    <Property Name="ContactID" Type="int" />
+    <Property Name="DepartmentName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="DepartmentShortDescription" Type="text" Nullable="false" />
+    <Property Name="DepartmentAddressLine1" Type="text" />
+    <Property Name="DepartmentAddressLine2" Type="text" />
+    <Property Name="DepartmentAddressLine3" Type="text" />
+    <Property Name="DepartmentWebAddress" Type="text" />
+    <Property Name="DepartmentPostcode" Type="char" MaxLength="10" />
+    <Property Name="DepartmentTownVillageCity" Type="text" />
+    <Property Name="DepartmentCounty" Type="text" />
+    <Property Name="DepartmentNationCountry" Type="text" />
+    <Property Name="DepartmentFullDescription" Type="text" />
+    <Property Name="DepartmentPhoneNumber" Type="char" MaxLength="20" />
+    <Property Name="DepartmentFax" Type="char" MaxLength="20" />
+    <Property Name="DepartmentEmail" Type="text" />
+    <Property Name="DepartmentStatus" Type="bit" />
+  </EntityType>
+  <EntityType Name="Directorate">
+    <Key>
+      <PropertyRef Name="DirectorateID" />
+    </Key>
+    <Property Name="DirectorateID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ContactID" Type="int" />
+    <Property Name="OrgID" Type="int" />
+    <Property Name="DirectorateName" Type="varchar" MaxLength="100" />
+    <Property Name="DirectoratePhoneNumber" Type="char" MaxLength="20" />
+    <Property Name="DirectorateFax" Type="char" MaxLength="20" />
+    <Property Name="DirectorateEmail" Type="text" />
+    <Property Name="DirectorateWebAddress" Type="text" />
+    <Property Name="DirectorateCharityNumber" Type="int" />
+    <Property Name="DirectorateCompanyNumber" Type="int" />
+    <Property Name="DirectorateAddressLine1" Type="text" />
+    <Property Name="DirectorateAddressLine2" Type="text" />
+    <Property Name="DirectorateAddressLine3" Type="text" />
+    <Property Name="DirectorateCountry" Type="text" />
+    <Property Name="DirectorateShortDescription" Type="text" />
+    <Property Name="DirectorateFullDescription" Type="text" />
+    <Property Name="DirectorateNationCountry" Type="text" />
+    <Property Name="DirectorateTownVillageCity" Type="text" />
+    <Property Name="DirectoratePostcode" Type="text" />
+    <Property Name="DirectorateStatus" Type="text" />
+  </EntityType>
+  <EntityType Name="GovOfficeRegion">
+    <Key>
+      <PropertyRef Name="GovOfficeRegionID" />
+    </Key>
+    <Property Name="GovOfficeRegionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CountyID" Type="int" />
+    <Property Name="GovOfficeRegionName" Type="varchar" MaxLength="200" />
+    <Property Name="GovOfficeRegionIsActive" Type="bit" />
+    <Property Name="GovOfficeRegionShortDescription" Type="text" />
+  </EntityType>
+  <EntityType Name="Organisation">
+    <Key>
+      <PropertyRef Name="OrgID" />
+    </Key>
+    <Property Name="OrgID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ContactID" Type="int" />
+    <Property Name="OrgName" Type="text" Nullable="false" />
+    <Property Name="OrganisationPreferred" Type="bit" />
+    <Property Name="OrganisationExpressionOfInterest" Type="bit" />
+    <Property Name="OrganisationAddressLine1" Type="text" Nullable="false" />
+    <Property Name="OrganisationAddressLine2" Type="text" />
+    <Property Name="OrganisationAddressLine3" Type="text" />
+    <Property Name="OrganisationPremiseNumber" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="OrganisationFax" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="OrganisationEmail" Type="text" />
+    <Property Name="OrganisationWebAddress" Type="text" />
+    <Property Name="OrganisationCharityNumber" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="OrganisationCompanyNumber" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="OrganisationPostode" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="OrganisationCityTown" Type="text" />
+    <Property Name="OrganisationNationCountry" Type="text" />
+    <Property Name="OrganisationCounty" Type="text" />
+    <Property Name="OrganisationShortDescription" Type="text" Nullable="false" />
+    <Property Name="OrganisationFullDescription" Type="text" />
+  </EntityType>
+  <EntityType Name="OrganisationProgramme">
+    <Key>
+      <PropertyRef Name="OrgID" />
+      <PropertyRef Name="ProgrammeID" />
+    </Key>
+    <Property Name="OrgID" Type="int" Nullable="false" />
+    <Property Name="ProgrammeID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Premise">
+    <Key>
+      <PropertyRef Name="PremiseID" />
+    </Key>
+    <Property Name="PremiseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ServiceID" Type="int" />
+    <Property Name="PremiseName" Type="varchar" MaxLength="100" />
+    <Property Name="PrimaryLocation" Type="text" />
+    <Property Name="PremisePhoneNumber" Type="char" MaxLength="20" />
+    <Property Name="PremiseAddress" Type="text" />
+  </EntityType>
+  <EntityType Name="Programme">
+    <Key>
+      <PropertyRef Name="ProgrammeID" />
+    </Key>
+    <Property Name="ProgrammeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ContactID" Type="int" />
+    <Property Name="ProgrammeName" Type="varchar" MaxLength="100" />
+    <Property Name="ProgrammeDescription" Type="text" />
+  </EntityType>
+  <EntityType Name="ReferenceData">
+    <Key>
+      <PropertyRef Name="RefID" />
+    </Key>
+    <Property Name="RefID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RefCode" Type="varchar" MaxLength="100" />
+    <Property Name="RefValue" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Service">
+    <Key>
+      <PropertyRef Name="ServiceID" />
+    </Key>
+    <Property Name="ServiceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ServiceName" Type="varchar" MaxLength="100" />
+    <Property Name="ServiceActive" Type="text" />
+    <Property Name="ShortDescription" Type="text" />
+    <Property Name="DeptCode" Type="char" MaxLength="10" />
+    <Property Name="ClientDescription" Type="text" />
+    <Property Name="DeliveryDescription" Type="text" />
+    <Property Name="Attendance" Type="varchar" MaxLength="100" />
+    <Property Name="StartExpected" Type="datetime" />
+    <Property Name="StartDate" Type="datetime" />
+    <Property Name="EndDate" Type="datetime" />
+    <Property Name="Extendable" Type="bit" />
+    <Property Name="ExtendableYears" Type="int" />
+    <Property Name="ExtendableMonths" Type="int" />
+    <Property Name="ContractCode" Type="char" MaxLength="10" />
+    <Property Name="ContractValue" Type="varchar" MaxLength="100" />
+    <Property Name="StagedPayment" Type="bit" />
+    <Property Name="ReferalProcessMethod" Type="varchar" MaxLength="100" />
+    <Property Name="TimeLimited" Type="bit" />
+    <Property Name="TimeLimitedYears" Type="int" />
+    <Property Name="TimeLimitedMonths" Type="int" />
+  </EntityType>
+  <EntityType Name="ServiceOrganisation">
+    <Key>
+      <PropertyRef Name="ServiceID" />
+      <PropertyRef Name="OrgID" />
+    </Key>
+    <Property Name="ServiceID" Type="int" Nullable="false" />
+    <Property Name="OrgID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SupportingMaterial">
+    <Key>
+      <PropertyRef Name="SupportingMaterialID" />
+    </Key>
+    <Property Name="SupportingMaterialID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="int" />
+    <Property Name="OrgID" Type="int" />
+    <Property Name="URL" Type="text" />
+    <Property Name="Type" Type="varchar" MaxLength="100" />
+    <Property Name="AddedDate" Type="datetime" />
+    <Property Name="SupportingMaterialDescription" Type="text" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Team">
+    <Key>
+      <PropertyRef Name="TeamID" />
+    </Key>
+    <Property Name="TeamID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DepartmentID" Type="int" />
+    <Property Name="ContactID" Type="int" />
+    <Property Name="TeamName" Type="varchar" MaxLength="100" />
+    <Property Name="TeamAddressLine1" Type="text" />
+    <Property Name="TeamAddressLine2" Type="text" />
+    <Property Name="TeamAddressLine3" Type="text" />
+    <Property Name="TeamCountry" Type="text" />
+    <Property Name="TeamPostcode" Type="int" />
+    <Property Name="TeamShortDescription" Type="text" />
+    <Property Name="TeamFullDescription" Type="text" />
+    <Property Name="TeamCounty" Type="text" />
+    <Property Name="TeamFax" Type="char" MaxLength="20" />
+    <Property Name="TeamEmail" Type="text" />
+    <Property Name="TeamWebAddress" Type="text" />
+    <Property Name="TeamNationCountry" Type="text" />
+    <Property Name="TeamTownVillageCity" Type="text" />
+    <Property Name="TeamPremiseNumber" Type="numeric" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="Town">
+    <Key>
+      <PropertyRef Name="TownID" />
+    </Key>
+    <Property Name="TownID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CountyID" Type="int" Nullable="false" />
+    <Property Name="TownName" Type="text" />
+  </EntityType>
+  <EntityType Name="TrustDistrict">
+    <Key>
+      <PropertyRef Name="TrustDistrictID" />
+    </Key>
+    <Property Name="TrustDistrictID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TrustRegionID" Type="int" />
+    <Property Name="TrustDistrictName" Type="varchar" MaxLength="100" />
+    <Property Name="TrustDistrictShortDescription" Type="text" />
+    <Property Name="TrustDistrictIsActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="TrustRegion">
+    <Key>
+      <PropertyRef Name="TrustRegionID" />
+    </Key>
+    <Property Name="TrustRegionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CountryID" Type="int" />
+    <Property Name="TrustRegionName" Type="varchar" MaxLength="100" />
+    <Property Name="TrustRegionIsActive" Type="bit" />
+    <Property Name="TrustRegionShortDescription" Type="text" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Account" Type="varchar" MaxLength="100" />
+    <Property Name="Role" Type="varchar" MaxLength="100" />
+    <Property Name="Password" Type="varchar" MaxLength="100" />
+    <Property Name="UserEmail" Type="text" />
+  </EntityType>
+  <Association Name="FK_ADDRESS_IN3_TOWN">
+    <End Role="Town" Type="Self.Town" Multiplicity="0..1" />
+    <End Role="Address" Type="Self.Address" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Town">
+        <PropertyRef Name="TownID" />
+      </Principal>
+      <Dependent Role="Address">
+        <PropertyRef Name="TownID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CONTACT_MANAGER_CONTACT">
+    <End Role="Contact" Type="Self.Contact" Multiplicity="0..1" />
+    <End Role="Contact1" Type="Self.Contact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contact">
+        <PropertyRef Name="ContactID" />
+      </Principal>
+      <Dependent Role="Contact1">
+        <PropertyRef Name="ManagerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_COUNTY_IS_COUNTRY">
+    <End Role="Country" Type="Self.Country" Multiplicity="1" />
+    <End Role="County" Type="Self.County" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="CountryID" />
+      </Principal>
+      <Dependent Role="County">
+        <PropertyRef Name="CountryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DEPARTME_HAVE_CONTACT">
+    <End Role="Contact" Type="Self.Contact" Multiplicity="0..1" />
+    <End Role="Department" Type="Self.Department" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contact">
+        <PropertyRef Name="ContactID" />
+      </Principal>
+      <Dependent Role="Department">
+        <PropertyRef Name="ContactID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DEPARTME_HAVE3_DIRECTOR">
+    <End Role="Directorate" Type="Self.Directorate" Multiplicity="0..1" />
+    <End Role="Department" Type="Self.Department" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Directorate">
+        <PropertyRef Name="DirectorateID" />
+      </Principal>
+      <Dependent Role="Department">
+        <PropertyRef Name="DirectorateID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DIRECTOR_HAVE2_ORGANISA">
+    <End Role="Organisation" Type="Self.Organisation" Multiplicity="0..1" />
+    <End Role="Directorate" Type="Self.Directorate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Organisation">
+        <PropertyRef Name="OrgID" />
+      </Principal>
+      <Dependent Role="Directorate">
+        <PropertyRef Name="OrgID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DIRECTOR_OF1_CONTACT">
+    <End Role="Contact" Type="Self.Contact" Multiplicity="0..1" />
+    <End Role="Directorate" Type="Self.Directorate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contact">
+        <PropertyRef Name="ContactID" />
+      </Principal>
+      <Dependent Role="Directorate">
+        <PropertyRef Name="ContactID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GOVOFFIC_OF_COUNTY">
+    <End Role="County" Type="Self.County" Multiplicity="0..1" />
+    <End Role="GovOfficeRegion" Type="Self.GovOfficeRegion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="County">
+        <PropertyRef Name="CountyID" />
+      </Principal>
+      <Dependent Role="GovOfficeRegion">
+        <PropertyRef Name="CountyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ORGANISA_OF2_CONTACT">
+    <End Role="Contact" Type="Self.Contact" Multiplicity="0..1" />
+    <End Role="Organisation" Type="Self.Organisation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contact">
+        <PropertyRef Name="ContactID" />
+      </Principal>
+      <Dependent Role="Organisation">
+        <PropertyRef Name="ContactID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ORGANISA_ORGANISAT_ORGANISA">
+    <End Role="Organisation" Type="Self.Organisation" Multiplicity="1" />
+    <End Role="OrganisationProgramme" Type="Self.OrganisationProgramme" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Organisation">
+        <PropertyRef Name="OrgID" />
+      </Principal>
+      <Dependent Role="OrganisationProgramme">
+        <PropertyRef Name="OrgID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ORGANISA_ORGANISAT_PROGRAMM">
+    <End Role="Programme" Type="Self.Programme" Multiplicity="1" />
+    <End Role="OrganisationProgramme" Type="Self.OrganisationProgramme" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Programme">
+        <PropertyRef Name="ProgrammeID" />
+      </Principal>
+      <Dependent Role="OrganisationProgramme">
+        <PropertyRef Name="ProgrammeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PREMISE_IN2_SERVICE">
+    <End Role="Service" Type="Self.Service" Multiplicity="0..1" />
+    <End Role="Premise" Type="Self.Premise" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Service">
+        <PropertyRef Name="ServiceID" />
+      </Principal>
+      <Dependent Role="Premise">
+        <PropertyRef Name="ServiceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PROGRAMM_OF4_CONTACT">
+    <End Role="Contact" Type="Self.Contact" Multiplicity="0..1" />
+    <End Role="Programme" Type="Self.Programme" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contact">
+        <PropertyRef Name="ContactID" />
+      </Principal>
+      <Dependent Role="Programme">
+        <PropertyRef Name="ContactID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SERVICEO_SERVICEOR_ORGANISA">
+    <End Role="Organisation" Type="Self.Organisation" Multiplicity="1" />
+    <End Role="ServiceOrganisation" Type="Self.ServiceOrganisation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Organisation">
+        <PropertyRef Name="OrgID" />
+      </Principal>
+      <Dependent Role="ServiceOrganisation">
+        <PropertyRef Name="OrgID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SERVICEO_SERVICEOR_SERVICE">
+    <End Role="Service" Type="Self.Service" Multiplicity="1" />
+    <End Role="ServiceOrganisation" Type="Self.ServiceOrganisation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Service">
+        <PropertyRef Name="ServiceID" />
+      </Principal>
+      <Dependent Role="ServiceOrganisation">
+        <PropertyRef Name="ServiceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SUPPORTI_USE1_USER">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="SupportingMaterial" Type="Self.SupportingMaterial" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="SupportingMaterial">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SUPPORTI_USE2_ORGANISA">
+    <End Role="Organisation" Type="Self.Organisation" Multiplicity="0..1" />
+    <End Role="SupportingMaterial" Type="Self.SupportingMaterial" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Organisation">
+        <PropertyRef Name="OrgID" />
+      </Principal>
+      <Dependent Role="SupportingMaterial">
+        <PropertyRef Name="OrgID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TEAM_HAVE4_DEPARTME">
+    <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
+    <End Role="Team" Type="Self.Team" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="DepartmentID" />
+      </Principal>
+      <Dependent Role="Team">
+        <PropertyRef Name="DepartmentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TEAM_OF3_CONTACT">
+    <End Role="Contact" Type="Self.Contact" Multiplicity="0..1" />
+    <End Role="Team" Type="Self.Team" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contact">
+        <PropertyRef Name="ContactID" />
+      </Principal>
+      <Dependent Role="Team">
+        <PropertyRef Name="ContactID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TOWN_IN4_COUNTY">
+    <End Role="County" Type="Self.County" Multiplicity="1" />
+    <End Role="Town" Type="Self.Town" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="County">
+        <PropertyRef Name="CountyID" />
+      </Principal>
+      <Dependent Role="Town">
+        <PropertyRef Name="CountyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TRUSTDIS_IN_TRUSTREG">
+    <End Role="TrustRegion" Type="Self.TrustRegion" Multiplicity="0..1" />
+    <End Role="TrustDistrict" Type="Self.TrustDistrict" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TrustRegion">
+        <PropertyRef Name="TrustRegionID" />
+      </Principal>
+      <Dependent Role="TrustDistrict">
+        <PropertyRef Name="TrustRegionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TRUSTREG_INCLUDE_COUNTRY">
+    <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
+    <End Role="TrustRegion" Type="Self.TrustRegion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="CountryID" />
+      </Principal>
+      <Dependent Role="TrustRegion">
+        <PropertyRef Name="CountryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ServiceDirectoryDBModelStoreContainer">
+    <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="County" EntityType="Self.County" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Directorate" EntityType="Self.Directorate" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GovOfficeRegion" EntityType="Self.GovOfficeRegion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Organisation" EntityType="Self.Organisation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrganisationProgramme" EntityType="Self.OrganisationProgramme" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Premise" EntityType="Self.Premise" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Programme" EntityType="Self.Programme" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ReferenceData" EntityType="Self.ReferenceData" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Service" EntityType="Self.Service" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ServiceOrganisation" EntityType="Self.ServiceOrganisation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SupportingMaterial" EntityType="Self.SupportingMaterial" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Team" EntityType="Self.Team" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Town" EntityType="Self.Town" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TrustDistrict" EntityType="Self.TrustDistrict" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TrustRegion" EntityType="Self.TrustRegion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_ADDRESS_IN3_TOWN" Association="Self.FK_ADDRESS_IN3_TOWN">
+      <End Role="Town" EntitySet="Town" />
+      <End Role="Address" EntitySet="Address" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CONTACT_MANAGER_CONTACT" Association="Self.FK_CONTACT_MANAGER_CONTACT">
+      <End Role="Contact" EntitySet="Contact" />
+      <End Role="Contact1" EntitySet="Contact" />
+    </AssociationSet>
+    <AssociationSet Name="FK_COUNTY_IS_COUNTRY" Association="Self.FK_COUNTY_IS_COUNTRY">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="County" EntitySet="County" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DEPARTME_HAVE_CONTACT" Association="Self.FK_DEPARTME_HAVE_CONTACT">
+      <End Role="Contact" EntitySet="Contact" />
+      <End Role="Department" EntitySet="Department" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DEPARTME_HAVE3_DIRECTOR" Association="Self.FK_DEPARTME_HAVE3_DIRECTOR">
+      <End Role="Directorate" EntitySet="Directorate" />
+      <End Role="Department" EntitySet="Department" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DIRECTOR_HAVE2_ORGANISA" Association="Self.FK_DIRECTOR_HAVE2_ORGANISA">
+      <End Role="Organisation" EntitySet="Organisation" />
+      <End Role="Directorate" EntitySet="Directorate" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DIRECTOR_OF1_CONTACT" Association="Self.FK_DIRECTOR_OF1_CONTACT">
+      <End Role="Contact" EntitySet="Contact" />
+      <End Role="Directorate" EntitySet="Directorate" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GOVOFFIC_OF_COUNTY" Association="Self.FK_GOVOFFIC_OF_COUNTY">
+      <End Role="County" EntitySet="County" />
+      <End Role="GovOfficeRegion" EntitySet="GovOfficeRegion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ORGANISA_OF2_CONTACT" Association="Self.FK_ORGANISA_OF2_CONTACT">
+      <End Role="Contact" EntitySet="Contact" />
+      <End Role="Organisation" EntitySet="Organisation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ORGANISA_ORGANISAT_ORGANISA" Association="Self.FK_ORGANISA_ORGANISAT_ORGANISA">
+      <End Role="Organisation" EntitySet="Organisation" />
+      <End Role="OrganisationProgramme" EntitySet="OrganisationProgramme" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ORGANISA_ORGANISAT_PROGRAMM" Association="Self.FK_ORGANISA_ORGANISAT_PROGRAMM">
+      <End Role="Programme" EntitySet="Programme" />
+      <End Role="OrganisationProgramme" EntitySet="OrganisationProgramme" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PREMISE_IN2_SERVICE" Association="Self.FK_PREMISE_IN2_SERVICE">
+      <End Role="Service" EntitySet="Service" />
+      <End Role="Premise" EntitySet="Premise" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PROGRAMM_OF4_CONTACT" Association="Self.FK_PROGRAMM_OF4_CONTACT">
+      <End Role="Contact" EntitySet="Contact" />
+      <End Role="Programme" EntitySet="Programme" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SERVICEO_SERVICEOR_ORGANISA" Association="Self.FK_SERVICEO_SERVICEOR_ORGANISA">
+      <End Role="Organisation" EntitySet="Organisation" />
+      <End Role="ServiceOrganisation" EntitySet="ServiceOrganisation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SERVICEO_SERVICEOR_SERVICE" Association="Self.FK_SERVICEO_SERVICEOR_SERVICE">
+      <End Role="Service" EntitySet="Service" />
+      <End Role="ServiceOrganisation" EntitySet="ServiceOrganisation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SUPPORTI_USE1_USER" Association="Self.FK_SUPPORTI_USE1_USER">
+      <End Role="User" EntitySet="User" />
+      <End Role="SupportingMaterial" EntitySet="SupportingMaterial" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SUPPORTI_USE2_ORGANISA" Association="Self.FK_SUPPORTI_USE2_ORGANISA">
+      <End Role="Organisation" EntitySet="Organisation" />
+      <End Role="SupportingMaterial" EntitySet="SupportingMaterial" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TEAM_HAVE4_DEPARTME" Association="Self.FK_TEAM_HAVE4_DEPARTME">
+      <End Role="Department" EntitySet="Department" />
+      <End Role="Team" EntitySet="Team" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TEAM_OF3_CONTACT" Association="Self.FK_TEAM_OF3_CONTACT">
+      <End Role="Contact" EntitySet="Contact" />
+      <End Role="Team" EntitySet="Team" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TOWN_IN4_COUNTY" Association="Self.FK_TOWN_IN4_COUNTY">
+      <End Role="County" EntitySet="County" />
+      <End Role="Town" EntitySet="Town" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TRUSTDIS_IN_TRUSTREG" Association="Self.FK_TRUSTDIS_IN_TRUSTREG">
+      <End Role="TrustRegion" EntitySet="TrustRegion" />
+      <End Role="TrustDistrict" EntitySet="TrustDistrict" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TRUSTREG_INCLUDE_COUNTRY" Association="Self.FK_TRUSTREG_INCLUDE_COUNTRY">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="TrustRegion" EntitySet="TrustRegion" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

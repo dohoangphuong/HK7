@@ -1,0 +1,6 @@
+CustID	Name	Email	PhoneNumber	IDCard	
+000001	Nobi	nobita@yahoo.com	01639.467.875	162815620	
+000002	NhungChan	nhungchan@gmail.com	01234.568.456	163012453	
+000003	Hong	hongltb@yahoo.com	0989.365.684	162924560	
+000004	nhung4	nhung4@gmail.com	0989.635.978	162816843	
+000005	luong	luongbv@yahoo.com	0988.888.888	162956842	

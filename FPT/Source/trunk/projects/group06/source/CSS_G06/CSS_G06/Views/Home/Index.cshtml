@@ -1,0 +1,53 @@
+﻿@model  List<CSS_G06.Models.HomeModel>
+
+@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style type="text/css">
+    #HomeContent{
+        width:800px;
+    }
+    #ReportTableContent{
+        width:600px;
+        background-color:whitesmoke;
+    }
+    table{
+        background-color:whitesmoke;
+        border:none;
+    }
+    a{
+        text-decoration:none;
+        color:#889EC7;
+    }
+
+    td{
+        color:#4C1A00;
+        border-bottom: 1px solid #477519;
+        padding:5px;
+    }
+</style>
+
+<div id="HomeContent">
+    <div id="ReportTableContent">
+        <table style="border: solid 1px #889EC7;padding:0px;width:100%;">
+            <tr>
+                <td style="width:80%; background-color:#a7bc7a;">Agreement</td>
+                <td style="width:20%; background-color:#a7bc7a;"></td>
+                <td hidden="hidden"></td>
+            </tr>
+            @{
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td style="width:80%;">@item.AgreementStatusName</td>
+                        <td style="width:20%;">@item.CountAgreementByStatus</td>
+                        <td hidden="hidden"> <input type="text" name="statusId" value="@item.AgreementStatusId" style="width:30px" /> </td>
+                    </tr>
+                }
+            }
+        </table>
+    </div>
+
+</div>

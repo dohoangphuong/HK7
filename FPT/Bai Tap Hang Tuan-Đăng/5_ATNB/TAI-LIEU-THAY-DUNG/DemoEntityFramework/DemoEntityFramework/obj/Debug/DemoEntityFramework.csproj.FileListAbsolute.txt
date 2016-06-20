@@ -1,0 +1,12 @@
+D:\DemoEntityFramework\DemoEntityFramework\bin\Debug\DemoEntityFramework.exe.config
+D:\DemoEntityFramework\DemoEntityFramework\bin\Debug\DemoEntityFramework.exe
+D:\DemoEntityFramework\DemoEntityFramework\bin\Debug\DemoEntityFramework.pdb
+D:\DemoEntityFramework\DemoEntityFramework\bin\Debug\EntityFramework.dll
+D:\DemoEntityFramework\DemoEntityFramework\bin\Debug\EntityFramework.xml
+D:\DemoEntityFramework\DemoEntityFramework\obj\Debug\DemoEntityFramework.csprojResolveAssemblyReference.cache
+D:\DemoEntityFramework\DemoEntityFramework\obj\Debug\DemoEntityFramework.Form1.resources
+D:\DemoEntityFramework\DemoEntityFramework\obj\Debug\DemoEntityFramework.frmQLTaiKhoan.resources
+D:\DemoEntityFramework\DemoEntityFramework\obj\Debug\DemoEntityFramework.Properties.Resources.resources
+D:\DemoEntityFramework\DemoEntityFramework\obj\Debug\DemoEntityFramework.csproj.GenerateResource.Cache
+D:\DemoEntityFramework\DemoEntityFramework\obj\Debug\DemoEntityFramework.exe
+D:\DemoEntityFramework\DemoEntityFramework\obj\Debug\DemoEntityFramework.pdb

@@ -1,0 +1,66 @@
+﻿@{
+    Layout = "~/Views/Shared/_Default.cshtml";
+}
+
+<h2>Business Unit/Directorates Details</h2>
+
+@*<script src="~/Scripts/jquery-1.11.0.min.js"></script>*@
+
+<link href="~/Content/Stylesheets/style.css" rel="stylesheet" />
+<link href="~/Content/Stylesheets/jquery-ui.css" rel="stylesheet" />
+
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+
+<script src="~/Scripts/jquery-ui.js"></script>
+<script src="~/Scripts/Tabs.js"></script>
+<link href="~/Content/Stylesheets/form-input.css" rel="stylesheet" />
+<link href="~/Content/Stylesheets/ui.jqgrid.css" rel="stylesheet" />
+<link href="~/Content/Stylesheets/horizontalList.css" rel="stylesheet" />
+
+<div id="tabs">
+    <ul>
+        <li><a href="#tabs-1">BU/Directorates</a></li>
+    </ul>
+    <div id="tabs-1">
+       <div style="height:50px;">
+            <div class="horizontalList" style="float:left">
+                <ul>
+                    <li onclick="location.href='@Url.Action("", "Department/Index", new { currentFilter = "" })'">
+                        All
+                    </li>|
+                    <li onclick="location.href='@Url.Action("", "Department/Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = "0123456789" })'">
+                        0-9
+                    </li>|
+                    <li onclick="location.href='@Url.Action("", "Department/Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = "ABCDE" })'">
+                        A B C D E
+                    </li>|
+                    <li onclick="location.href='@Url.Action("", "Department/Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = "FGHIJ" })'">
+                        F G H I J
+                    </li>|
+                    <li onclick="location.href='@Url.Action("", "Department/Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = "KLMN" })'">
+                        K L M N
+                    </li>|
+                    <li onclick="location.href='@Url.Action("", "Department/Index", new { currentFilter = "OPQR" })'">
+                        O P Q R
+                    </li>|
+                    <li onclick="location.href='@Url.Action("", "Department/Index", new { currentFilter = "STUV" })'">
+                        S T U V
+                    </li>|
+                    <li onclick="location.href='@Url.Action("", "Department/Index", new { currentFilter = "WXYZ" })'">
+                        W X Y Z
+                    </li>
+                </ul>
+            </div>
+            <label style="float:right; margin-left: -90px; margin-top: 5px;">Include In-active</label>
+            <input type="checkbox" value="IncludeIn-active" name="IncludeIn-active" style="float:right; margin-left: -90px; margin-top: 5px;" />
+            @Html.ActionLink("Create", "AddDirectoratesDetail", "Directorates", new { @class = "createButton" })
+       </div>
+       <div style="width:100%;  ">
+            @Html.Partial("~/Views/Directorates/DirectoratesList.cshtml")
+       </div>           
+    </div>
+</div>
+
+
+
+

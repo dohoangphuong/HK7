@@ -1,0 +1,70 @@
+<Configuration>
+  <RecentFiles>
+    <RecentFiles>
+      <File id="BEA34DC2-3721-4D9A-851F-132AF4F75DCD/f:test.txt" caret="38" fromTop="1" />
+      <File id="BEA34DC2-3721-4D9A-851F-132AF4F75DCD/f:Card.h" caret="1532" fromTop="30" />
+      <File id="BEA34DC2-3721-4D9A-851F-132AF4F75DCD/f:Message.h" caret="1458" fromTop="14" />
+      <File id="BEA34DC2-3721-4D9A-851F-132AF4F75DCD/f:UI.h" caret="1696" fromTop="18" />
+      <File id="BEA34DC2-3721-4D9A-851F-132AF4F75DCD/f:UI.cpp" caret="1185" fromTop="0" />
+      <File id="BEA34DC2-3721-4D9A-851F-132AF4F75DCD/f:ATMProj.cpp" caret="1356" fromTop="9" />
+      <File id="BEA34DC2-3721-4D9A-851F-132AF4F75DCD/f:Customer.h" caret="1589" fromTop="12" />
+      <File id="BEA34DC2-3721-4D9A-851F-132AF4F75DCD/f:ATM.h" caret="2133" fromTop="67" />
+      <File id="BEA34DC2-3721-4D9A-851F-132AF4F75DCD/f:Account.h" caret="0" fromTop="0" />
+      <File id="BEA34DC2-3721-4D9A-851F-132AF4F75DCD/f:Card.cpp" caret="0" fromTop="0" />
+      <File id="BEA34DC2-3721-4D9A-851F-132AF4F75DCD/f:Message.cpp" caret="0" fromTop="0" />
+      <File id="BEA34DC2-3721-4D9A-851F-132AF4F75DCD/f:stdafx.cpp" caret="0" fromTop="0" />
+      <File id="BEA34DC2-3721-4D9A-851F-132AF4F75DCD/f:Account.cpp" caret="0" fromTop="0" />
+      <File id="BEA34DC2-3721-4D9A-851F-132AF4F75DCD/f:ATM.cpp" caret="12624" fromTop="0" />
+      <File id="BEA34DC2-3721-4D9A-851F-132AF4F75DCD/f:Customer.cpp" caret="0" fromTop="0" />
+    </RecentFiles>
+    <RecentEdits>
+      <File id="BEA34DC2-3721-4D9A-851F-132AF4F75DCD/f:ATM.h" caret="2634" fromTop="13" />
+      <File id="BEA34DC2-3721-4D9A-851F-132AF4F75DCD/f:UI.cpp" caret="1185" fromTop="7" />
+      <File id="BEA34DC2-3721-4D9A-851F-132AF4F75DCD/f:ATM.cpp" caret="12565" fromTop="14" />
+      <File id="BEA34DC2-3721-4D9A-851F-132AF4F75DCD/f:ATM.cpp" caret="12486" fromTop="11" />
+      <File id="BEA34DC2-3721-4D9A-851F-132AF4F75DCD/f:ATM.cpp" caret="12345" fromTop="7" />
+      <File id="BEA34DC2-3721-4D9A-851F-132AF4F75DCD/f:ATM.cpp" caret="12728" fromTop="17" />
+      <File id="BEA34DC2-3721-4D9A-851F-132AF4F75DCD/f:Message.cpp" caret="5193" fromTop="5" />
+      <File id="BEA34DC2-3721-4D9A-851F-132AF4F75DCD/f:Message.cpp" caret="4062" fromTop="7" />
+      <File id="BEA34DC2-3721-4D9A-851F-132AF4F75DCD/f:Message.cpp" caret="4634" fromTop="16" />
+      <File id="BEA34DC2-3721-4D9A-851F-132AF4F75DCD/f:Message.cpp" caret="4454" fromTop="10" />
+      <File id="BEA34DC2-3721-4D9A-851F-132AF4F75DCD/f:Message.cpp" caret="4791" fromTop="16" />
+      <File id="BEA34DC2-3721-4D9A-851F-132AF4F75DCD/f:Message.cpp" caret="4272" fromTop="4" />
+      <File id="BEA34DC2-3721-4D9A-851F-132AF4F75DCD/f:Message.cpp" caret="4946" fromTop="19" />
+      <File id="BEA34DC2-3721-4D9A-851F-132AF4F75DCD/f:Message.cpp" caret="5099" fromTop="16" />
+      <File id="BEA34DC2-3721-4D9A-851F-132AF4F75DCD/f:ATM.h" caret="3546" fromTop="16" />
+      <File id="BEA34DC2-3721-4D9A-851F-132AF4F75DCD/f:ATM.h" caret="2133" fromTop="10" />
+      <File id="BEA34DC2-3721-4D9A-851F-132AF4F75DCD/f:ATM.cpp" caret="2529" fromTop="11" />
+      <File id="BEA34DC2-3721-4D9A-851F-132AF4F75DCD/f:ATM.cpp" caret="6848" fromTop="6" />
+      <File id="BEA34DC2-3721-4D9A-851F-132AF4F75DCD/f:ATM.cpp" caret="8430" fromTop="21" />
+      <File id="BEA34DC2-3721-4D9A-851F-132AF4F75DCD/f:ATM.cpp" caret="10989" fromTop="5" />
+      <File id="BEA34DC2-3721-4D9A-851F-132AF4F75DCD/f:ATM.cpp" caret="11509" fromTop="21" />
+      <File id="BEA34DC2-3721-4D9A-851F-132AF4F75DCD/f:ATM.cpp" caret="22261" fromTop="9" />
+      <File id="BEA34DC2-3721-4D9A-851F-132AF4F75DCD/f:ATM.cpp" caret="23115" fromTop="21" />
+      <File id="BEA34DC2-3721-4D9A-851F-132AF4F75DCD/f:Customer.cpp" caret="7689" fromTop="5" />
+      <File id="BEA34DC2-3721-4D9A-851F-132AF4F75DCD/f:Customer.cpp" caret="9141" fromTop="21" />
+      <File id="BEA34DC2-3721-4D9A-851F-132AF4F75DCD/f:Customer.h" caret="1589" fromTop="12" />
+      <File id="BEA34DC2-3721-4D9A-851F-132AF4F75DCD/f:ATM.cpp" caret="1154" fromTop="12" />
+      <File id="BEA34DC2-3721-4D9A-851F-132AF4F75DCD/f:ATM.cpp" caret="1343" fromTop="16" />
+      <File id="BEA34DC2-3721-4D9A-851F-132AF4F75DCD/f:ATM.cpp" caret="14075" fromTop="14" />
+      <File id="BEA34DC2-3721-4D9A-851F-132AF4F75DCD/f:ATM.cpp" caret="23081" fromTop="11" />
+    </RecentEdits>
+  </RecentFiles>
+  <NAntValidationSettings>
+    <NAntPath value="" />
+  </NAntValidationSettings>
+  <UnitTestRunner>
+    <Providers />
+  </UnitTestRunner>
+  <UnitTestRunnerNUnit>
+    <NUnitInstallDir>C:\Program Files (x86)\NUnit 2.5.10\bin\net-2.0\lib</NUnitInstallDir>
+    <UseAddins>Never</UseAddins>
+  </UnitTestRunnerNUnit>
+  <SettingsComponent>
+    <string />
+    <integer />
+    <boolean>
+      <setting name="SolutionAnalysisEnabled">False</setting>
+    </boolean>
+  </SettingsComponent>
+</Configuration>

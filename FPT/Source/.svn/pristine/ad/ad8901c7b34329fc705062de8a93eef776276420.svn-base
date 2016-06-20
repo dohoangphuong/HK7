@@ -1,0 +1,88 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using CSS_G06.Models;
+
+namespace CSS_G06.Controllers
+{
+    public class AddAnAgreementController : Controller
+    {
+        [HttpGet]
+        public ActionResult SelectCustomer(int agreementNumber)
+        {
+            ViewBag.AgreementNumber = agreementNumber;
+            using (var model = new CSSDatabaseModel())
+            {
+                var allBusinessArea = new[]{
+                 new SelectListItem(){Value="50",Text="50+"},
+                 new SelectListItem(){Value="100",Text="100+"},
+                 new SelectListItem(){Value="200",Text="200+"}
+                 };
+                ViewBag.BusinessArea = allBusinessArea;
+
+                
+
+                var allCustomerType = model.CustomerTypes.ToList();
+                ViewBag.CustomerType = allCustomerType;
+
+                var allRegion = model.Regions.ToList();
+                ViewBag.Region = allRegion;
+
+                ViewBag.SumResult = 0;
+            }
+            CustomerResult resultModel = new CustomerResult();
+            return View(resultModel);
+        }
+
+        [HttpPost]
+        public ActionResult SelectCustomer(CustomerResult resultModel)
+        {
+            
+                int customerTypeId = -1;
+                int.TryParse(resultModel.CustomerType, out customerTypeId);
+                int regionId = -1;
+                int.TryParse(resultModel.Region, out regionId);
+                var model = new CSSDatabaseModel();
+                List<CustomerResult> allResult = (from rfo in model.RFONumbers
+                                                  join company in model.Companies on rfo.CompanyId equals company.CompanyId
+                                                  join address in model.CompanyAddresses on rfo.CompanyId equals address.CompanyId
+                                                  join customerType in model.CustomerTypes on rfo.CustomerTypeId equals customerType.CustomerTypeId
+                                                  join region in model.Regions on address.RegionId equals region.RegionId
+                                                  where (rfo.RFONumber1 == resultModel.RFONumer || resultModel.RFONumer < 1)
+                                                        && (rfo.RFOName.Contains(resultModel.Name) || resultModel.Name == null)
+                                                        && (rfo.CustomerTypeId == customerTypeId || customerTypeId < 1)
+                                                        && (rfo.PostCode == resultModel.PostCode || resultModel.PostCode == null)
+                                                        && (company.BusinessArea >= resultModel.BusinessArea)
+                                                        && (address.RegionId == regionId || regionId < 1)
+                                                  select new CustomerResult()
+                                                  {
+                                                      RFONumer = rfo.RFONumber1,
+                                                      Name = rfo.RFOName,
+                                                      CustomerType = customerType.CustomerType1,
+                                                      PostCode = rfo.PostCode,
+                                                      BusinessArea = company.BusinessArea,
+                                                      Region = region.RegionName
+                                                  }).ToList();
+                return PartialView("SearchCustomerResult", allResult);
+                
+            
+        }
+
+        [HttpGet]
+        public ActionResult BasicAgreementDetails(int agreementNumber, int RFONumber)
+        {
+            ViewBag.AgreementNumber = agreementNumber;
+            ViewBag.RFONumber = RFONumber;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult BasicAgreementDetails(Agreement agreement)
+        {
+            Session["RFONumber"] = "123";
+            return View();
+        }
+    }
+}

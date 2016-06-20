@@ -1,0 +1,290 @@
+﻿
+@model CSS_G06.Models.BasicDetailAgreement
+
+<link href="~/Content/MyDefineStyle/AddAnAgreement.css" rel="stylesheet" />
+<link href="~/Content/MyDefineStyle/AddAnAgreement_BasicDetails.css" rel="stylesheet" />
+
+<link href="~/Content/jquery-ui.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-ui.js"></script>
+<script src="~/Scripts/moment.min.js"></script>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#startDatepicker").datepicker({
+            dateFormat: 'dd-mm-yy',
+            onClose: function (dateText, inst) {
+                $(this).datepicker('option', 'dateFormat', 'dd-mm-yy');
+            }
+        });
+
+        $("#startDatepicker").change(function () {
+            var stday = document.getElementById("startDatepicker").value;
+            var enday = document.getElementById("endDatepicker").value;
+
+            var startDate = moment(stday, "DD/MM/YYYY");
+            var endDate = moment(enday, "DD/MM/YYYY");
+
+            if (enday.length > 1 && startDate.toDate() >= endDate.toDate()) {
+                document.getElementById("startDateError").innerText = "Start date should be earlier than End date";
+                document.getElementById("startDatepicker").value = "";
+            }
+            else {
+                document.getElementById("startDateError").innerText = "";
+            }
+        });
+        $("#endDatepicker").datepicker({
+            dateFormat: 'dd-mm-yy',
+            onClose: function (dateText, inst) {
+                $(this).datepicker('option', 'dateFormat', 'dd-mm-yy');
+            }
+        });
+        $("#endDatepicker").change(function () {
+            var stday = document.getElementById("startDatepicker").value;
+            var enday = document.getElementById("endDatepicker").value;
+            var startDate = moment(stday, "DD/MM/YYYY");
+            var endDate = moment(enday, "DD/MM/YYYY");
+            if (stday.length > 0 && endDate.toDate() <= startDate.toDate()) {
+                document.getElementById("endDateError").innerText = "End date should be greater than Start date";
+                document.getElementById("endDatepicker").value = "";
+            }
+            else {
+                document.getElementById("endDateError").innerText = "";
+            }
+        });
+
+        $("#txtName").keyup(function () {
+            var text = document.getElementById("txtName").value;
+            if (text.length >= 30) {
+                document.getElementById("txtNameError").innerText = "Agreement name have max length is 30 characters";
+            }
+            else {
+                document.getElementById("txtNameError").innerText = "";
+            }
+
+        });
+        $("#txtAgreementDescription").keyup(function () {
+            var text = document.getElementById("txtAgreementDescription").value;
+            if (text.length >= 300) {
+                document.getElementById("txtAgreementDescriptionError").innerText = "Agreement description have max length is 300 characters";
+            }
+            else {
+                document.getElementById("txtAgreementDescriptionError").innerText = "";
+            }
+
+        });
+        $("#txtHandingCharge").change(function () {
+            var text = document.getElementById("txtHandingCharge").value;
+            var realValue = parseInt(text);
+            var setval = realValue.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1 ");
+            document.getElementById("txtHandingCharge").value = setval;
+            if (setval.length >= 13) {
+                document.getElementById("txtHandingChargeError").innerText = "Handing charge have max length is 10 digits";
+            }
+            else {
+                document.getElementById("txtHandingChargeError").innerText = "";
+            }
+
+        });
+        $("#txtHandingCharge").keyup(function (e) {
+            var text = document.getElementById("txtHandingCharge").value;
+            if (text.length >= 10) {
+                document.getElementById("txtHandingChargeError").innerText = "Handing charge have max length is 10 digits";
+            }
+            else {
+                document.getElementById("txtHandingChargeError").innerText = "";
+            }
+        });
+        $("#txtHandingCharge").keydown(function (e) {
+            if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+                (e.keyCode == 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+                (e.keyCode >= 35 && e.keyCode <= 40)) {
+                return;
+            }
+            if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                e.preventDefault();
+            }
+        });
+
+    });
+
+    function goFowardBasicDetail() {
+            goFoward();
+            var agreementNumber1 = '@Model.DetailsAgreement.AgreementNumber';
+            var variantNumber1 = '@Model.DetailsAgreement.VariantNumber';
+            $.ajax({
+                url: '@Url.Action("ViewAgreementEdit_SelectDealer", "ViewAgreement")',
+                type: "GET",
+                dataType: "text",
+                data: { agreementNumber: agreementNumber1, variantNumber: variantNumber1 },
+                success: function (data) {
+                    $('#uc2_3').html(data);
+                },
+                error: function (data) {
+                    alert("Failed to load 'Select applicable dealer'!");
+                }
+            });
+    };
+    function saveAsDraft() {
+        var name = document.getElementById("txtName").value;
+        var isInValid = false;
+        if (name.length < 1){
+            isInValid = true;
+            document.getElementById("txtNameError").innerText = "Agreement name not empty!";
+        }
+        var stday = document.getElementById("startDatepicker").value;
+        var enday = document.getElementById("endDatepicker").value;
+        if (stday.length < 1 || enday.length < 1) {
+            isInValid = true;
+            if (stday.length < 1) {
+                document.getElementById("startDateError").innerText = "Start date not empty!";
+            }
+            if (enday.length < 1) {
+                document.getElementById("endDateError").innerText = "End date not empty!";
+            }
+        }
+        var handingcharge = document.getElementById("txtHandingCharge").value;
+        if (handingcharge.length < 1){
+            isInValid = true;
+            document.getElementById("txtHandingChargeError").innerText = "Handing charge not empty!";
+        }
+        if (isInValid == true) {
+            return false;
+        } else {
+            return true;
+        }
+    };
+</script>
+
+<div id="BasicAgreementDetails">
+
+    <div>
+        @using (Ajax.BeginForm("BasicAgreementSaveAsDraft", "ViewAgreement",
+            new AjaxOptions { UpdateTargetId = "BasicAgreementResultArea", HttpMethod = "POST" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            <div id="ContentArea">
+                <table>
+                    <tr>
+                        <td class="labelArea">RFO Number</td>
+                        <td class="inputAreaLong" style="color:#1D7EDC">
+                            @Html.HiddenFor(model => model.RFONumber)
+                            @Model.RFONumber
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="labelArea">Customer Name</td>
+                        <td class="inputAreaLong" style="color:#1D7EDC">
+                            @Model.CustomerName
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="labelArea">Agreement Number</td>
+                        <td class="inputAreaLong" style="color:#1D7EDC">
+                            @Html.HiddenFor(model => model.DetailsAgreement.AgreementNumber)
+                            @Html.HiddenFor(model => model.DetailsAgreement.VariantNumber)
+                            @Model.DetailsAgreement.AgreementNumber / @Model.DetailsAgreement.VariantNumber
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="labelArea">Agreement Name</td>
+                        <td class="inputAreaLong">
+                            @Html.TextBoxFor(model => model.DetailsAgreement.Name, new { id = "txtName", style = "width: 300px; height: 25px;  border: 1px solid #889EC7; border-radius: 2px; color: black;font-size:12px;", maxlength = 30 })
+                            <label id="txtNameError" style="color:red;font-style:italic;font-size:12px;"></label>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td class="labelArea">Agreement Description</td>
+                        <td style="height:100px; padding-left:5px;">
+                            @Html.TextAreaFor(model => model.DetailsAgreement.Description, new { id = "txtAgreementDescription", style = "width: 300px; height: 100px; border: 1px solid #889EC7; border-radius: 2px; color: black;font-size:12px", maxlength = 300 })
+                            <label id="txtAgreementDescriptionError" style="color:red;font-style:italic;font-size:12px;"></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="labelArea">Start date</td>
+                        <td class="inputAreaLong">
+                            @Html.TextBoxFor(model => model.DetailsAgreement.StartDate, new { id = "startDatepicker", style = "width:120px;height:25px;border: 1px solid #889EC7; border-radius: 2px; color: black;font-size:12px", maxlength = "10" })
+                            <span class="glyphicon glyphicon-calendar" style="width:25px; height:25px;"></span>
+                            <label id="startDateError" style="color:red;font-style:italic;font-size:12px;"></label>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="labelArea">End date</td>
+                        <td class="inputAreaLong">
+                            @Html.TextBoxFor(model => model.DetailsAgreement.EndDate, new { id = "endDatepicker", style = "width:120px;height:25px;border: 1px solid #889EC7; border-radius: 2px; color: black;font-size:12px", maxlength = "10" })
+                            <span class="glyphicon glyphicon-calendar" style="width:25px; height:25px;"></span>
+                            <label id="endDateError" style="color:red;font-style:italic;font-size:12px;"></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="labelArea">Is a signed Agreement required?</td>
+                        <td align="left" class="inputAreaLong" style="align-content:center;">
+                            Yes
+                            @Html.RadioButtonFor(model => model.DetailsAgreement.SignRequired, true, new { id = "Signed", style = "padding-right:10px;border: solid 1px blue; border-radius:2px;width:40px;" })
+                            No
+                            @Html.RadioButtonFor(model => model.DetailsAgreement.SignRequired, false, new { id = "NotSign", @checked = true, style = "padding-right:10px;border: solid 1px blue; border-radius:2px;width:40px;" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="labelArea">Funding method</td>
+                        <td class="inputAreaLong">
+                            @Html.DropDownListFor(model => model.DetailsAgreement.FundingMethodId, new SelectList(ViewBag.FundingMethod, "FundingMethodId", "FundingMethodName"), new { @Class = "itemShort" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="labelArea">Payment to</td>
+                        <td class="inputAreaLong">
+                            @Html.DropDownListFor(model => model.DetailsAgreement.PaymentTo, new SelectList(ViewBag.PaymentTo, "ConfigValue", "ConfigValue"), new { @Class = "itemShort" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="labelArea">Agenda payment</td>
+                        <td class="inputAreaLong">@Html.DropDownListFor(model => model.DetailsAgreement.AgendaPaymentId, new SelectList(ViewBag.AgendaPayment, "AgendaPaymentId", "AgendaPayment1"), new { @Class = "itemShort" })</td>
+                    </tr>
+                    <tr>
+                        <td class="labelArea">Handing charge</td>
+                        <td class="inputAreaLong" style="align-content: center; font-size: 16px;">
+                            @Html.TextBoxFor(model => model.HandingCharge, new { id = "txtHandingCharge", style = "width:120px;height:25px;border: 1px solid #889EC7; border-radius: 2px; color: black;font-size:12px", maxlength = "10" })
+                            $
+                            <label id="txtHandingChargeError" style="color:red;font-style:italic;font-size:12px;"></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="labelArea">Dealer visibility</td>
+                        <td class="inputAreaLong">@Html.DropDownListFor(model => model.DetailsAgreement.DealerVisibility, new SelectList(ViewBag.DealerVisibility, "ConfigValue", "ConfigValue"), new { @Class = "itemShort" })</td>
+                    </tr>
+                    <tr>
+                        <td class="labelArea">Volume discount type</td>
+                        <td class="inputAreaLong">@Html.DropDownListFor(model => model.DetailsAgreement.AMISAccountCode, new SelectList(ViewBag.VolumeDiscountType, "ConfigValue", "ConfigValue"), new { @Class = "itemShort" })</td>
+                    </tr>
+                    <tr>
+                        <td class="labelArea"> Discount unit</td>
+                        <td class="inputAreaLong">@Html.DropDownListFor(model => model.DetailsAgreement.DiscountUnit, new SelectList(ViewBag.DiscountUnit, "ConfigValue", "ConfigValue"), new { @Class = "itemShort" })</td>
+                    </tr>
+                    <tr>
+                        <td class="labelArea">Combinability</td>
+                        <td class="inputAreaLong">@Html.DropDownListFor(model => model.DetailsAgreement.Combinability, new SelectList(ViewBag.Combinability, "ConfigValue", "ConfigValue"), new { @Class = "itemShort" })</td>
+                    </tr>
+
+                </table>
+            </div><!-- End #ContentArea -->
+
+            <div id="SubmitArea" align="right">
+                &raquo;<input type="submit" value="save as draft" style="border:none;background:none;padding-right:10px;padding-left:0px;" onclick="return saveAsDraft();" />
+                &raquo;<input type="button" value="back" style="border:none;background:none;padding-right:10px;padding-left:0px;" onclick="goBackward()" />
+                &raquo;<input type="button" value="next" style="border:none;background:none;padding-right:10px;padding-left:0px;" onclick="goFowardBasicDetail()" />
+            </div><!-- End #SubmitArea -->
+        }
+
+        <div id="BasicAgreementResultArea">
+        </div>
+
+    </div>
+
+
+
+</div><!-- End #BasicAgreementDetailsArea -->
+
